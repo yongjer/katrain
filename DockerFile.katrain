@@ -8,7 +8,7 @@ RUN apt-get install libmtdev-dev -y
 RUN apt-get install ffmpeg -y
 RUN apt-get install unzip -y
 RUN pip3 install ffpyplayer
-RUN pip3 install -U katrain
+RUN pip3 install katrain
 RUN wget https://github.com/lightvector/KataGo/releases/download/v1.13.1/katago-v1.13.1-trt8.5-cuda11.4-linux-x64.zip
 RUN unzip ./katago-v1.13.1-trt8.5-cuda11.4-linux-x64.zip
 RUN mv -f ./katago /
