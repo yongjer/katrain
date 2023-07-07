@@ -7,4 +7,4 @@ docker run --gpus all \
            --net=host \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -e DISPLAY=$DISPLAY \
-           katrain:latest 
+           katrain_trt:latest 
