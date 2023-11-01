@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: ./katrain_trt.DockerFile
-    command: katrain
+    #command: katrain
     deploy:
       resources:
         reservations:

@@ -11,6 +11,8 @@ RUN pip3 install -U ffpyplayer
 RUN pip3 install -U katrain
 RUN wget https://github.com/lightvector/KataGo/releases/download/v1.13.1/katago-v1.13.1-trt8.5-cuda11.4-linux-x64.zip
 RUN unzip ./katago-v1.13.1-trt8.5-cuda11.4-linux-x64.zip
-RUN mv -f ./katago /
+RUN mv -f ./katago /usr/local/lib/python3.8/dist-packages/katrain/KataGo/katago
 RUN rm ./katago-v1.13.1-trt8.5-cuda11.4-linux-x64.zip
+RUN wget https://github.com/lightvector/KataGo/releases/download/v1.13.2-kata9x9/kata9x9-b18c384nbt-20231025.bin.gz
+RUN mv -f ./kata9x9-b18c384nbt-20231025.bin.gz /usr/local/lib/python3.8/dist-packages/katrain/models/kata9x9-b18c384nbt-20231025.bin.gz
 CMD [ "katrain" ]
