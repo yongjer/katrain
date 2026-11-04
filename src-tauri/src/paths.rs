@@ -1,4 +1,5 @@
-//! Resolves the "katrain/..." resource paths used in KaTrain configs to real files.
+//! Resolves the "katrain/..." resource paths used in KaTrain configs to real files: the bundled resources
+//! (the repository's resources/ folder during development).
 
 use std::path::PathBuf;
 
@@ -14,8 +15,8 @@ pub fn resolve_resource(app: &AppHandle, path: &str) -> PathBuf {
                 return bundled;
             }
         }
-        // `tauri dev`: fall back to the sources in the repository.
-        let dev = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("..").join("katrain").join(rel);
+        // `tauri dev`: fall back to the resources in the repository.
+        let dev = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("..").join("resources").join(rel);
         if cfg!(debug_assertions) && dev.exists() {
             return dev;
         }

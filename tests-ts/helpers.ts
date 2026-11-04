@@ -1,4 +1,11 @@
+import { join } from "node:path";
 import type { GameHost, TrainerSettings } from "../src/core/game";
+
+/** Config paths such as "katrain/models/x" refer to the bundled resources in resources/. */
+export function resourcePath(p: string): string {
+  const n = p.replace(/\\/g, "/");
+  return n.startsWith("katrain/") ? join(__dirname, "../resources", n.slice("katrain/".length)) : p;
+}
 
 export const TRAINER: TrainerSettings = {
   eval_thresholds: [12, 6, 3, 1.5, 0.5, 0],

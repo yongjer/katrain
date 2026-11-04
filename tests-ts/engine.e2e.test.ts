@@ -15,11 +15,10 @@ import { KataGoEngine, type EngineSettings, type EngineTransport } from "../src/
 import { Game } from "../src/core/game";
 import { Move } from "../src/core/move";
 import { parseSgf, writeSgf } from "../src/core/sgf";
-import defaultConfig from "../katrain/config.json";
-import { host, TRAINER } from "./helpers";
+import defaultConfig from "../src/state/defaults.json";
+import { host, resourcePath, TRAINER } from "./helpers";
 
 const enabled = process.env.KATAGO_E2E === "1";
-const repo = join(__dirname, "..");
 const dataDir = process.env.KATRAIN_DATA_DIR || join(tmpdir(), "katrain-e2e");
 
 class NodeTransport implements EngineTransport {
@@ -31,10 +30,10 @@ class NodeTransport implements EngineTransport {
   }
   async start(s: EngineSettings) {
     mkdirSync(dataDir, { recursive: true });
-    const exe = process.env.KATAGO_EXE || join(repo, "katrain/KataGo/katago");
+    const exe = process.env.KATAGO_EXE || resourcePath("katrain/KataGo/katago");
     const overrides = [`homeDataDir=${dataDir}`, "numAnalysisThreads=2", "numSearchThreads=2", "nnMaxBatchSize=8"].join(",");
     const human = process.env.KATAGO_HUMAN_MODEL ? ["-human-model", process.env.KATAGO_HUMAN_MODEL] : [];
-    this.proc = spawn(exe, ["analysis", "-model", join(repo, s.model), ...human, "-config", join(repo, s.config), "-override-config", overrides]);
+    this.proc = spawn(exe, ["analysis", "-model", resourcePath(s.model), ...human, "-config", resourcePath(s.config), "-override-config", overrides]);
     createInterface({ input: this.proc.stdout }).on("line", (l) => this.handlers.onStdout(l));
     createInterface({ input: this.proc.stderr }).on("line", (l) => {
       this.stderr.push(l);

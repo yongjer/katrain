@@ -64,11 +64,11 @@ describe("handicap placement matches pysgf", () => {
   }
 });
 
-describe("parsing matches pysgf on tests/data", () => {
+describe("parsing matches pysgf on tests-ts/data", () => {
   const data = golden("parse.json") as Record<string, any>;
   for (const [fn, expected] of Object.entries(data)) {
     it(fn, () => {
-      const contents = readFileSync(join(root, "tests/data", fn), "utf-8");
+      const contents = readFileSync(join(root, "tests-ts/data", fn), "utf-8");
       if (expected.error) {
         expect(() => parseGameFile(contents, fn)).toThrow();
         return;
@@ -97,7 +97,7 @@ describe("parsing matches pysgf on tests/data", () => {
 
   it("round trips through writeSgf", () => {
     for (const fn of Object.keys(data).filter((f) => f.endsWith(".sgf"))) {
-      const tree = parseGameFile(readFileSync(join(root, "tests/data", fn), "utf-8"), fn);
+      const tree = parseGameFile(readFileSync(join(root, "tests-ts/data", fn), "utf-8"), fn);
       const again = parseSgf(writeSgf(tree));
       const strip = (n: GameNode) =>
         [...n.properties].filter(([k]) => !["C", "AP", "CA", "KTV"].includes(k)).map(([k, v]) => `${k}=${v.join("|")}`);
@@ -122,7 +122,7 @@ describe("parsing matches pysgf on tests/data", () => {
 });
 
 describe("GIB robustness (ported from tests/test_parser.py)", () => {
-  const gib = readFileSync(join(root, "tests/data/test.gib"), "utf-8");
+  const gib = readFileSync(join(root, "tests-ts/data/test.gib"), "utf-8");
   it("survives malformed INI lines", () => {
     for (const broken of ["INI 0 1", "INI 0 1 0 x", "INI"]) {
       const mangled = gib.replace(/^INI .*$/m, broken);
@@ -145,7 +145,7 @@ describe("GIB robustness (ported from tests/test_parser.py)", () => {
   });
   it("fox files have no spurious handicap placements and a single line", () => {
     for (const fn of ["fox sgf error.sgf", "fox sgf works.sgf"]) {
-      const tree = parseSgf(readFileSync(join(root, "tests/data", fn), "utf-8"));
+      const tree = parseSgf(readFileSync(join(root, "tests-ts/data", fn), "utf-8"));
       const g = new Game(host, null, { moveTree: tree });
       expect(g.root.placements).toEqual([]);
       while (g.currentNode.children.length) {
@@ -326,9 +326,9 @@ describe("i18n", () => {
     expect(pyFormat("loss {points_lost:.1f}", { points_lost: 2.345 })).toBe("loss 2.3");
   });
   it("parses KaTrain's .po catalogs", () => {
-    const en = parsePo(readFileSync(join(root, "katrain/i18n/locales/en/LC_MESSAGES/katrain.po"), "utf-8"));
+    const en = parsePo(readFileSync(join(root, "src/i18n/en.po"), "utf-8"));
     expect(en["Info:score"]).toBe("Score: {score}");
-    const tw = parsePo(readFileSync(join(root, "katrain/i18n/locales/tw/LC_MESSAGES/katrain.po"), "utf-8"));
+    const tw = parsePo(readFileSync(join(root, "src/i18n/tw.po"), "utf-8"));
     expect(Object.keys(tw).length).toBeGreaterThan(200);
   });
 });

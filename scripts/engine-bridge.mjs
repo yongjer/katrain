@@ -31,7 +31,7 @@ const clients = new Set();
 
 function resolvePath(p) {
   const n = p.replace(/\\/g, "/");
-  if (n.startsWith("katrain/")) return join(repo, n);
+  if (n.startsWith("katrain/")) return join(repo, "resources", n.slice("katrain/".length)); // bundled resources
   if (n.startsWith("~/")) return join(homedir(), n.slice(2));
   return p;
 }

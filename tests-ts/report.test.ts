@@ -15,7 +15,7 @@ interface Golden {
 
 describe("performance report matches katrain/core/ai.py game_report", () => {
   const golden = JSON.parse(readFileSync(join(__dirname, "golden/report.json"), "utf-8")) as Golden;
-  const root = parseSgf(readFileSync(join(__dirname, "../tests/data", golden.file), "utf-8"));
+  const root = parseSgf(readFileSync(join(__dirname, "data", golden.file), "utf-8"));
   const main: GameNode[] = [root];
   while (main.at(-1)!.children.length) main.push(main.at(-1)!.children[0]);
   for (const a of golden.analyses) main[a.index].setAnalysis(a.json, null, false, null, a.partial);

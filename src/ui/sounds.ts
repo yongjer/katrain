@@ -1,11 +1,11 @@
-import stone1 from "../../katrain/sounds/stone1.wav";
-import stone2 from "../../katrain/sounds/stone2.wav";
-import stone3 from "../../katrain/sounds/stone3.wav";
-import stone4 from "../../katrain/sounds/stone4.wav";
-import stone5 from "../../katrain/sounds/stone5.wav";
-import capturing from "../../katrain/sounds/capturing.wav";
-import boing from "../../katrain/sounds/boing.wav";
-import countdown from "../../katrain/sounds/countdownbeep.wav";
+import stone1 from "../assets/sounds/stone1.wav";
+import stone2 from "../assets/sounds/stone2.wav";
+import stone3 from "../assets/sounds/stone3.wav";
+import stone4 from "../assets/sounds/stone4.wav";
+import stone5 from "../assets/sounds/stone5.wav";
+import capturing from "../assets/sounds/capturing.wav";
+import boing from "../assets/sounds/boing.wav";
+import countdown from "../assets/sounds/countdownbeep.wav";
 
 const STONES = [stone1, stone2, stone3, stone4, stone5];
 const cache = new Map<string, HTMLAudioElement>();

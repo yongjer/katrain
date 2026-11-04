@@ -9,11 +9,10 @@ import { KataGoEngine, type EngineSettings, type EngineTransport } from "../src/
 import { Game } from "../src/core/game";
 import { addTsumegoFrame } from "../src/core/tsumego";
 import { parseSgf } from "../src/core/sgf";
-import defaultConfig from "../katrain/config.json";
-import { host } from "./helpers";
+import defaultConfig from "../src/state/defaults.json";
+import { host, resourcePath } from "./helpers";
 
 const enabled = process.env.KATAGO_E2E === "1";
-const repo = join(__dirname, "..");
 const dataDir = process.env.KATRAIN_DATA_DIR || join(tmpdir(), "katrain-e2e");
 
 function transport(): EngineTransport {
@@ -24,7 +23,7 @@ function transport(): EngineTransport {
     async start(s: EngineSettings) {
       mkdirSync(dataDir, { recursive: true });
       const overrides = [`homeDataDir=${dataDir}`, "numAnalysisThreads=2", "numSearchThreads=2", "nnMaxBatchSize=8"].join(",");
-      proc = spawn(join(repo, "katrain/KataGo/katago"), ["analysis", "-model", join(repo, s.model), "-config", join(repo, s.config), "-override-config", overrides]);
+      proc = spawn(resourcePath("katrain/KataGo/katago"), ["analysis", "-model", resourcePath(s.model), "-config", resourcePath(s.config), "-override-config", overrides]);
       createInterface({ input: proc.stdout! }).on("line", (l) => handlers.onStdout(l));
       createInterface({ input: proc.stderr! }).on("line", (l) => handlers.onStderr(l));
       proc.on("exit", (c) => handlers.onExit(c));

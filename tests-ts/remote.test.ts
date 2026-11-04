@@ -73,7 +73,7 @@ const ids = (sent: string[]) => sent.map((l) => JSON.parse(l)).filter((q) => q.a
 
 describe("remote engine", () => {
   beforeAll(() => {
-    const en = parsePo(readFileSync(join(__dirname, "../katrain/i18n/locales/en/LC_MESSAGES/katrain.po"), "utf-8"));
+    const en = parsePo(readFileSync(join(__dirname, "../src/i18n/en.po"), "utf-8"));
     setCatalogs(en, en);
   });
   const saved = [KataGoEngine.RECONNECT_BACKOFF_MS, KataGoEngine.RECONNECT_MAX_BACKOFF_MS];

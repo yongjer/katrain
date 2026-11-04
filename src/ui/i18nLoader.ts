@@ -1,18 +1,18 @@
-// Loads KaTrain's gettext catalogs (katrain/i18n/locales/*/LC_MESSAGES/katrain.po).
+// Loads KaTrain's gettext catalogs (src/i18n/<lang>.po).
 // English is bundled; other languages are loaded on demand.
 
-import englishSource from "../../katrain/i18n/locales/en/LC_MESSAGES/katrain.po?raw";
+import englishSource from "../i18n/en.po?raw";
 import { parsePo, setCatalogs } from "../core/i18n";
 
-const loaders = import.meta.glob("../../katrain/i18n/locales/*/LC_MESSAGES/katrain.po", {
+const loaders = import.meta.glob(["../i18n/*.po", "!../i18n/en.po"], {
   query: "?raw",
   import: "default",
 }) as Record<string, () => Promise<string>>;
 
 const english = parsePo(englishSource);
-const available = new Map<string, () => Promise<string>>();
+const available = new Map<string, () => Promise<string>>([["en", async () => englishSource]]);
 for (const [path, load] of Object.entries(loaders)) {
-  const lang = /locales\/([^/]+)\//.exec(path)?.[1];
+  const lang = /([^/]+)\.po$/.exec(path)?.[1];
   if (lang) available.set(lang, load);
 }
 

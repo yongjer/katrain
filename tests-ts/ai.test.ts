@@ -6,7 +6,7 @@ import { Game } from "../src/core/game";
 import { GameNode, type KataGoResponse, type MoveInfo } from "../src/core/gameNode";
 import { Move } from "../src/core/move";
 import { setRng } from "../src/core/utils";
-import defaults from "../katrain/config.json";
+import defaults from "../src/state/defaults.json";
 import { host } from "./helpers";
 
 /** Engine stand-in: records requests and answers them with `respond`. */

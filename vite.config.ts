@@ -14,8 +14,8 @@ export default defineConfig({
     strictPort: true,
     host: host || false,
     hmr: host ? { protocol: "ws", host, port: 1421 } : undefined,
-    // the Python package next to src/ holds large binaries and models
-    watch: { ignored: [resolve(import.meta.dirname, "src-tauri") + "/**", resolve(import.meta.dirname, "katrain") + "/**"] },
+    // KataGo binaries and models, and the Rust build
+    watch: { ignored: [resolve(import.meta.dirname, "src-tauri") + "/**", resolve(import.meta.dirname, "resources") + "/**"] },
   },
   build: {
     target: "es2022",

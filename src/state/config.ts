@@ -1,6 +1,6 @@
-// User configuration. Defaults come straight from KaTrain's katrain/config.json so both apps agree.
+// User configuration. Defaults are KaTrain's config.json (src/state/defaults.json), so configs stay compatible.
 
-import packagedConfig from "../../katrain/config.json";
+import packagedConfig from "./defaults.json";
 import type { AiSettings } from "../core/ai";
 import type { EngineSettings } from "../core/engine";
 import type { TrainerSettings } from "../core/game";
