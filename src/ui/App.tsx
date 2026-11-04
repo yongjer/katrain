@@ -51,7 +51,10 @@ function onKeyDown(e: KeyboardEvent) {
     return;
   }
   const ctrl = e.ctrlKey || e.metaKey;
-  const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+  // Letter shortcuts go by the physical key, like Kivy's keycodes: with a Chinese/Japanese input method active (or a
+  // non-Latin layout) e.key is "Process" or another character, but e.code is still "KeyI".
+  const letter = /^Key([A-Z])$/.exec(e.code);
+  const key = letter && !e.altKey ? letter[1].toLowerCase() : e.key.length === 1 ? e.key.toLowerCase() : e.key;
   const handled = () => e.preventDefault();
 
   if (ctrl) {
