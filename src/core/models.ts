@@ -4,12 +4,14 @@ export interface ModelEntry {
   name: string;
   url: string;
   humanlike?: boolean;
+  /** approximate download size in MB, shown before downloading */
+  sizeMb?: number;
 }
 
 /** Downloaded by the "Download Models" button. */
 export const DOWNLOADABLE_MODELS: ModelEntry[] = [
-  { name: "Human-like model", url: "https://github.com/lightvector/KataGo/releases/download/v1.15.0/b18c384nbt-humanv0.bin.gz", humanlike: true },
-  { name: "old 15 block model", url: "https://github.com/lightvector/KataGo/releases/download/v1.3.2/g170e-b15c192-s1672170752-d466197061.txt.gz" },
+  { name: "Human-like model", url: "https://github.com/lightvector/KataGo/releases/download/v1.15.0/b18c384nbt-humanv0.bin.gz", humanlike: true, sizeMb: 99 },
+  { name: "old 15 block model", url: "https://github.com/lightvector/KataGo/releases/download/v1.3.2/g170e-b15c192-s1672170752-d466197061.txt.gz", sizeMb: 48 },
 ];
 
 /** katagotraining.org endpoints that name the current distributed models; resolved before downloading. */

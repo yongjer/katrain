@@ -42,32 +42,37 @@ export function ModelPicker({ model, humanlikeModel, onModel, onHumanlikeModel }
     return () => unlisten();
   }, [refresh]);
 
-  const download = async () => {
+  const [catalog, setCatalog] = useState<ModelEntry[] | null>(null);
+
+  /** Show the downloadable models; the distributed ones are looked up on katagotraining.org first. */
+  const openCatalog = async () => {
     setMessage(null);
+    if (catalog) {
+      setCatalog(null);
+      return;
+    }
     const entries: ModelEntry[] = [...DOWNLOADABLE_MODELS];
+    setCatalog(entries);
     for (const ep of MODEL_ENDPOINTS) {
       try {
-        entries.push({ name: ep.name, url: await platform.resolveModelEndpoint(ep.url) });
+        const url = await platform.resolveModelEndpoint(ep.url);
+        entries.push({ name: ep.name, url });
+        setCatalog([...entries]);
       } catch (e) {
         console.warn(`Failed to retrieve info for model: ${e}`);
       }
     }
-    const have = new Set(files.map((f) => f.name));
-    const missing = entries.filter((m) => !have.has(fileName(m.url)));
-    if (!missing.length) {
-      setMessage(t("All models downloaded"));
-      return;
-    }
-    for (const m of missing) {
-      setProgress((prev) => ({ ...prev, [m.name]: { name: m.name, received: 0, total: null, done: false, error: null, path: null } }));
-      platform
-        .downloadModel(m.name, m.url)
-        .then((path) => {
-          // first human-like model: use it right away so the human-like AIs work
-          if (m.humanlike && !humanlikeModel) onHumanlikeModel(path);
-        })
-        .catch((e) => setProgress((prev) => ({ ...prev, [m.name]: { ...prev[m.name], done: true, error: String(e) } })));
-    }
+  };
+
+  const download = (m: ModelEntry) => {
+    setProgress((prev) => ({ ...prev, [m.name]: { name: m.name, received: 0, total: null, done: false, error: null, path: null } }));
+    platform
+      .downloadModel(m.name, m.url)
+      .then((path) => {
+        // first human-like model: use it right away so the human-like AIs work
+        if (m.humanlike && !humanlikeModel) onHumanlikeModel(path);
+      })
+      .catch((e) => setProgress((prev) => ({ ...prev, [m.name]: { ...prev[m.name], done: true, error: String(e) } })));
   };
 
   const normal = files.filter((f) => !isHumanModel(f.path));
@@ -108,26 +113,41 @@ export function ModelPicker({ model, humanlikeModel, onModel, onHumanlikeModel }
             <span className="field-hint">{tf("models available", { num: human.length })}</span>
           </label>
           <div className="download-row">
-            <button className="text-button" onClick={() => void download()}>
-              {t("download models button")}
+            <button className="text-button" onClick={() => void openCatalog()} aria-expanded={!!catalog}>
+              {t("download models button")} {catalog ? "▴" : "▾"}
             </button>
             {message && <span className="muted">{message}</span>}
           </div>
-          {Object.values(progress).map((p) => (
-            <div key={p.name} className={`download ${p.error ? "error" : ""}`}>
-              <span className="download-name">{p.name}</span>
-              {p.error ? (
-                <span>{p.error}</span>
-              ) : p.done ? (
-                <span>✓</span>
-              ) : (
-                <>
-                  <progress max={p.total ?? undefined} value={p.total ? p.received : undefined} />
-                  <span>{p.total ? `${mb(p.received)} / ${mb(p.total)}` : p.received ? mb(p.received) : "…"}</span>
-                </>
-              )}
+          {catalog && (
+            <div className="download-list">
+              {catalog.map((m) => {
+                const have = files.some((f) => f.name === fileName(m.url));
+                const p = progress[m.name];
+                return (
+                  <div key={m.name} className={`download ${p?.error ? "error" : ""}`}>
+                    <span className="download-name" title={fileName(m.url)}>
+                      {m.name}
+                      {m.sizeMb ? <span className="muted"> · {m.sizeMb} MB</span> : null}
+                    </span>
+                    {p?.error ? (
+                      <span>{p.error}</span>
+                    ) : have || p?.done ? (
+                      <span className="downloaded">✓</span>
+                    ) : p ? (
+                      <>
+                        <progress max={p.total ?? undefined} value={p.total ? p.received : undefined} />
+                        <span>{p.total ? `${mb(p.received)} / ${mb(p.total)}` : p.received ? mb(p.received) : "…"}</span>
+                      </>
+                    ) : (
+                      <button className="text-button small" onClick={() => download(m)} aria-label={`${t("download models button")}: ${m.name}`}>
+                        ↓
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          )}
         </>
       )}
     </div>
