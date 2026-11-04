@@ -140,6 +140,9 @@ function onKeyDown(e: KeyboardEvent) {
     case "Pause":
       toggleTimerPaused();
       break;
+    case "F3":
+      openDialog("report");
+      break;
     case "F5":
       openDialog("timer");
       break;

@@ -1,6 +1,6 @@
 // Everything that differs between the Tauri desktop app and a plain browser (used for UI development).
 
-import type { EngineSettings, EngineTransport } from "../core/engine";
+import { resolveEngineBackend, type EngineSettings, type EngineTransport } from "../core/engine";
 
 export interface OpenedFile {
   name: string;
@@ -36,7 +36,9 @@ export interface Platform {
   writeClipboard(text: string): Promise<void>;
   /** Fetch a game record from an http(s) URL (pasting a link to an SGF). */
   fetchText(url: string): Promise<string>;
-  makeTransport(): EngineTransport;
+  /** A transport for these engine settings; `transportKind` tells when a restart needs a different one. */
+  makeTransport(settings: EngineSettings): EngineTransport;
+  transportKind(settings: EngineSettings): string;
   openGameFile(): Promise<OpenedFile | null>;
   /** Save to `path`, or ask where to save when path is null. Returns the path written, or null if cancelled. */
   saveTextFile(contents: string, suggestedName: string, path: string | null): Promise<string | null>;
@@ -83,8 +85,12 @@ class TauriTransport implements EngineTransport {
   async start(settings: EngineSettings) {
     await this.listen();
     const { invoke } = await import("@tauri-apps/api/core");
-    const result = await invoke<{ generation: number; command: string[] }>("engine_start", { settings });
+    const result = await invoke<{ generation: number; command: string[]; remote: boolean }>("engine_start", { settings });
     this.generation = Math.max(this.generation, result.generation);
+    if (result.remote) {
+      this.handlers?.onStderr(`Connected to remote KataGo at ${result.command.join(" ")}`);
+      return { ready: true };
+    }
     this.handlers?.onStderr(`Started KataGo with ${result.command.join(" ")}`);
   }
 
@@ -132,7 +138,8 @@ const tauriPlatform: Platform = {
     const { invoke } = await import("@tauri-apps/api/core");
     return invoke<string>("fetch_text", { url });
   },
-  makeTransport: () => new TauriTransport(),
+  makeTransport: () => new TauriTransport(), // the Rust side runs local, custom and remote engines
+  transportKind: () => "tauri",
   async openGameFile() {
     const { open } = await import("@tauri-apps/plugin-dialog");
     const { invoke } = await import("@tauri-apps/api/core");
@@ -214,6 +221,53 @@ class HttpBridgeTransport implements EngineTransport {
   }
 }
 
+/** A remote KataGo analysis engine over a WebSocket, straight from the browser (development builds). */
+class WebSocketTransport implements EngineTransport {
+  private handlers: Handlers | null = null;
+  private ws: WebSocket | null = null;
+
+  setHandlers(h: Handlers) {
+    this.handlers = h;
+  }
+
+  start(settings: EngineSettings) {
+    this.ws?.close();
+    const url = (settings.remote_url ?? "").trim();
+    return new Promise<{ ready: boolean }>((resolve, reject) => {
+      const ws = new WebSocket(url);
+      let open = false;
+      ws.onopen = () => {
+        open = true;
+        this.handlers?.onStderr(`Connected to remote KataGo at ${url}`);
+        resolve({ ready: true });
+      };
+      ws.onmessage = async (e) => {
+        const text = typeof e.data === "string" ? e.data : await new Response(e.data as Blob).text();
+        for (const line of text.split(/\r?\n/)) if (line.trim()) this.handlers?.onStdout(line);
+      };
+      ws.onclose = (e) => {
+        if (this.ws !== ws) return;
+        this.ws = null;
+        if (!open) return reject(new Error(e.reason || `connection failed (${e.code})`));
+        this.handlers?.onStderr(`Remote KataGo disconnected: ${e.reason || "closed by remote"}`);
+        this.handlers?.onExit(null);
+      };
+      this.ws = ws;
+    });
+  }
+
+  async send(line: string) {
+    if (this.ws?.readyState !== WebSocket.OPEN) throw new Error("Remote KataGo is disconnected");
+    this.ws.send(line);
+  }
+
+  async stop() {
+    const ws = this.ws;
+    this.ws = null;
+    ws?.close();
+  }
+}
+
 const browserPlatform: Platform = {
   isDesktop: false,
   async listModels() {
@@ -239,7 +293,11 @@ const browserPlatform: Platform = {
     if (!res.ok) throw new Error(`${url} returned ${res.status}`);
     return res.text();
   },
-  makeTransport: () => new HttpBridgeTransport(new URLSearchParams(window.location.search).get("bridge")),
+  makeTransport: (settings) =>
+    resolveEngineBackend(settings) === "remote"
+      ? new WebSocketTransport()
+      : new HttpBridgeTransport(new URLSearchParams(window.location.search).get("bridge")),
+  transportKind: (settings) => (resolveEngineBackend(settings) === "remote" ? "websocket" : "bridge"),
   openGameFile() {
     return new Promise((resolve) => {
       const input = document.createElement("input");

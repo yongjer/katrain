@@ -99,6 +99,7 @@ export function TopBar() {
             <hr />
             <MenuItem label={t("analysis:continuous")} shortcut="Space" onClick={togglePondering} />
             <MenuItem label={t("analysis:game")} onClick={() => analyzeExtra("game")} />
+            <MenuItem label={t("analysis:report")} shortcut="F3" onClick={() => openDialog("report")} />
             <MenuItem label={t("analysis:aimove")} shortcut="Enter" onClick={aiMoveNow} />
             <MenuItem label={t("analysis:playtoend")} shortcut="L" onClick={selfplayToEnd} />
             <MenuItem label={t("analysis:insert")} shortcut="I" onClick={toggleInsertMode} />

@@ -1,5 +1,7 @@
-//! Owns the KataGo analysis process. The frontend (src/core/engine.ts) does all query bookkeeping;
-//! this module only spawns the process, forwards stdin, and streams stdout/stderr lines back as events.
+//! Owns the KataGo analysis engine: a local process, or a WebSocket connection to a remote KataGo analysis
+//! engine. The frontend (src/core/engine.ts) does all query bookkeeping, including reconnecting to a remote
+//! engine; this module only spawns the process or opens the socket, forwards query lines, and streams the
+//! response lines back as events.
 
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
@@ -7,9 +9,13 @@ use std::process::{Child, ChildStdin, Command, Stdio};
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Mutex;
 use std::thread;
+use std::time::Duration;
 
+use futures_util::{SinkExt, StreamExt};
 use serde::{Deserialize, Serialize};
 use tauri::{AppHandle, Emitter, Manager, State};
+use tokio::sync::mpsc;
+use tokio_tungstenite::tungstenite::Message;
 
 use crate::paths;
 
@@ -19,17 +25,19 @@ pub struct EngineState {
     generation: AtomicU64,
 }
 
-struct Running {
-    child: Child,
-    stdin: ChildStdin,
+enum Running {
+    Process { child: Child, stdin: ChildStdin },
+    Remote { sender: mpsc::UnboundedSender<String>, reader: tauri::async_runtime::JoinHandle<()> },
 }
 
 /// Subset of the `engine` config section the backend needs to build the command line.
 #[derive(Debug, Deserialize)]
 #[serde(default)]
 pub struct EngineLaunch {
+    pub backend: String,
     pub katago: String,
     pub altcommand: String,
+    pub remote_url: String,
     pub model: String,
     pub humanlike_model: String,
     pub config: String,
@@ -38,8 +46,10 @@ pub struct EngineLaunch {
 impl Default for EngineLaunch {
     fn default() -> Self {
         Self {
+            backend: String::new(),
             katago: String::new(),
             altcommand: String::new(),
+            remote_url: String::new(),
             model: "katrain/models/b10c384h6nbttflrs.bin.gz".into(),
             humanlike_model: String::new(),
             config: "katrain/KataGo/analysis_config.cfg".into(),
@@ -63,6 +73,26 @@ struct ExitPayload {
 pub struct StartResult {
     generation: u64,
     command: Vec<String>,
+    /// A remote engine is ready as soon as the socket is open (there is no startup output to wait for).
+    remote: bool,
+}
+
+/// Which engine to use, as resolve_engine_backend in katrain/core/engine.py: the explicit `backend` setting,
+/// or for older configs a remote_url means remote and an altcommand means custom.
+pub fn resolve_backend(launch: &EngineLaunch) -> &'static str {
+    match launch.backend.trim().to_lowercase().as_str() {
+        "local" => return "local",
+        "remote" => return "remote",
+        "custom" => return "custom",
+        _ => {}
+    }
+    if !launch.remote_url.trim().is_empty() {
+        "remote"
+    } else if !launch.altcommand.trim().is_empty() {
+        "custom"
+    } else {
+        "local"
+    }
 }
 
 /// Default KataGo executable for this platform: bundled on Windows/Linux, PATH (e.g. Homebrew) on macOS.
@@ -86,7 +116,7 @@ fn build_command(app: &AppHandle, launch: &EngineLaunch) -> Result<(Command, Vec
     let data_dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
     std::fs::create_dir_all(&data_dir).map_err(|e| format!("Could not create {}: {e}", data_dir.display()))?;
 
-    if !launch.altcommand.trim().is_empty() {
+    if resolve_backend(launch) == "custom" {
         let cmdline = launch.altcommand.trim().to_string();
         let mut cmd = if cfg!(target_os = "windows") {
             let mut c = Command::new("cmd");
@@ -154,18 +184,34 @@ fn path_str(p: &Path) -> String {
 }
 
 fn kill(running: &mut Option<Running>) {
-    if let Some(mut r) = running.take() {
-        let _ = r.child.kill();
-        let _ = r.child.wait();
+    match running.take() {
+        Some(Running::Process { mut child, .. }) => {
+            let _ = child.kill();
+            let _ = child.wait();
+        }
+        // Dropping the sender makes the writer send a close frame; the reader stops right away.
+        Some(Running::Remote { reader, .. }) => reader.abort(),
+        None => {}
     }
 }
 
-/// Start (or restart) KataGo. Returns a generation number that tags all events from this process.
+fn emit_exit(app: &AppHandle, generation: u64, code: Option<i32>) {
+    let _ = app.emit("katago-exit", ExitPayload { generation, code });
+}
+
+/// Start (or restart) KataGo. Returns a generation number that tags all events from this process or connection.
 #[tauri::command]
-pub fn engine_start(app: AppHandle, state: State<'_, EngineState>, settings: EngineLaunch) -> Result<StartResult, String> {
+pub async fn engine_start(app: AppHandle, settings: EngineLaunch) -> Result<StartResult, String> {
+    let state = app.state::<EngineState>();
+    let generation = {
+        let mut guard = state.running.lock().map_err(|e| e.to_string())?;
+        kill(&mut guard);
+        state.generation.fetch_add(1, Ordering::SeqCst) + 1
+    };
+    if resolve_backend(&settings) == "remote" {
+        return start_remote(app.clone(), generation, settings.remote_url.trim().to_string()).await;
+    }
     let mut guard = state.running.lock().map_err(|e| e.to_string())?;
-    kill(&mut guard);
-    let generation = state.generation.fetch_add(1, Ordering::SeqCst) + 1;
 
     let (mut cmd, display) = build_command(&app, &settings)?;
     cmd.stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::piped());
@@ -193,8 +239,8 @@ pub fn engine_start(app: AppHandle, state: State<'_, EngineState>, settings: Eng
             Ok(mut guard) => {
                 let ours = state.generation.load(Ordering::SeqCst) == generation;
                 match guard.as_mut() {
-                    Some(r) if ours => {
-                        let status = r.child.wait().ok();
+                    Some(Running::Process { child, .. }) if ours => {
+                        let status = child.wait().ok();
                         *guard = None;
                         status.and_then(|s| s.code())
                     }
@@ -203,7 +249,7 @@ pub fn engine_start(app: AppHandle, state: State<'_, EngineState>, settings: Eng
             }
             Err(_) => None,
         };
-        let _ = app_out.emit("katago-exit", ExitPayload { generation, code });
+        emit_exit(&app_out, generation, code);
     });
 
     let app_err = app.clone();
@@ -215,20 +261,86 @@ pub fn engine_start(app: AppHandle, state: State<'_, EngineState>, settings: Eng
         }
     });
 
-    *guard = Some(Running { child, stdin });
-    Ok(StartResult { generation, command: display })
+    *guard = Some(Running::Process { child, stdin });
+    Ok(StartResult { generation, command: display, remote: false })
+}
+
+/// Connect to a remote KataGo analysis engine that speaks the same JSON lines over a WebSocket.
+async fn start_remote(app: AppHandle, generation: u64, url: String) -> Result<StartResult, String> {
+    if url.is_empty() {
+        return Err("Remote KataGo URL is empty".into());
+    }
+    if !(url.starts_with("ws://") || url.starts_with("wss://")) {
+        return Err("Remote KataGo URL must start with ws:// or wss://".into());
+    }
+    let connect = tokio::time::timeout(Duration::from_secs(30), tokio_tungstenite::connect_async(url.as_str()));
+    let (socket, _) = match connect.await {
+        Ok(Ok(s)) => s,
+        // The frontend wraps these in the translated "Connecting to remote KataGo failed" message.
+        Ok(Err(e)) => return Err(e.to_string()),
+        Err(_) => return Err("timed out".into()),
+    };
+    let (mut write, mut read) = socket.split();
+    let (sender, mut queue) = mpsc::unbounded_channel::<String>();
+
+    tauri::async_runtime::spawn(async move {
+        while let Some(line) = queue.recv().await {
+            if write.send(Message::text(line)).await.is_err() {
+                return;
+            }
+        }
+        let _ = write.close().await;
+    });
+
+    let app_read = app.clone();
+    let reader = tauri::async_runtime::spawn(async move {
+        let reason = loop {
+            let text = match read.next().await {
+                Some(Ok(Message::Text(t))) => t.to_string(),
+                Some(Ok(Message::Binary(b))) => String::from_utf8_lossy(&b).into_owned(),
+                Some(Ok(Message::Close(frame))) => {
+                    break frame.map(|f| f.reason.to_string()).filter(|r| !r.is_empty()).unwrap_or_else(|| "closed by remote".into())
+                }
+                Some(Ok(_)) => continue, // ping/pong
+                Some(Err(e)) => break e.to_string(),
+                None => break "connection closed".into(),
+            };
+            // A frame may hold several newline-separated responses.
+            for line in text.lines().map(str::trim).filter(|l| !l.is_empty()) {
+                let _ = app_read.emit("katago-stdout", LinePayload { generation, line: line.to_string() });
+            }
+        };
+        let state = app_read.state::<EngineState>();
+        if state.generation.load(Ordering::SeqCst) == generation {
+            if let Ok(mut guard) = state.running.lock() {
+                *guard = None;
+            }
+            let _ = app_read.emit("katago-stderr", LinePayload { generation, line: format!("Remote KataGo disconnected: {reason}") });
+        }
+        emit_exit(&app_read, generation, None);
+    });
+
+    let state = app.state::<EngineState>();
+    let mut guard = state.running.lock().map_err(|e| e.to_string())?;
+    if state.generation.load(Ordering::SeqCst) != generation {
+        reader.abort(); // stopped or restarted while connecting
+        return Err("Connection superseded".into());
+    }
+    *guard = Some(Running::Remote { sender, reader });
+    Ok(StartResult { generation, command: vec![url], remote: true })
 }
 
 #[tauri::command]
 pub fn engine_send(state: State<'_, EngineState>, line: String) -> Result<(), String> {
     let mut guard = state.running.lock().map_err(|e| e.to_string())?;
-    let running = guard.as_mut().ok_or("KataGo is not running")?;
-    running
-        .stdin
-        .write_all(line.as_bytes())
-        .and_then(|_| running.stdin.write_all(b"\n"))
-        .and_then(|_| running.stdin.flush())
-        .map_err(|e| format!("Exception in writing to KataGo: {e}"))
+    match guard.as_mut().ok_or("KataGo is not running")? {
+        Running::Process { stdin, .. } => stdin
+            .write_all(line.as_bytes())
+            .and_then(|_| stdin.write_all(b"\n"))
+            .and_then(|_| stdin.flush())
+            .map_err(|e| format!("Exception in writing to KataGo: {e}")),
+        Running::Remote { sender, .. } => sender.send(line).map_err(|_| "Remote KataGo is disconnected".to_string()),
+    }
 }
 
 #[tauri::command]
@@ -245,4 +357,24 @@ pub fn shutdown(app: &AppHandle) {
     if let Ok(mut guard) = state.running.lock() {
         kill(&mut guard);
     };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn launch(backend: &str, remote_url: &str, altcommand: &str) -> EngineLaunch {
+        EngineLaunch { backend: backend.into(), remote_url: remote_url.into(), altcommand: altcommand.into(), ..Default::default() }
+    }
+
+    #[test]
+    fn backend_resolution_matches_python() {
+        assert_eq!(resolve_backend(&launch("", "", "")), "local");
+        assert_eq!(resolve_backend(&launch("", "ws://x", "")), "remote");
+        assert_eq!(resolve_backend(&launch("", "", "katago gtp")), "custom");
+        assert_eq!(resolve_backend(&launch("", "ws://x", "katago gtp")), "remote");
+        assert_eq!(resolve_backend(&launch("Local", "ws://x", "katago gtp")), "local");
+        assert_eq!(resolve_backend(&launch("custom", "ws://x", "katago gtp")), "custom");
+        assert_eq!(resolve_backend(&launch("bogus", "", "")), "local");
+    }
 }

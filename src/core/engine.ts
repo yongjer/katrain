@@ -1,14 +1,19 @@
-// Ported from katrain/core/engine.py: drives the KataGo *analysis* engine over a JSON-lines transport.
-// The transport (Tauri backend in the app, child_process in tests) owns the process; this class owns
-// query bookkeeping, priorities, pondering and result dispatch.
+// Ported from katrain/core/engine.py and remote_engine.py: drives the KataGo *analysis* engine over a
+// JSON-lines transport. The transport (Tauri backend in the app, child_process in tests) owns the process or
+// the WebSocket to a remote engine; this class owns query bookkeeping, priorities, pondering, result dispatch
+// and reconnecting to a remote engine.
 
 import { PONDERING_REPORT_DT, type Player } from "./constants";
 import type { GameNode, KataGoResponse } from "./gameNode";
+import { tf } from "./i18n";
 import { Move } from "./move";
 
 export interface EngineSettings {
+  /** "local", "remote" or "custom"; empty for older configs (see resolveEngineBackend). */
+  backend?: string;
   katago: string;
   altcommand: string;
+  remote_url?: string;
   model: string;
   humanlike_model: string;
   config: string;
@@ -21,9 +26,24 @@ export interface EngineSettings {
 
 export type EngineState = "stopped" | "starting" | "ready" | "dead";
 
+export const ENGINE_BACKENDS = ["local", "remote", "custom"] as const;
+export type EngineBackend = (typeof ENGINE_BACKENDS)[number];
+
+/** resolve_engine_backend: the explicit setting, or for older configs remote_url → remote, altcommand → custom. */
+export function resolveEngineBackend(s: Pick<EngineSettings, "backend" | "remote_url" | "altcommand">): EngineBackend {
+  const backend = (s.backend ?? "").trim().toLowerCase();
+  if ((ENGINE_BACKENDS as readonly string[]).includes(backend)) return backend as EngineBackend;
+  if ((s.remote_url ?? "").trim()) return "remote";
+  if ((s.altcommand ?? "").trim()) return "custom";
+  return "local";
+}
+
 export interface EngineTransport {
-  /** Spawn the engine. Resolves once the process is running (not necessarily ready). */
-  start(settings: EngineSettings): Promise<void>;
+  /**
+   * Spawn the engine or connect to it. Resolves once the process is running (not necessarily ready to
+   * answer); `ready: true` means it already is (a remote engine prints no startup message).
+   */
+  start(settings: EngineSettings): Promise<{ ready?: boolean } | void>;
   send(line: string): Promise<void>;
   stop(): Promise<void>;
   /** Install handlers; called once by the engine before start. */
@@ -100,12 +120,24 @@ const PONDER_KEY = "_kt_continuous";
 type Query = Record<string, unknown> & { id?: string };
 
 export class KataGoEngine {
+  // reconnecting to a remote engine (RemoteKataGoEngine): linear backoff before giving up
+  static RECONNECT_ATTEMPTS = 6;
+  static RECONNECT_BACKOFF_MS = 1000;
+  static RECONNECT_MAX_BACKOFF_MS = 10_000;
+
   settings: EngineSettings;
   state: EngineState = "stopped";
   queryGeneration = 0;
   lastError: string | null = null;
+  /** Called with short user-facing messages (reconnect progress, remote warnings). */
+  onStatus: (message: string) => void = () => {};
 
   private queries = new Map<string, PendingQuery>();
+  /** Query payloads by id, to resume outstanding work after reconnecting to a remote engine. */
+  private sentPayloads = new Map<string, string>();
+  private reconnecting = false;
+  private disconnectReason = "";
+  private startCount = 0;
   private ponderQuery: Query | null = null;
   private queryCounter = 0;
   private basePriority = 0;
@@ -118,7 +150,11 @@ export class KataGoEngine {
     private log: Logger = () => {},
   ) {
     this.settings = settings;
-    transport.setHandlers({
+    this.installHandlers();
+  }
+
+  private installHandlers() {
+    this.transport.setHandlers({
       onStdout: (line) => this.handleLine(line),
       onStderr: (line) => this.handleStderr(line),
       onExit: (code) => this.handleExit(code),
@@ -140,30 +176,54 @@ export class KataGoEngine {
     this.notify();
   }
 
+  get isRemote(): boolean {
+    return resolveEngineBackend(this.settings) === "remote";
+  }
+
   async start() {
     this.lastError = null;
+    this.reconnecting = false;
+    const run = ++this.startCount;
     this.setState("starting");
+    const url = (this.settings.remote_url ?? "").trim();
+    if (this.isRemote && !url) return this.startFailed(tf("Remote KataGo URL is empty", {}));
+    if (this.isRemote && !/^wss?:\/\//.test(url)) return this.startFailed(tf("Remote KataGo URL must start with ws:// or wss://", {}));
+    if (this.isRemote) this.log(`Connecting to remote KataGo at ${url}`, "debug");
     try {
-      await this.transport.start(this.settings);
+      const result = await this.transport.start(this.settings);
+      if (run === this.startCount && this.state === "starting" && result?.ready) this.setState("ready");
     } catch (e) {
-      this.lastError = String(e);
-      this.log(`Starting KataGo failed: ${e}`, "error");
-      this.setState("dead");
+      if (run !== this.startCount) return;
+      this.startFailed(this.isRemote ? tf("Connecting to remote KataGo failed", { url, error: e }) : `Starting KataGo failed: ${e}`);
     }
   }
 
-  async restart(settings?: EngineSettings) {
+  private startFailed(message: string) {
+    this.lastError = message;
+    this.log(message, "error");
+    this.setState("dead");
+  }
+
+  /** Restart with new settings; a new transport replaces the old one (e.g. switching to a remote engine). */
+  async restart(settings?: EngineSettings, transport?: EngineTransport) {
     if (settings) this.settings = settings;
     this.queryGeneration++;
     this.queries.clear();
+    this.sentPayloads.clear();
     this.ponderQuery = null;
     await this.shutdown();
+    if (transport && transport !== this.transport) {
+      this.transport = transport;
+      this.installHandlers();
+    }
     await this.start();
   }
 
   async shutdown() {
     if (this.state === "stopped") return;
-    this.state = "stopped"; // so the exit event is not reported as a crash
+    this.state = "stopped"; // so the exit event is not reported as a crash, and reconnecting stops
+    this.reconnecting = false;
+    this.startCount++;
     await this.transport.stop().catch(() => {});
     this.notify();
   }
@@ -178,6 +238,7 @@ export class KataGoEngine {
     this.terminateQueries(null);
     this.ponderQuery = null;
     this.queries.clear();
+    this.sentPayloads.clear();
   }
 
   terminateQueries(onlyForNode: GameNode | null = null) {
@@ -199,7 +260,12 @@ export class KataGoEngine {
   terminateQuery(queryId: string, ignoreFurtherResults = true) {
     this.log(`Terminating query ${queryId}`, "debug");
     this.sendQuery({ action: "terminate", terminateId: queryId }, null, null);
-    if (ignoreFurtherResults) this.queries.delete(queryId);
+    if (ignoreFurtherResults) this.forget(queryId);
+  }
+
+  private forget(queryId: string) {
+    this.queries.delete(queryId);
+    this.sentPayloads.delete(queryId);
   }
 
   isIdle(): boolean {
@@ -236,10 +302,12 @@ export class KataGoEngine {
       this.ponderQuery = query;
     }
     const terminate = query.action === "terminate";
+    const payload = JSON.stringify(query);
     if (!terminate) {
       this.queries.set(query.id, { callback, errorCallback, startTime: performance.now(), nextMove, node });
+      this.sentPayloads.set(query.id, payload);
     }
-    const payload = JSON.stringify(query);
+    if (this.reconnecting) return; // outstanding queries are re-sent once the connection is back
     this.log(`Sending ${ponder ? "ponder " : terminate ? "terminate " : ""}query ${query.id}: ${payload}`, "debug");
     this.transport.send(payload).catch((e) => this.log(`Exception in writing to katago: ${e}`, "error"));
   }
@@ -303,6 +371,11 @@ export class KataGoEngine {
   }
 
   private handleStderr(line: string) {
+    if (line.startsWith("Remote KataGo disconnected:")) {
+      this.disconnectReason = line.slice("Remote KataGo disconnected:".length).trim();
+      this.log(line, "info");
+      return;
+    }
     if (line.includes("Uncaught exception") || line.includes("what()")) {
       this.lastError = `KataGo Engine Failed: ${line.slice(9).trim()}`;
       this.log(this.lastError, "error");
@@ -315,10 +388,57 @@ export class KataGoEngine {
   }
 
   private handleExit(code: number | null) {
-    if (this.state === "stopped") return;
-    this.lastError = this.lastError ?? `Engine died unexpectedly (status ${code})`;
+    if (this.state === "stopped" || this.reconnecting) return;
+    if (this.isRemote && this.state === "ready") {
+      void this.reconnect(this.disconnectReason || "connection lost");
+      return;
+    }
+    this.lastError =
+      this.lastError ?? (this.isRemote ? tf("Remote KataGo engine disconnected", { error: this.disconnectReason }) : `Engine died unexpectedly (status ${code})`);
     this.log(this.lastError, "error");
     this.queries.clear();
+    this.sentPayloads.clear();
+    this.ponderQuery = null;
+    this.setState("dead");
+  }
+
+  /** Reconnect to a remote engine with linear backoff, then resume the outstanding queries. */
+  private async reconnect(reason: string) {
+    this.reconnecting = true;
+    const run = this.startCount;
+    const n = KataGoEngine.RECONNECT_ATTEMPTS;
+    let error = reason;
+    for (let attempt = 1; attempt <= n; attempt++) {
+      const delay = Math.min(KataGoEngine.RECONNECT_BACKOFF_MS * attempt, KataGoEngine.RECONNECT_MAX_BACKOFF_MS);
+      this.log(`Remote KataGo disconnected (${error}); reconnect attempt ${attempt}/${n} in ${Math.round(delay / 1000)}s`, "info");
+      this.onStatus(`Reconnecting to remote KataGo (attempt ${attempt}/${n})...`);
+      await new Promise((r) => setTimeout(r, delay));
+      if (run !== this.startCount || !this.reconnecting) return; // stopped or restarted meanwhile
+      try {
+        await this.transport.start(this.settings);
+      } catch (e) {
+        error = String(e);
+        continue;
+      }
+      if (run !== this.startCount) return;
+      this.reconnecting = false;
+      this.disconnectReason = "";
+      this.log("Reconnected to remote KataGo", "info");
+      this.onStatus("Reconnected to remote KataGo.");
+      const outstanding = [...this.queries.keys()].flatMap((id) => this.sentPayloads.get(id) ?? []);
+      if (outstanding.length) this.log(`Re-sending ${outstanding.length} outstanding queries after reconnect`, "info");
+      for (const payload of outstanding) {
+        this.transport.send(payload).catch((e) => this.log(`Failed to re-send query after reconnect: ${e}`, "error"));
+      }
+      this.notify();
+      return;
+    }
+    if (run !== this.startCount) return;
+    this.reconnecting = false;
+    this.lastError = tf("Remote KataGo engine disconnected", { error });
+    this.log(this.lastError, "error");
+    this.queries.clear();
+    this.sentPayloads.clear();
     this.ponderQuery = null;
     this.setState("dead");
   }
@@ -353,20 +473,21 @@ export class KataGoEngine {
       return;
     }
     if (analysis.error !== undefined) {
-      this.queries.delete(queryId);
+      this.forget(queryId);
       if (query.errorCallback) query.errorCallback(analysis);
       else if (!(query.nextMove && analysis.error.includes("Illegal move"))) {
         this.log(`${line} received from KataGo`, "error");
       }
     } else if (analysis.warning !== undefined || analysis.terminateId !== undefined) {
       this.log(`${line} received from KataGo`, "debug");
+      if (analysis.warning !== undefined && this.isRemote) this.onStatus(String(analysis.warning));
     } else {
       const partial = analysis.isDuringSearch ?? false;
-      if (!partial) this.queries.delete(queryId);
+      if (!partial) this.forget(queryId);
       const resultsExist = !analysis.noResults;
       const dt = ((performance.now() - query.startTime) / 1000).toFixed(1);
       this.log(
-        `[${dt}][${queryId}][${partial ? "...." : "done"}] KataGo analysis received: ${analysis.moveInfos?.length ?? 0} candidate moves, ${resultsExist ? analysis.rootInfo.visits : "n/a"} visits`,
+        `[${dt}][${queryId}][${partial ? "...." : "done"}] KataGo analysis received: ${analysis.moveInfos?.length ?? 0} candidate moves, ${resultsExist ? (analysis.rootInfo?.visits ?? "?") : "n/a"} visits`,
         "debug",
       );
       try {

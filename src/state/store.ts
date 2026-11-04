@@ -36,7 +36,7 @@ export interface LogEntry {
   level: LogLevel;
 }
 
-export type DialogKind = null | "newgame" | "settings" | "ai" | "log" | "timer" | "tsumego";
+export type DialogKind = null | "newgame" | "settings" | "ai" | "log" | "timer" | "tsumego" | "report";
 
 /** What the clock shows: main time, or the current byo-yomi period and the periods left. */
 export interface TimerState {
@@ -122,17 +122,23 @@ const host: GameHost = {
   log: (m) => log(m, "debug"),
 };
 
+let transportKind = "";
 async function startEngine() {
   const cfg = get().config;
+  const kind = platform.transportKind(cfg.engine);
   if (!engine) {
-    engine = new KataGoEngine(platform.makeTransport(), cfg.engine, (m, l) => log(m, l));
+    engine = new KataGoEngine(platform.makeTransport(cfg.engine), cfg.engine, (m, l) => log(m, l));
+    engine.onStatus = (m) => setStatus(m, "info");
     engine.subscribe(() => {
       if (engine?.state === "dead") setStatus(engine.lastError ?? "KataGo stopped", "error");
       refresh();
     });
+    transportKind = kind;
     await engine.start();
   } else {
-    await engine.restart(cfg.engine);
+    const transport = kind !== transportKind ? platform.makeTransport(cfg.engine) : undefined;
+    transportKind = kind;
+    await engine.restart(cfg.engine, transport);
   }
 }
 
