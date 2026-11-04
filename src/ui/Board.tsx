@@ -98,7 +98,11 @@ export function Board() {
           );
         }
       }
-      layers.push(<g key="ownership" filter="url(#territory-blur)">{cells}</g>);
+      layers.push(
+        <g key="ownership" clipPath="url(#board-clip)">
+          <g filter="url(#territory-blur)">{cells}</g>
+        </g>,
+      );
     }
 
     // ---------------------------------------------------- policy
@@ -315,6 +319,9 @@ export function Board() {
         }}
       >
         <defs>
+          <clipPath id="board-clip">
+            <rect x={-0.5} y={-0.5} width={sx} height={sy} />
+          </clipPath>
           <radialGradient id="stone-B" cx="35%" cy="30%" r="75%">
             <stop offset="0%" stopColor="#5a5a5a" />
             <stop offset="45%" stopColor="#1c1c1c" />

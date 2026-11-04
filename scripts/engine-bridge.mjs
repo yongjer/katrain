@@ -5,9 +5,13 @@
 //   node scripts/engine-bridge.mjs [--port 8765]
 //
 // Env: KATRAIN_DATA_DIR (KataGo homeDataDir, default ~/.katrain), KATAGO_OVERRIDES (extra -override-config entries).
+//
+// Security: the bridge only listens on 127.0.0.1, only answers the Vite dev origin, never runs shell commands
+// (the "Override Engine Command" setting is rejected), and requires the token printed at startup.
 
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync } from "node:fs";
+import { randomBytes } from "node:crypto";
 import { createServer } from "node:http";
 import { homedir } from "node:os";
 import { delimiter, dirname, join, resolve } from "node:path";
@@ -18,6 +22,8 @@ const repo = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const portArg = process.argv.indexOf("--port");
 const port = portArg > 0 ? Number(process.argv[portArg + 1]) : 8765;
 const dataDir = process.env.KATRAIN_DATA_DIR || join(homedir(), ".katrain");
+const allowedOrigin = process.env.KATRAIN_DEV_ORIGIN || "http://localhost:1420";
+const token = randomBytes(16).toString("hex");
 
 let proc = null;
 let generation = 0;
@@ -39,7 +45,7 @@ function findInPath(name) {
 }
 
 function command(settings) {
-  if (settings.altcommand?.trim()) return { cmd: settings.altcommand.trim(), args: [], shell: true };
+  if (settings.altcommand?.trim()) throw new Error("The engine bridge does not run custom commands; clear 'Override Engine Command'.");
   let exe = settings.katago?.trim();
   if (!exe) {
     exe = process.platform === "win32" ? "katrain/KataGo/katago.exe" : process.platform === "linux" ? "katrain/KataGo/katago" : findInPath("katago");
@@ -49,7 +55,7 @@ function command(settings) {
   const overrides = [`homeDataDir=${dataDir}`, process.env.KATAGO_OVERRIDES].filter(Boolean).join(",");
   const args = ["analysis", "-model", resolvePath(settings.model), "-config", resolvePath(settings.config), "-override-config", overrides];
   if (settings.humanlike_model?.trim()) args.splice(3, 0, "-human-model", resolvePath(settings.humanlike_model.trim()));
-  return { cmd: exe, args, shell: false };
+  return { cmd: exe, args };
 }
 
 function broadcast(gen, event, data) {
@@ -70,8 +76,8 @@ function stop() {
 function start(settings) {
   stop();
   const gen = ++generation;
-  const { cmd, args, shell } = command(settings);
-  const child = spawn(cmd, args, { shell, stdio: ["pipe", "pipe", "pipe"], cwd: shell ? dataDir : dirname(cmd) });
+  const { cmd, args } = command(settings);
+  const child = spawn(cmd, args, { shell: false, stdio: ["pipe", "pipe", "pipe"], cwd: dirname(cmd) });
   proc = child;
   createInterface({ input: child.stdout }).on("line", (l) => broadcast(gen, "stdout", l));
   createInterface({ input: child.stderr }).on("line", (l) => broadcast(gen, "stderr", l));
@@ -92,10 +98,18 @@ const body = (req) =>
   });
 
 createServer(async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
   res.setHeader("Access-Control-Allow-Headers", "*");
   if (req.method === "OPTIONS") return res.end();
   const url = new URL(req.url, "http://localhost");
+  if (req.headers.origin && req.headers.origin !== allowedOrigin) {
+    res.statusCode = 403;
+    return res.end("origin not allowed");
+  }
+  if (url.searchParams.get("token") !== token) {
+    res.statusCode = 403;
+    return res.end("bad token");
+  }
   try {
     if (url.pathname === "/start" && req.method === "POST") {
       const gen = start(JSON.parse(await body(req)));
@@ -129,7 +143,9 @@ createServer(async (req, res) => {
     res.statusCode = 500;
     res.end(String(e));
   }
-}).listen(port, () => console.log(`[bridge] KataGo bridge on http://localhost:${port}`));
+}).listen(port, "127.0.0.1", () =>
+  console.log(`[bridge] open ${allowedOrigin}/?bridge=${encodeURIComponent(`http://127.0.0.1:${port}?token=${token}`)}`),
+);
 
 process.on("SIGINT", () => {
   stop();

@@ -116,19 +116,31 @@ const tauriPlatform: Platform = {
 class HttpBridgeTransport implements EngineTransport {
   private handlers: Handlers | null = null;
   private source: EventSource | null = null;
-  constructor(private base: string | null) {}
+  private base: string | null = null;
+  private token = "";
+  constructor(bridge: string | null) {
+    if (bridge) {
+      const url = new URL(bridge);
+      this.token = url.searchParams.get("token") ?? "";
+      this.base = url.origin;
+    }
+  }
+
+  private url(path: string, extra = "") {
+    return `${this.base}${path}?token=${encodeURIComponent(this.token)}${extra}`;
+  }
 
   setHandlers(h: Handlers) {
     this.handlers = h;
   }
 
   async start(settings: EngineSettings) {
-    if (!this.base) throw new Error("No KataGo available in the browser. Run the desktop app, or start scripts/engine-bridge.mjs and add ?bridge=http://localhost:8765");
+    if (!this.base) throw new Error("No KataGo available in the browser. Run the desktop app, or start scripts/engine-bridge.mjs and open the URL it prints");
     this.source?.close();
-    const res = await fetch(`${this.base}/start`, { method: "POST", body: JSON.stringify(settings) });
+    const res = await fetch(this.url("/start"), { method: "POST", body: JSON.stringify(settings) });
     if (!res.ok) throw new Error(await res.text());
     const { generation } = (await res.json()) as { generation: number };
-    this.source = new EventSource(`${this.base}/events?generation=${generation}`);
+    this.source = new EventSource(this.url("/events", `&generation=${generation}`));
     this.source.addEventListener("stdout", (e) => this.handlers?.onStdout((e as MessageEvent).data));
     this.source.addEventListener("stderr", (e) => this.handlers?.onStderr((e as MessageEvent).data));
     this.source.addEventListener("exit", (e) => {
@@ -138,13 +150,13 @@ class HttpBridgeTransport implements EngineTransport {
   }
 
   async send(line: string) {
-    await fetch(`${this.base}/send`, { method: "POST", body: line });
+    await fetch(this.url("/send"), { method: "POST", body: line });
   }
 
   async stop() {
     this.source?.close();
     this.source = null;
-    if (this.base) await fetch(`${this.base}/stop`, { method: "POST" }).catch(() => {});
+    if (this.base) await fetch(this.url("/stop"), { method: "POST" }).catch(() => {});
   }
 }
 

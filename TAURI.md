@@ -47,8 +47,8 @@ and in Homebrew's folders (`brew install katago`), or set its path under *Genera
 UI work in a browser (no Tauri), with a real engine:
 
 ```sh
-node scripts/engine-bridge.mjs     # runs KataGo on http://localhost:8765
-npm run dev                        # open http://localhost:1420/?bridge=http://localhost:8765
+npm run dev
+node scripts/engine-bridge.mjs     # runs KataGo on 127.0.0.1:8765 and prints the URL to open (with a token)
 ```
 
 End-to-end tests drive the real bundled KataGo from the TypeScript core:

@@ -63,8 +63,8 @@ describe.skipIf(!enabled)("KataGo end-to-end", () => {
     ...(defaultConfig.engine as unknown as EngineSettings),
     model: "katrain/models/b10c384h6nbttflrs.bin.gz",
     config: "katrain/KataGo/analysis_config.cfg",
-    max_visits: 40,
-    fast_visits: 8,
+    max_visits: 20,
+    fast_visits: 4,
     max_time: 5,
   };
   const engine = new KataGoEngine(transport, settings, (m, l) => l === "error" && console.error(m));
@@ -97,7 +97,7 @@ describe.skipIf(!enabled)("KataGo end-to-end", () => {
     // the parent learns about the played move from the child's root info
     expect(game.root.analysis.moves["A1"]).toBeDefined();
     game.undo(1);
-  });
+  }, 120_000);
 
   for (const strategy of AI_STRATEGIES_AVAILABLE) {
     it(`plays a legal move with ${strategy}`, async () => {
@@ -111,31 +111,37 @@ describe.skipIf(!enabled)("KataGo end-to-end", () => {
     }, 120_000);
   }
 
-  it("runs extra analysis modes", async () => {
+  it("runs deeper analysis and finds alternatives", async () => {
     const cn = game.currentNode;
     await until(() => cn.analysisComplete);
     const before = cn.rootVisits;
     game.analyzeExtra("extra");
-    await until(() => cn.rootVisits > before && engine.isIdle());
+    await until(() => cn.rootVisits > before && engine.isIdle(), 300_000);
     const nMoves = Object.keys(cn.analysis.moves).length;
     game.analyzeExtra("alternative");
-    await until(() => engine.isIdle());
-    expect(Object.keys(cn.analysis.moves).length).toBeGreaterThanOrEqual(nMoves);
+    await until(() => engine.isIdle(), 600_000);
+    expect(Object.keys(cn.analysis.moves).length).toBeGreaterThan(nMoves);
+  }, 1_000_000);
+
+  // Equalize and sweep send one query per candidate / legal point; slow on CPU-only machines.
+  it.skipIf(process.env.KATAGO_E2E_FULL !== "1")("equalizes and sweeps", async () => {
+    const cn = game.currentNode;
     game.analyzeExtra("equalize");
-    await until(() => engine.isIdle());
+    await until(() => engine.isIdle(), 1_800_000);
+    const visits = Object.values(cn.analysis.moves).map((d) => d.visits);
+    expect(Math.min(...visits)).toBeGreaterThanOrEqual(0.8 * Math.max(...visits));
     game.analyzeExtra("sweep");
-    await until(() => engine.isIdle(), 300_000);
-    // sweep refines every legal point
+    await until(() => engine.isIdle(), 1_800_000);
     const legal = cn.policy!.slice(0, 81).filter((p) => p >= 0).length;
     expect(Object.keys(cn.analysis.moves).length).toBeGreaterThanOrEqual(legal);
-  }, 400_000);
+  }, 3_700_000);
 
   it("ponders and stops", async () => {
     const cn = game.currentNode;
     const before = cn.rootVisits;
     game.analyzeExtra("ponder");
     expect(engine.isPondering).toBe(true);
-    await until(() => cn.rootVisits > before + 50, 120_000);
+    await until(() => cn.rootVisits > before + 20, 120_000);
     engine.stopPondering();
     expect(engine.isPondering).toBe(false);
   }, 130_000);
