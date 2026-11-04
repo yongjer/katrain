@@ -62,6 +62,12 @@ KATAGO_E2E=1 KATAGO_HUMAN_MODEL=/path/to/b18c384nbt-humanv0.bin.gz npx vitest ru
 Downloaded models are stored in the app data folder (`models/`); on macOS that is
 `~/Library/Application Support/io.github.yongjer.katrain/models`.
 
+## Test builds
+
+Every push to `tauri-v2` builds Windows, macOS (Apple Silicon) and Linux installers in CI and refreshes the
+[`tauri-nightly` prerelease](https://github.com/yongjer/katrain/releases/tag/tauri-nightly) with them.
+These are unsigned test builds.
+
 ## Status
 
 Ported in this first phase:
