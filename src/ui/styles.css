@@ -749,6 +749,10 @@ kbd {
   gap: 10px;
 }
 
+.modal-body > * {
+  flex-shrink: 0; /* a scrolling dialog must not squeeze its sections */
+}
+
 .modal-body h3 {
   margin: 8px 0 0;
   font-size: 13px;
