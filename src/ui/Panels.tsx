@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { aiRankEstimation, rankLabel } from "../core/ai";
-import { AI_STRATEGIES_AVAILABLE, PLAYER_AI, PLAYER_HUMAN, type Player, type PlayerType } from "../core/constants";
+import { AI_STRATEGIES_AVAILABLE, PLAYER_AI, PLAYER_HUMAN, PLAYING_NORMAL, PLAYING_TEACHING, type Player, type PlayerType } from "../core/constants";
 import { t } from "../core/i18n";
 import { openDialog, setNote, setPlayer, useStore } from "../state/store";
 import { THEME, evalColor } from "./theme";
@@ -36,6 +36,12 @@ export function PlayersPanel() {
                   <option value={PLAYER_HUMAN}>{t(PLAYER_HUMAN)}</option>
                   <option value={PLAYER_AI}>{t(PLAYER_AI)}</option>
                 </select>
+                {!isAi && (
+                  <select value={setup.subtype} onChange={(e) => setPlayer(p, { subtype: e.target.value })} aria-label={t("gametype")}>
+                    <option value={PLAYING_NORMAL}>{t(PLAYING_NORMAL)}</option>
+                    <option value={PLAYING_TEACHING}>{t(PLAYING_TEACHING)}</option>
+                  </select>
+                )}
                 {isAi && (
                   <select value={setup.strategy} onChange={(e) => setPlayer(p, { strategy: e.target.value })} aria-label={t("aistrategy")}>
                     {AI_STRATEGIES_AVAILABLE.map((s) => (

@@ -2,6 +2,7 @@ import type { GameHost, TrainerSettings } from "../src/core/game";
 
 export const TRAINER: TrainerSettings = {
   eval_thresholds: [12, 6, 3, 1.5, 0.5, 0],
+  num_undo_prompts: [1, 1, 1, 0.5, 0, 0],
   show_dots: [true, true, true, true, true, true],
   save_feedback: [true, true, true, true, false, false],
   save_analysis: false,

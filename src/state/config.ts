@@ -13,17 +13,24 @@ export interface AnalysisToggles {
   ownership: boolean;
 }
 
+export interface PlayerSetup {
+  type: string;
+  strategy: string;
+  /** human players: "game:normal" or "game:teach" */
+  subtype: string;
+}
+
 export interface AppConfig {
   engine: EngineSettings;
   game: { size: string; komi: number; handicap: number; rules: string; setup_move: number; setup_advantage: number };
-  trainer: TrainerSettings & { num_undo_prompts: number[]; show_move_numbers: boolean; lock_ai: boolean };
+  trainer: TrainerSettings & { show_move_numbers: boolean; lock_ai: boolean };
   ai: Record<string, AiSettings>;
   general: { lang: string; sgf_load: string; sgf_save: string; load_fast_analysis: boolean; load_sgf_rewind: boolean; anim_pv_time: number; debug_level: number };
   ui: {
     play: AnalysisToggles;
     analyze: AnalysisToggles;
     graph: { score: boolean; winrate: boolean };
-    players: { B: { type: string; strategy: string }; W: { type: string; strategy: string } };
+    players: { B: PlayerSetup; W: PlayerSetup };
   };
 }
 
@@ -40,8 +47,8 @@ export function defaultConfig(): AppConfig {
       analyze: p.ui_state.analyze.analysis_controls,
       graph: { score: true, winrate: true },
       players: {
-        B: { type: "player:human", strategy: "ai:p:rank" },
-        W: { type: "player:ai", strategy: "ai:p:rank" },
+        B: { type: "player:human", strategy: "ai:p:rank", subtype: "game:normal" },
+        W: { type: "player:ai", strategy: "ai:p:rank", subtype: "game:normal" },
       },
     },
   };

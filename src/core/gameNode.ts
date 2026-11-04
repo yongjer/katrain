@@ -105,6 +105,9 @@ export class GameNode {
   endState: string | null = null;
   analysisFromSgf: string[] | null = null;
   analysisVisitsRequested = 0;
+  /** Collapsed branches: [node shown as direct child, first real child on the way there]. */
+  shortcutsTo: [GameNode, GameNode][] = [];
+  shortcutFrom: GameNode | null = null;
   analysis: NodeAnalysis = GameNode.emptyAnalysis();
 
   constructor(parent: GameNode | null = null, properties?: Record<string, unknown>, move?: Move) {
@@ -173,6 +176,25 @@ export class GameNode {
   }
 
   // ---------------------------------------------------------------- tree
+  /** Collapse the line between this node and a descendant, so the descendant shows as a direct child. */
+  addShortcut(toNode: GameNode) {
+    const nodes: GameNode[] = [toNode];
+    while (nodes[nodes.length - 1].parent && nodes[nodes.length - 1] !== this) nodes.push(nodes[nodes.length - 1].parent!);
+    if (nodes[nodes.length - 1] === this && nodes.length > 2) {
+      const via = nodes[nodes.length - 2];
+      this.shortcutsTo.push([toNode, via]);
+      toNode.shortcutFrom = this;
+    }
+  }
+
+  removeShortcut() {
+    const from = this.shortcutFrom;
+    if (from) {
+      from.shortcutsTo = from.shortcutsTo.filter(([m]) => m !== this);
+      this.shortcutFrom = null;
+    }
+  }
+
   get root(): GameNode {
     if (!this._root) this._root = this._parent ? this._parent.root : this;
     return this._root;
@@ -641,6 +663,10 @@ export class GameNode {
       properties.set("AP", [`${PROGRAM_NAME}:${VERSION}`]);
       properties.set("KTV", [ANALYSIS_FORMAT_VERSION]);
     }
+    if (this.shortcutFrom) properties.set("KTSF", [String(this.shortcutFrom.id)]);
+    else properties.delete("KTSF");
+    if (this.shortcutsTo.length) properties.set("KTSID", [String(this.id)]);
+    else properties.delete("KTSID");
     if (note) comments.unshift(`${this.note}\n`); // user notes at top
     if (comments.length) {
       properties.set("C", [trimNewlines(comments.join(SGF_SEPARATOR_MARKER))]);

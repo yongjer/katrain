@@ -4,6 +4,7 @@ import type { AnalysisToggles } from "../state/config";
 import {
   aiMoveNow,
   analyzeExtra,
+  editTree,
   findMistake,
   init,
   loadGame,
@@ -24,6 +25,7 @@ import { ControlsBar, TopBar } from "./Bars";
 import { Board } from "./Board";
 import { Dialogs } from "./Dialogs";
 import { Graph } from "./Graph";
+import { MoveTree } from "./MoveTree";
 import { InfoPanel, PlayersPanel, StatsPanel } from "./Panels";
 
 const TOGGLE_KEYS: Record<string, keyof AnalysisToggles> = {
@@ -47,7 +49,8 @@ function onKeyDown(e: KeyboardEvent) {
   const handled = () => e.preventDefault();
 
   if (ctrl) {
-    if (key === "n") openDialog("newgame");
+    if (key === "Delete" || key === "Backspace") editTree("delete");
+    else if (key === "n") openDialog("newgame");
     else if (key === "l") void loadGame();
     else if (key === "s") void saveGame(false);
     else if (key === "d") void saveGame(true);
@@ -111,6 +114,12 @@ function onKeyDown(e: KeyboardEvent) {
     case "m":
       updateConfig((c) => void (c.trainer.show_move_numbers = !c.trainer.show_move_numbers));
       break;
+    case "PageUp":
+      editTree("main");
+      break;
+    case "c":
+      editTree("collapse");
+      break;
     case "Tab":
       setMode(s.mode === MODE_PLAY ? MODE_ANALYZE : MODE_PLAY);
       break;
@@ -156,6 +165,7 @@ export function App() {
         </section>
         <aside className="sidebar">
           <PlayersPanel />
+          <MoveTree />
           <Graph />
           <StatsPanel />
           <InfoPanel />

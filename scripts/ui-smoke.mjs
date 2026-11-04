@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // UI smoke test in headless Chrome over the DevTools protocol (no extra dependencies).
 //   node scripts/ui-smoke.mjs <url> <out-dir> [steps.json]
-// Steps: [{"click":[x,y]}, {"key":"ArrowLeft"}, {"wait":ms}, {"shot":"name"}, {"eval":"js"}]
+// Steps: [{"click":[x,y]}, {"rclick":[x,y]}, {"key":"ArrowLeft"}, {"wait":ms}, {"shot":"name"}, {"eval":"js"}]
 
 import { spawn } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -61,11 +61,12 @@ await send("Page.navigate", { url });
 const results = {};
 for (const step of steps) {
   if (step.wait) await sleep(step.wait);
-  if (step.click) {
-    const [x, y] = step.click;
+  if (step.click || step.rclick) {
+    const [x, y] = step.click ?? step.rclick;
+    const button = step.click ? "left" : "right";
     await send("Input.dispatchMouseEvent", { type: "mouseMoved", x, y });
-    await send("Input.dispatchMouseEvent", { type: "mousePressed", x, y, button: "left", clickCount: 1 });
-    await send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button: "left", clickCount: 1 });
+    await send("Input.dispatchMouseEvent", { type: "mousePressed", x, y, button, clickCount: 1 });
+    await send("Input.dispatchMouseEvent", { type: "mouseReleased", x, y, button, clickCount: 1 });
     await sleep(150);
   }
   if (step.move) {

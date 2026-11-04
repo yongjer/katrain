@@ -32,6 +32,7 @@ export function Board() {
   const config = useStore((s) => s.config);
   const mode = useStore((s) => s.mode);
   const aiThinking = useStore((s) => s.aiThinking);
+  const teachingStatus = useStore((s) => s.status?.level === "teaching");
   const svgRef = useRef<SVGSVGElement>(null);
   const [hover, setHover] = useState<Coords | null>(null);
 
@@ -85,17 +86,32 @@ export function Board() {
     // ---------------------------------------------------- ownership
     const ownership = cn.ownership ?? cn.parent?.ownership ?? null;
     let ownershipGrid: number[][] | null = null;
+    const undone = cn.children.at(-1);
     if (toggles.ownership && ownership) {
-      ownershipGrid = varToGrid(ownership, [sx, sy]);
       const cells: ReactNode[] = [];
-      for (let y = 0; y < sy; y++) {
-        for (let x = 0; x < sx; x++) {
-          const o = ownershipGrid[y][x];
-          const alpha = Math.min(1, Math.abs(o)) ** (1 / THEME.ownershipGamma);
-          if (alpha < 0.02) continue;
-          cells.push(
-            <rect key={`o${x},${y}`} x={x - 0.5} y={py(y) - 0.5} width={1} height={1} fill={THEME.ownership[o > 0 ? "B" : "W"]} opacity={alpha} />,
-          );
+      if (teachingStatus && undone?.autoUndo && undone.ownership && undone.move) {
+        // teaching undo: show where the undone move lost territory
+        const sign = undone.move.player === "B" ? -1 : 1;
+        const loss = varToGrid(undone.ownership.map((o, i) => Math.max(0, sign * (o - ownership[i]))), [sx, sy]);
+        const lossColor = (EVAL_COLORS[theme] ?? EVAL_COLORS["theme:normal"])[1];
+        for (let y = 0; y < sy; y++) {
+          for (let x = 0; x < sx; x++) {
+            const alpha = Math.min(1, loss[y][x]) ** (1 / THEME.ownershipGamma) * THEME.hintsAlpha;
+            if (alpha < 0.02) continue;
+            cells.push(<rect key={`l${x},${y}`} x={x - 0.5} y={py(y) - 0.5} width={1} height={1} fill={lossColor} opacity={alpha} />);
+          }
+        }
+      } else {
+        ownershipGrid = varToGrid(ownership, [sx, sy]);
+        for (let y = 0; y < sy; y++) {
+          for (let x = 0; x < sx; x++) {
+            const o = ownershipGrid[y][x];
+            const alpha = Math.min(1, Math.abs(o)) ** (1 / THEME.ownershipGamma);
+            if (alpha < 0.02) continue;
+            cells.push(
+              <rect key={`o${x},${y}`} x={x - 0.5} y={py(y) - 0.5} width={1} height={1} fill={THEME.ownership[o > 0 ? "B" : "W"]} opacity={alpha} />,
+            );
+          }
         }
       }
       layers.push(
@@ -193,7 +209,12 @@ export function Board() {
     // ---------------------------------------------------- hints (top moves)
     const hintTargets: { coords: Coords; pv: string[] }[] = [];
     let topMoveCoords: Coords | null = null;
-    const hintMoves: CandidateMove[] = toggles.hints && !toggles.policy && !endResult ? cn.candidateMoves : [];
+    let hintMoves: CandidateMove[] = toggles.hints && !toggles.policy && !endResult ? cn.candidateMoves : [];
+    if (!hintMoves.length && teachingStatus) {
+      // after a teaching undo, show the evaluation of the move that was undone
+      const undoneMoves = new Set(cn.children.filter((c) => c.autoUndo && c.move).map((c) => c.move!.gtp()));
+      hintMoves = cn.candidateMoves.filter((m) => undoneMoves.has(m.move));
+    }
     if (hintMoves.length) {
       const childMoves = new Set(cn.children.map((c) => c.move?.gtp()).filter(Boolean));
       const show = [trainer.top_moves_show, trainer.top_moves_show_secondary].filter((o) => o && o !== TOP_MOVE_NOTHING);
@@ -273,7 +294,7 @@ export function Board() {
     }
 
     return { layers, hintTargets, sx, sy, py, stoneGrid, endResult, nextPlayer };
-  }, [game, tick, toggles, trainer, theme, config.ui.players, config.trainer.show_move_numbers]);
+  }, [game, tick, toggles, trainer, theme, config.ui.players, config.trainer.show_move_numbers, teachingStatus]);
 
   if (!game || !content) return <div className="board-wrap" />;
   const { layers, hintTargets, sx, sy, py, stoneGrid, endResult, nextPlayer } = content;

@@ -28,6 +28,9 @@ export const PLAYER_HUMAN = "player:human";
 export const PLAYER_AI = "player:ai";
 export type PlayerType = typeof PLAYER_HUMAN | typeof PLAYER_AI;
 
+export const PLAYING_NORMAL = "game:normal";
+export const PLAYING_TEACHING = "game:teach";
+
 export const MODE_PLAY = "play";
 export const MODE_ANALYZE = "analyze";
 export type UiMode = typeof MODE_PLAY | typeof MODE_ANALYZE;

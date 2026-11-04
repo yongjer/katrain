@@ -6,6 +6,7 @@ import {
   MODE_ANALYZE,
   MODE_PLAY,
   PLAYER_AI,
+  PLAYING_TEACHING,
   PLAYER_HUMAN,
   PRIORITY_GAME_ANALYSIS,
   SGF_INTERNAL_COMMENTS_MARKER,
@@ -143,6 +144,15 @@ function updateState() {
       sounds.mistake();
     }
   }
+  // teaching games: undo the human's move if it lost too many points
+  const teaching =
+    mode === MODE_PLAY && !!cn.move && !!cn.parent && players[cn.player].type === PLAYER_HUMAN && players[cn.player].subtype === PLAYING_TEACHING;
+  if (teaching && cn.analysisComplete && cn.parent!.analysisComplete && !cn.children.length && !game.endResult) {
+    if (game.analyzeUndo(cn)) {
+      refresh();
+      return;
+    }
+  }
   if (
     mode === MODE_PLAY &&
     !aiThinking &&
@@ -150,7 +160,8 @@ function updateState() {
     cn.analysisComplete &&
     players[cn.nextPlayer].type === PLAYER_AI &&
     !cn.children.length &&
-    !game.endResult
+    !game.endResult &&
+    !(teaching && cn.autoUndo === null)
   ) {
     void aiMove(cn);
   }
@@ -406,11 +417,26 @@ export function toggleControl(key: keyof AnalysisToggles) {
   });
 }
 
-export function setPlayer(p: Player, change: { type?: PlayerType; strategy?: string }) {
+export function setPlayer(p: Player, change: { type?: PlayerType; strategy?: string; subtype?: string }) {
   updateConfig((c) => {
     if (change.type) c.ui.players[p].type = change.type;
     if (change.strategy) c.ui.players[p].strategy = change.strategy;
+    if (change.subtype) c.ui.players[p].subtype = change.subtype;
   });
+}
+
+// ---------------------------------------------------------------- move tree editing
+export type TreeEdit = "delete" | "prune" | "main" | "collapse";
+
+export function editTree(edit: TreeEdit, node?: GameNode) {
+  const game = get().game;
+  if (!game) return;
+  const target = node ?? game.currentNode;
+  if (edit === "delete") game.deleteNode(target);
+  else if (edit === "prune") game.pruneBranch(target);
+  else if (edit === "main") game.makeMainBranch(target);
+  else game.toggleCollapse(target);
+  refresh();
 }
 
 export function setNote(note: string) {

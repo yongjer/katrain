@@ -786,7 +786,7 @@ kbd {
 
 .threshold-table {
   display: grid;
-  grid-template-columns: 1.2fr 0.6fr 0.6fr 0.6fr;
+  grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.8fr;
   gap: 6px 12px;
   align-items: center;
   font-size: 12px;
@@ -852,4 +852,85 @@ button.primary:disabled {
   .toggle kbd {
     display: none;
   }
+}
+
+/* ------------------------------------------------------------ move tree */
+.move-tree {
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.move-tree-scroll {
+  height: 92px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.move-tree-svg {
+  display: block;
+}
+
+.tree-line {
+  fill: none;
+  stroke: #b3b3b3;
+  stroke-width: 1;
+}
+
+.tree-node {
+  cursor: pointer;
+}
+
+.tree-highlight {
+  fill: var(--accent);
+}
+
+.tree-node.selected .tree-highlight {
+  fill: #cc1a1a;
+}
+
+.tree-stone {
+  stroke-width: 1;
+}
+
+.tree-stone.stone-B {
+  fill: #0d0d0d;
+  stroke: #f2f2f2;
+}
+
+.tree-stone.stone-W {
+  fill: #f2f2f2;
+  stroke: #0d0d0d;
+}
+
+.tree-stone.collapsed {
+  fill: #b3b3b3;
+  stroke: #0d0d0d;
+}
+
+.tree-stone.undone {
+  stroke: #cc1a1a;
+  stroke-width: 2;
+}
+
+.tree-label {
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.tree-label.on-B {
+  fill: #f2f2f2;
+}
+
+.tree-label.on-W,
+.tree-label.on-collapsed {
+  fill: #0d0d0d;
+}
+
+.tree-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
 }

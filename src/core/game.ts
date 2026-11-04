@@ -23,6 +23,8 @@ export type StatusLevel = "analysis" | "info" | "teaching" | "error";
 
 export interface TrainerSettings {
   eval_thresholds: number[];
+  /** per evaluation class: undos allowed in teaching games (fractions are probabilities) */
+  num_undo_prompts: number[];
   show_dots: boolean[];
   save_feedback: boolean[];
   save_analysis: boolean;
@@ -107,6 +109,13 @@ export class Game {
       }
     }
     if (!this.root.getProperty("RU")) this.root.setProperty("RU", opts.newGame?.rules ?? "japanese");
+    // restore collapsed branches saved by KaTrain
+    const nodes = this.root.nodesInTree;
+    const byShortcutId = new Map(nodes.filter((n) => n.hasProperty("KTSID")).map((n) => [n.getProperty("KTSID")!, n]));
+    for (const n of nodes) {
+      const from = n.getProperty("KTSF");
+      if (from && byShortcutId.has(from)) byShortcutId.get(from)!.addShortcut(n);
+    }
     this.setCurrentNode(this.root);
     this.analyzeAllNodes(PRIORITY_GAME_ANALYSIS, opts.analyzeFast ?? !opts.moveTree, false);
   }
@@ -286,8 +295,9 @@ export class Game {
         return;
       }
       const previous = cn;
-      if (cn.isRoot) break;
-      cn = cn.parent!;
+      if (cn.shortcutFrom) cn = cn.shortcutFrom;
+      else if (!cn.isRoot) cn = cn.parent!;
+      else break;
       if (breakOnBranch && cn.children.length > 1) break;
       if (breakOnMainBranch && cn.orderedChildren[0] !== previous) lastBranchingNode = cn;
     }
@@ -298,7 +308,11 @@ export class Game {
   redo(nTimes = 1, stopOnMistake: number | null = null) {
     let cn = this.currentNode;
     for (let i = 0; i < nTimes; i++) {
-      if (cn.children.length) cn = cn.orderedChildren[0];
+      if (cn.children.length) {
+        const child = cn.orderedChildren[0];
+        const shortcut = cn.shortcutsTo.find(([, via]) => via === child); // jump over a collapsed branch
+        cn = shortcut ? shortcut[0] : child;
+      }
       const pl = cn.pointsLost;
       if (i > 0 && stopOnMistake !== null && pl !== null && pl >= stopOnMistake && !this.host.isAi(cn.player)) {
         this.setCurrentNode(cn.parent!);
@@ -379,6 +393,78 @@ export class Game {
       [-2, -1, 0, 1, 2].reduce((acc, v) => acc + v * count(v), 0) + prisoners.W - prisoners.B - this.komi;
     if (unknown > 10 || count(0) - stones.size > 4 * (sx + sy)) return null;
     return cn.formatScore(score);
+  }
+
+  // ---------------------------------------------------------------- tree editing (move tree menu)
+  /** Delete a node and its subtree, then go to its parent. */
+  deleteNode(node: GameNode) {
+    if (!node.parent) return;
+    let parent: GameNode;
+    if (node.shortcutFrom) {
+      parent = node.shortcutFrom;
+      const via = parent.shortcutsTo.find(([m]) => m === node)?.[1];
+      node.removeShortcut();
+      if (via) via.parent!.children = via.parent!.children.filter((c) => c !== via);
+    } else {
+      parent = node.parent;
+      parent.children = parent.children.filter((c) => c !== node);
+    }
+    this.setCurrentNode(parent);
+  }
+
+  /** Remove every branch except the line leading to this node. */
+  pruneBranch(node: GameNode) {
+    if (!node.parent) return;
+    for (let n = node; n.parent; n = n.parent) n.parent.children = [n];
+    this.setCurrentNode(node);
+  }
+
+  /** Make the line leading to this node the main line. */
+  makeMainBranch(node: GameNode) {
+    if (!node.parent) return;
+    for (let n = node; n.parent; n = n.parent) {
+      n.parent.children = [n, ...n.parent.children.filter((c) => c !== n)];
+    }
+    this.setCurrentNode(node);
+  }
+
+  /** Collapse the branch leading to this node into a single edge, or expand it again. */
+  toggleCollapse(node: GameNode) {
+    if (!node.parent) return;
+    if (node.shortcutFrom) {
+      node.removeShortcut();
+      return;
+    }
+    let n = node.parent;
+    while (n.children.length === 1 && !n.isRoot && !n.shortcutFrom) n = n.parent!;
+    n.addShortcut(node);
+  }
+
+  // ---------------------------------------------------------------- teaching
+  /**
+   * Teaching games: once a human's move and its parent are analyzed, undo it when it lost too many
+   * points (per trainer.num_undo_prompts). Returns true when the move was undone.
+   */
+  analyzeUndo(node: GameNode): boolean {
+    const trainer = this.host.trainer();
+    const move = node.move;
+    if (node !== this.currentNode || node.autoUndo !== null || !node.analysisComplete || !move) return false;
+    const pointsLost = node.pointsLost!;
+    const thresholds = trainer.eval_thresholds;
+    const prompts = trainer.num_undo_prompts;
+    let i = 0;
+    while (i < thresholds.length && pointsLost < thresholds[i]) i++;
+    const numUndos = i < prompts.length ? prompts[i] : 0;
+    let undo: boolean;
+    if (numUndos === 0) undo = false;
+    else if (numUndos < 1) undo = node.undoThreshold < numUndos && node.parent!.children.length === 1; // probability
+    else undo = node.parent!.children.length <= numUndos;
+    node.autoUndo = undo;
+    if (undo) {
+      this.undo(1);
+      this.host.setStatus(tf("teaching undo message", { move: move.gtp(), points_lost: pointsLost }), "teaching");
+    }
+    return undo;
   }
 
   // ---------------------------------------------------------------- analysis

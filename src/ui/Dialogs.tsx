@@ -169,6 +169,7 @@ export function SettingsDialog() {
         <span>{t("dot color")}</span>
         <span>{t("show dots")}</span>
         <span>{t("save dots")}</span>
+        <span>{t("num undos").replace(/\s*\n\s*/g, " ")}</span>
         {tr.eval_thresholds.map((thr, i) => (
           <ThresholdRow key={i} i={i} thr={thr} draft={draft} edit={edit} />
         ))}
@@ -238,6 +239,13 @@ function ThresholdRow({ i, thr, draft, edit }: { i: number; thr: number; draft: 
       <span className="swatch" style={{ background: colors[i] }} />
       <input type="checkbox" checked={draft.trainer.show_dots[i]} onChange={(ev) => edit((c) => void (c.trainer.show_dots[i] = ev.target.checked))} />
       <input type="checkbox" checked={draft.trainer.save_feedback[i]} onChange={(ev) => edit((c) => void (c.trainer.save_feedback[i] = ev.target.checked))} />
+      <input
+        type="number"
+        step={0.1}
+        min={0}
+        value={draft.trainer.num_undo_prompts[i] ?? 0}
+        onChange={(ev) => edit((c) => void (c.trainer.num_undo_prompts[i] = Math.max(0, parseFloat(ev.target.value) || 0)))}
+      />
     </>
   );
 }
