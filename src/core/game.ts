@@ -689,7 +689,7 @@ export class Game {
     }
   }
 
-  analyzeExtra(mode: ExtraAnalysisMode, kwargs: { mistakesOnly?: boolean; visits?: number } = {}) {
+  analyzeExtra(mode: ExtraAnalysisMode, kwargs: { mistakesOnly?: boolean; visits?: number; moveRange?: [number, number] | null } = {}) {
     const engine = this.engine;
     if (!engine) return;
     const cn = this.currentNode;
@@ -720,12 +720,17 @@ export class Game {
       const threshold = this.host.trainer().eval_thresholds.at(-4)!;
       const visits =
         kwargs.visits ?? Math.min(...nodes.map((n) => n.analysisVisitsRequested)) + engine.settings.max_visits;
+      const range = kwargs.moveRange ? [Math.min(...kwargs.moveRange), Math.max(...kwargs.moveRange)] : null;
       for (const node of nodes) {
         const maxLoss = Math.max(...[node, ...node.children].map((c) => c.pointsLost ?? 0));
         if (kwargs.mistakesOnly && maxLoss <= threshold) continue;
+        if (range && !(node.depth - 1 >= range[0] && node.depth - 1 <= range[1])) continue;
         this.analyze(node, { visits, priority: -1_000_000, timeLimit: false, reportEvery: null });
       }
-      this.host.setStatus(tf("game re-analysis", { visits }), "analysis");
+      this.host.setStatus(
+        range ? tf("move range analysis", { start_move: range[0], end_move: range[1], visits }) : tf("game re-analysis", { visits }),
+        "analysis",
+      );
       return;
     }
 

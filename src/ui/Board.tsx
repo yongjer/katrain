@@ -6,7 +6,7 @@ import { GameNode, type CandidateMove } from "../core/gameNode";
 import { t } from "../core/i18n";
 import { Move, type Coords } from "../core/move";
 import { formatVisits, varToGrid } from "../core/utils";
-import { playAt, useStore } from "../state/store";
+import { addPvToTree, finishRegionSelect, playAt, useStore } from "../state/store";
 import { EVAL_COLORS, THEME, evalColor, gtpColumn } from "./theme";
 
 const STONE_R = 0.48;
@@ -35,6 +35,10 @@ export function Board() {
   const teachingStatus = useStore((s) => s.status?.level === "teaching");
   const svgRef = useRef<SVGSVGElement>(null);
   const [hover, setHover] = useState<Coords | null>(null);
+  const selecting = useStore((s) => s.selectingRegion);
+  const showCoords = useStore((s) => s.showCoords);
+  const [box, setBox] = useState<[number, number, number, number] | null>(null);
+  const justSelected = useRef(false); // the click that ends a region selection must not play a stone
 
   const toggles = config.ui[mode];
   const trainer = config.trainer;
@@ -79,7 +83,7 @@ export function Board() {
         <rect x={-1.05} y={-1.05} width={sx + 1.1} height={sy + 1.1} rx={0.15} className={`board-bg ${game.insertMode ? "inserting" : ""}`} />
         <g className="grid">{lines}</g>
         <g className="stars">{stars}</g>
-        <g className="coords">{coords}</g>
+        {showCoords && <g className="coords">{coords}</g>}
       </g>,
     );
 
@@ -294,7 +298,7 @@ export function Board() {
     }
 
     return { layers, hintTargets, sx, sy, py, stoneGrid, endResult, nextPlayer };
-  }, [game, tick, toggles, trainer, theme, config.ui.players, config.trainer.show_move_numbers, teachingStatus]);
+  }, [game, tick, toggles, trainer, theme, config.ui.players, config.trainer.show_move_numbers, teachingStatus, showCoords]);
 
   if (!game || !content) return <div className="board-wrap" />;
   const { layers, hintTargets, sx, sy, py, stoneGrid, endResult, nextPlayer } = content;
@@ -303,7 +307,7 @@ export function Board() {
   // hover: PV preview over a hint / next move, otherwise a ghost stone
   const hoverTarget = hover && hintTargets.find((h) => h.coords[0] === hover[0] && h.coords[1] === hover[1]);
   const pv: PvOverlay | null = hoverTarget ? { moves: hoverTarget.pv, startPlayer: nextPlayer } : null;
-  const canPlay = !endResult && !(mode === MODE_PLAY && aiThinking);
+  const canPlay = !endResult && !(mode === MODE_PLAY && aiThinking) && !selecting;
   const ghost = !pv && hover && canPlay && !stoneGrid[hover[1]][hover[0]] ? hover : null;
 
   const toBoard = (e: React.MouseEvent): Coords | null => {
@@ -326,15 +330,36 @@ export function Board() {
     <div className="board-wrap">
       <svg
         ref={svgRef}
-        className="board"
         viewBox={`-1.1 -1.1 ${sx + 1.2} ${sy + 1.2}`}
         preserveAspectRatio="xMidYMid meet"
+        className={`board ${selecting ? "selecting" : ""}`}
+        onMouseDown={(e) => {
+          const c = toBoard(e);
+          if (selecting && e.button === 0 && c) setBox([c[0], c[0], c[1], c[1]]);
+          // middle click on a hint or next move: add its variation to the move tree
+          if (e.button === 1 && hoverTarget) {
+            e.preventDefault();
+            addPvToTree(hoverTarget.pv);
+          }
+        }}
         onMouseMove={(e) => {
           const c = toBoard(e);
           if (c?.[0] !== hover?.[0] || c?.[1] !== hover?.[1]) setHover(c);
+          if (selecting && box && c && (e.buttons & 1) !== 0) setBox([box[0], c[0], box[2], c[1]]);
+        }}
+        onMouseUp={() => {
+          if (selecting && box) {
+            justSelected.current = true;
+            finishRegionSelect(box);
+            setBox(null);
+          }
         }}
         onMouseLeave={() => setHover(null)}
         onClick={(e) => {
+          if (justSelected.current) {
+            justSelected.current = false;
+            return;
+          }
           const c = toBoard(e);
           if (c && canPlay && !stoneGrid[c[1]][c[0]]) playAt(c);
         }}
@@ -367,6 +392,15 @@ export function Board() {
         {layers}
         {pv && <PvStones pv={pv} py={py} />}
         {ghost && <Stone x={ghost[0]} y={py(ghost[1])} player={nextPlayer} opacity={THEME.ghostAlpha} />}
+        {box && (
+          <rect
+            x={Math.min(box[0], box[1]) - 0.5}
+            y={py(Math.max(box[2], box[3])) - 0.5}
+            width={Math.abs(box[1] - box[0]) + 1}
+            height={Math.abs(box[3] - box[2]) + 1}
+            className="roi selecting"
+          />
+        )}
         {(cn.isPass || endResult) && (
           <g className="pass-circle">
             <circle cx={(sx - 1) / 2} cy={(sy - 1) / 2} r={Math.min(sx, sy) * 0.12} />

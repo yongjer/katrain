@@ -40,6 +40,8 @@ export interface Platform {
   makeTransport(settings: EngineSettings): EngineTransport;
   transportKind(settings: EngineSettings): string;
   openGameFile(): Promise<OpenedFile | null>;
+  /** Files dropped onto the window. Resolves to an unsubscribe function. */
+  onFileDrop(cb: (file: OpenedFile) => void): Promise<() => void>;
   /** Save to `path`, or ask where to save when path is null. Returns the path written, or null if cancelled. */
   saveTextFile(contents: string, suggestedName: string, path: string | null): Promise<string | null>;
   loadConfig(): Promise<string | null>;
@@ -147,6 +149,17 @@ const tauriPlatform: Platform = {
     if (!path || Array.isArray(path)) return null;
     const contents = await invoke<string>("read_game_file", { path });
     return { name: path.split(/[\\/]/).pop() ?? path, path, contents };
+  },
+  async onFileDrop(cb) {
+    const { getCurrentWebview } = await import("@tauri-apps/api/webview");
+    const { invoke } = await import("@tauri-apps/api/core");
+    return getCurrentWebview().onDragDropEvent(async (e) => {
+      if (e.payload.type !== "drop" || !e.payload.paths.length) return;
+      const path = e.payload.paths[0];
+      const name = path.split(/[\\/]/).pop() ?? path;
+      if (!/\.(sgf|gib|ngf)$/i.test(name)) return;
+      cb({ name, path, contents: await invoke<string>("read_game_file", { path }) });
+    });
   },
   async saveTextFile(contents, suggestedName, path) {
     const { invoke } = await import("@tauri-apps/api/core");
@@ -310,6 +323,20 @@ const browserPlatform: Platform = {
       };
       input.click();
     });
+  },
+  async onFileDrop(cb) {
+    const over = (e: DragEvent) => e.preventDefault();
+    const drop = async (e: DragEvent) => {
+      e.preventDefault();
+      const file = e.dataTransfer?.files[0];
+      if (file) cb({ name: file.name, path: null, contents: await file.text() });
+    };
+    window.addEventListener("dragover", over);
+    window.addEventListener("drop", drop);
+    return () => {
+      window.removeEventListener("dragover", over);
+      window.removeEventListener("drop", drop);
+    };
   },
   async saveTextFile(contents, suggestedName) {
     const url = URL.createObjectURL(new Blob([contents], { type: "application/x-go-sgf" }));

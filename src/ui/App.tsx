@@ -18,14 +18,18 @@ import {
   redo,
   resetAnalysis,
   saveGame,
+  loadGameFromString,
   setMode,
+  startRegionSelect,
   switchBranch,
+  toggleCoordinates,
   toggleControl,
   togglePondering,
   undo,
   updateConfig,
   useStore,
 } from "../state/store";
+import { platform } from "../state/platform";
 import { ControlsBar, TopBar } from "./Bars";
 import { Board } from "./Board";
 import { Dialogs } from "./Dialogs";
@@ -65,6 +69,8 @@ function onKeyDown(e: KeyboardEvent) {
     else if (key === "l") void loadGame();
     else if (key === "s") void saveGame(false);
     else if (key === "d") void saveGame(true);
+    else if (key === "ArrowLeft") undo(9999);
+    else if (key === "ArrowRight") redo(9999);
     else return;
     return handled();
   }
@@ -140,6 +146,15 @@ function onKeyDown(e: KeyboardEvent) {
     case "Pause":
       toggleTimerPaused();
       break;
+    case "g":
+      startRegionSelect();
+      break;
+    case "k":
+      toggleCoordinates();
+      break;
+    case "F2":
+      openDialog("reanalyze");
+      break;
     case "F3":
       openDialog("report");
       break;
@@ -180,9 +195,14 @@ export function App() {
     void init();
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("wheel", onWheel, { passive: true });
+    // drop an .sgf / .gib / .ngf anywhere on the window to load it
+    const stopDrop = platform.onFileDrop((f) => {
+      if (/\.(sgf|gib|ngf)$/i.test(f.name)) loadGameFromString(f.contents, f.name, f.path);
+    });
     return () => {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("wheel", onWheel);
+      void stopDrop.then((stop) => stop());
     };
   }, []);
   if (!ready) return <div className="loading">KaTrain</div>;

@@ -36,7 +36,7 @@ export interface LogEntry {
   level: LogLevel;
 }
 
-export type DialogKind = null | "newgame" | "settings" | "ai" | "log" | "timer" | "tsumego" | "report";
+export type DialogKind = null | "newgame" | "settings" | "ai" | "log" | "timer" | "tsumego" | "report" | "reanalyze";
 
 /** What the clock shows: main time, or the current byo-yomi period and the periods left. */
 export interface TimerState {
@@ -64,6 +64,9 @@ interface State {
   /** Loaded UI language; the app re-renders fully when it changes. */
   lang: string;
   timer: TimerState;
+  /** Dragging on the board selects a region of interest (key g) instead of playing. */
+  selectingRegion: boolean;
+  showCoords: boolean;
 }
 
 export const useStore = create<State>(() => ({
@@ -79,6 +82,8 @@ export const useStore = create<State>(() => ({
   dialog: null,
   lang: "en",
   timer: { paused: true, remaining: 30, periods: 5, ai: false },
+  selectingRegion: false,
+  showCoords: true,
 }));
 
 const get = useStore.getState;
@@ -419,7 +424,7 @@ export function aiMoveNow() {
 }
 
 // ---------------------------------------------------------------- analysis
-export function analyzeExtra(mode: ExtraAnalysisMode, kwargs: { mistakesOnly?: boolean; visits?: number } = {}) {
+export function analyzeExtra(mode: ExtraAnalysisMode, kwargs: Parameters<Game["analyzeExtra"]>[1] = {}) {
   const game = get().game;
   if (!game) return;
   if (mode === "stop") set({ pondering: false });
@@ -443,6 +448,37 @@ export function setRegionOfInterest(region: [number, number, number, number] | n
 }
 
 // ---------------------------------------------------------------- UI state
+// ---------------------------------------------------------------- region of interest, coordinates, PV
+export function startRegionSelect() {
+  if (!get().game) return;
+  set({ selectingRegion: true });
+  setStatus(t("analysis:region:start"), "info");
+}
+
+export function finishRegionSelect(region: [number, number, number, number] | null) {
+  const game = get().game;
+  set({ selectingRegion: false });
+  if (game && region) game.setRegionOfInterest(region);
+  setStatus("", "info");
+  refresh();
+}
+
+export function toggleCoordinates() {
+  set((s) => ({ showCoords: !s.showCoords }));
+}
+
+/** Add a principal variation (from the current position) to the move tree, as a middle click on it does. */
+export function addPvToTree(moves: string[]) {
+  const game = get().game;
+  if (!game || !moves.length) return;
+  let node = game.currentNode;
+  for (const gtp of moves) {
+    node = node.play(Move.fromGtp(gtp, node.nextPlayer));
+    game.analyze(node, { analyzeFast: true });
+  }
+  refresh();
+}
+
 export function setMode(mode: UiMode) {
   set({ mode });
   refresh();

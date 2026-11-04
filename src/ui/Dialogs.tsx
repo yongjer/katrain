@@ -8,7 +8,7 @@ import { ENGINE_BACKENDS, resolveEngineBackend } from "../core/engine";
 import { gameReport, REPORT_FILTERS } from "../core/report";
 import type { AppConfig } from "../state/config";
 import { platform } from "../state/platform";
-import { newGame, openDialog, setupPosition, tsumegoFrame, updateConfig, updateTimerSettings, useStore } from "../state/store";
+import { analyzeExtra, newGame, openDialog, setupPosition, tsumegoFrame, updateConfig, updateTimerSettings, useStore } from "../state/store";
 import { LANGUAGES } from "./i18nLoader";
 import { ModelPicker } from "./ModelPicker";
 import { EVAL_COLORS } from "./theme";
@@ -562,8 +562,55 @@ export function ReportDialog() {
   );
 }
 
+/** Deeper full game analysis (ReAnalyzeGamePopup). */
+export function ReanalyzeDialog() {
+  const depth = useStore((s) => s.game?.currentNode.depth ?? 0);
+  const [visits, setVisits] = useState("2500");
+  const [limit, setLimit] = useState(false);
+  const [from, setFrom] = useState(String(depth));
+  const [to, setTo] = useState("999");
+  const [mistakes, setMistakes] = useState(false);
+  const close = () => openDialog(null);
+  const int = (v: string, fallback: number) => (Number.isNaN(parseInt(v, 10)) ? fallback : parseInt(v, 10));
+  return (
+    <Modal title={t("analysis:game")} onClose={close}>
+      <Field label={t("reanalyze max visits")}>
+        <input type="number" min={1} value={visits} onChange={(e) => setVisits(e.target.value)} />
+      </Field>
+      <Field label={t("limit to moves")}>
+        <input type="checkbox" checked={limit} onChange={(e) => setLimit(e.target.checked)} />
+      </Field>
+      <Field label={t("from move")}>
+        <input type="number" min={0} value={from} disabled={!limit} onChange={(e) => setFrom(e.target.value)} />
+      </Field>
+      <Field label={t("to move")}>
+        <input type="number" min={0} value={to} disabled={!limit} onChange={(e) => setTo(e.target.value)} />
+      </Field>
+      <Field label={t("reanalyze mistakes only")}>
+        <input type="checkbox" checked={mistakes} onChange={(e) => setMistakes(e.target.checked)} />
+      </Field>
+      <div className="modal-actions">
+        <button
+          className="primary"
+          onClick={() => {
+            close();
+            analyzeExtra("game", {
+              visits: Math.max(1, int(visits, 2500)),
+              moveRange: limit ? [int(from, 0), int(to, 999)] : null,
+              mistakesOnly: mistakes,
+            });
+          }}
+        >
+          {t("analysis:game")}
+        </button>
+      </div>
+    </Modal>
+  );
+}
+
 export function Dialogs() {
   const dialog = useStore((s) => s.dialog);
+  if (dialog === "reanalyze") return <ReanalyzeDialog />;
   if (dialog === "report") return <ReportDialog />;
   if (dialog === "timer") return <TimerDialog />;
   if (dialog === "tsumego") return <TsumegoDialog />;

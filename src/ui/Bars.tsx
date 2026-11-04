@@ -98,7 +98,7 @@ export function TopBar() {
             <MenuItem label={t("analysis:reset")} shortcut="H" onClick={resetAnalysis} />
             <hr />
             <MenuItem label={t("analysis:continuous")} shortcut="Space" onClick={togglePondering} />
-            <MenuItem label={t("analysis:game")} onClick={() => analyzeExtra("game")} />
+            <MenuItem label={t("analysis:game")} shortcut="F2" onClick={() => openDialog("reanalyze")} />
             <MenuItem label={t("analysis:report")} shortcut="F3" onClick={() => openDialog("report")} />
             <MenuItem label={t("analysis:aimove")} shortcut="Enter" onClick={aiMoveNow} />
             <MenuItem label={t("analysis:playtoend")} shortcut="L" onClick={selfplayToEnd} />

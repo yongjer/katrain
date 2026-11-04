@@ -1144,3 +1144,13 @@ button.primary:disabled {
   color: var(--orange);
   font-size: 12px;
 }
+
+.roi.selecting {
+  stroke: var(--accent);
+  stroke-width: 0.08;
+  stroke-dasharray: 0.25 0.15;
+}
+
+.board.selecting {
+  cursor: crosshair;
+}
