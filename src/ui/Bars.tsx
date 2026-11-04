@@ -7,6 +7,10 @@ import type { AnalysisToggles } from "../state/config";
 import {
   aiMoveNow,
   analyzeExtra,
+  copySgf,
+  pasteSgf,
+  selfplayToEnd,
+  toggleInsertMode,
   findMistake,
   getEngine,
   loadGame,
@@ -56,6 +60,10 @@ export function TopBar() {
             <hr />
             <MenuItem label={t("menu:settings")} shortcut="F8" onClick={() => openDialog("settings")} />
             <MenuItem label={t("menu:aisettings")} shortcut="F7" onClick={() => openDialog("ai")} />
+            <MenuItem label={t("menu:clocksettings")} shortcut="F5" onClick={() => openDialog("timer")} />
+            <hr />
+            <MenuItem label="Copy SGF" shortcut="Ctrl+C" onClick={() => void copySgf()} />
+            <MenuItem label="Paste SGF / link" shortcut="Ctrl+V" onClick={() => void pasteSgf()} />
             <MenuItem label="KataGo log" onClick={() => openDialog("log")} />
           </Dropdown>
         )}
@@ -92,6 +100,9 @@ export function TopBar() {
             <MenuItem label={t("analysis:continuous")} shortcut="Space" onClick={togglePondering} />
             <MenuItem label={t("analysis:game")} onClick={() => analyzeExtra("game")} />
             <MenuItem label={t("analysis:aimove")} shortcut="Enter" onClick={aiMoveNow} />
+            <MenuItem label={t("analysis:playtoend")} shortcut="L" onClick={selfplayToEnd} />
+            <MenuItem label={t("analysis:insert")} shortcut="I" onClick={toggleInsertMode} />
+            <MenuItem label={t("analysis:tsumegoframe")} shortcut="F10" onClick={() => openDialog("tsumego")} />
           </Dropdown>
         )}
       </div>

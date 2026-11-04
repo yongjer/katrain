@@ -80,6 +80,30 @@ pub fn save_config(app: AppHandle, contents: String) -> Result<(), String> {
     write_text_file(path.to_string_lossy().into_owned(), contents)
 }
 
+/// Download a game record for "paste a link to an SGF". Only http(s), at most 10 MB.
+#[tauri::command]
+pub async fn fetch_text(url: String) -> Result<String, String> {
+    if !(url.starts_with("https://") || url.starts_with("http://")) {
+        return Err("only http(s) links can be imported".into());
+    }
+    let client = reqwest::Client::builder()
+        .user_agent(concat!("KaTrain/", env!("CARGO_PKG_VERSION")))
+        .build()
+        .map_err(|e| e.to_string())?;
+    let res = client.get(&url).send().await.map_err(|e| e.to_string())?;
+    if !res.status().is_success() {
+        return Err(format!("{url} returned {}", res.status()));
+    }
+    if res.content_length().is_some_and(|n| n > 10 << 20) {
+        return Err(format!("{url} is too large to be a game record"));
+    }
+    let bytes = res.bytes().await.map_err(|e| e.to_string())?;
+    if bytes.len() > 10 << 20 {
+        return Err(format!("{url} is too large to be a game record"));
+    }
+    Ok(decode_game_bytes(&bytes, &url))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

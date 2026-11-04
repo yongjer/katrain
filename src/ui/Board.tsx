@@ -76,7 +76,7 @@ export function Board() {
     }
     layers.push(
       <g key="board">
-        <rect x={-1.05} y={-1.05} width={sx + 1.1} height={sy + 1.1} rx={0.15} className="board-bg" />
+        <rect x={-1.05} y={-1.05} width={sx + 1.1} height={sy + 1.1} rx={0.15} className={`board-bg ${game.insertMode ? "inserting" : ""}`} />
         <g className="grid">{lines}</g>
         <g className="stars">{stars}</g>
         <g className="coords">{coords}</g>

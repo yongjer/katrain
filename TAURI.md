@@ -83,12 +83,14 @@ Ported in this first phase:
   Score Loss, Policy, Policy Weighted, KataJigo, KataAntiMirror, Blinded Policy, Local, Tenuki, Territorial and
   Influential, with rank estimates and AI settings
 - Teaching games (auto-undo of mistakes) and the move tree (navigate, delete, make main branch, collapse, prune)
+- Game clock with main time, byo-yomi, minimal time use and countdown sounds (pause with the button or Pause key)
+- Insert mode (I), fast playout to game end (L), Set up Position (AI self-play to a target score), tsumego frame
+  (F10), and copy / paste of SGF or SGF links (Ctrl+C / Ctrl+V)
 - Model management: pick the engine and human-like models found on disk (bundled, downloaded, or in Python KaTrain's
   ~/.katrain), and "Download Models" (human-like model, latest/strongest distributed models) with progress
 - New game (size incl. non-square, handicap, komi, rules), general/engine/teaching settings, all 11 languages
 - Keyboard shortcuts as in KaTrain (arrows/z/x, up/down branches, home/end, b, n, p, enter, space, q w e r t,
   a s d f h, m, tab, ctrl+n/l/s/d, F7, F8) and mouse wheel navigation
 
-Not yet ported: timers, insert mode, self-play / setup position, tsumego frame, the performance report,
-the remote (WebSocket) engine, KataGo binary downloads, contribute mode, and clipboard copy/paste.
+Not yet ported: the performance report, the remote (WebSocket) engine, KataGo binary downloads and contribute mode.
 Until then the Python app remains in `katrain/` and still runs as before.

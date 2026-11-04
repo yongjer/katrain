@@ -996,3 +996,74 @@ button.primary:disabled {
   font-size: 12px;
   margin: 0;
 }
+
+.board-bg.inserting {
+  opacity: 0.6;
+}
+
+.tree-node.insert-parent .tree-highlight {
+  fill: #1acc1a;
+}
+
+.tree-node.insert-current .tree-highlight {
+  fill: #f26022;
+}
+
+.tree-node.insert-other .tree-highlight {
+  fill: #ff8040;
+}
+
+/* ------------------------------------------------------------ timer */
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  min-height: 64px;
+}
+
+.timer-digits {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 34px;
+  font-weight: 600;
+  color: #1acc1a;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.timer.timeout .timer-digits,
+.timer.timeout .timer-periods {
+  color: var(--orange);
+}
+
+.timer.ai .timer-digits {
+  opacity: 0.5;
+}
+
+.timer-periods {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 16px;
+  color: #1acc1a;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.timer-desc {
+  flex: 1;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.timer-pause {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--box-light);
+  font-size: 13px;
+}
+
+.timer-pause.paused {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #1b2430;
+}

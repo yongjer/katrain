@@ -9,6 +9,7 @@ use tauri::RunEvent;
 pub fn run() {
     let app = tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_clipboard_manager::init())
         .manage(engine::EngineState::default())
         .manage(models::Downloads::default())
         .invoke_handler(tauri::generate_handler![
@@ -19,6 +20,7 @@ pub fn run() {
             files::write_text_file,
             files::load_config,
             files::save_config,
+            files::fetch_text,
             models::list_models,
             models::resolve_model_endpoint,
             models::download_model,

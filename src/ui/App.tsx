@@ -4,7 +4,12 @@ import type { AnalysisToggles } from "../state/config";
 import {
   aiMoveNow,
   analyzeExtra,
+  copySgf,
   editTree,
+  pasteSgf,
+  selfplayToEnd,
+  toggleInsertMode,
+  toggleTimerPaused,
   findMistake,
   init,
   loadGame,
@@ -26,6 +31,7 @@ import { Board } from "./Board";
 import { Dialogs } from "./Dialogs";
 import { Graph } from "./Graph";
 import { MoveTree } from "./MoveTree";
+import { TimerPanel } from "./Timer";
 import { InfoPanel, PlayersPanel, StatsPanel } from "./Panels";
 
 const TOGGLE_KEYS: Record<string, keyof AnalysisToggles> = {
@@ -49,7 +55,9 @@ function onKeyDown(e: KeyboardEvent) {
   const handled = () => e.preventDefault();
 
   if (ctrl) {
-    if (key === "Delete" || key === "Backspace") editTree("delete");
+    if (key === "c") void copySgf();
+    else if (key === "v") void pasteSgf();
+    else if (key === "Delete" || key === "Backspace") editTree("delete");
     else if (key === "n") openDialog("newgame");
     else if (key === "l") void loadGame();
     else if (key === "s") void saveGame(false);
@@ -120,6 +128,21 @@ function onKeyDown(e: KeyboardEvent) {
     case "c":
       editTree("collapse");
       break;
+    case "i":
+      toggleInsertMode();
+      break;
+    case "l":
+      selfplayToEnd();
+      break;
+    case "Pause":
+      toggleTimerPaused();
+      break;
+    case "F5":
+      openDialog("timer");
+      break;
+    case "F10":
+      openDialog("tsumego");
+      break;
     case "Tab":
       setMode(s.mode === MODE_PLAY ? MODE_ANALYZE : MODE_PLAY);
       break;
@@ -146,6 +169,7 @@ function onWheel(e: WheelEvent) {
 export function App() {
   const ready = useStore((s) => s.ready);
   const lang = useStore((s) => s.lang);
+  const mode = useStore((s) => s.mode);
   useEffect(() => {
     void init();
     window.addEventListener("keydown", onKeyDown);
@@ -165,7 +189,7 @@ export function App() {
         </section>
         <aside className="sidebar">
           <PlayersPanel />
-          <MoveTree />
+          {mode === MODE_PLAY ? <TimerPanel /> : <MoveTree />}
           <Graph />
           <StatsPanel />
           <InfoPanel />

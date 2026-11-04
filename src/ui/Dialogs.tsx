@@ -6,7 +6,7 @@ import { AI_STRATEGIES_AVAILABLE, AI_STRATEGIES_HUMAN_MODEL, TOP_MOVE_OPTIONS } 
 import { t } from "../core/i18n";
 import type { AppConfig } from "../state/config";
 import { platform } from "../state/platform";
-import { newGame, openDialog, updateConfig, useStore } from "../state/store";
+import { newGame, openDialog, setupPosition, tsumegoFrame, updateConfig, updateTimerSettings, useStore } from "../state/store";
 import { LANGUAGES } from "./i18nLoader";
 import { ModelPicker } from "./ModelPicker";
 import { EVAL_COLORS } from "./theme";
@@ -41,14 +41,26 @@ const RULES = ["japanese", "chinese", "korean", "aga", "tromp-taylor", "new zeal
 
 export function NewGameDialog() {
   const cfg = useStore((s) => s.config.game);
+  const [mode, setMode] = useState<"newgame" | "setupposition">("newgame");
+  const [setupMove, setSetupMove] = useState(String(cfg.setup_move));
+  const [setupScore, setSetupScore] = useState(String(cfg.setup_advantage));
   const [size, setSize] = useState(String(cfg.size));
   const [komi, setKomi] = useState(String(cfg.komi));
   const [handicap, setHandicap] = useState(String(cfg.handicap));
   const [rules, setRules] = useState(cfg.rules);
   const close = () => openDialog(null);
   const valid = /^\d{1,2}(:\d{1,2})?$/.test(size.trim()) && size.split(":").every((v) => +v >= 2 && +v <= 52) && !Number.isNaN(parseFloat(komi));
+  const setupValid = mode === "newgame" || (parseInt(setupMove, 10) > 0 && !Number.isNaN(parseFloat(setupScore)));
+  const settings = () => ({ size: size.trim(), komi: parseFloat(komi), handicap: parseInt(handicap, 10), rules });
   return (
     <Modal title={t("New Game title")} onClose={close}>
+      <div className="tabs" role="tablist">
+        {(["newgame", "setupposition"] as const).map((m) => (
+          <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? "active" : ""} onClick={() => setMode(m)}>
+            {t(m)}
+          </button>
+        ))}
+      </div>
       <Field label={t("board size")} hint={t("non square board hint")}>
         <input value={size} onChange={(e) => setSize(e.target.value)} list="board-sizes" />
         <datalist id="board-sizes">
@@ -78,16 +90,28 @@ export function NewGameDialog() {
           ))}
         </select>
       </Field>
+      {mode === "setupposition" && (
+        <>
+          <p className="muted">{t("setup position explanation")}</p>
+          <Field label={t("setup position move number")}>
+            <input type="number" min={1} value={setupMove} onChange={(e) => setSetupMove(e.target.value)} />
+          </Field>
+          <Field label={t("setup position black score")}>
+            <input type="number" step={0.5} value={setupScore} onChange={(e) => setSetupScore(e.target.value)} />
+          </Field>
+        </>
+      )}
       <div className="modal-actions">
         <button
           className="primary"
-          disabled={!valid}
+          disabled={!valid || !setupValid}
           onClick={() => {
             close();
-            newGame({ size: size.trim(), komi: parseFloat(komi), handicap: parseInt(handicap, 10), rules });
+            if (mode === "newgame") newGame(settings());
+            else setupPosition(settings(), parseInt(setupMove, 10), parseFloat(setupScore));
           }}
         >
-          {t("newgame")}
+          {t(mode)}
         </button>
       </div>
     </Modal>
@@ -333,8 +357,75 @@ export function LogDialog() {
   );
 }
 
+export function TimerDialog() {
+  const timer = useStore((s) => s.config.timer);
+  const [draft, setDraft] = useState(() => ({ ...timer }));
+  const close = () => openDialog(null);
+  const num = (key: keyof typeof draft, v: string, min: number) =>
+    setDraft((d) => ({ ...d, [key]: Math.max(min, Number.isNaN(parseFloat(v)) ? min : parseFloat(v)) }));
+  return (
+    <Modal title={t("timer settings")} onClose={close}>
+      <Field label={t("main time")}>
+        <input type="number" min={0} value={draft.main_time} onChange={(e) => num("main_time", e.target.value, 0)} />
+      </Field>
+      <Field label={t("byoyomi length")}>
+        <input type="number" min={1} value={draft.byo_length} onChange={(e) => num("byo_length", e.target.value, 1)} />
+      </Field>
+      <Field label={t("byoyomi periods")}>
+        <input type="number" min={1} value={draft.byo_periods} onChange={(e) => num("byo_periods", e.target.value, 1)} />
+      </Field>
+      <Field label={t("minimal time use")}>
+        <input type="number" min={0} value={draft.minimal_use} onChange={(e) => num("minimal_use", e.target.value, 0)} />
+      </Field>
+      <Field label={t("count down sound")}>
+        <input type="checkbox" checked={draft.sound} onChange={(e) => setDraft((d) => ({ ...d, sound: e.target.checked }))} />
+      </Field>
+      <div className="modal-actions">
+        <button
+          className="primary"
+          onClick={() => {
+            close();
+            updateTimerSettings(draft);
+          }}
+        >
+          {t("update timer")}
+        </button>
+      </div>
+    </Modal>
+  );
+}
+
+export function TsumegoDialog() {
+  const [margin, setMargin] = useState("4");
+  const [ko, setKo] = useState(false);
+  const close = () => openDialog(null);
+  return (
+    <Modal title={t("analysis:tsumegoframe")} onClose={close}>
+      <Field label={t("tsumego:walldistance")}>
+        <input type="number" min={1} max={8} value={margin} onChange={(e) => setMargin(e.target.value)} />
+      </Field>
+      <Field label={t("tsumego:ko")}>
+        <input type="checkbox" checked={ko} onChange={(e) => setKo(e.target.checked)} />
+      </Field>
+      <div className="modal-actions">
+        <button
+          className="primary"
+          onClick={() => {
+            close();
+            tsumegoFrame(ko, Math.max(1, parseInt(margin, 10) || 4));
+          }}
+        >
+          {t("analysis:tsumegoframe")}
+        </button>
+      </div>
+    </Modal>
+  );
+}
+
 export function Dialogs() {
   const dialog = useStore((s) => s.dialog);
+  if (dialog === "timer") return <TimerDialog />;
+  if (dialog === "tsumego") return <TsumegoDialog />;
   if (dialog === "newgame") return <NewGameDialog />;
   if (dialog === "settings") return <SettingsDialog />;
   if (dialog === "ai") return <AiSettingsDialog />;

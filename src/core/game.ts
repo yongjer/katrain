@@ -15,7 +15,7 @@ import { GameNode, type SgfSaveOptions } from "./gameNode";
 import { t, tf } from "./i18n";
 import { Move, type Coords } from "./move";
 import { writeSgf } from "./sgf";
-import { varToGrid } from "./utils";
+import { varToGrid, weightedSelectionWithoutReplacement } from "./utils";
 
 export class IllegalMoveException extends Error {}
 
@@ -68,6 +68,12 @@ export class Game {
   sgfFilename: string | null;
   externalGame = false;
   regionOfInterest: number[] | null = null;
+  /** insert mode: the original next move, whose line gets copied after the inserted moves */
+  insertAfter: GameNode | null = null;
+  /** seconds of main time used (timer) */
+  mainTimeUsed = 0;
+  /** cleared when the app moves on to another game, so background work (self-play) stops */
+  active = true;
 
   // board state: board[y][x] = chain id or -1
   board: number[][] = [];
@@ -244,7 +250,15 @@ export class Game {
   }
 
   // ---------------------------------------------------------------- navigation
+  get insertMode(): boolean {
+    return this.insertAfter !== null;
+  }
+
   setCurrentNode(node: GameNode) {
+    if (this.insertMode && node !== this.currentNode) {
+      this.host.setStatus(t("finish inserting before navigating"), "error");
+      return;
+    }
     this.currentNode = node;
     this.calculateGroups();
   }
@@ -276,6 +290,16 @@ export class Game {
   }
 
   undo(nTimes: number | "branch" | "main-branch" = 1, stopOnMistake: number | null = null) {
+    if (this.insertMode) {
+      // in insert mode, undo deletes the last inserted move
+      const cn = this.currentNode;
+      if (nTimes === 1 && cn.parent && !this.insertAfter!.nodesFromRoot.includes(cn)) {
+        cn.parent.children = cn.parent.children.filter((c) => c !== cn);
+        this.currentNode = cn.parent;
+        this.calculateGroups();
+      }
+      return;
+    }
     let cn = this.currentNode;
     let breakOnBranch = false;
     let breakOnMainBranch = false;
@@ -306,6 +330,7 @@ export class Game {
   }
 
   redo(nTimes = 1, stopOnMistake: number | null = null) {
+    if (this.insertMode) return;
     let cn = this.currentNode;
     for (let i = 0; i < nTimes; i++) {
       if (cn.children.length) {
@@ -393,6 +418,138 @@ export class Game {
       [-2, -1, 0, 1, 2].reduce((acc, v) => acc + v * count(v), 0) + prisoners.W - prisoners.B - this.komi;
     if (unknown > 10 || count(0) - stones.size > 4 * (sx + sy)) return null;
     return cn.formatScore(score);
+  }
+
+  // ---------------------------------------------------------------- insert mode
+  /**
+   * Insert mode (Game.set_insert_mode): play extra moves before the next move of the game, then on leaving
+   * insert mode copy the rest of the original line after them.
+   */
+  setInsertMode(mode: boolean | "toggle") {
+    const on = mode === "toggle" ? !this.insertMode : mode;
+    if (on === this.insertMode) return;
+    if (on) {
+      const children = this.currentNode.orderedChildren;
+      if (!children.length) return;
+      this.insertAfter = children[0];
+      this.host.setStatus(t("starting insert mode"), "info");
+      return;
+    }
+    const insertAfter = this.insertAfter!;
+    this.insertAfter = null;
+    let copyFrom = insertAfter;
+    let copyTo = this.currentNode;
+    let numCopied = 0;
+    if (copyTo === insertAfter.parent) {
+      this.host.setStatus("", "info");
+      return;
+    }
+    const aboveInsertionRoot = new Set(insertAfter.parent!.nodesFromRoot);
+    const alreadyInserted = copyTo.nodesFromRoot.filter((n) => !aboveInsertionRoot.has(n) && n.move).map((n) => n.move!);
+    try {
+      for (;;) {
+        for (const m of copyFrom.moveWithPlacements) {
+          if (alreadyInserted.some((a) => a.equals(m))) continue;
+          this.validateMoveAndUpdateChains(m, true);
+          const props = Object.fromEntries([...copyFrom.properties].map(([k, v]) => [k, [...v]]));
+          copyTo = new GameNode(copyTo, props);
+          numCopied++;
+        }
+        if (!copyFrom.children.length) break;
+        copyFrom = copyFrom.orderedChildren[0];
+      }
+    } catch (e) {
+      if (!(e instanceof IllegalMoveException)) throw e; // an illegal move ends the copy
+    }
+    this.calculateGroups();
+    this.host.setStatus(tf("ending insert mode", { num_copied: numCopied }), "info");
+    this.analyzeAllNodes(PRIORITY_GAME_ANALYSIS, true, false);
+  }
+
+  // ---------------------------------------------------------------- self-play
+  /**
+   * AI self-play from the current node (Game.selfplay). With untilMove "end", plays the best move to the end of
+   * the game in a collapsed branch. With a move number and target score, generates a game that reaches roughly
+   * that score for Black by that move ("Set up Position").
+   */
+  selfplay(untilMove: number | "end", targetBAdvantage: number | null = null) {
+    const engine = this.engine;
+    if (!engine) return;
+    const cn = this.currentNode;
+    const setup = untilMove !== "end" && targetBAdvantage !== null;
+    const analysisOpts = setup ? { visits: Math.max(25, engine.settings.fast_visits) } : {};
+    const extraSettings = setup ? { wideRootNoise: 0.03 } : {};
+    const generation = engine.queryGeneration;
+
+    const request = (node: GameNode) => {
+      engine.requestAnalysis(node, {
+        callback: (result, partial) => {
+          if (partial) return;
+          node.setAnalysis(result);
+          analyzeAndPlay(node);
+        },
+        priority: PRIORITY_DEFAULT,
+        analyzeFast: true,
+        extraSettings,
+        ...analysisOpts,
+      });
+    };
+
+    const analyzeAndPlay = (node: GameNode) => {
+      if (!this.active || engine.queryGeneration !== generation) return; // a new game happened
+      const cands = node.candidateMoves;
+      let thoughts = "Move generated by AI self-play\n";
+      let move: Move;
+      if (setup) {
+        if (node.depth >= (untilMove as number) || cands[0]?.move === "pass") {
+          this.setCurrentNode(node);
+          return;
+        }
+        const until = untilMove as number;
+        const target = cn.score! + ((node.depth - cn.depth + 1) * (targetBAdvantage! - cn.score!)) / (until - cn.depth);
+        const maxLoss = 5;
+        const stddev = Math.min(3, 0.5 + (until - node.depth) * 0.15);
+        thoughts += `Selecting moves aiming at score ${target.toFixed(1)} +/- ${stddev.toFixed(2)} with < ${maxLoss} points lost\n`;
+        let info;
+        if (Math.abs(node.score! - target) < 3 * stddev) {
+          const weighted = cands
+            .filter((d, i) => d.pointsLost < maxLoss || i === 0)
+            .map(
+              (d) =>
+                [d, Math.exp(-0.5 * (Math.abs(d.scoreLead - target) / stddev) ** 2) * Math.exp(-0.5 * (Math.min(0, d.pointsLost) / maxLoss) ** 2)] as const,
+            );
+          info = weightedSelectionWithoutReplacement([...weighted], (w) => w[1], 1)[0][0];
+          for (const [d, wt] of weighted) {
+            thoughts += `Move option: ${d.move} score ${d.scoreLead.toFixed(2)} loss ${d.pointsLost.toFixed(2)} weight ${wt.toExponential(3)}\n`;
+          }
+        } else {
+          info = cands.reduce((best, d) => (Math.abs(d.scoreLead - target) < Math.abs(best.scoreLead - target) ? d : best));
+          thoughts += `Move played to close difference between score ${node.score!.toFixed(1)} and target ${target.toFixed(1)} quickly.`;
+        }
+        move = Move.fromGtp(info.move, node.nextPlayer);
+      } else if (cands.length) {
+        move = Move.fromGtp(cands[0].move, node.nextPlayer);
+      } else {
+        const pol = node.policyRanking;
+        move = pol ? pol[0][1] : Move.pass(node.nextPlayer);
+      }
+      if (move.isPass) {
+        if (this.currentNode === cn) this.setCurrentNode(node);
+        return;
+      }
+      const next = new GameNode(node, undefined, move);
+      next.aiThoughts = thoughts;
+      if (setup) {
+        this.setCurrentNode(next);
+        this.host.setStatus(tf("setup game status message", { move: next.depth, until_move: untilMove }), "info");
+      } else {
+        if (node !== cn) node.removeShortcut();
+        cn.addShortcut(next);
+      }
+      request(next);
+    };
+
+    request(cn);
   }
 
   // ---------------------------------------------------------------- tree editing (move tree menu)

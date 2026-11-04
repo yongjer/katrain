@@ -15,7 +15,7 @@ export default defineConfig({
     host: host || false,
     hmr: host ? { protocol: "ws", host, port: 1421 } : undefined,
     // the Python package next to src/ holds large binaries and models
-    watch: { ignored: [resolve(__dirname, "src-tauri") + "/**", resolve(__dirname, "katrain") + "/**"] },
+    watch: { ignored: [resolve(import.meta.dirname, "src-tauri") + "/**", resolve(import.meta.dirname, "katrain") + "/**"] },
   },
   build: {
     target: "es2022",

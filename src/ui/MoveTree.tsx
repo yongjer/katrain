@@ -85,6 +85,14 @@ export function MoveTree() {
 
   if (!game || !layout) return null;
   const { pos, children, width, height } = layout;
+  // insert mode: green = where the moves are inserted, orange = the inserted moves (current one darker)
+  const insertClass = new Map<GameNode, string>();
+  if (game.insertAfter) {
+    insertClass.set(game.insertAfter.parent!, "insert-parent");
+    for (let n: GameNode | null = current; n && n !== game.insertAfter.parent; n = n.parent) {
+      insertClass.set(n, n === current ? "insert-current" : "insert-other");
+    }
+  }
 
   const lines: string[] = [];
   for (const [node, [x, y]] of pos) {
@@ -107,7 +115,7 @@ export function MoveTree() {
           {[...pos].map(([node, [x, y]]) => {
             const placements = node.placements.length + node.clearPlacements.length > 0;
             const label = placements ? "+" : String(node.depth);
-            const special = node === current ? "current" : node === menu?.node ? "selected" : "";
+            const special = insertClass.get(node) ?? (node === current ? "current" : node === menu?.node ? "selected" : "");
             return (
               <g
                 key={node.id}

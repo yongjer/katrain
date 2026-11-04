@@ -32,6 +32,10 @@ export interface Platform {
   /** Download a model; resolves to the saved path. */
   downloadModel(name: string, url: string): Promise<string>;
   onDownloadProgress(cb: (p: DownloadProgress) => void): Promise<() => void>;
+  readClipboard(): Promise<string | null>;
+  writeClipboard(text: string): Promise<void>;
+  /** Fetch a game record from an http(s) URL (pasting a link to an SGF). */
+  fetchText(url: string): Promise<string>;
   makeTransport(): EngineTransport;
   openGameFile(): Promise<OpenedFile | null>;
   /** Save to `path`, or ask where to save when path is null. Returns the path written, or null if cancelled. */
@@ -115,6 +119,18 @@ const tauriPlatform: Platform = {
   async onDownloadProgress(cb) {
     const { listen } = await import("@tauri-apps/api/event");
     return listen<DownloadProgress>("model-download", (e) => cb(e.payload));
+  },
+  async readClipboard() {
+    const { readText } = await import("@tauri-apps/plugin-clipboard-manager");
+    return readText();
+  },
+  async writeClipboard(text) {
+    const { writeText } = await import("@tauri-apps/plugin-clipboard-manager");
+    await writeText(text);
+  },
+  async fetchText(url) {
+    const { invoke } = await import("@tauri-apps/api/core");
+    return invoke<string>("fetch_text", { url });
   },
   makeTransport: () => new TauriTransport(),
   async openGameFile() {
@@ -211,6 +227,17 @@ const browserPlatform: Platform = {
   },
   async onDownloadProgress() {
     return () => {};
+  },
+  async readClipboard() {
+    return navigator.clipboard.readText();
+  },
+  async writeClipboard(text) {
+    await navigator.clipboard.writeText(text);
+  },
+  async fetchText(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`${url} returned ${res.status}`);
+    return res.text();
   },
   makeTransport: () => new HttpBridgeTransport(new URLSearchParams(window.location.search).get("bridge")),
   openGameFile() {

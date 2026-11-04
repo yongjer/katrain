@@ -20,8 +20,20 @@ export interface PlayerSetup {
   subtype: string;
 }
 
+export interface TimerSettings {
+  /** minutes */
+  main_time: number;
+  /** seconds per byo-yomi period */
+  byo_length: number;
+  byo_periods: number;
+  /** seconds a move must take at least in byo-yomi (0 = off) */
+  minimal_use: number;
+  sound: boolean;
+}
+
 export interface AppConfig {
   engine: EngineSettings;
+  timer: TimerSettings;
   game: { size: string; komi: number; handicap: number; rules: string; setup_move: number; setup_advantage: number };
   trainer: TrainerSettings & { show_move_numbers: boolean; lock_ai: boolean };
   ai: Record<string, AiSettings>;
@@ -38,6 +50,7 @@ export function defaultConfig(): AppConfig {
   const p = structuredClone(packagedConfig) as unknown as Record<string, any>;
   return {
     engine: p.engine,
+    timer: p.timer,
     game: p.game,
     trainer: p.trainer,
     ai: p.ai,
