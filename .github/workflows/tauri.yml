@@ -12,6 +12,10 @@ on:
       - "package-lock.json"
       - ".github/workflows/tauri.yml"
   workflow_dispatch:
+    inputs:
+      macos_runner:
+        description: "macOS runner label (when the default Apple Silicon pool is short of capacity, e.g. macos-14)"
+        default: macos-latest
 
 jobs:
   test:
@@ -45,7 +49,7 @@ jobs:
         include:
           - platform: windows-latest
           - platform: ubuntu-22.04
-          - platform: macos-latest
+          - platform: ${{ inputs.macos_runner || 'macos-latest' }}
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v5
@@ -78,7 +82,7 @@ jobs:
   # Every push to tauri-v2 refreshes one public prerelease, "tauri-nightly", with the latest installers.
   nightly:
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/tauri-v2'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/tauri-v2'
     runs-on: ubuntu-latest
     permissions:
       contents: write
