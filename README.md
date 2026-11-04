@@ -6,6 +6,9 @@
 [![PyPI Downloads](https://pepy.tech/badge/katrain)](https://pepy.tech/project/katrain)
 [![Discord](https://img.shields.io/discord/417022162348802048?logo=discord)](https://discord.com/channels/417022162348802048/629446365688365067)
 
+> **Tauri v2 port in progress:** this branch adds a desktop app built with Tauri v2, React and TypeScript.
+> See [TAURI.md](TAURI.md) for how to build it and what has been ported so far.
+
 KaTrain is a tool for analyzing games and playing go with AI feedback from KataGo:
 
 * Review your games to find the moves that were most costly in terms of points lost.

@@ -1,0 +1,17564 @@
+{
+"LS vs AG - G4 - English.sgf": {
+"num_nodes": 181,
+"nodes": [
+{
+"props": {
+"GM": [
+"1"
+],
+"FF": [
+"4"
+],
+"CA": [
+"UTF-8"
+],
+"AP": [
+"Sabaki:0.43.3"
+],
+"ST": [
+"2"
+],
+"RU": [
+"Chinese"
+],
+"SZ": [
+"19"
+],
+"KM": [
+"7.50"
+],
+"TM": [
+"7200"
+],
+"OT": [
+"3x60 byo-yomi"
+],
+"PW": [
+"Lee Sedol"
+],
+"PB": [
+"AlphaGo"
+],
+"WR": [
+"9p"
+],
+"DT": [
+"2016-03-13"
+],
+"RE": [
+"W+Resign"
+]
+},
+"moves": [],
+"placements": [],
+"depth": 0,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pd"
+]
+},
+"moves": [
+"BQ16"
+],
+"placements": [],
+"depth": 1,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dp"
+]
+},
+"moves": [
+"WD4"
+],
+"placements": [],
+"depth": 2,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cd"
+]
+},
+"moves": [
+"BC16"
+],
+"placements": [],
+"depth": 3,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qp"
+]
+},
+"moves": [
+"WR4"
+],
+"placements": [],
+"depth": 4,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"op"
+]
+},
+"moves": [
+"BP4"
+],
+"placements": [],
+"depth": 5,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oq"
+]
+},
+"moves": [
+"WP3"
+],
+"placements": [],
+"depth": 6,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nq"
+]
+},
+"moves": [
+"BO3"
+],
+"placements": [],
+"depth": 7,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pq"
+]
+},
+"moves": [
+"WQ3"
+],
+"placements": [],
+"depth": 8,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cn"
+]
+},
+"moves": [
+"BC6"
+],
+"placements": [],
+"depth": 9,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fq"
+]
+},
+"moves": [
+"WF3"
+],
+"placements": [],
+"depth": 10,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mp"
+]
+},
+"moves": [
+"BN4"
+],
+"placements": [],
+"depth": 11,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"po"
+],
+"LB": [
+"ed:B",
+"qn:A"
+]
+},
+"moves": [
+"WQ5"
+],
+"placements": [],
+"depth": 12,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"iq"
+]
+},
+"moves": [
+"BJ3"
+],
+"placements": [],
+"depth": 13,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ec"
+]
+},
+"moves": [
+"WE17"
+],
+"placements": [],
+"depth": 14,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hd"
+]
+},
+"moves": [
+"BH16"
+],
+"placements": [],
+"depth": 15,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cg"
+]
+},
+"moves": [
+"WC13"
+],
+"placements": [],
+"depth": 16,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ed"
+]
+},
+"moves": [
+"BE16"
+],
+"placements": [],
+"depth": 17,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cj"
+]
+},
+"moves": [
+"WC10"
+],
+"placements": [],
+"depth": 18,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dc"
+]
+},
+"moves": [
+"BD17"
+],
+"placements": [],
+"depth": 19,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bp"
+]
+},
+"moves": [
+"WB4"
+],
+"placements": [],
+"depth": 20,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nc"
+]
+},
+"moves": [
+"BO17"
+],
+"placements": [],
+"depth": 21,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qi"
+]
+},
+"moves": [
+"WR11"
+],
+"placements": [],
+"depth": 22,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ep"
+]
+},
+"moves": [
+"BE4"
+],
+"placements": [],
+"depth": 23,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eo"
+]
+},
+"moves": [
+"WE5"
+],
+"placements": [],
+"depth": 24,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dk"
+]
+},
+"moves": [
+"BD9"
+],
+"placements": [],
+"depth": 25,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fp"
+]
+},
+"moves": [
+"WF4"
+],
+"placements": [],
+"depth": 26,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ck"
+]
+},
+"moves": [
+"BC9"
+],
+"placements": [],
+"depth": 27,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dj"
+]
+},
+"moves": [
+"WD10"
+],
+"placements": [],
+"depth": 28,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ej"
+]
+},
+"moves": [
+"BE10"
+],
+"placements": [],
+"depth": 29,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ei"
+]
+},
+"moves": [
+"WE11"
+],
+"placements": [],
+"depth": 30,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fi"
+]
+},
+"moves": [
+"BF11"
+],
+"placements": [],
+"depth": 31,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eh"
+]
+},
+"moves": [
+"WE12"
+],
+"placements": [],
+"depth": 32,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fh"
+]
+},
+"moves": [
+"BF12"
+],
+"placements": [],
+"depth": 33,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bj"
+]
+},
+"moves": [
+"WB10"
+],
+"placements": [],
+"depth": 34,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fk"
+]
+},
+"moves": [
+"BF9"
+],
+"placements": [],
+"depth": 35,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fg"
+]
+},
+"moves": [
+"WF13"
+],
+"placements": [],
+"depth": 36,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gg"
+]
+},
+"moves": [
+"BG13"
+],
+"placements": [],
+"depth": 37,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ff"
+]
+},
+"moves": [
+"WF14"
+],
+"placements": [],
+"depth": 38,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gf"
+]
+},
+"moves": [
+"BG14"
+],
+"placements": [],
+"depth": 39,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mc"
+]
+},
+"moves": [
+"WN17"
+],
+"placements": [],
+"depth": 40,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"md"
+]
+},
+"moves": [
+"BN16"
+],
+"placements": [],
+"depth": 41,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lc"
+]
+},
+"moves": [
+"WM17"
+],
+"placements": [],
+"depth": 42,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nb"
+]
+},
+"moves": [
+"BO18"
+],
+"placements": [],
+"depth": 43,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"id"
+]
+},
+"moves": [
+"WJ16"
+],
+"placements": [],
+"depth": 44,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hc"
+]
+},
+"moves": [
+"BH17"
+],
+"placements": [],
+"depth": 45,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jg"
+]
+},
+"moves": [
+"WK13"
+],
+"placements": [],
+"depth": 46,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pj"
+]
+},
+"moves": [
+"BQ10"
+],
+"placements": [],
+"depth": 47,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pi"
+]
+},
+"moves": [
+"WQ11"
+],
+"placements": [],
+"depth": 48,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oj"
+]
+},
+"moves": [
+"BP10"
+],
+"placements": [],
+"depth": 49,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oi"
+]
+},
+"moves": [
+"WP11"
+],
+"placements": [],
+"depth": 50,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ni"
+]
+},
+"moves": [
+"BO11"
+],
+"placements": [],
+"depth": 51,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nh"
+]
+},
+"moves": [
+"WO12"
+],
+"placements": [],
+"depth": 52,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mh"
+]
+},
+"moves": [
+"BN12"
+],
+"placements": [],
+"depth": 53,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ng"
+]
+},
+"moves": [
+"WO13"
+],
+"placements": [],
+"depth": 54,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mg"
+]
+},
+"moves": [
+"BN13"
+],
+"placements": [],
+"depth": 55,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mi"
+]
+},
+"moves": [
+"WN11"
+],
+"placements": [],
+"depth": 56,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nj"
+]
+},
+"moves": [
+"BO10"
+],
+"placements": [],
+"depth": 57,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mf"
+]
+},
+"moves": [
+"WN14"
+],
+"placements": [],
+"depth": 58,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"li"
+]
+},
+"moves": [
+"BM11"
+],
+"placements": [],
+"depth": 59,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ne"
+]
+},
+"moves": [
+"WO15"
+],
+"placements": [],
+"depth": 60,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nd"
+]
+},
+"moves": [
+"BO16"
+],
+"placements": [],
+"depth": 61,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mj"
+]
+},
+"moves": [
+"WN10"
+],
+"placements": [],
+"depth": 62,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lf"
+]
+},
+"moves": [
+"BM14"
+],
+"placements": [],
+"depth": 63,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mk"
+]
+},
+"moves": [
+"WN9"
+],
+"placements": [],
+"depth": 64,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"me"
+]
+},
+"moves": [
+"BN15"
+],
+"placements": [],
+"depth": 65,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nf"
+]
+},
+"moves": [
+"WO14"
+],
+"placements": [],
+"depth": 66,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lh"
+]
+},
+"moves": [
+"BM12"
+],
+"placements": [],
+"depth": 67,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qj"
+]
+},
+"moves": [
+"WR10"
+],
+"placements": [],
+"depth": 68,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kk"
+]
+},
+"moves": [
+"BL9"
+],
+"placements": [],
+"depth": 69,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ik"
+]
+},
+"moves": [
+"WJ9"
+],
+"placements": [],
+"depth": 70,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ji"
+]
+},
+"moves": [
+"BK11"
+],
+"placements": [],
+"depth": 71,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gh"
+]
+},
+"moves": [
+"WG12"
+],
+"placements": [],
+"depth": 72,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hj"
+]
+},
+"moves": [
+"BH10"
+],
+"placements": [],
+"depth": 73,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ge"
+]
+},
+"moves": [
+"WG15"
+],
+"placements": [],
+"depth": 74,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"he"
+]
+},
+"moves": [
+"BH15"
+],
+"placements": [],
+"depth": 75,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fd"
+]
+},
+"moves": [
+"WF16"
+],
+"placements": [],
+"depth": 76,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fc"
+]
+},
+"moves": [
+"BF17"
+],
+"placements": [],
+"depth": 77,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ki"
+]
+},
+"moves": [
+"WL11"
+],
+"placements": [],
+"depth": 78,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jj"
+]
+},
+"moves": [
+"BK10"
+],
+"placements": [],
+"depth": 79,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lj"
+]
+},
+"moves": [
+"WM10"
+],
+"placements": [],
+"depth": 80,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kh"
+]
+},
+"moves": [
+"BL12"
+],
+"placements": [],
+"depth": 81,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jh"
+]
+},
+"moves": [
+"WK12"
+],
+"placements": [],
+"depth": 82,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ml"
+]
+},
+"moves": [
+"BN8"
+],
+"placements": [],
+"depth": 83,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nk"
+]
+},
+"moves": [
+"WO9"
+],
+"placements": [],
+"depth": 84,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ol"
+]
+},
+"moves": [
+"BP8"
+],
+"placements": [],
+"depth": 85,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ok"
+]
+},
+"moves": [
+"WP9"
+],
+"placements": [],
+"depth": 86,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pk"
+]
+},
+"moves": [
+"BQ9"
+],
+"placements": [],
+"depth": 87,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pl"
+]
+},
+"moves": [
+"WQ8"
+],
+"placements": [],
+"depth": 88,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qk"
+]
+},
+"moves": [
+"BR9"
+],
+"placements": [],
+"depth": 89,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nl"
+]
+},
+"moves": [
+"WO8"
+],
+"placements": [],
+"depth": 90,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kj"
+]
+},
+"moves": [
+"BL10"
+],
+"placements": [],
+"depth": 91,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ii"
+]
+},
+"moves": [
+"WJ11"
+],
+"placements": [],
+"depth": 92,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rk"
+]
+},
+"moves": [
+"BS9"
+],
+"placements": [],
+"depth": 93,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"om"
+],
+"LB": [
+"rk:A",
+"om:B"
+]
+},
+"moves": [
+"WP7"
+],
+"placements": [],
+"depth": 94,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pg"
+]
+},
+"moves": [
+"BQ13"
+],
+"placements": [],
+"depth": 95,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ql"
+]
+},
+"moves": [
+"WR8"
+],
+"placements": [],
+"depth": 96,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cp"
+],
+"LB": [
+"ki:A"
+]
+},
+"moves": [
+"BC4"
+],
+"placements": [],
+"depth": 97,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"co"
+]
+},
+"moves": [
+"WC5"
+],
+"placements": [],
+"depth": 98,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oe"
+]
+},
+"moves": [
+"BP15"
+],
+"placements": [],
+"depth": 99,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rl"
+]
+},
+"moves": [
+"WS8"
+],
+"placements": [],
+"depth": 100,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sk"
+]
+},
+"moves": [
+"BT9"
+],
+"placements": [],
+"depth": 101,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rj"
+]
+},
+"moves": [
+"WS10"
+],
+"placements": [],
+"depth": 102,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hg"
+]
+},
+"moves": [
+"BH13"
+],
+"placements": [],
+"depth": 103,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ij"
+]
+},
+"moves": [
+"WJ10"
+],
+"placements": [],
+"depth": 104,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"km"
+]
+},
+"moves": [
+"BL7"
+],
+"placements": [],
+"depth": 105,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gi"
+]
+},
+"moves": [
+"WG11"
+],
+"placements": [],
+"depth": 106,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fj"
+]
+},
+"moves": [
+"BF10"
+],
+"placements": [],
+"depth": 107,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jl"
+]
+},
+"moves": [
+"WK8"
+],
+"placements": [],
+"depth": 108,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kl"
+]
+},
+"moves": [
+"BL8"
+],
+"placements": [],
+"depth": 109,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gl"
+]
+},
+"moves": [
+"WG8"
+],
+"placements": [],
+"depth": 110,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fl"
+]
+},
+"moves": [
+"BF8"
+],
+"placements": [],
+"depth": 111,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gm"
+]
+},
+"moves": [
+"WG7"
+],
+"placements": [],
+"depth": 112,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ch"
+]
+},
+"moves": [
+"BC12"
+],
+"placements": [],
+"depth": 113,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ee"
+]
+},
+"moves": [
+"WE15"
+],
+"placements": [],
+"depth": 114,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eb"
+]
+},
+"moves": [
+"BE18"
+],
+"placements": [],
+"depth": 115,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bg"
+]
+},
+"moves": [
+"WB13"
+],
+"placements": [],
+"depth": 116,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dg"
+]
+},
+"moves": [
+"BD13"
+],
+"placements": [],
+"depth": 117,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eg"
+]
+},
+"moves": [
+"WE13"
+],
+"placements": [],
+"depth": 118,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"en"
+]
+},
+"moves": [
+"BE6"
+],
+"placements": [],
+"depth": 119,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fo"
+]
+},
+"moves": [
+"WF5"
+],
+"placements": [],
+"depth": 120,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"df"
+]
+},
+"moves": [
+"BD14"
+],
+"placements": [],
+"depth": 121,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dh"
+]
+},
+"moves": [
+"WD12"
+],
+"placements": [],
+"depth": 122,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"im"
+]
+},
+"moves": [
+"BJ7"
+],
+"placements": [],
+"depth": 123,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hk"
+]
+},
+"moves": [
+"WH9"
+],
+"placements": [],
+"depth": 124,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bn"
+]
+},
+"moves": [
+"BB6"
+],
+"placements": [],
+"depth": 125,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"if"
+]
+},
+"moves": [
+"WJ14"
+],
+"placements": [],
+"depth": 126,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gd"
+]
+},
+"moves": [
+"BG16"
+],
+"placements": [],
+"depth": 127,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fe"
+]
+},
+"moves": [
+"WF15"
+],
+"placements": [],
+"depth": 128,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hf"
+]
+},
+"moves": [
+"BH14"
+],
+"placements": [],
+"depth": 129,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ih"
+]
+},
+"moves": [
+"WJ12"
+],
+"placements": [],
+"depth": 130,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bh"
+]
+},
+"moves": [
+"BB12"
+],
+"placements": [],
+"depth": 131,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ci"
+]
+},
+"moves": [
+"WC11"
+],
+"placements": [],
+"depth": 132,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ho"
+]
+},
+"moves": [
+"BH5"
+],
+"placements": [],
+"depth": 133,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"go"
+]
+},
+"moves": [
+"WG5"
+],
+"placements": [],
+"depth": 134,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"or"
+]
+},
+"moves": [
+"BP2"
+],
+"placements": [],
+"depth": 135,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rg"
+]
+},
+"moves": [
+"WS13"
+],
+"placements": [],
+"depth": 136,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dn"
+]
+},
+"moves": [
+"BD6"
+],
+"placements": [],
+"depth": 137,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cq"
+]
+},
+"moves": [
+"WC3"
+],
+"placements": [],
+"depth": 138,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pr"
+]
+},
+"moves": [
+"BQ2"
+],
+"placements": [],
+"depth": 139,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qr"
+]
+},
+"moves": [
+"WR2"
+],
+"placements": [],
+"depth": 140,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rf"
+]
+},
+"moves": [
+"BS14"
+],
+"placements": [],
+"depth": 141,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qg"
+]
+},
+"moves": [
+"WR13"
+],
+"placements": [],
+"depth": 142,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qf"
+]
+},
+"moves": [
+"BR14"
+],
+"placements": [],
+"depth": 143,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jc"
+]
+},
+"moves": [
+"WK17"
+],
+"placements": [],
+"depth": 144,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gr"
+]
+},
+"moves": [
+"BG2"
+],
+"placements": [],
+"depth": 145,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sf"
+]
+},
+"moves": [
+"WT14"
+],
+"placements": [],
+"depth": 146,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"se"
+]
+},
+"moves": [
+"BT15"
+],
+"placements": [],
+"depth": 147,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sg"
+]
+},
+"moves": [
+"WT13"
+],
+"placements": [],
+"depth": 148,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rd"
+]
+},
+"moves": [
+"BS16"
+],
+"placements": [],
+"depth": 149,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bl"
+]
+},
+"moves": [
+"WB8"
+],
+"placements": [],
+"depth": 150,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bk"
+]
+},
+"moves": [
+"BB9"
+],
+"placements": [],
+"depth": 151,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ak"
+]
+},
+"moves": [
+"WA9"
+],
+"placements": [],
+"depth": 152,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cl"
+]
+},
+"moves": [
+"BC8"
+],
+"placements": [],
+"depth": 153,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hn"
+]
+},
+"moves": [
+"WH6"
+],
+"placements": [],
+"depth": 154,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"in"
+]
+},
+"moves": [
+"BJ6"
+],
+"placements": [],
+"depth": 155,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hp"
+]
+},
+"moves": [
+"WH4"
+],
+"placements": [],
+"depth": 156,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fr"
+]
+},
+"moves": [
+"BF2"
+],
+"placements": [],
+"depth": 157,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"er"
+]
+},
+"moves": [
+"WE2"
+],
+"placements": [],
+"depth": 158,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"es"
+]
+},
+"moves": [
+"BE1"
+],
+"placements": [],
+"depth": 159,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ds"
+]
+},
+"moves": [
+"WD1"
+],
+"placements": [],
+"depth": 160,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ah"
+]
+},
+"moves": [
+"BA12"
+],
+"placements": [],
+"depth": 161,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ai"
+]
+},
+"moves": [
+"WA11"
+],
+"placements": [],
+"depth": 162,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kd"
+]
+},
+"moves": [
+"BL16"
+],
+"placements": [],
+"depth": 163,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ie"
+]
+},
+"moves": [
+"WJ15"
+],
+"placements": [],
+"depth": 164,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kc"
+]
+},
+"moves": [
+"BL17"
+],
+"placements": [],
+"depth": 165,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kb"
+]
+},
+"moves": [
+"WL18"
+],
+"placements": [],
+"depth": 166,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gk"
+]
+},
+"moves": [
+"BG9"
+],
+"placements": [],
+"depth": 167,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ib"
+]
+},
+"moves": [
+"WJ18"
+],
+"placements": [],
+"depth": 168,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qh"
+]
+},
+"moves": [
+"BR12"
+],
+"placements": [],
+"depth": 169,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rh"
+]
+},
+"moves": [
+"WS12"
+],
+"placements": [],
+"depth": 170,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qs"
+]
+},
+"moves": [
+"BR1"
+],
+"placements": [],
+"depth": 171,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rs"
+]
+},
+"moves": [
+"WS1"
+],
+"placements": [],
+"depth": 172,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oh"
+]
+},
+"moves": [
+"BP12"
+],
+"placements": [],
+"depth": 173,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sl"
+]
+},
+"moves": [
+"WT8"
+],
+"placements": [],
+"depth": 174,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"of"
+]
+},
+"moves": [
+"BP14"
+],
+"placements": [],
+"depth": 175,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sj"
+]
+},
+"moves": [
+"WT10"
+],
+"placements": [],
+"depth": 176,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ni"
+]
+},
+"moves": [
+"BO11"
+],
+"placements": [],
+"depth": 177,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nj"
+]
+},
+"moves": [
+"WO10"
+],
+"placements": [],
+"depth": 178,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oo"
+]
+},
+"moves": [
+"BP5"
+],
+"placements": [],
+"depth": 179,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jp"
+]
+},
+"moves": [
+"WK4"
+],
+"placements": [],
+"depth": 180,
+"next_player": "B"
+}
+],
+"sgf": "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.43.3]ST[2]RU[Chinese]SZ[19]KM[7.50]TM[7200]OT[3x60 byo-yomi]PW[Lee Sedol]PB[AlphaGo]WR[9p]DT[2016-03-13]C[Game 4 - Endurance\n\nCommentary by Fan Hui 2p\nExpert Go analysis by Gu Li 9p and Zhou Ruiyang 9p\nTranslated by Lucas Baker, Thomas Hubert, and Thore Graepel\n\nWhen I arrived in the playing room on the morning of the fourth game, everyone appeared more relaxed than before. Whatever happened today, the match had already been decided. Nonetheless, there were still two games to play, and a true professional like Lee must give his all each time he sits down at the board.\n\nWhen Lee arrived in the playing room, he looked serene, the burden of expectation lifted. Perhaps he would finally recover his composure, forget his surroundings, and simply play his best Go. One thing was certain: it was not in Lee's nature to surrender.\n\nThere were many fewer reporters in the press room this time. It seemed the media thought the interesting part was finished, and the match was headed for a final score of 5-0. But in a game of Go, although the information is open for all to see, often the results defy our expectations. Until the final stone is played, anything is possible.]RE[W+Resign];B[pd];W[dp];B[cd];W[qp];B[op];W[oq];B[nq];W[pq];B[cn];W[fq];B[mp]C[For the fourth game, Lee took White. Up to move 11, the opening was the same as the second game. AlphaGo is an extremely consistent player, and once it thinks a move is good, its opinion will not change.\n];W[po]LB[ed:B][qn:A]C[During the commentary for game 2, I mentioned that AlphaGo prefers to tenuki with 12 and approach at B. Previously, Lee chose to finish the joseki normally at A. White 12, however, is an interesting alternative! Perhaps it was a test: would AlphaGo still tenuki as in game 2?];B[iq]C[This time, AlphaGo chose the ordinary extension. After this move, AlphaGo's win rate was 50.5%. Both players had 1 hour and 52 minutes apiece.];W[ec]C[White played the usual corner approach.];B[hd];W[cg]C[Against Black's pincer, Lee counter-pincered to emphasize the left side. However, AlphaGo preferred the press as shown in the variation.];B[ed];W[cj];B[dc];W[bp];B[nc]C[At this point, Lee had 1 hour and 40 minutes left, AlphaGo 1 hour and 47 minutes.];W[qi]C[The opening had been a balanced one, and AlphaGo's win rate stood at 53%.];B[ep]C[The better people got to know AlphaGo, the more started calling it by friendly nicknames, such as \"Master A\" in China and \"Master Al\" in Korea. Although such names mean little on their own, they represented a growing acceptance of AlphaGo as a partner and teacher, together with whom we could advance our understanding.\n\nDuring this competition, \"Master A\" never ceased to surprise, playing at least one extraordinary new move in every game. This move was the first such display in game 4.\n\nTheoretically, Black 23 is quite vulgar, as it induces White to strengthen the corner. However, since White's lower side is already solid, if this move helps Black on the outside, is it really as crude as it looks? See the variation.\n\nOne of the major ideas in Chinese philosophy, from kung fu to Taoism, is the notion that \"formlessness defeats form.\" This is not to suggest that one should do nothing, but rather that one should be ready to make use of any resource at any moment. In other words, complete flexibility is the surest path to success. When one is not committed to any style, there are no weak points at which to aim. Naturally, reaching this state demands a strong foundation and a formidable repertoire. AlphaGo seemed to have attained this \"formless\" style already: simple, easy to understand, and totally unexploitable.];W[eo];B[dk]C[Lee chose the outside hane, and just as I was reading out the cut, AlphaGo changed course with the shoulder hit at 25. Lee cracked a smile, as if he were looking at a naughty child. AlphaGo was being mischievous indeed!];W[fp]C[Coolly, Lee protected the corner with 26. Most players found this move too slow, and even AlphaGo thought White should respond with the crawl as shown in the variation. Nonetheless, I saw this move as a sign that Lee had finally found the confidence to play his own game, regardless of anyone's approval. This was the Lee Sedol I knew: the wolf that, starving in the winter winds, still waited for his prey to come closer, biding his time for the moment his intuition knew would come.];B[ck]C[When Black blocked here, AlphaGo’s win rate was 55%.];W[dj];B[ej];W[ei];B[fi]C[Perhaps because it was playing Black, AlphaGo played very aggressively during this game. With the double hane at 29 and 31, it seemed as if Black was attempting to completely overwhelm White.];W[eh];B[fh];W[bj]C[Even more shocking is that Lee submitted to it! Meek as a lamb, he let AlphaGo blockade the center and seal in White's group on the left side.\n\nSometimes to endure is difficult, sometimes it is irrational, and sometimes it is futile. Whatever it meant, Lee endured, and perhaps this was way of showing us his unwavering faith and unwillingness to surrender.\n\nHowever, White did not need to suffer quite so badly. See the variation.];B[fk];W[fg];B[gg];W[ff];B[gf]C[At this point, AlphaGo's win rate reached 60%.];W[mc]C[After Black had constructed such a thick wall, it became urgent for White to invade the top. The attachment at 40 was a classic technique to do just that.];B[md]C[At this point, Lee Sedol had 1 hour and 15 minutes left, AlphaGo 1 hour and 35 minutes.];W[lc];B[nb];W[id]C[AlphaGo thought this move was problematic. In view of Black's thickness, White's most attractive option would have been to live on the spot, as shown in the variation.];B[hc];W[jg];B[pj]C[Compared to the previous games, Lee appeared much more relaxed and focused. Gone were the sighs, and the shaking of the head. Instead, he wore a look of intense concentration, as if waiting for something to arrive.\n\nWhite gracefully leapt out into the center, but Black initiated a magnificent leaning attack!];W[pi];B[oj];W[oi];B[ni]C[The greater the pressure became on White's top group, the more time Lee took to ponder each move. When Black played 51, Lee hesitated even longer. If Black dared to play so boldly, choosing the hane with only two stones to White's three, I could not imagine any move for White except the cut! Even AlphaGo thought cutting was the only move.];W[nh]C[But Lee continued to endure! Against Black's hane, he haned in return.];B[mh];W[ng]C[Against the double hane, he extended!\n\n\"I can feel Lee's conviction,\" I wrote in my notebook, \"waiting for the critical moment. But will that moment ever come?\" As the game progressed, it seemed to everyone that Lee was once again on the verge of defeat.\n\nAt this point, Lee's clock had 51 minutes, AlphaGo's 1 hour and 28 minutes.];B[mg];W[mi];B[nj];W[mf];B[li]C[When Black ataried at 59, White had the option of linking up the group on the top. See the variation.];W[ne];B[nd];W[mj]C[Instead, however, Lee chose to pull out his center stone. With White's group now isolated and in grave peril, Lee's heart must have been overwhelmed with emotions. But perhaps he also sensed the long-awaited moment at hand.];B[lf]C[Lee now had 42 minutes, AlphaGo 1 hour and 22 minutes.];W[mk];B[me];W[nf];B[lh];W[qj]C[At this point, people suddenly began to congregate near the playing room. The rumor was spreading that the game was about to end, with AlphaGo victorious as expected. But Lee looked cool-headed as ever as he played the turn at 68. Was he really not afraid of dying?];B[kk]C[AlphaGo continued striding forward with the knight's move, aiming to swallow the white group whole. Lee pondered deeply over his next move. If White was to have any chance, he would have to seize it now.\n\nAt this point, Lee had 34 minutes, AlphaGo 1 hour and 19 minutes.];W[ik];B[ji]C[When Black closed off the center with 71, Lee had 27 minutes, AlphaGo 1 hour and 17 minutes.];W[gh];B[hj]C[After ten minutes of thought, Lee played the cut. Right on schedule, one minute later, AlphaGo enclosed White's cutting stone. Lee sighed, and kept thinking.];W[ge];B[he];W[fd];B[fc]C[At move 77, Lee had only 11 minutes left. Moreover, AlphaGo’s win rate had climbed over 70%. It seemed the game was over. \n\nIn fact, Lee had just completed the last of the preparations for his final charge!];W[ki]C[At last, Lee Sedol launched his attack. Like an earthquake, the wedge at 78 tore apart the cracks in Black's fortress! None of us had anticipated this. When Gu Li saw White 78 from his broadcasting studio in China, he shouted: \"The divine move!\" All of Lee's painstaking preparations were finally about to bear fruit.\n\nActually, Lee spent very little time on this move itself. Later, during the press conference, he told the assembled reporters that he had not spent much time calculating. He had simply played what felt right.\n\nWithout a doubt, this move is a spectacular flash of insight - but does it really work? See the variation for an explanation of White's plan and Black's best response.\n\nRegardless, this move cast AlphaGo into complete confusion.];B[jj];W[lj]C[Move 78 might not really work, but AlphaGo was at a complete loss to deal with it. When Black pulled back, White blocked at 80, and Black could no longer kill the white stones unconditionally.];B[kh];W[jh]C[Everybody still thought AlphaGo was aiming for the ko shown in the variation, but this was not the case.];B[ml];W[nk];B[ol]C[Inexplicably, AlphaGo began trying to extract the dead stones on the right side!];W[ok];B[pk];W[pl];B[qk];W[nl];B[kj];W[ii]C[When White haned here, it was already difficult for Black to contain the white stones.\n\nAt this point, AlphaGo’s win rate was in free fall. When White played 92, it dropped all the way to 55%, a full 15 points lower than before! What was going on?!];B[rk];W[om]LB[rk:A][om:B]C[AlphaGo seemed to have gone crazy, and began thrashing around wildly. The exchange of A for B reinforced White's center with no compensation.];B[pg];W[ql];B[cp]LB[ki:A]C[This wedge was completely beyond understanding! Aja Huang, who had been the picture of calmness since the beginning of the match, now looked at me as if to ask, \"What's happening!?\" I answered with a look that said, \"I don't know.\"\n\nEven now, we still do not know why AlphaGo lost its mind, playing senseless blunders one after another. Only one thing is certain: the original cause was the wedge at A, Lee Sedol's mystical \"divine move.\" White 78 was incontrovertible proof of his determination to fight on, and his perseverance was rewarded with victory.];W[co];B[oe];W[rl];B[sk];W[rj];B[hg]C[Little by little, AlphaGo recovered its sanity, but too late to save the game. When Black played 103, AlphaGo’s win rate had fallen to 30%, the first time such low numbers had appeared since the match began.\n\nAt this point, Lee entered byo-yomi, but for the first time, he was seeing the light of victory.\n\nThe press room had been half-empty for some time, but now people began to pour in. Many reporters had already left, but when they heard that Lee Sedol might win, they turned around and came rushing back!];W[ij];B[km];W[gi];B[fj];W[jl];B[kl];W[gl];B[fl];W[gm];B[ch];W[ee];B[eb];W[bg];B[dg];W[eg];B[en];W[fo];B[df];W[dh];B[im];W[hk];B[bn];W[if];B[gd];W[fe];B[hf];W[ih];B[bh];W[ci];B[ho];W[go];B[or];W[rg]C[Everyone was anxiously awaiting the news of Lee's victory. As the professional commentators grew more and more certain of the conclusion, the game continued to progress onscreen. Playing in byo-yomi, Lee continued to answer AlphaGo's every move with utmost caution.];B[dn];W[cq];B[pr];W[qr];B[rf];W[qg];B[qf];W[jc];B[gr];W[sf];B[se];W[sg];B[rd];W[bl];B[bk];W[ak];B[cl];W[hn];B[in];W[hp];B[fr];W[er];B[es];W[ds];B[ah];W[ai];B[kd];W[ie];B[kc];W[kb];B[gk];W[ib];B[qh];W[rh];B[qs];W[rs];B[oh];W[sl];B[of];W[sj];B[ni];W[nj];B[oo];W[jp]C[At move 180, AlphaGo finally resigned.\n\nLee Sedol entered the press room to thunderous applause. At long last, he could smile. It was a simple, modest smile, nothing world-changing - but then, aren't little moments like this the real source of joy in life?])"
+},
+"fox sgf error.sgf": {
+"num_nodes": 187,
+"nodes": [
+{
+"props": {
+"GM": [
+"1"
+],
+"FF": [
+"4"
+],
+"SZ": [
+"19"
+],
+"GN": [
+""
+],
+"DT": [
+"2020-07-20"
+],
+"PB": [
+"whatiskale"
+],
+"PW": [
+"V259081699"
+],
+"BR": [
+"15级"
+],
+"WR": [
+"14级"
+],
+"KM": [
+0.5
+],
+"HA": [
+"1"
+],
+"RU": [
+"Japanese"
+],
+"AP": [
+"GNU Go:3.8",
+"foxwq"
+],
+"RE": [
+"W+R"
+],
+"TM": [
+"1200"
+],
+"TC": [
+"3"
+],
+"TT": [
+"30"
+],
+"RL": [
+"0"
+]
+},
+"moves": [],
+"placements": [],
+"depth": 0,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pd"
+]
+},
+"moves": [
+"BQ16"
+],
+"placements": [],
+"depth": 1,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dp"
+]
+},
+"moves": [
+"WD4"
+],
+"placements": [],
+"depth": 2,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pq"
+]
+},
+"moves": [
+"BQ3"
+],
+"placements": [],
+"depth": 3,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dd"
+]
+},
+"moves": [
+"WD16"
+],
+"placements": [],
+"depth": 4,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fc"
+]
+},
+"moves": [
+"BF17"
+],
+"placements": [],
+"depth": 5,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qo"
+]
+},
+"moves": [
+"WR5"
+],
+"placements": [],
+"depth": 6,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"np"
+]
+},
+"moves": [
+"BO4"
+],
+"placements": [],
+"depth": 7,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nc"
+]
+},
+"moves": [
+"WO17"
+],
+"placements": [],
+"depth": 8,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qf"
+]
+},
+"moves": [
+"BR14"
+],
+"placements": [],
+"depth": 9,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pc"
+]
+},
+"moves": [
+"WQ17"
+],
+"placements": [],
+"depth": 10,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qc"
+]
+},
+"moves": [
+"BR17"
+],
+"placements": [],
+"depth": 11,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qb"
+]
+},
+"moves": [
+"WR18"
+],
+"placements": [],
+"depth": 12,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rc"
+]
+},
+"moves": [
+"BS17"
+],
+"placements": [],
+"depth": 13,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"od"
+]
+},
+"moves": [
+"WP16"
+],
+"placements": [],
+"depth": 14,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pb"
+]
+},
+"moves": [
+"BQ18"
+],
+"placements": [],
+"depth": 15,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oc"
+]
+},
+"moves": [
+"WP17"
+],
+"placements": [],
+"depth": 16,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rb"
+]
+},
+"moves": [
+"BS18"
+],
+"placements": [],
+"depth": 17,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jd"
+]
+},
+"moves": [
+"WK16"
+],
+"placements": [],
+"depth": 18,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cc"
+]
+},
+"moves": [
+"BC17"
+],
+"placements": [],
+"depth": 19,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dc"
+]
+},
+"moves": [
+"WD17"
+],
+"placements": [],
+"depth": 20,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cd"
+]
+},
+"moves": [
+"BC16"
+],
+"placements": [],
+"depth": 21,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"de"
+]
+},
+"moves": [
+"WD15"
+],
+"placements": [],
+"depth": 22,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"db"
+]
+},
+"moves": [
+"BD18"
+],
+"placements": [],
+"depth": 23,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eb"
+]
+},
+"moves": [
+"WE18"
+],
+"placements": [],
+"depth": 24,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cb"
+]
+},
+"moves": [
+"BC18"
+],
+"placements": [],
+"depth": 25,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fb"
+]
+},
+"moves": [
+"WF18"
+],
+"placements": [],
+"depth": 26,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gc"
+]
+},
+"moves": [
+"BG17"
+],
+"placements": [],
+"depth": 27,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ec"
+]
+},
+"moves": [
+"WE17"
+],
+"placements": [],
+"depth": 28,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gb"
+]
+},
+"moves": [
+"BG18"
+],
+"placements": [],
+"depth": 29,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ce"
+]
+},
+"moves": [
+"WC15"
+],
+"placements": [],
+"depth": 30,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"be"
+]
+},
+"moves": [
+"BB15"
+],
+"placements": [],
+"depth": 31,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bf"
+]
+},
+"moves": [
+"WB14"
+],
+"placements": [],
+"depth": 32,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bd"
+]
+},
+"moves": [
+"BB16"
+],
+"placements": [],
+"depth": 33,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ge"
+]
+},
+"moves": [
+"WG15"
+],
+"placements": [],
+"depth": 34,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cf"
+]
+},
+"moves": [
+"BC14"
+],
+"placements": [],
+"depth": 35,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dg"
+]
+},
+"moves": [
+"WD13"
+],
+"placements": [],
+"depth": 36,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bg"
+]
+},
+"moves": [
+"BB13"
+],
+"placements": [],
+"depth": 37,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kc"
+]
+},
+"moves": [
+"WL17"
+],
+"placements": [],
+"depth": 38,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"df"
+]
+},
+"moves": [
+"BD14"
+],
+"placements": [],
+"depth": 39,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ef"
+]
+},
+"moves": [
+"WE14"
+],
+"placements": [],
+"depth": 40,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cg"
+]
+},
+"moves": [
+"BC13"
+],
+"placements": [],
+"depth": 41,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eg"
+]
+},
+"moves": [
+"WE13"
+],
+"placements": [],
+"depth": 42,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fe"
+]
+},
+"moves": [
+"BF15"
+],
+"placements": [],
+"depth": 43,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ff"
+]
+},
+"moves": [
+"WF14"
+],
+"placements": [],
+"depth": 44,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fq"
+]
+},
+"moves": [
+"BF3"
+],
+"placements": [],
+"depth": 45,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hq"
+]
+},
+"moves": [
+"WH3"
+],
+"placements": [],
+"depth": 46,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cq"
+]
+},
+"moves": [
+"BC3"
+],
+"placements": [],
+"depth": 47,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dq"
+]
+},
+"moves": [
+"WD3"
+],
+"placements": [],
+"depth": 48,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cp"
+]
+},
+"moves": [
+"BC4"
+],
+"placements": [],
+"depth": 49,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"do"
+]
+},
+"moves": [
+"WD5"
+],
+"placements": [],
+"depth": 50,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dr"
+]
+},
+"moves": [
+"BD2"
+],
+"placements": [],
+"depth": 51,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"er"
+]
+},
+"moves": [
+"WE2"
+],
+"placements": [],
+"depth": 52,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cr"
+]
+},
+"moves": [
+"BC2"
+],
+"placements": [],
+"depth": 53,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fr"
+]
+},
+"moves": [
+"WF2"
+],
+"placements": [],
+"depth": 54,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eq"
+]
+},
+"moves": [
+"BE3"
+],
+"placements": [],
+"depth": 55,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gq"
+]
+},
+"moves": [
+"WG3"
+],
+"placements": [],
+"depth": 56,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fp"
+]
+},
+"moves": [
+"BF4"
+],
+"placements": [],
+"depth": 57,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"co"
+]
+},
+"moves": [
+"WC5"
+],
+"placements": [],
+"depth": 58,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bo"
+]
+},
+"moves": [
+"BB5"
+],
+"placements": [],
+"depth": 59,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bn"
+]
+},
+"moves": [
+"WB6"
+],
+"placements": [],
+"depth": 60,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bp"
+]
+},
+"moves": [
+"BB4"
+],
+"placements": [],
+"depth": 61,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"go"
+]
+},
+"moves": [
+"WG5"
+],
+"placements": [],
+"depth": 62,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fo"
+]
+},
+"moves": [
+"BF5"
+],
+"placements": [],
+"depth": 63,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fn"
+]
+},
+"moves": [
+"WF6"
+],
+"placements": [],
+"depth": 64,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cn"
+]
+},
+"moves": [
+"BC6"
+],
+"placements": [],
+"depth": 65,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cm"
+]
+},
+"moves": [
+"WC7"
+],
+"placements": [],
+"depth": 66,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gn"
+]
+},
+"moves": [
+"BG6"
+],
+"placements": [],
+"depth": 67,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fm"
+]
+},
+"moves": [
+"WF7"
+],
+"placements": [],
+"depth": 68,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qm"
+]
+},
+"moves": [
+"BR7"
+],
+"placements": [],
+"depth": 69,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ki"
+]
+},
+"moves": [
+"WL11"
+],
+"placements": [],
+"depth": 70,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oe"
+]
+},
+"moves": [
+"BP15"
+],
+"placements": [],
+"depth": 71,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pe"
+]
+},
+"moves": [
+"WQ15"
+],
+"placements": [],
+"depth": 72,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qd"
+]
+},
+"moves": [
+"BR16"
+],
+"placements": [],
+"depth": 73,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ne"
+]
+},
+"moves": [
+"WO15"
+],
+"placements": [],
+"depth": 74,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"of"
+]
+},
+"moves": [
+"BP14"
+],
+"placements": [],
+"depth": 75,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nf"
+]
+},
+"moves": [
+"WO14"
+],
+"placements": [],
+"depth": 76,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ng"
+]
+},
+"moves": [
+"BO13"
+],
+"placements": [],
+"depth": 77,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"og"
+]
+},
+"moves": [
+"WP13"
+],
+"placements": [],
+"depth": 78,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pf"
+]
+},
+"moves": [
+"BQ14"
+],
+"placements": [],
+"depth": 79,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mg"
+]
+},
+"moves": [
+"WN13"
+],
+"placements": [],
+"depth": 80,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nh"
+]
+},
+"moves": [
+"BO12"
+],
+"placements": [],
+"depth": 81,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mi"
+]
+},
+"moves": [
+"WN11"
+],
+"placements": [],
+"depth": 82,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ni"
+]
+},
+"moves": [
+"BO11"
+],
+"placements": [],
+"depth": 83,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nj"
+]
+},
+"moves": [
+"WO10"
+],
+"placements": [],
+"depth": 84,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mj"
+]
+},
+"moves": [
+"BN10"
+],
+"placements": [],
+"depth": 85,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mh"
+]
+},
+"moves": [
+"WN12"
+],
+"placements": [],
+"depth": 86,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ph"
+]
+},
+"moves": [
+"BQ12"
+],
+"placements": [],
+"depth": 87,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oj"
+]
+},
+"moves": [
+"WP10"
+],
+"placements": [],
+"depth": 88,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pi"
+]
+},
+"moves": [
+"BQ11"
+],
+"placements": [],
+"depth": 89,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mk"
+]
+},
+"moves": [
+"WN9"
+],
+"placements": [],
+"depth": 90,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lj"
+]
+},
+"moves": [
+"BM10"
+],
+"placements": [],
+"depth": 91,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kl"
+]
+},
+"moves": [
+"WL8"
+],
+"placements": [],
+"depth": 92,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nk"
+]
+},
+"moves": [
+"BO9"
+],
+"placements": [],
+"depth": 93,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ok"
+]
+},
+"moves": [
+"WP9"
+],
+"placements": [],
+"depth": 94,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nl"
+]
+},
+"moves": [
+"BO8"
+],
+"placements": [],
+"depth": 95,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ol"
+]
+},
+"moves": [
+"WP8"
+],
+"placements": [],
+"depth": 96,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ll"
+]
+},
+"moves": [
+"BM8"
+],
+"placements": [],
+"depth": 97,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ml"
+]
+},
+"moves": [
+"WN8"
+],
+"placements": [],
+"depth": 98,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nm"
+]
+},
+"moves": [
+"BO7"
+],
+"placements": [],
+"depth": 99,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mm"
+]
+},
+"moves": [
+"WN7"
+],
+"placements": [],
+"depth": 100,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lm"
+]
+},
+"moves": [
+"BM7"
+],
+"placements": [],
+"depth": 101,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mn"
+]
+},
+"moves": [
+"WN6"
+],
+"placements": [],
+"depth": 102,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nn"
+]
+},
+"moves": [
+"BO6"
+],
+"placements": [],
+"depth": 103,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lk"
+]
+},
+"moves": [
+"WM9"
+],
+"placements": [],
+"depth": 104,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kk"
+]
+},
+"moves": [
+"BL9"
+],
+"placements": [],
+"depth": 105,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kj"
+]
+},
+"moves": [
+"WL10"
+],
+"placements": [],
+"depth": 106,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jk"
+]
+},
+"moves": [
+"BK9"
+],
+"placements": [],
+"depth": 107,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mo"
+]
+},
+"moves": [
+"WN5"
+],
+"placements": [],
+"depth": 108,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ln"
+]
+},
+"moves": [
+"BM6"
+],
+"placements": [],
+"depth": 109,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lo"
+]
+},
+"moves": [
+"WM5"
+],
+"placements": [],
+"depth": 110,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jm"
+]
+},
+"moves": [
+"BK7"
+],
+"placements": [],
+"depth": 111,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gm"
+]
+},
+"moves": [
+"WG7"
+],
+"placements": [],
+"depth": 112,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hn"
+]
+},
+"moves": [
+"BH6"
+],
+"placements": [],
+"depth": 113,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hm"
+]
+},
+"moves": [
+"WH7"
+],
+"placements": [],
+"depth": 114,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"in"
+]
+},
+"moves": [
+"BJ6"
+],
+"placements": [],
+"depth": 115,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jo"
+]
+},
+"moves": [
+"WK5"
+],
+"placements": [],
+"depth": 116,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gp"
+]
+},
+"moves": [
+"BG4"
+],
+"placements": [],
+"depth": 117,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hp"
+]
+},
+"moves": [
+"WH4"
+],
+"placements": [],
+"depth": 118,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ho"
+]
+},
+"moves": [
+"BH5"
+],
+"placements": [],
+"depth": 119,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lq"
+]
+},
+"moves": [
+"WM3"
+],
+"placements": [],
+"depth": 120,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jj"
+]
+},
+"moves": [
+"BK10"
+],
+"placements": [],
+"depth": 121,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hj"
+]
+},
+"moves": [
+"WH10"
+],
+"placements": [],
+"depth": 122,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hk"
+]
+},
+"moves": [
+"BH9"
+],
+"placements": [],
+"depth": 123,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gj"
+]
+},
+"moves": [
+"WG10"
+],
+"placements": [],
+"depth": 124,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gk"
+]
+},
+"moves": [
+"BG9"
+],
+"placements": [],
+"depth": 125,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fj"
+]
+},
+"moves": [
+"WF10"
+],
+"placements": [],
+"depth": 126,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ji"
+]
+},
+"moves": [
+"BK11"
+],
+"placements": [],
+"depth": 127,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dj"
+]
+},
+"moves": [
+"WD10"
+],
+"placements": [],
+"depth": 128,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dh"
+]
+},
+"moves": [
+"BD12"
+],
+"placements": [],
+"depth": 129,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ch"
+]
+},
+"moves": [
+"WC12"
+],
+"placements": [],
+"depth": 130,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ci"
+]
+},
+"moves": [
+"BC11"
+],
+"placements": [],
+"depth": 131,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ag"
+]
+},
+"moves": [
+"WA13"
+],
+"placements": [],
+"depth": 132,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bh"
+]
+},
+"moves": [
+"BB12"
+],
+"placements": [],
+"depth": 133,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rq"
+]
+},
+"moves": [
+"WS3"
+],
+"placements": [],
+"depth": 134,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rn"
+]
+},
+"moves": [
+"BS6"
+],
+"placements": [],
+"depth": 135,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pn"
+]
+},
+"moves": [
+"WQ6"
+],
+"placements": [],
+"depth": 136,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"om"
+]
+},
+"moves": [
+"BP7"
+],
+"placements": [],
+"depth": 137,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pm"
+]
+},
+"moves": [
+"WQ7"
+],
+"placements": [],
+"depth": 138,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"no"
+]
+},
+"moves": [
+"BO5"
+],
+"placements": [],
+"depth": 139,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ro"
+]
+},
+"moves": [
+"WS5"
+],
+"placements": [],
+"depth": 140,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pl"
+]
+},
+"moves": [
+"BQ8"
+],
+"placements": [],
+"depth": 141,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ql"
+]
+},
+"moves": [
+"WR8"
+],
+"placements": [],
+"depth": 142,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pk"
+]
+},
+"moves": [
+"BQ9"
+],
+"placements": [],
+"depth": 143,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pj"
+]
+},
+"moves": [
+"WQ10"
+],
+"placements": [],
+"depth": 144,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qk"
+]
+},
+"moves": [
+"BR9"
+],
+"placements": [],
+"depth": 145,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qj"
+]
+},
+"moves": [
+"WR10"
+],
+"placements": [],
+"depth": 146,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rk"
+]
+},
+"moves": [
+"BS9"
+],
+"placements": [],
+"depth": 147,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qr"
+]
+},
+"moves": [
+"WR2"
+],
+"placements": [],
+"depth": 148,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pr"
+]
+},
+"moves": [
+"BQ2"
+],
+"placements": [],
+"depth": 149,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mr"
+]
+},
+"moves": [
+"WN2"
+],
+"placements": [],
+"depth": 150,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"so"
+]
+},
+"moves": [
+"BT5"
+],
+"placements": [],
+"depth": 151,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sp"
+]
+},
+"moves": [
+"WT4"
+],
+"placements": [],
+"depth": 152,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sn"
+]
+},
+"moves": [
+"BT6"
+],
+"placements": [],
+"depth": 153,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qq"
+]
+},
+"moves": [
+"WR3"
+],
+"placements": [],
+"depth": 154,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ip"
+]
+},
+"moves": [
+"BJ4"
+],
+"placements": [],
+"depth": 155,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"iq"
+]
+},
+"moves": [
+"WJ3"
+],
+"placements": [],
+"depth": 156,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jp"
+]
+},
+"moves": [
+"BK4"
+],
+"placements": [],
+"depth": 157,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jq"
+]
+},
+"moves": [
+"WK3"
+],
+"placements": [],
+"depth": 158,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lp"
+]
+},
+"moves": [
+"BM4"
+],
+"placements": [],
+"depth": 159,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ko"
+]
+},
+"moves": [
+"WL5"
+],
+"placements": [],
+"depth": 160,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mp"
+]
+},
+"moves": [
+"BN4"
+],
+"placements": [],
+"depth": 161,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qn"
+]
+},
+"moves": [
+"WR6"
+],
+"placements": [],
+"depth": 162,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rl"
+]
+},
+"moves": [
+"BS8"
+],
+"placements": [],
+"depth": 163,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ob"
+]
+},
+"moves": [
+"WP18"
+],
+"placements": [],
+"depth": 164,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qa"
+]
+},
+"moves": [
+"BR19"
+],
+"placements": [],
+"depth": 165,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dn"
+]
+},
+"moves": [
+"WD6"
+],
+"placements": [],
+"depth": 166,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jb"
+]
+},
+"moves": [
+"BK18"
+],
+"placements": [],
+"depth": 167,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kb"
+]
+},
+"moves": [
+"WL18"
+],
+"placements": [],
+"depth": 168,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fd"
+]
+},
+"moves": [
+"BF16"
+],
+"placements": [],
+"depth": 169,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rj"
+]
+},
+"moves": [
+"WS10"
+],
+"placements": [],
+"depth": 170,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ee"
+]
+},
+"moves": [
+"BE15"
+],
+"placements": [],
+"depth": 171,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rh"
+]
+},
+"moves": [
+"WS12"
+],
+"placements": [],
+"depth": 172,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rg"
+]
+},
+"moves": [
+"BS13"
+],
+"placements": [],
+"depth": 173,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qh"
+]
+},
+"moves": [
+"WR12"
+],
+"placements": [],
+"depth": 174,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sh"
+]
+},
+"moves": [
+"BT12"
+],
+"placements": [],
+"depth": 175,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qg"
+]
+},
+"moves": [
+"WR13"
+],
+"placements": [],
+"depth": 176,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pg"
+]
+},
+"moves": [
+"BQ13"
+],
+"placements": [],
+"depth": 177,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rf"
+]
+},
+"moves": [
+"WS14"
+],
+"placements": [],
+"depth": 178,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sg"
+]
+},
+"moves": [
+"BT13"
+],
+"placements": [],
+"depth": 179,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"si"
+]
+},
+"moves": [
+"WT11"
+],
+"placements": [],
+"depth": 180,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qi"
+]
+},
+"moves": [
+"BR11"
+],
+"placements": [],
+"depth": 181,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sf"
+]
+},
+"moves": [
+"WT14"
+],
+"placements": [],
+"depth": 182,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sg"
+]
+},
+"moves": [
+"BT13"
+],
+"placements": [],
+"depth": 183,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"re"
+]
+},
+"moves": [
+"WS15"
+],
+"placements": [],
+"depth": 184,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qe"
+]
+},
+"moves": [
+"BR15"
+],
+"placements": [],
+"depth": 185,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"li"
+]
+},
+"moves": [
+"WM11"
+],
+"placements": [],
+"depth": 186,
+"next_player": "B"
+}
+],
+"sgf": "(;GM[1]FF[4]SZ[19]GN[]DT[2020-07-20]PB[whatiskale]PW[V259081699]BR[15级]WR[14级]KM[0.5]HA[1]RU[Japanese]AP[GNU Go:3.8][foxwq]RE[W+R]TM[1200]TC[3]TT[30]RL[0];B[pd];W[dp];B[pq];W[dd];B[fc];W[qo];B[np];W[nc];B[qf];W[pc];B[qc];W[qb];B[rc];W[od];B[pb];W[oc];B[rb];W[jd];B[cc];W[dc];B[cd];W[de];B[db];W[eb];B[cb];W[fb];B[gc];W[ec];B[gb];W[ce];B[be];W[bf];B[bd];W[ge];B[cf];W[dg];B[bg];W[kc];B[df];W[ef];B[cg];W[eg];B[fe];W[ff];B[fq];W[hq];B[cq];W[dq];B[cp];W[do];B[dr];W[er];B[cr];W[fr];B[eq];W[gq];B[fp];W[co];B[bo];W[bn];B[bp];W[go];B[fo];W[fn];B[cn];W[cm];B[gn];W[fm];B[qm];W[ki];B[oe];W[pe];B[qd];W[ne];B[of];W[nf];B[ng];W[og];B[pf];W[mg];B[nh];W[mi];B[ni];W[nj];B[mj];W[mh];B[ph];W[oj];B[pi];W[mk];B[lj];W[kl];B[nk];W[ok];B[nl];W[ol];B[ll];W[ml];B[nm];W[mm];B[lm];W[mn];B[nn];W[lk];B[kk];W[kj];B[jk];W[mo];B[ln];W[lo];B[jm];W[gm];B[hn];W[hm];B[in];W[jo];B[gp];W[hp];B[ho];W[lq];B[jj];W[hj];B[hk];W[gj];B[gk];W[fj];B[ji];W[dj];B[dh];W[ch];B[ci];W[ag];B[bh];W[rq];B[rn];W[pn];B[om];W[pm];B[no];W[ro];B[pl];W[ql];B[pk];W[pj];B[qk];W[qj];B[rk];W[qr];B[pr];W[mr];B[so];W[sp];B[sn];W[qq];B[ip];W[iq];B[jp];W[jq];B[lp];W[ko];B[mp];W[qn];B[rl];W[ob];B[qa];W[dn];B[jb];W[kb];B[fd];W[rj];B[ee];W[rh];B[rg];W[qh];B[sh];W[qg];B[pg];W[rf];B[sg];W[si];B[qi];W[sf];B[sg];W[re];B[qe];W[li])"
+},
+"fox sgf works.sgf": {
+"num_nodes": 93,
+"nodes": [
+{
+"props": {
+"GM": [
+"1"
+],
+"FF": [
+"4"
+],
+"SZ": [
+"19"
+],
+"GN": [
+""
+],
+"DT": [
+"2020-07-25"
+],
+"PB": [
+"whatiskale"
+],
+"PW": [
+"注号用名"
+],
+"BR": [
+"15级"
+],
+"WR": [
+"15级"
+],
+"KM": [
+6.5
+],
+"HA": [
+"0"
+],
+"RU": [
+"Japanese"
+],
+"AP": [
+"GNU Go:3.8",
+"foxwq"
+],
+"RE": [
+"B+R"
+],
+"TM": [
+"1200"
+],
+"TC": [
+"3"
+],
+"TT": [
+"30"
+],
+"RL": [
+"0"
+]
+},
+"moves": [],
+"placements": [],
+"depth": 0,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pd"
+]
+},
+"moves": [
+"BQ16"
+],
+"placements": [],
+"depth": 1,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dp"
+]
+},
+"moves": [
+"WD4"
+],
+"placements": [],
+"depth": 2,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pp"
+]
+},
+"moves": [
+"BQ4"
+],
+"placements": [],
+"depth": 3,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dd"
+]
+},
+"moves": [
+"WD16"
+],
+"placements": [],
+"depth": 4,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fc"
+]
+},
+"moves": [
+"BF17"
+],
+"placements": [],
+"depth": 5,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qq"
+]
+},
+"moves": [
+"WR3"
+],
+"placements": [],
+"depth": 6,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pq"
+]
+},
+"moves": [
+"BQ3"
+],
+"placements": [],
+"depth": 7,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qp"
+]
+},
+"moves": [
+"WR4"
+],
+"placements": [],
+"depth": 8,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qn"
+]
+},
+"moves": [
+"BR6"
+],
+"placements": [],
+"depth": 9,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qo"
+]
+},
+"moves": [
+"WR5"
+],
+"placements": [],
+"depth": 10,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pn"
+]
+},
+"moves": [
+"BQ6"
+],
+"placements": [],
+"depth": 11,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"po"
+]
+},
+"moves": [
+"WQ5"
+],
+"placements": [],
+"depth": 12,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oo"
+]
+},
+"moves": [
+"BP5"
+],
+"placements": [],
+"depth": 13,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rn"
+]
+},
+"moves": [
+"WS6"
+],
+"placements": [],
+"depth": 14,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rm"
+]
+},
+"moves": [
+"BS7"
+],
+"placements": [],
+"depth": 15,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sn"
+]
+},
+"moves": [
+"WT6"
+],
+"placements": [],
+"depth": 16,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ql"
+]
+},
+"moves": [
+"BR8"
+],
+"placements": [],
+"depth": 17,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qf"
+]
+},
+"moves": [
+"WR14"
+],
+"placements": [],
+"depth": 18,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nc"
+]
+},
+"moves": [
+"BO17"
+],
+"placements": [],
+"depth": 19,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qi"
+]
+},
+"moves": [
+"WR11"
+],
+"placements": [],
+"depth": 20,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fq"
+]
+},
+"moves": [
+"BF3"
+],
+"placements": [],
+"depth": 21,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hq"
+]
+},
+"moves": [
+"WH3"
+],
+"placements": [],
+"depth": 22,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fo"
+]
+},
+"moves": [
+"BF5"
+],
+"placements": [],
+"depth": 23,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lq"
+]
+},
+"moves": [
+"WM3"
+],
+"placements": [],
+"depth": 24,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cn"
+]
+},
+"moves": [
+"BC6"
+],
+"placements": [],
+"depth": 25,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dn"
+]
+},
+"moves": [
+"WD6"
+],
+"placements": [],
+"depth": 26,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dm"
+]
+},
+"moves": [
+"BD7"
+],
+"placements": [],
+"depth": 27,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"en"
+]
+},
+"moves": [
+"WE6"
+],
+"placements": [],
+"depth": 28,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dq"
+]
+},
+"moves": [
+"BD3"
+],
+"placements": [],
+"depth": 29,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cp"
+]
+},
+"moves": [
+"WC4"
+],
+"placements": [],
+"depth": 30,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cq"
+]
+},
+"moves": [
+"BC3"
+],
+"placements": [],
+"depth": 31,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bp"
+]
+},
+"moves": [
+"WB4"
+],
+"placements": [],
+"depth": 32,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bq"
+]
+},
+"moves": [
+"BB3"
+],
+"placements": [],
+"depth": 33,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bn"
+]
+},
+"moves": [
+"WB6"
+],
+"placements": [],
+"depth": 34,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cm"
+]
+},
+"moves": [
+"BC7"
+],
+"placements": [],
+"depth": 35,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bm"
+]
+},
+"moves": [
+"WB7"
+],
+"placements": [],
+"depth": 36,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ck"
+]
+},
+"moves": [
+"BC9"
+],
+"placements": [],
+"depth": 37,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fn"
+]
+},
+"moves": [
+"WF6"
+],
+"placements": [],
+"depth": 38,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cf"
+]
+},
+"moves": [
+"BC14"
+],
+"placements": [],
+"depth": 39,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ee"
+]
+},
+"moves": [
+"WE15"
+],
+"placements": [],
+"depth": 40,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cc"
+]
+},
+"moves": [
+"BC17"
+],
+"placements": [],
+"depth": 41,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dc"
+]
+},
+"moves": [
+"WD17"
+],
+"placements": [],
+"depth": 42,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cd"
+]
+},
+"moves": [
+"BC16"
+],
+"placements": [],
+"depth": 43,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"db"
+]
+},
+"moves": [
+"WD18"
+],
+"placements": [],
+"depth": 44,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"id"
+]
+},
+"moves": [
+"BJ16"
+],
+"placements": [],
+"depth": 45,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hd"
+]
+},
+"moves": [
+"WH16"
+],
+"placements": [],
+"depth": 46,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hc"
+]
+},
+"moves": [
+"BH17"
+],
+"placements": [],
+"depth": 47,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"he"
+]
+},
+"moves": [
+"WH15"
+],
+"placements": [],
+"depth": 48,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jq"
+]
+},
+"moves": [
+"BK3"
+],
+"placements": [],
+"depth": 49,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fp"
+]
+},
+"moves": [
+"WF4"
+],
+"placements": [],
+"depth": 50,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ep"
+]
+},
+"moves": [
+"BE4"
+],
+"placements": [],
+"depth": 51,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gp"
+]
+},
+"moves": [
+"WG4"
+],
+"placements": [],
+"depth": 52,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eo"
+]
+},
+"moves": [
+"BE5"
+],
+"placements": [],
+"depth": 53,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"do"
+]
+},
+"moves": [
+"WD5"
+],
+"placements": [],
+"depth": 54,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"go"
+]
+},
+"moves": [
+"BG5"
+],
+"placements": [],
+"depth": 55,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ho"
+]
+},
+"moves": [
+"WH5"
+],
+"placements": [],
+"depth": 56,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gn"
+]
+},
+"moves": [
+"BG6"
+],
+"placements": [],
+"depth": 57,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fl"
+]
+},
+"moves": [
+"WF8"
+],
+"placements": [],
+"depth": 58,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jo"
+]
+},
+"moves": [
+"BK5"
+],
+"placements": [],
+"depth": 59,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lo"
+]
+},
+"moves": [
+"WM5"
+],
+"placements": [],
+"depth": 60,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hn"
+]
+},
+"moves": [
+"BH6"
+],
+"placements": [],
+"depth": 61,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"er"
+]
+},
+"moves": [
+"WE2"
+],
+"placements": [],
+"depth": 62,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fr"
+]
+},
+"moves": [
+"BF2"
+],
+"placements": [],
+"depth": 63,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jn"
+]
+},
+"moves": [
+"WK6"
+],
+"placements": [],
+"depth": 64,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"io"
+]
+},
+"moves": [
+"BJ5"
+],
+"placements": [],
+"depth": 65,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hp"
+]
+},
+"moves": [
+"WH4"
+],
+"placements": [],
+"depth": 66,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kn"
+]
+},
+"moves": [
+"BL6"
+],
+"placements": [],
+"depth": 67,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jm"
+]
+},
+"moves": [
+"WK7"
+],
+"placements": [],
+"depth": 68,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ln"
+]
+},
+"moves": [
+"BM6"
+],
+"placements": [],
+"depth": 69,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ko"
+]
+},
+"moves": [
+"WL5"
+],
+"placements": [],
+"depth": 70,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mn"
+]
+},
+"moves": [
+"BN6"
+],
+"placements": [],
+"depth": 71,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jp"
+]
+},
+"moves": [
+"WK4"
+],
+"placements": [],
+"depth": 72,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ip"
+]
+},
+"moves": [
+"BJ4"
+],
+"placements": [],
+"depth": 73,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kp"
+]
+},
+"moves": [
+"WL4"
+],
+"placements": [],
+"depth": 74,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"iq"
+]
+},
+"moves": [
+"BJ3"
+],
+"placements": [],
+"depth": 75,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hr"
+]
+},
+"moves": [
+"WH2"
+],
+"placements": [],
+"depth": 76,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ir"
+]
+},
+"moves": [
+"BJ2"
+],
+"placements": [],
+"depth": 77,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"is"
+]
+},
+"moves": [
+"WJ1"
+],
+"placements": [],
+"depth": 78,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"js"
+]
+},
+"moves": [
+"BK1"
+],
+"placements": [],
+"depth": 79,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hs"
+]
+},
+"moves": [
+"WH1"
+],
+"placements": [],
+"depth": 80,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gs"
+]
+},
+"moves": [
+"BG1"
+],
+"placements": [],
+"depth": 81,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"in"
+]
+},
+"moves": [
+"WJ6"
+],
+"placements": [],
+"depth": 82,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gr"
+]
+},
+"moves": [
+"BG2"
+],
+"placements": [],
+"depth": 83,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kr"
+]
+},
+"moves": [
+"WL2"
+],
+"placements": [],
+"depth": 84,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mr"
+]
+},
+"moves": [
+"BN2"
+],
+"placements": [],
+"depth": 85,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jr"
+]
+},
+"moves": [
+"WK2"
+],
+"placements": [],
+"depth": 86,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gq"
+]
+},
+"moves": [
+"BG3"
+],
+"placements": [],
+"depth": 87,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ks"
+]
+},
+"moves": [
+"WL1"
+],
+"placements": [],
+"depth": 88,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mq"
+]
+},
+"moves": [
+"BN3"
+],
+"placements": [],
+"depth": 89,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pr"
+]
+},
+"moves": [
+"WQ2"
+],
+"placements": [],
+"depth": 90,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"or"
+]
+},
+"moves": [
+"BP2"
+],
+"placements": [],
+"depth": 91,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mp"
+]
+},
+"moves": [
+"WN4"
+],
+"placements": [],
+"depth": 92,
+"next_player": "B"
+}
+],
+"sgf": "(;GM[1]FF[4]SZ[19]GN[]DT[2020-07-25]PB[whatiskale]PW[注号用名]BR[15级]WR[15级]KM[6.5]HA[0]RU[Japanese]AP[GNU Go:3.8][foxwq]RE[B+R]TM[1200]TC[3]TT[30]RL[0];B[pd];W[dp];B[pp];W[dd];B[fc];W[qq];B[pq];W[qp];B[qn];W[qo];B[pn];W[po];B[oo];W[rn];B[rm];W[sn];B[ql];W[qf];B[nc];W[qi];B[fq];W[hq];B[fo];W[lq];B[cn];W[dn];B[dm];W[en];B[dq];W[cp];B[cq];W[bp];B[bq];W[bn];B[cm];W[bm];B[ck];W[fn];B[cf];W[ee];B[cc];W[dc];B[cd];W[db];B[id];W[hd];B[hc];W[he];B[jq];W[fp];B[ep];W[gp];B[eo];W[do];B[go];W[ho];B[gn];W[fl];B[jo];W[lo];B[hn];W[er];B[fr];W[jn];B[io];W[hp];B[kn];W[jm];B[ln];W[ko];B[mn];W[jp];B[ip];W[kp];B[iq];W[hr];B[ir];W[is];B[js];W[hs];B[gs];W[in];B[gr];W[kr];B[mr];W[jr];B[gq];W[ks];B[mq];W[pr];B[or];W[mp])"
+},
+"handicap2.ngf": {
+"num_nodes": 190,
+"nodes": [
+{
+"props": {
+"SZ": [
+19
+],
+"HA": [
+2
+],
+"AB": [
+"dp",
+"pd"
+],
+"DT": [
+"2017-03-16"
+],
+"PW": [
+"ace550"
+],
+"PB": [
+"p81587"
+],
+"RE": [
+"W+"
+]
+},
+"moves": [],
+"placements": [
+"BD4",
+"BQ16"
+],
+"depth": 0,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pq"
+]
+},
+"moves": [
+"WQ3"
+],
+"placements": [],
+"depth": 1,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dd"
+]
+},
+"moves": [
+"BD16"
+],
+"placements": [],
+"depth": 2,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fq"
+]
+},
+"moves": [
+"WF3"
+],
+"placements": [],
+"depth": 3,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hq"
+]
+},
+"moves": [
+"BH3"
+],
+"placements": [],
+"depth": 4,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cn"
+]
+},
+"moves": [
+"WC6"
+],
+"placements": [],
+"depth": 5,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fp"
+]
+},
+"moves": [
+"BF4"
+],
+"placements": [],
+"depth": 6,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cq"
+]
+},
+"moves": [
+"WC3"
+],
+"placements": [],
+"depth": 7,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eq"
+]
+},
+"moves": [
+"BE3"
+],
+"placements": [],
+"depth": 8,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cp"
+]
+},
+"moves": [
+"WC4"
+],
+"placements": [],
+"depth": 9,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qo"
+]
+},
+"moves": [
+"BR5"
+],
+"placements": [],
+"depth": 10,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pl"
+]
+},
+"moves": [
+"WQ8"
+],
+"placements": [],
+"depth": 11,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oo"
+]
+},
+"moves": [
+"BP5"
+],
+"placements": [],
+"depth": 12,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mq"
+]
+},
+"moves": [
+"WN3"
+],
+"placements": [],
+"depth": 13,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mo"
+]
+},
+"moves": [
+"BN5"
+],
+"placements": [],
+"depth": 14,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qf"
+]
+},
+"moves": [
+"WR14"
+],
+"placements": [],
+"depth": 15,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qg"
+]
+},
+"moves": [
+"BR13"
+],
+"placements": [],
+"depth": 16,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pf"
+]
+},
+"moves": [
+"WQ14"
+],
+"placements": [],
+"depth": 17,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qi"
+]
+},
+"moves": [
+"BR11"
+],
+"placements": [],
+"depth": 18,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oi"
+]
+},
+"moves": [
+"WP11"
+],
+"placements": [],
+"depth": 19,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pj"
+]
+},
+"moves": [
+"BQ10"
+],
+"placements": [],
+"depth": 20,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pn"
+]
+},
+"moves": [
+"WQ6"
+],
+"placements": [],
+"depth": 21,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"po"
+]
+},
+"moves": [
+"BQ5"
+],
+"placements": [],
+"depth": 22,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nn"
+]
+},
+"moves": [
+"WO6"
+],
+"placements": [],
+"depth": 23,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"on"
+]
+},
+"moves": [
+"BP6"
+],
+"placements": [],
+"depth": 24,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"om"
+]
+},
+"moves": [
+"WP7"
+],
+"placements": [],
+"depth": 25,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"no"
+]
+},
+"moves": [
+"BO5"
+],
+"placements": [],
+"depth": 26,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nk"
+]
+},
+"moves": [
+"WO9"
+],
+"placements": [],
+"depth": 27,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oh"
+]
+},
+"moves": [
+"BP12"
+],
+"placements": [],
+"depth": 28,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ph"
+]
+},
+"moves": [
+"WQ12"
+],
+"placements": [],
+"depth": 29,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pg"
+]
+},
+"moves": [
+"BQ13"
+],
+"placements": [],
+"depth": 30,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"og"
+]
+},
+"moves": [
+"WP13"
+],
+"placements": [],
+"depth": 31,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qh"
+]
+},
+"moves": [
+"BR12"
+],
+"placements": [],
+"depth": 32,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nh"
+]
+},
+"moves": [
+"WO12"
+],
+"placements": [],
+"depth": 33,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rl"
+]
+},
+"moves": [
+"BS8"
+],
+"placements": [],
+"depth": 34,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rm"
+]
+},
+"moves": [
+"WS7"
+],
+"placements": [],
+"depth": 35,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ql"
+]
+},
+"moves": [
+"BR8"
+],
+"placements": [],
+"depth": 36,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qm"
+]
+},
+"moves": [
+"WR7"
+],
+"placements": [],
+"depth": 37,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pk"
+]
+},
+"moves": [
+"BQ9"
+],
+"placements": [],
+"depth": 38,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rj"
+]
+},
+"moves": [
+"WS10"
+],
+"placements": [],
+"depth": 39,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rk"
+]
+},
+"moves": [
+"BS9"
+],
+"placements": [],
+"depth": 40,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nd"
+]
+},
+"moves": [
+"WO16"
+],
+"placements": [],
+"depth": 41,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nc"
+]
+},
+"moves": [
+"BO17"
+],
+"placements": [],
+"depth": 42,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oc"
+]
+},
+"moves": [
+"WP17"
+],
+"placements": [],
+"depth": 43,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"od"
+]
+},
+"moves": [
+"BP16"
+],
+"placements": [],
+"depth": 44,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mc"
+]
+},
+"moves": [
+"WN17"
+],
+"placements": [],
+"depth": 45,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nb"
+]
+},
+"moves": [
+"BO18"
+],
+"placements": [],
+"depth": 46,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ob"
+]
+},
+"moves": [
+"WP18"
+],
+"placements": [],
+"depth": 47,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mb"
+]
+},
+"moves": [
+"BN18"
+],
+"placements": [],
+"depth": 48,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qc"
+]
+},
+"moves": [
+"WR17"
+],
+"placements": [],
+"depth": 49,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qd"
+]
+},
+"moves": [
+"BR16"
+],
+"placements": [],
+"depth": 50,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rc"
+]
+},
+"moves": [
+"WS17"
+],
+"placements": [],
+"depth": 51,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ne"
+]
+},
+"moves": [
+"BO15"
+],
+"placements": [],
+"depth": 52,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"md"
+]
+},
+"moves": [
+"WN16"
+],
+"placements": [],
+"depth": 53,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"me"
+]
+},
+"moves": [
+"BN15"
+],
+"placements": [],
+"depth": 54,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lb"
+]
+},
+"moves": [
+"WM18"
+],
+"placements": [],
+"depth": 55,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"of"
+]
+},
+"moves": [
+"BP14"
+],
+"placements": [],
+"depth": 56,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"re"
+]
+},
+"moves": [
+"WS15"
+],
+"placements": [],
+"depth": 57,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rd"
+]
+},
+"moves": [
+"BS16"
+],
+"placements": [],
+"depth": 58,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sd"
+]
+},
+"moves": [
+"WT16"
+],
+"placements": [],
+"depth": 59,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ng"
+]
+},
+"moves": [
+"BO13"
+],
+"placements": [],
+"depth": 60,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oh"
+]
+},
+"moves": [
+"WP12"
+],
+"placements": [],
+"depth": 61,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ol"
+]
+},
+"moves": [
+"BP8"
+],
+"placements": [],
+"depth": 62,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pm"
+]
+},
+"moves": [
+"WQ7"
+],
+"placements": [],
+"depth": 63,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nl"
+]
+},
+"moves": [
+"BO8"
+],
+"placements": [],
+"depth": 64,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nm"
+]
+},
+"moves": [
+"WO7"
+],
+"placements": [],
+"depth": 65,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ok"
+]
+},
+"moves": [
+"BP9"
+],
+"placements": [],
+"depth": 66,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ml"
+]
+},
+"moves": [
+"WN8"
+],
+"placements": [],
+"depth": 67,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mk"
+]
+},
+"moves": [
+"BN9"
+],
+"placements": [],
+"depth": 68,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lm"
+]
+},
+"moves": [
+"WM7"
+],
+"placements": [],
+"depth": 69,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ll"
+]
+},
+"moves": [
+"BM8"
+],
+"placements": [],
+"depth": 70,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mm"
+]
+},
+"moves": [
+"WN7"
+],
+"placements": [],
+"depth": 71,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lp"
+]
+},
+"moves": [
+"BM4"
+],
+"placements": [],
+"depth": 72,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nj"
+]
+},
+"moves": [
+"WO10"
+],
+"placements": [],
+"depth": 73,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mg"
+]
+},
+"moves": [
+"BN13"
+],
+"placements": [],
+"depth": 74,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lk"
+]
+},
+"moves": [
+"WM9"
+],
+"placements": [],
+"depth": 75,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rg"
+]
+},
+"moves": [
+"BS13"
+],
+"placements": [],
+"depth": 76,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lq"
+]
+},
+"moves": [
+"WM3"
+],
+"placements": [],
+"depth": 77,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jp"
+]
+},
+"moves": [
+"BK4"
+],
+"placements": [],
+"depth": 78,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kp"
+]
+},
+"moves": [
+"WL4"
+],
+"placements": [],
+"depth": 79,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ko"
+]
+},
+"moves": [
+"BL5"
+],
+"placements": [],
+"depth": 80,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kq"
+]
+},
+"moves": [
+"WL3"
+],
+"placements": [],
+"depth": 81,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jn"
+]
+},
+"moves": [
+"BK6"
+],
+"placements": [],
+"depth": 82,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mj"
+]
+},
+"moves": [
+"WN10"
+],
+"placements": [],
+"depth": 83,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ke"
+]
+},
+"moves": [
+"BL15"
+],
+"placements": [],
+"depth": 84,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kc"
+]
+},
+"moves": [
+"WL17"
+],
+"placements": [],
+"depth": 85,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lh"
+]
+},
+"moves": [
+"BM12"
+],
+"placements": [],
+"depth": 86,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"id"
+]
+},
+"moves": [
+"WJ16"
+],
+"placements": [],
+"depth": 87,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rf"
+]
+},
+"moves": [
+"BS14"
+],
+"placements": [],
+"depth": 88,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qe"
+]
+},
+"moves": [
+"WR15"
+],
+"placements": [],
+"depth": 89,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sf"
+]
+},
+"moves": [
+"BT14"
+],
+"placements": [],
+"depth": 90,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"se"
+]
+},
+"moves": [
+"WT15"
+],
+"placements": [],
+"depth": 91,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"if"
+]
+},
+"moves": [
+"BJ14"
+],
+"placements": [],
+"depth": 92,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pc"
+]
+},
+"moves": [
+"WQ17"
+],
+"placements": [],
+"depth": 93,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oe"
+]
+},
+"moves": [
+"BP15"
+],
+"placements": [],
+"depth": 94,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ge"
+]
+},
+"moves": [
+"WG15"
+],
+"placements": [],
+"depth": 95,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gc"
+]
+},
+"moves": [
+"BG17"
+],
+"placements": [],
+"depth": 96,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gg"
+]
+},
+"moves": [
+"WG13"
+],
+"placements": [],
+"depth": 97,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hd"
+]
+},
+"moves": [
+"BH16"
+],
+"placements": [],
+"depth": 98,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"he"
+]
+},
+"moves": [
+"WH15"
+],
+"placements": [],
+"depth": 99,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ic"
+]
+},
+"moves": [
+"BJ17"
+],
+"placements": [],
+"depth": 100,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ie"
+]
+},
+"moves": [
+"WJ15"
+],
+"placements": [],
+"depth": 101,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ld"
+]
+},
+"moves": [
+"BM16"
+],
+"placements": [],
+"depth": 102,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lc"
+]
+},
+"moves": [
+"WM17"
+],
+"placements": [],
+"depth": 103,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ec"
+]
+},
+"moves": [
+"BE17"
+],
+"placements": [],
+"depth": 104,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bd"
+]
+},
+"moves": [
+"WB16"
+],
+"placements": [],
+"depth": 105,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cc"
+]
+},
+"moves": [
+"BC17"
+],
+"placements": [],
+"depth": 106,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cf"
+]
+},
+"moves": [
+"WC14"
+],
+"placements": [],
+"depth": 107,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eg"
+]
+},
+"moves": [
+"BE13"
+],
+"placements": [],
+"depth": 108,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ef"
+]
+},
+"moves": [
+"WE14"
+],
+"placements": [],
+"depth": 109,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ff"
+]
+},
+"moves": [
+"BF14"
+],
+"placements": [],
+"depth": 110,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ee"
+]
+},
+"moves": [
+"WE15"
+],
+"placements": [],
+"depth": 111,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ce"
+]
+},
+"moves": [
+"BC15"
+],
+"placements": [],
+"depth": 112,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"be"
+]
+},
+"moves": [
+"WB15"
+],
+"placements": [],
+"depth": 113,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fe"
+]
+},
+"moves": [
+"BF15"
+],
+"placements": [],
+"depth": 114,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fg"
+]
+},
+"moves": [
+"WF13"
+],
+"placements": [],
+"depth": 115,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fd"
+]
+},
+"moves": [
+"BF16"
+],
+"placements": [],
+"depth": 116,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eh"
+]
+},
+"moves": [
+"WE12"
+],
+"placements": [],
+"depth": 117,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gf"
+]
+},
+"moves": [
+"BG14"
+],
+"placements": [],
+"depth": 118,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hf"
+]
+},
+"moves": [
+"WH14"
+],
+"placements": [],
+"depth": 119,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jd"
+]
+},
+"moves": [
+"BK16"
+],
+"placements": [],
+"depth": 120,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ig"
+]
+},
+"moves": [
+"WJ13"
+],
+"placements": [],
+"depth": 121,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jc"
+]
+},
+"moves": [
+"BK17"
+],
+"placements": [],
+"depth": 122,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dk"
+]
+},
+"moves": [
+"WD9"
+],
+"placements": [],
+"depth": 123,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kd"
+]
+},
+"moves": [
+"BL16"
+],
+"placements": [],
+"depth": 124,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jb"
+]
+},
+"moves": [
+"WK18"
+],
+"placements": [],
+"depth": 125,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ib"
+]
+},
+"moves": [
+"BJ18"
+],
+"placements": [],
+"depth": 126,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ka"
+]
+},
+"moves": [
+"WL19"
+],
+"placements": [],
+"depth": 127,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dl"
+]
+},
+"moves": [
+"BD8"
+],
+"placements": [],
+"depth": 128,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dm"
+]
+},
+"moves": [
+"WD7"
+],
+"placements": [],
+"depth": 129,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cl"
+]
+},
+"moves": [
+"BC8"
+],
+"placements": [],
+"depth": 130,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"el"
+]
+},
+"moves": [
+"WE8"
+],
+"placements": [],
+"depth": 131,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ck"
+]
+},
+"moves": [
+"BC9"
+],
+"placements": [],
+"depth": 132,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ci"
+]
+},
+"moves": [
+"WC11"
+],
+"placements": [],
+"depth": 133,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bn"
+]
+},
+"moves": [
+"BB6"
+],
+"placements": [],
+"depth": 134,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bo"
+]
+},
+"moves": [
+"WB5"
+],
+"placements": [],
+"depth": 135,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"em"
+]
+},
+"moves": [
+"BE7"
+],
+"placements": [],
+"depth": 136,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ek"
+]
+},
+"moves": [
+"WE9"
+],
+"placements": [],
+"depth": 137,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cj"
+]
+},
+"moves": [
+"BC10"
+],
+"placements": [],
+"depth": 138,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bi"
+]
+},
+"moves": [
+"WB11"
+],
+"placements": [],
+"depth": 139,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bm"
+]
+},
+"moves": [
+"BB7"
+],
+"placements": [],
+"depth": 140,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"en"
+]
+},
+"moves": [
+"WE6"
+],
+"placements": [],
+"depth": 141,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dj"
+]
+},
+"moves": [
+"BD10"
+],
+"placements": [],
+"depth": 142,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fj"
+]
+},
+"moves": [
+"WF10"
+],
+"placements": [],
+"depth": 143,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fm"
+]
+},
+"moves": [
+"BF7"
+],
+"placements": [],
+"depth": 144,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fn"
+]
+},
+"moves": [
+"WF6"
+],
+"placements": [],
+"depth": 145,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fi"
+]
+},
+"moves": [
+"BF11"
+],
+"placements": [],
+"depth": 146,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ei"
+]
+},
+"moves": [
+"WE11"
+],
+"placements": [],
+"depth": 147,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ej"
+]
+},
+"moves": [
+"BE10"
+],
+"placements": [],
+"depth": 148,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fk"
+]
+},
+"moves": [
+"WF9"
+],
+"placements": [],
+"depth": 149,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"di"
+]
+},
+"moves": [
+"BD11"
+],
+"placements": [],
+"depth": 150,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dg"
+]
+},
+"moves": [
+"WD13"
+],
+"placements": [],
+"depth": 151,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gm"
+]
+},
+"moves": [
+"BG7"
+],
+"placements": [],
+"depth": 152,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gi"
+]
+},
+"moves": [
+"WG11"
+],
+"placements": [],
+"depth": 153,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"do"
+]
+},
+"moves": [
+"BD5"
+],
+"placements": [],
+"depth": 154,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"co"
+]
+},
+"moves": [
+"WC5"
+],
+"placements": [],
+"depth": 155,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dn"
+]
+},
+"moves": [
+"BD6"
+],
+"placements": [],
+"depth": 156,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cm"
+]
+},
+"moves": [
+"WC7"
+],
+"placements": [],
+"depth": 157,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qr"
+]
+},
+"moves": [
+"BR2"
+],
+"placements": [],
+"depth": 158,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pr"
+]
+},
+"moves": [
+"WQ2"
+],
+"placements": [],
+"depth": 159,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qq"
+]
+},
+"moves": [
+"BR3"
+],
+"placements": [],
+"depth": 160,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ir"
+]
+},
+"moves": [
+"WJ2"
+],
+"placements": [],
+"depth": 161,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hr"
+]
+},
+"moves": [
+"BH2"
+],
+"placements": [],
+"depth": 162,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"iq"
+]
+},
+"moves": [
+"WJ3"
+],
+"placements": [],
+"depth": 163,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ip"
+]
+},
+"moves": [
+"BJ4"
+],
+"placements": [],
+"depth": 164,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dr"
+]
+},
+"moves": [
+"WD2"
+],
+"placements": [],
+"depth": 165,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nr"
+]
+},
+"moves": [
+"BO2"
+],
+"placements": [],
+"depth": 166,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nq"
+]
+},
+"moves": [
+"WO3"
+],
+"placements": [],
+"depth": 167,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"or"
+]
+},
+"moves": [
+"BP2"
+],
+"placements": [],
+"depth": 168,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oq"
+]
+},
+"moves": [
+"WP3"
+],
+"placements": [],
+"depth": 169,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ps"
+]
+},
+"moves": [
+"BQ1"
+],
+"placements": [],
+"depth": 170,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"os"
+]
+},
+"moves": [
+"WP1"
+],
+"placements": [],
+"depth": 171,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qs"
+]
+},
+"moves": [
+"BR1"
+],
+"placements": [],
+"depth": 172,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mr"
+]
+},
+"moves": [
+"WN2"
+],
+"placements": [],
+"depth": 173,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jq"
+]
+},
+"moves": [
+"BK3"
+],
+"placements": [],
+"depth": 174,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jr"
+]
+},
+"moves": [
+"WK2"
+],
+"placements": [],
+"depth": 175,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ns"
+]
+},
+"moves": [
+"BO1"
+],
+"placements": [],
+"depth": 176,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ms"
+]
+},
+"moves": [
+"WN1"
+],
+"placements": [],
+"depth": 177,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"is"
+]
+},
+"moves": [
+"BJ1"
+],
+"placements": [],
+"depth": 178,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ks"
+]
+},
+"moves": [
+"WL1"
+],
+"placements": [],
+"depth": 179,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"os"
+]
+},
+"moves": [
+"BP1"
+],
+"placements": [],
+"depth": 180,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lr"
+]
+},
+"moves": [
+"WM2"
+],
+"placements": [],
+"depth": 181,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hs"
+]
+},
+"moves": [
+"BH1"
+],
+"placements": [],
+"depth": 182,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"js"
+]
+},
+"moves": [
+"WK1"
+],
+"placements": [],
+"depth": 183,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bc"
+]
+},
+"moves": [
+"BB17"
+],
+"placements": [],
+"depth": 184,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"im"
+]
+},
+"moves": [
+"WJ7"
+],
+"placements": [],
+"depth": 185,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jm"
+]
+},
+"moves": [
+"BK7"
+],
+"placements": [],
+"depth": 186,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"il"
+]
+},
+"moves": [
+"WJ8"
+],
+"placements": [],
+"depth": 187,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"in"
+]
+},
+"moves": [
+"BJ6"
+],
+"placements": [],
+"depth": 188,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gn"
+]
+},
+"moves": [
+"WG6"
+],
+"placements": [],
+"depth": 189,
+"next_player": "B"
+}
+],
+"sgf": "(;SZ[19]HA[2]AB[dp][pd]DT[2017-03-16]PW[ace550]PB[p81587]RE[W+];W[pq];B[dd];W[fq];B[hq];W[cn];B[fp];W[cq];B[eq];W[cp];B[qo];W[pl];B[oo];W[mq];B[mo];W[qf];B[qg];W[pf];B[qi];W[oi];B[pj];W[pn];B[po];W[nn];B[on];W[om];B[no];W[nk];B[oh];W[ph];B[pg];W[og];B[qh];W[nh];B[rl];W[rm];B[ql];W[qm];B[pk];W[rj];B[rk];W[nd];B[nc];W[oc];B[od];W[mc];B[nb];W[ob];B[mb];W[qc];B[qd];W[rc];B[ne];W[md];B[me];W[lb];B[of];W[re];B[rd];W[sd];B[ng];W[oh];B[ol];W[pm];B[nl];W[nm];B[ok];W[ml];B[mk];W[lm];B[ll];W[mm];B[lp];W[nj];B[mg];W[lk];B[rg];W[lq];B[jp];W[kp];B[ko];W[kq];B[jn];W[mj];B[ke];W[kc];B[lh];W[id];B[rf];W[qe];B[sf];W[se];B[if];W[pc];B[oe];W[ge];B[gc];W[gg];B[hd];W[he];B[ic];W[ie];B[ld];W[lc];B[ec];W[bd];B[cc];W[cf];B[eg];W[ef];B[ff];W[ee];B[ce];W[be];B[fe];W[fg];B[fd];W[eh];B[gf];W[hf];B[jd];W[ig];B[jc];W[dk];B[kd];W[jb];B[ib];W[ka];B[dl];W[dm];B[cl];W[el];B[ck];W[ci];B[bn];W[bo];B[em];W[ek];B[cj];W[bi];B[bm];W[en];B[dj];W[fj];B[fm];W[fn];B[fi];W[ei];B[ej];W[fk];B[di];W[dg];B[gm];W[gi];B[do];W[co];B[dn];W[cm];B[qr];W[pr];B[qq];W[ir];B[hr];W[iq];B[ip];W[dr];B[nr];W[nq];B[or];W[oq];B[ps];W[os];B[qs];W[mr];B[jq];W[jr];B[ns];W[ms];B[is];W[ks];B[os];W[lr];B[hs];W[js];B[bc];W[im];B[jm];W[il];B[in];W[gn])"
+},
+"ogs.sgf": {
+"num_nodes": 114,
+"nodes": [
+{
+"props": {
+"FF": [
+"4"
+],
+"CA": [
+"UTF-8"
+],
+"GM": [
+"1"
+],
+"DT": [
+"2020-03-31"
+],
+"PC": [
+"OGS: https://online-go.com/game/1234"
+],
+"GN": [
+"blabla"
+],
+"PB": [
+"bbb"
+],
+"PW": [
+"aaa"
+],
+"BR": [
+"4k"
+],
+"WR": [
+"5k"
+],
+"TM": [
+"259200"
+],
+"OT": [
+"86400 fischer"
+],
+"RE": [
+"?"
+],
+"SZ": [
+"19"
+],
+"KM": [
+"6.5"
+],
+"RU": [
+"Japanese"
+]
+},
+"moves": [],
+"placements": [],
+"depth": 0,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qd"
+]
+},
+"moves": [
+"BR16"
+],
+"placements": [],
+"depth": 1,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dp"
+]
+},
+"moves": [
+"WD4"
+],
+"placements": [],
+"depth": 2,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pp"
+]
+},
+"moves": [
+"BQ4"
+],
+"placements": [],
+"depth": 3,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dc"
+]
+},
+"moves": [
+"WD17"
+],
+"placements": [],
+"depth": 4,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oc"
+]
+},
+"moves": [
+"BP17"
+],
+"placements": [],
+"depth": 5,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ce"
+]
+},
+"moves": [
+"WC15"
+],
+"placements": [],
+"depth": 6,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qj"
+]
+},
+"moves": [
+"BR10"
+],
+"placements": [],
+"depth": 7,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nq"
+]
+},
+"moves": [
+"WO3"
+],
+"placements": [],
+"depth": 8,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lp"
+]
+},
+"moves": [
+"BM4"
+],
+"placements": [],
+"depth": 9,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qq"
+]
+},
+"moves": [
+"WR3"
+],
+"placements": [],
+"depth": 10,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qp"
+]
+},
+"moves": [
+"BR4"
+],
+"placements": [],
+"depth": 11,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pq"
+]
+},
+"moves": [
+"WQ3"
+],
+"placements": [],
+"depth": 12,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"op"
+]
+},
+"moves": [
+"BP4"
+],
+"placements": [],
+"depth": 13,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rq"
+]
+},
+"moves": [
+"WS3"
+],
+"placements": [],
+"depth": 14,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"np"
+]
+},
+"moves": [
+"BO4"
+],
+"placements": [],
+"depth": 15,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mq"
+]
+},
+"moves": [
+"WN3"
+],
+"placements": [],
+"depth": 16,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rp"
+]
+},
+"moves": [
+"BS4"
+],
+"placements": [],
+"depth": 17,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lq"
+]
+},
+"moves": [
+"WM3"
+],
+"placements": [],
+"depth": 18,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nj"
+]
+},
+"moves": [
+"BO10"
+],
+"placements": [],
+"depth": 19,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nd"
+]
+},
+"moves": [
+"WO16"
+],
+"placements": [],
+"depth": 20,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"od"
+]
+},
+"moves": [
+"BP16"
+],
+"placements": [],
+"depth": 21,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jd"
+]
+},
+"moves": [
+"WK16"
+],
+"placements": [],
+"depth": 22,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ne"
+]
+},
+"moves": [
+"BO15"
+],
+"placements": [],
+"depth": 23,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kp"
+]
+},
+"moves": [
+"WL4"
+],
+"placements": [],
+"depth": 24,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ck"
+]
+},
+"moves": [
+"BC9"
+],
+"placements": [],
+"depth": 25,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cm"
+]
+},
+"moves": [
+"WC7"
+],
+"placements": [],
+"depth": 26,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ch"
+]
+},
+"moves": [
+"BC12"
+],
+"placements": [],
+"depth": 27,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"em"
+]
+},
+"moves": [
+"WE7"
+],
+"placements": [],
+"depth": 28,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fp"
+]
+},
+"moves": [
+"BF4"
+],
+"placements": [],
+"depth": 29,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hp"
+]
+},
+"moves": [
+"WH4"
+],
+"placements": [],
+"depth": 30,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"go"
+]
+},
+"moves": [
+"BG5"
+],
+"placements": [],
+"depth": 31,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ho"
+]
+},
+"moves": [
+"WH5"
+],
+"placements": [],
+"depth": 32,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gn"
+]
+},
+"moves": [
+"BG6"
+],
+"placements": [],
+"depth": 33,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ek"
+]
+},
+"moves": [
+"WE9"
+],
+"placements": [],
+"depth": 34,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hm"
+]
+},
+"moves": [
+"BH7"
+],
+"placements": [],
+"depth": 35,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hn"
+]
+},
+"moves": [
+"WH6"
+],
+"placements": [],
+"depth": 36,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gm"
+]
+},
+"moves": [
+"BG7"
+],
+"placements": [],
+"depth": 37,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"im"
+]
+},
+"moves": [
+"WJ7"
+],
+"placements": [],
+"depth": 38,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cq"
+]
+},
+"moves": [
+"BC3"
+],
+"placements": [],
+"depth": 39,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dq"
+]
+},
+"moves": [
+"WD3"
+],
+"placements": [],
+"depth": 40,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cp"
+]
+},
+"moves": [
+"BC4"
+],
+"placements": [],
+"depth": 41,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"co"
+]
+},
+"moves": [
+"WC5"
+],
+"placements": [],
+"depth": 42,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bo"
+]
+},
+"moves": [
+"BB5"
+],
+"placements": [],
+"depth": 43,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bn"
+]
+},
+"moves": [
+"WB6"
+],
+"placements": [],
+"depth": 44,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"do"
+]
+},
+"moves": [
+"BD5"
+],
+"placements": [],
+"depth": 45,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cn"
+]
+},
+"moves": [
+"WC6"
+],
+"placements": [],
+"depth": 46,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dr"
+]
+},
+"moves": [
+"BD2"
+],
+"placements": [],
+"depth": 47,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eo"
+]
+},
+"moves": [
+"WE5"
+],
+"placements": [],
+"depth": 48,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eq"
+]
+},
+"moves": [
+"BE3"
+],
+"placements": [],
+"depth": 49,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ep"
+]
+},
+"moves": [
+"WE4"
+],
+"placements": [],
+"depth": 50,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fr"
+]
+},
+"moves": [
+"BF2"
+],
+"placements": [],
+"depth": 51,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eh"
+]
+},
+"moves": [
+"WE12"
+],
+"placements": [],
+"depth": 52,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dg"
+]
+},
+"moves": [
+"BD13"
+],
+"placements": [],
+"depth": 53,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ef"
+]
+},
+"moves": [
+"WE14"
+],
+"placements": [],
+"depth": 54,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"df"
+]
+},
+"moves": [
+"BD14"
+],
+"placements": [],
+"depth": 55,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"de"
+]
+},
+"moves": [
+"WD15"
+],
+"placements": [],
+"depth": 56,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eg"
+]
+},
+"moves": [
+"BE13"
+],
+"placements": [],
+"depth": 57,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fg"
+]
+},
+"moves": [
+"WF13"
+],
+"placements": [],
+"depth": 58,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ff"
+]
+},
+"moves": [
+"BF14"
+],
+"placements": [],
+"depth": 59,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ee"
+]
+},
+"moves": [
+"WE15"
+],
+"placements": [],
+"depth": 60,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gg"
+]
+},
+"moves": [
+"BG13"
+],
+"placements": [],
+"depth": 61,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fh"
+]
+},
+"moves": [
+"WF12"
+],
+"placements": [],
+"depth": 62,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ge"
+]
+},
+"moves": [
+"BG15"
+],
+"placements": [],
+"depth": 63,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dh"
+]
+},
+"moves": [
+"WD12"
+],
+"placements": [],
+"depth": 64,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bg"
+]
+},
+"moves": [
+"BB13"
+],
+"placements": [],
+"depth": 65,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bf"
+]
+},
+"moves": [
+"WB14"
+],
+"placements": [],
+"depth": 66,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cg"
+]
+},
+"moves": [
+"BC13"
+],
+"placements": [],
+"depth": 67,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ci"
+]
+},
+"moves": [
+"WC11"
+],
+"placements": [],
+"depth": 68,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bi"
+]
+},
+"moves": [
+"BB11"
+],
+"placements": [],
+"depth": 69,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cj"
+]
+},
+"moves": [
+"WC10"
+],
+"placements": [],
+"depth": 70,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bj"
+]
+},
+"moves": [
+"BB10"
+],
+"placements": [],
+"depth": 71,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ag"
+]
+},
+"moves": [
+"WA13"
+],
+"placements": [],
+"depth": 72,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ah"
+]
+},
+"moves": [
+"BA12"
+],
+"placements": [],
+"depth": 73,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"af"
+]
+},
+"moves": [
+"WA14"
+],
+"placements": [],
+"depth": 74,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dk"
+]
+},
+"moves": [
+"BD9"
+],
+"placements": [],
+"depth": 75,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ej"
+]
+},
+"moves": [
+"WE10"
+],
+"placements": [],
+"depth": 76,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"el"
+]
+},
+"moves": [
+"BE8"
+],
+"placements": [],
+"depth": 77,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fl"
+]
+},
+"moves": [
+"WF8"
+],
+"placements": [],
+"depth": 78,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dl"
+]
+},
+"moves": [
+"BD8"
+],
+"placements": [],
+"depth": 79,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fm"
+]
+},
+"moves": [
+"WF7"
+],
+"placements": [],
+"depth": 80,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fk"
+]
+},
+"moves": [
+"BF9"
+],
+"placements": [],
+"depth": 81,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fj"
+]
+},
+"moves": [
+"WF10"
+],
+"placements": [],
+"depth": 82,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gk"
+]
+},
+"moves": [
+"BG9"
+],
+"placements": [],
+"depth": 83,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gj"
+]
+},
+"moves": [
+"WG10"
+],
+"placements": [],
+"depth": 84,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dm"
+]
+},
+"moves": [
+"BD7"
+],
+"placements": [],
+"depth": 85,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dn"
+]
+},
+"moves": [
+"WD6"
+],
+"placements": [],
+"depth": 86,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fn"
+]
+},
+"moves": [
+"BF6"
+],
+"placements": [],
+"depth": 87,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"en"
+]
+},
+"moves": [
+"WE6"
+],
+"placements": [],
+"depth": 88,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hk"
+]
+},
+"moves": [
+"BH9"
+],
+"placements": [],
+"depth": 89,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ii"
+]
+},
+"moves": [
+"WJ11"
+],
+"placements": [],
+"depth": 90,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bl"
+]
+},
+"moves": [
+"BB8"
+],
+"placements": [],
+"depth": 91,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bp"
+]
+},
+"moves": [
+"WB4"
+],
+"placements": [],
+"depth": 92,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bq"
+]
+},
+"moves": [
+"BB3"
+],
+"placements": [],
+"depth": 93,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ao"
+]
+},
+"moves": [
+"WA5"
+],
+"placements": [],
+"depth": 94,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"am"
+]
+},
+"moves": [
+"BA7"
+],
+"placements": [],
+"depth": 95,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bm"
+]
+},
+"moves": [
+"WB7"
+],
+"placements": [],
+"depth": 96,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"al"
+]
+},
+"moves": [
+"BA8"
+],
+"placements": [],
+"depth": 97,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cl"
+]
+},
+"moves": [
+"WC8"
+],
+"placements": [],
+"depth": 98,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bk"
+]
+},
+"moves": [
+"BB9"
+],
+"placements": [],
+"depth": 99,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"aj"
+]
+},
+"moves": [
+"WA10"
+],
+"placements": [],
+"depth": 100,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"an"
+]
+},
+"moves": [
+"BA6"
+],
+"placements": [],
+"depth": 101,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"aq"
+]
+},
+"moves": [
+"WA3"
+],
+"placements": [],
+"depth": 102,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ar"
+]
+},
+"moves": [
+"BA2"
+],
+"placements": [],
+"depth": 103,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"br"
+]
+},
+"moves": [
+"WB2"
+],
+"placements": [],
+"depth": 104,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ap"
+]
+},
+"moves": [
+"BA4"
+],
+"placements": [],
+"depth": 105,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bo"
+]
+},
+"moves": [
+"WB5"
+],
+"placements": [],
+"depth": 106,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cr"
+]
+},
+"moves": [
+"BC2"
+],
+"placements": [],
+"depth": 107,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"aq"
+]
+},
+"moves": [
+"WA3"
+],
+"placements": [],
+"depth": 108,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bs"
+]
+},
+"moves": [
+"BB1"
+],
+"placements": [],
+"depth": 109,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cf"
+]
+},
+"moves": [
+"WC14"
+],
+"placements": [],
+"depth": 110,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fo"
+]
+},
+"moves": [
+"BF5"
+],
+"placements": [],
+"depth": 111,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bh"
+]
+},
+"moves": [
+"WB12"
+],
+"placements": [],
+"depth": 112,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gl"
+]
+},
+"moves": [
+"BG8"
+],
+"placements": [],
+"depth": 113,
+"next_player": "W"
+}
+],
+"sgf": "(;FF[4]CA[UTF-8]GM[1]DT[2020-03-31]PC[OGS: https://online-go.com/game/1234]GN[blabla]PB[bbb]PW[aaa]BR[4k]WR[5k]TM[259200]OT[86400 fischer]RE[?]SZ[19]KM[6.5]RU[Japanese]C[Game chats will be available in SGF downloads once the game has finished.\n];B[qd];W[dp];B[pp];W[dc];B[oc];W[ce];B[qj];W[nq];B[lp];W[qq];B[qp];W[pq];B[op];W[rq];B[np];W[mq];B[rp];W[lq];B[nj];W[nd];B[od];W[jd];B[ne];W[kp];B[ck];W[cm];B[ch];W[em];B[fp];W[hp];B[go];W[ho];B[gn];W[ek];B[hm];W[hn];B[gm];W[im];B[cq];W[dq];B[cp];W[co];B[bo];W[bn];B[do];W[cn];B[dr];W[eo];B[eq];W[ep];B[fr];W[eh];B[dg];W[ef];B[df];W[de];B[eg];W[fg];B[ff];W[ee];B[gg];W[fh];B[ge];W[dh];B[bg];W[bf];B[cg];W[ci];B[bi];W[cj];B[bj];W[ag];B[ah];W[af];B[dk];W[ej];B[el];W[fl];B[dl];W[fm];B[fk];W[fj];B[gk];W[gj];B[dm];W[dn];B[fn];W[en];B[hk];W[ii];B[bl];W[bp];B[bq];W[ao];B[am];W[bm];B[al];W[cl];B[bk];W[aj];B[an];W[aq];B[ar];W[br];B[ap];W[bo];B[cr];W[aq];B[bs];W[cf];B[fo];W[bh];B[gl])"
+},
+"panda1.sgf": {
+"num_nodes": 206,
+"nodes": [
+{
+"props": {
+"GM": [
+"1"
+],
+"EV": [
+"Internet Go Server game: player1 vs player2"
+],
+"US": [
+"Brought to you by IGS PANDANET"
+],
+"CP": [
+"\n  Copyright (c) PANDANET Inc. 2020\n  Permission to reproduce this game is given, provided proper credit is given.\n  No warrantee, implied or explicit, is understood.\n  Use of this game is an understanding and agreement of this notice.\n"
+],
+"GN": [
+"player1-player2(B) IGS"
+],
+"RE": [
+"W+34.5"
+],
+"PW": [
+"player1"
+],
+"WR": [
+"11k+"
+],
+"NW": [
+"18"
+],
+"PB": [
+"player2"
+],
+"BR": [
+"12k "
+],
+"NB": [
+"17"
+],
+"PC": [
+"IGS:  igs.joyjoy.net 6969"
+],
+"DT": [
+"2020-04-10"
+],
+"SZ": [
+"19"
+],
+"TM": [
+"60"
+],
+"KM": [
+"0.500000"
+],
+"LT": [
+""
+],
+"RR": [
+"Normal"
+],
+"HA": [
+"2"
+],
+"AB": [
+"pd",
+"dp"
+]
+},
+"moves": [],
+"placements": [
+"BD4",
+"BQ16"
+],
+"depth": 0,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pp"
+],
+"WL": [
+"45"
+]
+},
+"moves": [
+"WQ4"
+],
+"placements": [],
+"depth": 1,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dc"
+],
+"BL": [
+"56"
+]
+},
+"moves": [
+"BD17"
+],
+"placements": [],
+"depth": 2,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ce"
+],
+"WL": [
+"40"
+]
+},
+"moves": [
+"WC15"
+],
+"placements": [],
+"depth": 3,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cd"
+],
+"BL": [
+"52"
+]
+},
+"moves": [
+"BC16"
+],
+"placements": [],
+"depth": 4,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"de"
+],
+"WL": [
+"38"
+]
+},
+"moves": [
+"WD15"
+],
+"placements": [],
+"depth": 5,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bd"
+],
+"BL": [
+"49"
+]
+},
+"moves": [
+"BB16"
+],
+"placements": [],
+"depth": 6,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ec"
+],
+"WL": [
+"35"
+]
+},
+"moves": [
+"WE17"
+],
+"placements": [],
+"depth": 7,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dd"
+],
+"BL": [
+"44"
+]
+},
+"moves": [
+"BD16"
+],
+"placements": [],
+"depth": 8,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ed"
+],
+"WL": [
+"31"
+]
+},
+"moves": [
+"WE16"
+],
+"placements": [],
+"depth": 9,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"be"
+],
+"BL": [
+"40"
+]
+},
+"moves": [
+"BB15"
+],
+"placements": [],
+"depth": 10,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cg"
+],
+"WL": [
+"28"
+]
+},
+"moves": [
+"WC13"
+],
+"placements": [],
+"depth": 11,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ci"
+],
+"BL": [
+"30"
+]
+},
+"moves": [
+"BC11"
+],
+"placements": [],
+"depth": 12,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eg"
+],
+"WL": [
+"13"
+]
+},
+"moves": [
+"WE13"
+],
+"placements": [],
+"depth": 13,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ej"
+],
+"BL": [
+"18"
+]
+},
+"moves": [
+"BE10"
+],
+"placements": [],
+"depth": 14,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fq"
+],
+"WL": [
+"9"
+]
+},
+"moves": [
+"WF3"
+],
+"placements": [],
+"depth": 15,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eq"
+],
+"BL": [
+"15"
+]
+},
+"moves": [
+"BE3"
+],
+"placements": [],
+"depth": 16,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fp"
+],
+"WL": [
+"7"
+]
+},
+"moves": [
+"WF4"
+],
+"placements": [],
+"depth": 17,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"er"
+],
+"BL": [
+"12"
+]
+},
+"moves": [
+"BE2"
+],
+"placements": [],
+"depth": 18,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cn"
+],
+"WL": [
+"2"
+]
+},
+"moves": [
+"WC6"
+],
+"placements": [],
+"depth": 19,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bo"
+],
+"BL": [
+"8"
+]
+},
+"moves": [
+"BB5"
+],
+"placements": [],
+"depth": 20,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ck"
+],
+"WL": [
+"596"
+]
+},
+"moves": [
+"WC9"
+],
+"placements": [],
+"depth": 21,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cj"
+],
+"BL": [
+"5"
+]
+},
+"moves": [
+"BC10"
+],
+"placements": [],
+"depth": 22,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"en"
+],
+"WL": [
+"593"
+]
+},
+"moves": [
+"WE6"
+],
+"placements": [],
+"depth": 23,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dk"
+],
+"BL": [
+"1"
+]
+},
+"moves": [
+"BD9"
+],
+"placements": [],
+"depth": 24,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cl"
+],
+"WL": [
+"589"
+]
+},
+"moves": [
+"WC8"
+],
+"placements": [],
+"depth": 25,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dl"
+],
+"BL": [
+"590"
+]
+},
+"moves": [
+"BD8"
+],
+"placements": [],
+"depth": 26,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dm"
+],
+"WL": [
+"586"
+]
+},
+"moves": [
+"WD7"
+],
+"placements": [],
+"depth": 27,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fl"
+],
+"BL": [
+"588"
+]
+},
+"moves": [
+"BF8"
+],
+"placements": [],
+"depth": 28,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gn"
+],
+"WL": [
+"577"
+]
+},
+"moves": [
+"WG6"
+],
+"placements": [],
+"depth": 29,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"np"
+],
+"BL": [
+"583"
+]
+},
+"moves": [
+"BO4"
+],
+"placements": [],
+"depth": 30,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kq"
+],
+"WL": [
+"569"
+]
+},
+"moves": [
+"WL3"
+],
+"placements": [],
+"depth": 31,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"or"
+],
+"BL": [
+"578"
+]
+},
+"moves": [
+"BP2"
+],
+"placements": [],
+"depth": 32,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pr"
+],
+"WL": [
+"562"
+]
+},
+"moves": [
+"WQ2"
+],
+"placements": [],
+"depth": 33,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oq"
+],
+"BL": [
+"575"
+]
+},
+"moves": [
+"BP3"
+],
+"placements": [],
+"depth": 34,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pq"
+],
+"WL": [
+"559"
+]
+},
+"moves": [
+"WQ3"
+],
+"placements": [],
+"depth": 35,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lp"
+],
+"BL": [
+"554"
+]
+},
+"moves": [
+"BM4"
+],
+"placements": [],
+"depth": 36,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kp"
+],
+"WL": [
+"556"
+]
+},
+"moves": [
+"WL4"
+],
+"placements": [],
+"depth": 37,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lq"
+],
+"BL": [
+"552"
+]
+},
+"moves": [
+"BM3"
+],
+"placements": [],
+"depth": 38,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kr"
+],
+"WL": [
+"551"
+]
+},
+"moves": [
+"WL2"
+],
+"placements": [],
+"depth": 39,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lr"
+],
+"BL": [
+"550"
+]
+},
+"moves": [
+"BM2"
+],
+"placements": [],
+"depth": 40,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qm"
+],
+"WL": [
+"544"
+]
+},
+"moves": [
+"WR7"
+],
+"placements": [],
+"depth": 41,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qk"
+],
+"BL": [
+"540"
+]
+},
+"moves": [
+"BR9"
+],
+"placements": [],
+"depth": 42,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qf"
+],
+"WL": [
+"539"
+]
+},
+"moves": [
+"WR14"
+],
+"placements": [],
+"depth": 43,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qh"
+],
+"BL": [
+"537"
+]
+},
+"moves": [
+"BR12"
+],
+"placements": [],
+"depth": 44,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qc"
+],
+"WL": [
+"535"
+]
+},
+"moves": [
+"WR17"
+],
+"placements": [],
+"depth": 45,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pc"
+],
+"BL": [
+"534"
+]
+},
+"moves": [
+"BQ17"
+],
+"placements": [],
+"depth": 46,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qd"
+],
+"WL": [
+"531"
+]
+},
+"moves": [
+"WR16"
+],
+"placements": [],
+"depth": 47,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pb"
+],
+"BL": [
+"526"
+]
+},
+"moves": [
+"BQ18"
+],
+"placements": [],
+"depth": 48,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qb"
+],
+"WL": [
+"528"
+]
+},
+"moves": [
+"WR18"
+],
+"placements": [],
+"depth": 49,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lc"
+],
+"BL": [
+"524"
+]
+},
+"moves": [
+"BM17"
+],
+"placements": [],
+"depth": 50,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jc"
+],
+"WL": [
+"524"
+]
+},
+"moves": [
+"WK17"
+],
+"placements": [],
+"depth": 51,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kc"
+],
+"BL": [
+"514"
+]
+},
+"moves": [
+"BL17"
+],
+"placements": [],
+"depth": 52,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jd"
+],
+"WL": [
+"521"
+]
+},
+"moves": [
+"WK16"
+],
+"placements": [],
+"depth": 53,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kd"
+],
+"BL": [
+"512"
+]
+},
+"moves": [
+"BL16"
+],
+"placements": [],
+"depth": 54,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"je"
+],
+"WL": [
+"519"
+]
+},
+"moves": [
+"WK15"
+],
+"placements": [],
+"depth": 55,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ke"
+],
+"BL": [
+"509"
+]
+},
+"moves": [
+"BL15"
+],
+"placements": [],
+"depth": 56,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jg"
+],
+"WL": [
+"517"
+]
+},
+"moves": [
+"WK13"
+],
+"placements": [],
+"depth": 57,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qg"
+],
+"BL": [
+"496"
+]
+},
+"moves": [
+"BR13"
+],
+"placements": [],
+"depth": 58,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"of"
+],
+"WL": [
+"511"
+]
+},
+"moves": [
+"WP14"
+],
+"placements": [],
+"depth": 59,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oe"
+],
+"BL": [
+"493"
+]
+},
+"moves": [
+"BP15"
+],
+"placements": [],
+"depth": 60,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pf"
+],
+"WL": [
+"507"
+]
+},
+"moves": [
+"WQ14"
+],
+"placements": [],
+"depth": 61,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oh"
+],
+"BL": [
+"488"
+]
+},
+"moves": [
+"BP12"
+],
+"placements": [],
+"depth": 62,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ol"
+],
+"WL": [
+"501"
+]
+},
+"moves": [
+"WP8"
+],
+"placements": [],
+"depth": 63,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oj"
+],
+"BL": [
+"483"
+]
+},
+"moves": [
+"BP10"
+],
+"placements": [],
+"depth": 64,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mf"
+],
+"WL": [
+"491"
+]
+},
+"moves": [
+"WN14"
+],
+"placements": [],
+"depth": 65,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"me"
+],
+"BL": [
+"480"
+]
+},
+"moves": [
+"BN15"
+],
+"placements": [],
+"depth": 66,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ne"
+],
+"WL": [
+"489"
+]
+},
+"moves": [
+"WO15"
+],
+"placements": [],
+"depth": 67,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nd"
+],
+"BL": [
+"478"
+]
+},
+"moves": [
+"BO16"
+],
+"placements": [],
+"depth": 68,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nf"
+],
+"WL": [
+"484"
+]
+},
+"moves": [
+"WO14"
+],
+"placements": [],
+"depth": 69,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"le"
+],
+"BL": [
+"467"
+]
+},
+"moves": [
+"BM15"
+],
+"placements": [],
+"depth": 70,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fr"
+],
+"WL": [
+"592"
+]
+},
+"moves": [
+"WF2"
+],
+"placements": [],
+"depth": 71,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"es"
+],
+"BL": [
+"464"
+]
+},
+"moves": [
+"BE1"
+],
+"placements": [],
+"depth": 72,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lo"
+],
+"WL": [
+"588"
+]
+},
+"moves": [
+"WM5"
+],
+"placements": [],
+"depth": 73,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mo"
+],
+"BL": [
+"461"
+]
+},
+"moves": [
+"BN5"
+],
+"placements": [],
+"depth": 74,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ln"
+],
+"WL": [
+"578"
+]
+},
+"moves": [
+"WM6"
+],
+"placements": [],
+"depth": 75,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mn"
+],
+"BL": [
+"598"
+]
+},
+"moves": [
+"BN6"
+],
+"placements": [],
+"depth": 76,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lm"
+],
+"WL": [
+"572"
+]
+},
+"moves": [
+"WM7"
+],
+"placements": [],
+"depth": 77,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hl"
+],
+"BL": [
+"592"
+]
+},
+"moves": [
+"BH8"
+],
+"placements": [],
+"depth": 78,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"im"
+],
+"WL": [
+"566"
+]
+},
+"moves": [
+"WJ7"
+],
+"placements": [],
+"depth": 79,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fh"
+],
+"BL": [
+"587"
+]
+},
+"moves": [
+"BF12"
+],
+"placements": [],
+"depth": 80,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fg"
+],
+"WL": [
+"562"
+]
+},
+"moves": [
+"WF13"
+],
+"placements": [],
+"depth": 81,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gh"
+],
+"BL": [
+"584"
+]
+},
+"moves": [
+"BG12"
+],
+"placements": [],
+"depth": 82,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gg"
+],
+"WL": [
+"560"
+]
+},
+"moves": [
+"WG13"
+],
+"placements": [],
+"depth": 83,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"li"
+],
+"BL": [
+"581"
+]
+},
+"moves": [
+"BM11"
+],
+"placements": [],
+"depth": 84,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ii"
+],
+"WL": [
+"556"
+]
+},
+"moves": [
+"WJ11"
+],
+"placements": [],
+"depth": 85,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hi"
+],
+"BL": [
+"578"
+]
+},
+"moves": [
+"BH11"
+],
+"placements": [],
+"depth": 86,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hh"
+],
+"WL": [
+"554"
+]
+},
+"moves": [
+"WH12"
+],
+"placements": [],
+"depth": 87,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hg"
+],
+"BL": [
+"575"
+]
+},
+"moves": [
+"BH13"
+],
+"placements": [],
+"depth": 88,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ih"
+],
+"WL": [
+"551"
+]
+},
+"moves": [
+"WJ12"
+],
+"placements": [],
+"depth": 89,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hj"
+],
+"BL": [
+"573"
+]
+},
+"moves": [
+"BH10"
+],
+"placements": [],
+"depth": 90,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hf"
+],
+"WL": [
+"548"
+]
+},
+"moves": [
+"WH14"
+],
+"placements": [],
+"depth": 91,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eh"
+],
+"BL": [
+"555"
+]
+},
+"moves": [
+"BE12"
+],
+"placements": [],
+"depth": 92,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dh"
+],
+"WL": [
+"545"
+]
+},
+"moves": [
+"WD12"
+],
+"placements": [],
+"depth": 93,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"di"
+],
+"BL": [
+"552"
+]
+},
+"moves": [
+"BD11"
+],
+"placements": [],
+"depth": 94,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bn"
+],
+"WL": [
+"537"
+]
+},
+"moves": [
+"WB6"
+],
+"placements": [],
+"depth": 95,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"co"
+],
+"BL": [
+"549"
+]
+},
+"moves": [
+"BC5"
+],
+"placements": [],
+"depth": 96,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rl"
+],
+"WL": [
+"495"
+]
+},
+"moves": [
+"WS8"
+],
+"placements": [],
+"depth": 97,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rk"
+],
+"BL": [
+"545"
+]
+},
+"moves": [
+"BS9"
+],
+"placements": [],
+"depth": 98,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sk"
+],
+"WL": [
+"493"
+]
+},
+"moves": [
+"WT9"
+],
+"placements": [],
+"depth": 99,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sj"
+],
+"BL": [
+"542"
+]
+},
+"moves": [
+"BT10"
+],
+"placements": [],
+"depth": 100,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sl"
+],
+"WL": [
+"491"
+]
+},
+"moves": [
+"WT8"
+],
+"placements": [],
+"depth": 101,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rj"
+],
+"BL": [
+"540"
+]
+},
+"moves": [
+"BS10"
+],
+"placements": [],
+"depth": 102,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"eb"
+],
+"WL": [
+"449"
+]
+},
+"moves": [
+"WE18"
+],
+"placements": [],
+"depth": 103,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"db"
+],
+"BL": [
+"537"
+]
+},
+"moves": [
+"BD18"
+],
+"placements": [],
+"depth": 104,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"da"
+],
+"WL": [
+"447"
+]
+},
+"moves": [
+"WD19"
+],
+"placements": [],
+"depth": 105,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ca"
+],
+"BL": [
+"534"
+]
+},
+"moves": [
+"BC19"
+],
+"placements": [],
+"depth": 106,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ea"
+],
+"WL": [
+"446"
+]
+},
+"moves": [
+"WE19"
+],
+"placements": [],
+"depth": 107,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bb"
+],
+"BL": [
+"532"
+]
+},
+"moves": [
+"BB18"
+],
+"placements": [],
+"depth": 108,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ao"
+],
+"WL": [
+"442"
+]
+},
+"moves": [
+"WA5"
+],
+"placements": [],
+"depth": 109,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ap"
+],
+"BL": [
+"529"
+]
+},
+"moves": [
+"BA4"
+],
+"placements": [],
+"depth": 110,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"an"
+],
+"WL": [
+"440"
+]
+},
+"moves": [
+"WA6"
+],
+"placements": [],
+"depth": 111,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bp"
+],
+"BL": [
+"527"
+]
+},
+"moves": [
+"BB4"
+],
+"placements": [],
+"depth": 112,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pe"
+],
+"WL": [
+"405"
+]
+},
+"moves": [
+"WQ15"
+],
+"placements": [],
+"depth": 113,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"od"
+],
+"BL": [
+"524"
+]
+},
+"moves": [
+"BP16"
+],
+"placements": [],
+"depth": 114,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fs"
+],
+"WL": [
+"386"
+]
+},
+"moves": [
+"WF1"
+],
+"placements": [],
+"depth": 115,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ks"
+],
+"BL": [
+"520"
+]
+},
+"moves": [
+"BL1"
+],
+"placements": [],
+"depth": 116,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"js"
+],
+"WL": [
+"383"
+]
+},
+"moves": [
+"WK1"
+],
+"placements": [],
+"depth": 117,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ls"
+],
+"BL": [
+"517"
+]
+},
+"moves": [
+"BM1"
+],
+"placements": [],
+"depth": 118,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jr"
+],
+"WL": [
+"380"
+]
+},
+"moves": [
+"WK2"
+],
+"placements": [],
+"depth": 119,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ps"
+],
+"BL": [
+"515"
+]
+},
+"moves": [
+"BQ1"
+],
+"placements": [],
+"depth": 120,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qs"
+],
+"WL": [
+"590"
+]
+},
+"moves": [
+"WR1"
+],
+"placements": [],
+"depth": 121,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"os"
+],
+"BL": [
+"512"
+]
+},
+"moves": [
+"BP1"
+],
+"placements": [],
+"depth": 122,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qr"
+],
+"WL": [
+"588"
+]
+},
+"moves": [
+"WR2"
+],
+"placements": [],
+"depth": 123,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ql"
+],
+"BL": [
+"509"
+]
+},
+"moves": [
+"BR8"
+],
+"placements": [],
+"depth": 124,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rm"
+],
+"WL": [
+"581"
+]
+},
+"moves": [
+"WS7"
+],
+"placements": [],
+"depth": 125,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pl"
+],
+"BL": [
+"598"
+]
+},
+"moves": [
+"BQ8"
+],
+"placements": [],
+"depth": 126,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pm"
+],
+"WL": [
+"579"
+]
+},
+"moves": [
+"WQ7"
+],
+"placements": [],
+"depth": 127,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"on"
+],
+"BL": [
+"596"
+]
+},
+"moves": [
+"BP6"
+],
+"placements": [],
+"depth": 128,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pn"
+],
+"WL": [
+"576"
+]
+},
+"moves": [
+"WQ6"
+],
+"placements": [],
+"depth": 129,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ok"
+],
+"BL": [
+"582"
+]
+},
+"moves": [
+"BP9"
+],
+"placements": [],
+"depth": 130,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ml"
+],
+"WL": [
+"573"
+]
+},
+"moves": [
+"WN8"
+],
+"placements": [],
+"depth": 131,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mk"
+],
+"BL": [
+"571"
+]
+},
+"moves": [
+"BN9"
+],
+"placements": [],
+"depth": 132,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lk"
+],
+"WL": [
+"568"
+]
+},
+"moves": [
+"WM9"
+],
+"placements": [],
+"depth": 133,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mj"
+],
+"BL": [
+"569"
+]
+},
+"moves": [
+"BN10"
+],
+"placements": [],
+"depth": 134,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rf"
+],
+"WL": [
+"560"
+]
+},
+"moves": [
+"WS14"
+],
+"placements": [],
+"depth": 135,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rg"
+],
+"BL": [
+"566"
+]
+},
+"moves": [
+"BS13"
+],
+"placements": [],
+"depth": 136,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pa"
+],
+"WL": [
+"557"
+]
+},
+"moves": [
+"WQ19"
+],
+"placements": [],
+"depth": 137,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oa"
+],
+"BL": [
+"563"
+]
+},
+"moves": [
+"BP19"
+],
+"placements": [],
+"depth": 138,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qa"
+],
+"WL": [
+"555"
+]
+},
+"moves": [
+"WR19"
+],
+"placements": [],
+"depth": 139,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nb"
+],
+"BL": [
+"561"
+]
+},
+"moves": [
+"BO18"
+],
+"placements": [],
+"depth": 140,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jb"
+],
+"WL": [
+"550"
+]
+},
+"moves": [
+"WK18"
+],
+"placements": [],
+"depth": 141,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kb"
+],
+"BL": [
+"558"
+]
+},
+"moves": [
+"BL18"
+],
+"placements": [],
+"depth": 142,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ep"
+],
+"WL": [
+"532"
+]
+},
+"moves": [
+"WE4"
+],
+"placements": [],
+"depth": 143,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eo"
+],
+"BL": [
+"552"
+]
+},
+"moves": [
+"BE5"
+],
+"placements": [],
+"depth": 144,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fo"
+],
+"WL": [
+"524"
+]
+},
+"moves": [
+"WF5"
+],
+"placements": [],
+"depth": 145,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"do"
+],
+"BL": [
+"550"
+]
+},
+"moves": [
+"BD5"
+],
+"placements": [],
+"depth": 146,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"em"
+],
+"WL": [
+"518"
+]
+},
+"moves": [
+"WE7"
+],
+"placements": [],
+"depth": 147,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"el"
+],
+"BL": [
+"544"
+]
+},
+"moves": [
+"BE8"
+],
+"placements": [],
+"depth": 148,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bj"
+],
+"WL": [
+"488"
+]
+},
+"moves": [
+"WB10"
+],
+"placements": [],
+"depth": 149,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bi"
+],
+"BL": [
+"541"
+]
+},
+"moves": [
+"BB11"
+],
+"placements": [],
+"depth": 150,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"aj"
+],
+"WL": [
+"463"
+]
+},
+"moves": [
+"WA10"
+],
+"placements": [],
+"depth": 151,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ai"
+],
+"BL": [
+"536"
+]
+},
+"moves": [
+"BA11"
+],
+"placements": [],
+"depth": 152,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bk"
+],
+"WL": [
+"460"
+]
+},
+"moves": [
+"WB9"
+],
+"placements": [],
+"depth": 153,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bg"
+],
+"BL": [
+"534"
+]
+},
+"moves": [
+"BB13"
+],
+"placements": [],
+"depth": 154,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ch"
+],
+"WL": [
+"447"
+]
+},
+"moves": [
+"WC12"
+],
+"placements": [],
+"depth": 155,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bh"
+],
+"BL": [
+"529"
+]
+},
+"moves": [
+"BB12"
+],
+"placements": [],
+"depth": 156,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cf"
+],
+"WL": [
+"440"
+]
+},
+"moves": [
+"WC14"
+],
+"placements": [],
+"depth": 157,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bf"
+],
+"BL": [
+"521"
+]
+},
+"moves": [
+"BB14"
+],
+"placements": [],
+"depth": 158,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ij"
+],
+"WL": [
+"419"
+]
+},
+"moves": [
+"WJ10"
+],
+"placements": [],
+"depth": 159,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hk"
+],
+"BL": [
+"515"
+]
+},
+"moves": [
+"BH9"
+],
+"placements": [],
+"depth": 160,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gm"
+],
+"WL": [
+"414"
+]
+},
+"moves": [
+"WG7"
+],
+"placements": [],
+"depth": 161,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gl"
+],
+"BL": [
+"512"
+]
+},
+"moves": [
+"BG8"
+],
+"placements": [],
+"depth": 162,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mh"
+],
+"WL": [
+"411"
+]
+},
+"moves": [
+"WN12"
+],
+"placements": [],
+"depth": 163,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mi"
+],
+"BL": [
+"505"
+]
+},
+"moves": [
+"BN11"
+],
+"placements": [],
+"depth": 164,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nh"
+],
+"WL": [
+"408"
+]
+},
+"moves": [
+"WO12"
+],
+"placements": [],
+"depth": 165,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ni"
+],
+"BL": [
+"502"
+]
+},
+"moves": [
+"BO11"
+],
+"placements": [],
+"depth": 166,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sg"
+],
+"WL": [
+"396"
+]
+},
+"moves": [
+"WT13"
+],
+"placements": [],
+"depth": 167,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sh"
+],
+"BL": [
+"498"
+]
+},
+"moves": [
+"BT12"
+],
+"placements": [],
+"depth": 168,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sf"
+],
+"WL": [
+"394"
+]
+},
+"moves": [
+"WT14"
+],
+"placements": [],
+"depth": 169,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nl"
+],
+"BL": [
+"488"
+]
+},
+"moves": [
+"BO8"
+],
+"placements": [],
+"depth": 170,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"om"
+],
+"WL": [
+"597"
+]
+},
+"moves": [
+"WP7"
+],
+"placements": [],
+"depth": 171,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mm"
+],
+"BL": [
+"481"
+]
+},
+"moves": [
+"BN7"
+],
+"placements": [],
+"depth": 172,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ll"
+],
+"WL": [
+"592"
+]
+},
+"moves": [
+"WM8"
+],
+"placements": [],
+"depth": 173,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nm"
+],
+"BL": [
+"477"
+]
+},
+"moves": [
+"BO7"
+],
+"placements": [],
+"depth": 174,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oo"
+],
+"WL": [
+"590"
+]
+},
+"moves": [
+"WP5"
+],
+"placements": [],
+"depth": 175,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nn"
+],
+"BL": [
+"595"
+]
+},
+"moves": [
+"BO6"
+],
+"placements": [],
+"depth": 176,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"op"
+],
+"WL": [
+"581"
+]
+},
+"moves": [
+"WP4"
+],
+"placements": [],
+"depth": 177,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cq"
+],
+"BL": [
+"588"
+]
+},
+"moves": [
+"BC3"
+],
+"placements": [],
+"depth": 178,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"no"
+],
+"WL": [
+"578"
+]
+},
+"moves": [
+"WO5"
+],
+"placements": [],
+"depth": 179,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nq"
+],
+"BL": [
+"580"
+]
+},
+"moves": [
+"BO3"
+],
+"placements": [],
+"depth": 180,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ja"
+],
+"WL": [
+"569"
+]
+},
+"moves": [
+"WK19"
+],
+"placements": [],
+"depth": 181,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ka"
+],
+"BL": [
+"576"
+]
+},
+"moves": [
+"BL19"
+],
+"placements": [],
+"depth": 182,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"il"
+],
+"WL": [
+"566"
+]
+},
+"moves": [
+"WJ8"
+],
+"placements": [],
+"depth": 183,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lh"
+],
+"BL": [
+"566"
+]
+},
+"moves": [
+"BM12"
+],
+"placements": [],
+"depth": 184,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"og"
+],
+"WL": [
+"549"
+]
+},
+"moves": [
+"WP13"
+],
+"placements": [],
+"depth": 185,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ph"
+],
+"BL": [
+"560"
+]
+},
+"moves": [
+"BQ12"
+],
+"placements": [],
+"depth": 186,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ik"
+],
+"WL": [
+"544"
+]
+},
+"moves": [
+"WJ9"
+],
+"placements": [],
+"depth": 187,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mg"
+],
+"BL": [
+"548"
+]
+},
+"moves": [
+"BN13"
+],
+"placements": [],
+"depth": 188,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ng"
+],
+"WL": [
+"541"
+]
+},
+"moves": [
+"WO13"
+],
+"placements": [],
+"depth": 189,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lg"
+],
+"BL": [
+"545"
+]
+},
+"moves": [
+"BM13"
+],
+"placements": [],
+"depth": 190,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kj"
+],
+"WL": [
+"535"
+]
+},
+"moves": [
+"WL10"
+],
+"placements": [],
+"depth": 191,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ki"
+],
+"BL": [
+"536"
+]
+},
+"moves": [
+"BL11"
+],
+"placements": [],
+"depth": 192,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ji"
+],
+"WL": [
+"532"
+]
+},
+"moves": [
+"WK11"
+],
+"placements": [],
+"depth": 193,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kf"
+],
+"BL": [
+"531"
+]
+},
+"moves": [
+"BL14"
+],
+"placements": [],
+"depth": 194,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jf"
+],
+"WL": [
+"530"
+]
+},
+"moves": [
+"WK14"
+],
+"placements": [],
+"depth": 195,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kh"
+],
+"BL": [
+"526"
+]
+},
+"moves": [
+"BL12"
+],
+"placements": [],
+"depth": 196,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hm"
+],
+"WL": [
+"513"
+]
+},
+"moves": [
+"WH7"
+],
+"placements": [],
+"depth": 197,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fm"
+],
+"BL": [
+"512"
+]
+},
+"moves": [
+"BF7"
+],
+"placements": [],
+"depth": 198,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fn"
+],
+"WL": [
+"510"
+]
+},
+"moves": [
+"WF6"
+],
+"placements": [],
+"depth": 199,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"tt"
+],
+"BL": [
+"492"
+]
+},
+"moves": [
+"Bpass"
+],
+"placements": [],
+"depth": 200,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lj"
+],
+"WL": [
+"489"
+]
+},
+"moves": [
+"WM10"
+],
+"placements": [],
+"depth": 201,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"tt"
+],
+"BL": [
+"482"
+]
+},
+"moves": [
+"Bpass"
+],
+"placements": [],
+"depth": 202,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"tt"
+],
+"WL": [
+"484"
+]
+},
+"moves": [
+"Wpass"
+],
+"placements": [],
+"depth": 203,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"tt"
+],
+"BL": [
+"482"
+]
+},
+"moves": [
+"Bpass"
+],
+"placements": [],
+"depth": 204,
+"next_player": "W"
+},
+{
+"props": {
+"TW": [
+"am",
+"al",
+"ak",
+"bm",
+"bl",
+"cm",
+"dg",
+"df",
+"ef",
+"ee",
+"ff",
+"fe",
+"fd",
+"fc",
+"fb",
+"fa",
+"gs",
+"gr",
+"gq",
+"gp",
+"go",
+"gf",
+"ge",
+"gd",
+"gc",
+"gb",
+"ga",
+"hs",
+"hr",
+"hq",
+"hp",
+"ho",
+"hn",
+"hg",
+"he",
+"hd",
+"hc",
+"hb",
+"ha",
+"is",
+"ir",
+"iq",
+"ip",
+"io",
+"in",
+"ig",
+"if",
+"ie",
+"id",
+"ic",
+"ib",
+"ia",
+"jq",
+"jp",
+"jo",
+"jn",
+"jm",
+"jl",
+"jk",
+"jj",
+"ko",
+"kn",
+"km",
+"kl",
+"kk",
+"po",
+"qq",
+"qp",
+"qo",
+"qn",
+"qe",
+"rs",
+"rr",
+"rq",
+"rp",
+"ro",
+"rn",
+"re",
+"rd",
+"rc",
+"rb",
+"ra",
+"ss",
+"sr",
+"sq",
+"sp",
+"so",
+"sn",
+"sm",
+"se",
+"sd",
+"sc",
+"sb",
+"sa"
+],
+"TB": [
+"as",
+"ar",
+"aq",
+"ah",
+"ag",
+"af",
+"ae",
+"ad",
+"ac",
+"ab",
+"aa",
+"bs",
+"br",
+"bq",
+"bc",
+"ba",
+"cs",
+"cr",
+"cp",
+"cc",
+"cb",
+"ds",
+"dr",
+"dq",
+"dj",
+"ek",
+"ei",
+"fk",
+"fj",
+"fi",
+"gk",
+"gj",
+"gi",
+"ld",
+"lb",
+"la",
+"ms",
+"mr",
+"mq",
+"mp",
+"md",
+"mc",
+"mb",
+"ma",
+"ns",
+"nr",
+"nk",
+"nj",
+"nc",
+"na",
+"oi",
+"oc",
+"ob",
+"pk",
+"pj",
+"pi",
+"qj",
+"qi",
+"ri",
+"rh",
+"si"
+],
+"OS": [
+"Trilan"
+]
+},
+"moves": [],
+"placements": [],
+"depth": 204,
+"next_player": "W"
+}
+],
+"sgf": "(;GM[1]EV[Internet Go Server game: player1 vs player2]US[Brought to you by IGS PANDANET]CP[\n  Copyright (c) PANDANET Inc. 2020\n  Permission to reproduce this game is given, provided proper credit is given.\n  No warrantee, implied or explicit, is understood.\n  Use of this game is an understanding and agreement of this notice.\n]GN[player1-player2(B) IGS]RE[W+34.5]PW[player1]WR[11k+]NW[18]PB[player2]BR[12k ]NB[17]PC[IGS:  igs.joyjoy.net 6969]DT[2020-04-10]SZ[19]TM[60]KM[0.500000]LT[]RR[Normal]HA[2]AB[pd][dp]C[\n player2 12k : gg\n player1 11k+: Hi!\n player2 12k : Hi!\n];W[pp]WL[45];B[dc]BL[56];W[ce]WL[40];B[cd]BL[52];W[de]WL[38];B[bd]BL[49];W[ec]WL[35];B[dd]BL[44];W[ed]WL[31];B[be]BL[40];W[cg]WL[28];B[ci]BL[30];W[eg]WL[13];B[ej]BL[18];W[fq]WL[9];B[eq]BL[15];W[fp]WL[7];B[er]BL[12];W[cn]WL[2];B[bo]BL[8];W[ck]WL[596];B[cj]BL[5];W[en]WL[593];B[dk]BL[1];W[cl]WL[589];B[dl]BL[590];W[dm]WL[586];B[fl]BL[588];W[gn]WL[577];B[np]BL[583];W[kq]WL[569];B[or]BL[578];W[pr]WL[562];B[oq]BL[575];W[pq]WL[559];B[lp]BL[554];W[kp]WL[556];B[lq]BL[552];W[kr]WL[551];B[lr]BL[550];W[qm]WL[544];B[qk]BL[540];W[qf]WL[539];B[qh]BL[537];W[qc]WL[535];B[pc]BL[534];W[qd]WL[531];B[pb]BL[526];W[qb]WL[528];B[lc]BL[524];W[jc]WL[524];B[kc]BL[514];W[jd]WL[521];B[kd]BL[512];W[je]WL[519];B[ke]BL[509];W[jg]WL[517];B[qg]BL[496];W[of]WL[511];B[oe]BL[493];W[pf]WL[507];B[oh]BL[488];W[ol]WL[501];B[oj]BL[483];W[mf]WL[491];B[me]BL[480];W[ne]WL[489];B[nd]BL[478];W[nf]WL[484];B[le]BL[467];W[fr]WL[592];B[es]BL[464];W[lo]WL[588];B[mo]BL[461];W[ln]WL[578];B[mn]BL[598];W[lm]WL[572];B[hl]BL[592];W[im]WL[566];B[fh]BL[587];W[fg]WL[562];B[gh]BL[584];W[gg]WL[560];B[li]BL[581];W[ii]WL[556];B[hi]BL[578];W[hh]WL[554];B[hg]BL[575];W[ih]WL[551];B[hj]BL[573];W[hf]WL[548];B[eh]BL[555];W[dh]WL[545];B[di]BL[552];W[bn]WL[537];B[co]BL[549];W[rl]WL[495];B[rk]BL[545];W[sk]WL[493];B[sj]BL[542];W[sl]WL[491];B[rj]BL[540];W[eb]WL[449];B[db]BL[537];W[da]WL[447];B[ca]BL[534];W[ea]WL[446];B[bb]BL[532];W[ao]WL[442];B[ap]BL[529];W[an]WL[440];B[bp]BL[527];W[pe]WL[405];B[od]BL[524];W[fs]WL[386];B[ks]BL[520];W[js]WL[383];B[ls]BL[517];W[jr]WL[380];B[ps]BL[515];W[qs]WL[590];B[os]BL[512];W[qr]WL[588];B[ql]BL[509];W[rm]WL[581];B[pl]BL[598];W[pm]WL[579];B[on]BL[596];W[pn]WL[576];B[ok]BL[582];W[ml]WL[573];B[mk]BL[571];W[lk]WL[568];B[mj]BL[569];W[rf]WL[560];B[rg]BL[566];W[pa]WL[557];B[oa]BL[563];W[qa]WL[555];B[nb]BL[561];W[jb]WL[550];B[kb]BL[558];W[ep]WL[532];B[eo]BL[552];W[fo]WL[524];B[do]BL[550];W[em]WL[518];B[el]BL[544];W[bj]WL[488];B[bi]BL[541];W[aj]WL[463];B[ai]BL[536];W[bk]WL[460];B[bg]BL[534];W[ch]WL[447];B[bh]BL[529];W[cf]WL[440];B[bf]BL[521];W[ij]WL[419];B[hk]BL[515];W[gm]WL[414];B[gl]BL[512];W[mh]WL[411];B[mi]BL[505];W[nh]WL[408];B[ni]BL[502];W[sg]WL[396];B[sh]BL[498];W[sf]WL[394];B[nl]BL[488];W[om]WL[597];B[mm]BL[481];W[ll]WL[592];B[nm]BL[477];W[oo]WL[590];B[nn]BL[595];W[op]WL[581];B[cq]BL[588];W[no]WL[578];B[nq]BL[580];W[ja]WL[569];B[ka]BL[576];W[il]WL[566];B[lh]BL[566];W[og]WL[549];B[ph]BL[560];W[ik]WL[544];B[mg]BL[548];W[ng]WL[541];B[lg]BL[545];W[kj]WL[535];B[ki]BL[536];W[ji]WL[532];B[kf]BL[531];W[jf]WL[530];B[kh]BL[526];W[hm]WL[513];B[fm]BL[512];W[fn]WL[510];B[tt]BL[492];W[lj]WL[489];B[tt]BL[482];W[tt]WL[484];B[tt]BL[482]C[\n player1 11k+: player1 dead @ H13\n player2 done\n];TW[am][al][ak][bm][bl][cm][dg][df][ef][ee][ff][fe][fd][fc][fb][fa][gs][gr][gq][gp][go][gf][ge][gd][gc][gb][ga][hs][hr][hq][hp][ho][hn][hg][he][hd][hc][hb][ha][is][ir][iq][ip][io][in][ig][if][ie][id][ic][ib][ia][jq][jp][jo][jn][jm][jl][jk][jj][ko][kn][km][kl][kk][po][qq][qp][qo][qn][qe][rs][rr][rq][rp][ro][rn][re][rd][rc][rb][ra][ss][sr][sq][sp][so][sn][sm][se][sd][sc][sb][sa]TB[as][ar][aq][ah][ag][af][ae][ad][ac][ab][aa][bs][br][bq][bc][ba][cs][cr][cp][cc][cb][ds][dr][dq][dj][ek][ei][fk][fj][fi][gk][gj][gi][ld][lb][la][ms][mr][mq][mp][md][mc][mb][ma][ns][nr][nk][nj][nc][na][oi][oc][ob][pk][pj][pi][qj][qi][ri][rh][si]OS[Trilan])"
+},
+"test.gib": {
+"num_nodes": 233,
+"nodes": [
+{
+"props": {
+"PW": [
+"wildsim1"
+],
+"WR": [
+"2D"
+],
+"PB": [
+"kim"
+],
+"BR": [
+"2D"
+],
+"RE": [
+"W+T"
+],
+"KM": [
+6.5
+],
+"DT": [
+"2020-06-14"
+]
+},
+"moves": [],
+"placements": [],
+"depth": 0,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pd"
+]
+},
+"moves": [
+"BQ16"
+],
+"placements": [],
+"depth": 1,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dp"
+]
+},
+"moves": [
+"WD4"
+],
+"placements": [],
+"depth": 2,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qp"
+]
+},
+"moves": [
+"BR4"
+],
+"placements": [],
+"depth": 3,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nc"
+]
+},
+"moves": [
+"WO17"
+],
+"placements": [],
+"depth": 4,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dd"
+]
+},
+"moves": [
+"BD16"
+],
+"placements": [],
+"depth": 5,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cf"
+]
+},
+"moves": [
+"WC14"
+],
+"placements": [],
+"depth": 6,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fc"
+]
+},
+"moves": [
+"BF17"
+],
+"placements": [],
+"depth": 7,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bd"
+]
+},
+"moves": [
+"WB16"
+],
+"placements": [],
+"depth": 8,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cc"
+]
+},
+"moves": [
+"BC17"
+],
+"placements": [],
+"depth": 9,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pb"
+]
+},
+"moves": [
+"WQ18"
+],
+"placements": [],
+"depth": 10,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oc"
+]
+},
+"moves": [
+"BP17"
+],
+"placements": [],
+"depth": 11,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ob"
+]
+},
+"moves": [
+"WP18"
+],
+"placements": [],
+"depth": 12,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nd"
+]
+},
+"moves": [
+"BO16"
+],
+"placements": [],
+"depth": 13,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mc"
+]
+},
+"moves": [
+"WN17"
+],
+"placements": [],
+"depth": 14,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"md"
+]
+},
+"moves": [
+"BN16"
+],
+"placements": [],
+"depth": 15,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lc"
+]
+},
+"moves": [
+"WM17"
+],
+"placements": [],
+"depth": 16,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nq"
+]
+},
+"moves": [
+"BO3"
+],
+"placements": [],
+"depth": 17,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qj"
+]
+},
+"moves": [
+"WR10"
+],
+"placements": [],
+"depth": 18,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qh"
+]
+},
+"moves": [
+"BR12"
+],
+"placements": [],
+"depth": 19,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qm"
+]
+},
+"moves": [
+"WR7"
+],
+"placements": [],
+"depth": 20,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cn"
+]
+},
+"moves": [
+"BC6"
+],
+"placements": [],
+"depth": 21,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cl"
+]
+},
+"moves": [
+"WC8"
+],
+"placements": [],
+"depth": 22,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cq"
+]
+},
+"moves": [
+"BC3"
+],
+"placements": [],
+"depth": 23,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dq"
+]
+},
+"moves": [
+"WD3"
+],
+"placements": [],
+"depth": 24,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cp"
+]
+},
+"moves": [
+"BC4"
+],
+"placements": [],
+"depth": 25,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"do"
+]
+},
+"moves": [
+"WD5"
+],
+"placements": [],
+"depth": 26,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"co"
+]
+},
+"moves": [
+"BC5"
+],
+"placements": [],
+"depth": 27,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"em"
+]
+},
+"moves": [
+"WE7"
+],
+"placements": [],
+"depth": 28,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jp"
+]
+},
+"moves": [
+"BK4"
+],
+"placements": [],
+"depth": 29,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"iq"
+]
+},
+"moves": [
+"WJ3"
+],
+"placements": [],
+"depth": 30,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ip"
+]
+},
+"moves": [
+"BJ4"
+],
+"placements": [],
+"depth": 31,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jq"
+]
+},
+"moves": [
+"WK3"
+],
+"placements": [],
+"depth": 32,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kq"
+]
+},
+"moves": [
+"BL3"
+],
+"placements": [],
+"depth": 33,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kr"
+]
+},
+"moves": [
+"WL2"
+],
+"placements": [],
+"depth": 34,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lq"
+]
+},
+"moves": [
+"BM3"
+],
+"placements": [],
+"depth": 35,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lr"
+]
+},
+"moves": [
+"WM2"
+],
+"placements": [],
+"depth": 36,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hq"
+]
+},
+"moves": [
+"BH3"
+],
+"placements": [],
+"depth": 37,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hr"
+]
+},
+"moves": [
+"WH2"
+],
+"placements": [],
+"depth": 38,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gr"
+]
+},
+"moves": [
+"BG2"
+],
+"placements": [],
+"depth": 39,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ir"
+]
+},
+"moves": [
+"WJ2"
+],
+"placements": [],
+"depth": 40,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gp"
+]
+},
+"moves": [
+"BG4"
+],
+"placements": [],
+"depth": 41,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fq"
+]
+},
+"moves": [
+"WF3"
+],
+"placements": [],
+"depth": 42,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gq"
+]
+},
+"moves": [
+"BG3"
+],
+"placements": [],
+"depth": 43,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mq"
+]
+},
+"moves": [
+"WN3"
+],
+"placements": [],
+"depth": 44,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mp"
+]
+},
+"moves": [
+"BN4"
+],
+"placements": [],
+"depth": 45,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mr"
+]
+},
+"moves": [
+"WN2"
+],
+"placements": [],
+"depth": 46,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"op"
+]
+},
+"moves": [
+"BP4"
+],
+"placements": [],
+"depth": 47,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nr"
+]
+},
+"moves": [
+"WO2"
+],
+"placements": [],
+"depth": 48,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"or"
+]
+},
+"moves": [
+"BP2"
+],
+"placements": [],
+"depth": 49,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"no"
+]
+},
+"moves": [
+"WO5"
+],
+"placements": [],
+"depth": 50,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"np"
+]
+},
+"moves": [
+"BO4"
+],
+"placements": [],
+"depth": 51,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cr"
+]
+},
+"moves": [
+"WC2"
+],
+"placements": [],
+"depth": 52,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"br"
+]
+},
+"moves": [
+"BB2"
+],
+"placements": [],
+"depth": 53,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dr"
+]
+},
+"moves": [
+"WD2"
+],
+"placements": [],
+"depth": 54,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hm"
+]
+},
+"moves": [
+"BH7"
+],
+"placements": [],
+"depth": 55,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bs"
+]
+},
+"moves": [
+"WB1"
+],
+"placements": [],
+"depth": 56,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bm"
+]
+},
+"moves": [
+"BB7"
+],
+"placements": [],
+"depth": 57,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bl"
+]
+},
+"moves": [
+"WB8"
+],
+"placements": [],
+"depth": 58,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ar"
+]
+},
+"moves": [
+"BA2"
+],
+"placements": [],
+"depth": 59,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cm"
+]
+},
+"moves": [
+"WC7"
+],
+"placements": [],
+"depth": 60,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"an"
+]
+},
+"moves": [
+"BA6"
+],
+"placements": [],
+"depth": 61,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gn"
+]
+},
+"moves": [
+"WG6"
+],
+"placements": [],
+"depth": 62,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"om"
+]
+},
+"moves": [
+"BP7"
+],
+"placements": [],
+"depth": 63,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ro"
+]
+},
+"moves": [
+"WS5"
+],
+"placements": [],
+"depth": 64,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hn"
+]
+},
+"moves": [
+"BH6"
+],
+"placements": [],
+"depth": 65,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rp"
+]
+},
+"moves": [
+"WS4"
+],
+"placements": [],
+"depth": 66,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qq"
+]
+},
+"moves": [
+"BR3"
+],
+"placements": [],
+"depth": 67,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pi"
+]
+},
+"moves": [
+"WQ11"
+],
+"placements": [],
+"depth": 68,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pl"
+]
+},
+"moves": [
+"BQ8"
+],
+"placements": [],
+"depth": 69,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ql"
+]
+},
+"moves": [
+"WR8"
+],
+"placements": [],
+"depth": 70,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gm"
+]
+},
+"moves": [
+"BG7"
+],
+"placements": [],
+"depth": 71,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"go"
+]
+},
+"moves": [
+"WG5"
+],
+"placements": [],
+"depth": 72,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ho"
+]
+},
+"moves": [
+"BH5"
+],
+"placements": [],
+"depth": 73,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fp"
+]
+},
+"moves": [
+"WF4"
+],
+"placements": [],
+"depth": 74,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"el"
+]
+},
+"moves": [
+"BE8"
+],
+"placements": [],
+"depth": 75,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fm"
+]
+},
+"moves": [
+"WF7"
+],
+"placements": [],
+"depth": 76,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fl"
+]
+},
+"moves": [
+"BF8"
+],
+"placements": [],
+"depth": 77,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dl"
+]
+},
+"moves": [
+"WD8"
+],
+"placements": [],
+"depth": 78,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dn"
+]
+},
+"moves": [
+"BD6"
+],
+"placements": [],
+"depth": 79,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"en"
+]
+},
+"moves": [
+"WE6"
+],
+"placements": [],
+"depth": 80,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dm"
+]
+},
+"moves": [
+"BD7"
+],
+"placements": [],
+"depth": 81,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fo"
+]
+},
+"moves": [
+"WF5"
+],
+"placements": [],
+"depth": 82,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ph"
+]
+},
+"moves": [
+"BQ12"
+],
+"placements": [],
+"depth": 83,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ci"
+]
+},
+"moves": [
+"WC11"
+],
+"placements": [],
+"depth": 84,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oi"
+]
+},
+"moves": [
+"BP11"
+],
+"placements": [],
+"depth": 85,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pk"
+]
+},
+"moves": [
+"WQ9"
+],
+"placements": [],
+"depth": 86,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ok"
+]
+},
+"moves": [
+"BP9"
+],
+"placements": [],
+"depth": 87,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"oj"
+]
+},
+"moves": [
+"WP10"
+],
+"placements": [],
+"depth": 88,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rk"
+]
+},
+"moves": [
+"BS9"
+],
+"placements": [],
+"depth": 89,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nk"
+]
+},
+"moves": [
+"WO9"
+],
+"placements": [],
+"depth": 90,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ol"
+]
+},
+"moves": [
+"BP8"
+],
+"placements": [],
+"depth": 91,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ni"
+]
+},
+"moves": [
+"WO11"
+],
+"placements": [],
+"depth": 92,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qk"
+]
+},
+"moves": [
+"BR9"
+],
+"placements": [],
+"depth": 93,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pj"
+]
+},
+"moves": [
+"WQ10"
+],
+"placements": [],
+"depth": 94,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rj"
+]
+},
+"moves": [
+"BS10"
+],
+"placements": [],
+"depth": 95,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rq"
+]
+},
+"moves": [
+"WS3"
+],
+"placements": [],
+"depth": 96,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qn"
+]
+},
+"moves": [
+"BR6"
+],
+"placements": [],
+"depth": 97,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rn"
+]
+},
+"moves": [
+"WS6"
+],
+"placements": [],
+"depth": 98,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qo"
+]
+},
+"moves": [
+"BR5"
+],
+"placements": [],
+"depth": 99,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rl"
+]
+},
+"moves": [
+"WS8"
+],
+"placements": [],
+"depth": 100,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"oh"
+]
+},
+"moves": [
+"BP12"
+],
+"placements": [],
+"depth": 101,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nh"
+]
+},
+"moves": [
+"WO12"
+],
+"placements": [],
+"depth": 102,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ng"
+]
+},
+"moves": [
+"BO13"
+],
+"placements": [],
+"depth": 103,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nj"
+]
+},
+"moves": [
+"WO10"
+],
+"placements": [],
+"depth": 104,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qi"
+]
+},
+"moves": [
+"BR11"
+],
+"placements": [],
+"depth": 105,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lh"
+]
+},
+"moves": [
+"WM12"
+],
+"placements": [],
+"depth": 106,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mg"
+]
+},
+"moves": [
+"BN13"
+],
+"placements": [],
+"depth": 107,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kk"
+]
+},
+"moves": [
+"WL9"
+],
+"placements": [],
+"depth": 108,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mh"
+]
+},
+"moves": [
+"BN12"
+],
+"placements": [],
+"depth": 109,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"li"
+]
+},
+"moves": [
+"WM11"
+],
+"placements": [],
+"depth": 110,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"mi"
+]
+},
+"moves": [
+"BN11"
+],
+"placements": [],
+"depth": 111,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lj"
+]
+},
+"moves": [
+"WM10"
+],
+"placements": [],
+"depth": 112,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ml"
+]
+},
+"moves": [
+"BN8"
+],
+"placements": [],
+"depth": 113,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mk"
+]
+},
+"moves": [
+"WN9"
+],
+"placements": [],
+"depth": 114,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ll"
+]
+},
+"moves": [
+"BM8"
+],
+"placements": [],
+"depth": 115,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"qc"
+]
+},
+"moves": [
+"WR17"
+],
+"placements": [],
+"depth": 116,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"qd"
+]
+},
+"moves": [
+"BR16"
+],
+"placements": [],
+"depth": 117,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"rc"
+]
+},
+"moves": [
+"WS17"
+],
+"placements": [],
+"depth": 118,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rd"
+]
+},
+"moves": [
+"BS16"
+],
+"placements": [],
+"depth": 119,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ik"
+]
+},
+"moves": [
+"WJ9"
+],
+"placements": [],
+"depth": 120,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lk"
+]
+},
+"moves": [
+"BM9"
+],
+"placements": [],
+"depth": 121,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mj"
+]
+},
+"moves": [
+"WN10"
+],
+"placements": [],
+"depth": 122,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kj"
+]
+},
+"moves": [
+"BL10"
+],
+"placements": [],
+"depth": 123,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jj"
+]
+},
+"moves": [
+"WK10"
+],
+"placements": [],
+"depth": 124,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ki"
+]
+},
+"moves": [
+"BL11"
+],
+"placements": [],
+"depth": 125,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jh"
+]
+},
+"moves": [
+"WK12"
+],
+"placements": [],
+"depth": 126,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kl"
+]
+},
+"moves": [
+"BL8"
+],
+"placements": [],
+"depth": 127,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jk"
+]
+},
+"moves": [
+"WK9"
+],
+"placements": [],
+"depth": 128,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dk"
+]
+},
+"moves": [
+"BD9"
+],
+"placements": [],
+"depth": 129,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ck"
+]
+},
+"moves": [
+"WC9"
+],
+"placements": [],
+"depth": 130,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dj"
+]
+},
+"moves": [
+"BD10"
+],
+"placements": [],
+"depth": 131,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cj"
+]
+},
+"moves": [
+"WC10"
+],
+"placements": [],
+"depth": 132,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ii"
+]
+},
+"moves": [
+"BJ11"
+],
+"placements": [],
+"depth": 133,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ji"
+]
+},
+"moves": [
+"WK11"
+],
+"placements": [],
+"depth": 134,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ic"
+]
+},
+"moves": [
+"BJ17"
+],
+"placements": [],
+"depth": 135,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bc"
+]
+},
+"moves": [
+"WB17"
+],
+"placements": [],
+"depth": 136,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bb"
+]
+},
+"moves": [
+"BB18"
+],
+"placements": [],
+"depth": 137,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cd"
+]
+},
+"moves": [
+"WC16"
+],
+"placements": [],
+"depth": 138,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dc"
+]
+},
+"moves": [
+"BD17"
+],
+"placements": [],
+"depth": 139,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"de"
+]
+},
+"moves": [
+"WD15"
+],
+"placements": [],
+"depth": 140,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ee"
+]
+},
+"moves": [
+"BE15"
+],
+"placements": [],
+"depth": 141,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ef"
+]
+},
+"moves": [
+"WE14"
+],
+"placements": [],
+"depth": 142,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fe"
+]
+},
+"moves": [
+"BF15"
+],
+"placements": [],
+"depth": 143,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ff"
+]
+},
+"moves": [
+"WF14"
+],
+"placements": [],
+"depth": 144,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ge"
+]
+},
+"moves": [
+"BG15"
+],
+"placements": [],
+"depth": 145,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gf"
+]
+},
+"moves": [
+"WG14"
+],
+"placements": [],
+"depth": 146,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"he"
+]
+},
+"moves": [
+"BH15"
+],
+"placements": [],
+"depth": 147,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gl"
+]
+},
+"moves": [
+"WG8"
+],
+"placements": [],
+"depth": 148,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hl"
+]
+},
+"moves": [
+"BH8"
+],
+"placements": [],
+"depth": 149,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gk"
+]
+},
+"moves": [
+"WG9"
+],
+"placements": [],
+"depth": 150,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hk"
+]
+},
+"moves": [
+"BH9"
+],
+"placements": [],
+"depth": 151,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hj"
+]
+},
+"moves": [
+"WH10"
+],
+"placements": [],
+"depth": 152,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gj"
+]
+},
+"moves": [
+"BG10"
+],
+"placements": [],
+"depth": 153,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fk"
+]
+},
+"moves": [
+"WF9"
+],
+"placements": [],
+"depth": 154,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ij"
+]
+},
+"moves": [
+"BJ10"
+],
+"placements": [],
+"depth": 155,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ih"
+]
+},
+"moves": [
+"WJ12"
+],
+"placements": [],
+"depth": 156,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hi"
+]
+},
+"moves": [
+"BH11"
+],
+"placements": [],
+"depth": 157,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ek"
+]
+},
+"moves": [
+"WE9"
+],
+"placements": [],
+"depth": 158,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hh"
+]
+},
+"moves": [
+"BH12"
+],
+"placements": [],
+"depth": 159,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kf"
+]
+},
+"moves": [
+"WL14"
+],
+"placements": [],
+"depth": 160,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kc"
+]
+},
+"moves": [
+"BL17"
+],
+"placements": [],
+"depth": 161,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ld"
+]
+},
+"moves": [
+"WM16"
+],
+"placements": [],
+"depth": 162,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"lg"
+]
+},
+"moves": [
+"BM13"
+],
+"placements": [],
+"depth": 163,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kg"
+]
+},
+"moves": [
+"WL13"
+],
+"placements": [],
+"depth": 164,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"le"
+]
+},
+"moves": [
+"BM15"
+],
+"placements": [],
+"depth": 165,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kd"
+]
+},
+"moves": [
+"WL16"
+],
+"placements": [],
+"depth": 166,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ke"
+]
+},
+"moves": [
+"BL15"
+],
+"placements": [],
+"depth": 167,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"je"
+]
+},
+"moves": [
+"WK15"
+],
+"placements": [],
+"depth": 168,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jd"
+]
+},
+"moves": [
+"BK16"
+],
+"placements": [],
+"depth": 169,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lf"
+]
+},
+"moves": [
+"WM14"
+],
+"placements": [],
+"depth": 170,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"me"
+]
+},
+"moves": [
+"BN15"
+],
+"placements": [],
+"depth": 171,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"if"
+]
+},
+"moves": [
+"WJ14"
+],
+"placements": [],
+"depth": 172,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ie"
+]
+},
+"moves": [
+"BJ15"
+],
+"placements": [],
+"depth": 173,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"jf"
+]
+},
+"moves": [
+"WK14"
+],
+"placements": [],
+"depth": 174,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hf"
+]
+},
+"moves": [
+"BH14"
+],
+"placements": [],
+"depth": 175,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ig"
+]
+},
+"moves": [
+"WJ13"
+],
+"placements": [],
+"depth": 176,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"kb"
+]
+},
+"moves": [
+"BL18"
+],
+"placements": [],
+"depth": 177,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"pc"
+]
+},
+"moves": [
+"WQ17"
+],
+"placements": [],
+"depth": 178,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"od"
+]
+},
+"moves": [
+"BP16"
+],
+"placements": [],
+"depth": 179,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"lb"
+]
+},
+"moves": [
+"WM18"
+],
+"placements": [],
+"depth": 180,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rr"
+]
+},
+"moves": [
+"BS2"
+],
+"placements": [],
+"depth": 181,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sl"
+]
+},
+"moves": [
+"WT8"
+],
+"placements": [],
+"depth": 182,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sq"
+]
+},
+"moves": [
+"BT3"
+],
+"placements": [],
+"depth": 183,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sp"
+]
+},
+"moves": [
+"WT4"
+],
+"placements": [],
+"depth": 184,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sn"
+]
+},
+"moves": [
+"BT6"
+],
+"placements": [],
+"depth": 185,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sr"
+]
+},
+"moves": [
+"WT2"
+],
+"placements": [],
+"depth": 186,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"rs"
+]
+},
+"moves": [
+"BS1"
+],
+"placements": [],
+"depth": 187,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sm"
+]
+},
+"moves": [
+"WT7"
+],
+"placements": [],
+"depth": 188,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sc"
+]
+},
+"moves": [
+"BT17"
+],
+"placements": [],
+"depth": 189,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sb"
+]
+},
+"moves": [
+"WT18"
+],
+"placements": [],
+"depth": 190,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"sd"
+]
+},
+"moves": [
+"BT16"
+],
+"placements": [],
+"depth": 191,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ka"
+]
+},
+"moves": [
+"WL19"
+],
+"placements": [],
+"depth": 192,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jb"
+]
+},
+"moves": [
+"BK18"
+],
+"placements": [],
+"depth": 193,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ra"
+]
+},
+"moves": [
+"WS19"
+],
+"placements": [],
+"depth": 194,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ns"
+]
+},
+"moves": [
+"BO1"
+],
+"placements": [],
+"depth": 195,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ms"
+]
+},
+"moves": [
+"WN1"
+],
+"placements": [],
+"depth": 196,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"os"
+]
+},
+"moves": [
+"BP1"
+],
+"placements": [],
+"depth": 197,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fr"
+]
+},
+"moves": [
+"WF2"
+],
+"placements": [],
+"depth": 198,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hs"
+]
+},
+"moves": [
+"BH1"
+],
+"placements": [],
+"depth": 199,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"is"
+]
+},
+"moves": [
+"WJ1"
+],
+"placements": [],
+"depth": 200,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gs"
+]
+},
+"moves": [
+"BG1"
+],
+"placements": [],
+"depth": 201,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fs"
+]
+},
+"moves": [
+"WF1"
+],
+"placements": [],
+"depth": 202,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hp"
+]
+},
+"moves": [
+"BH4"
+],
+"placements": [],
+"depth": 203,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"js"
+]
+},
+"moves": [
+"WK1"
+],
+"placements": [],
+"depth": 204,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ma"
+]
+},
+"moves": [
+"BN19"
+],
+"placements": [],
+"depth": 205,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"na"
+]
+},
+"moves": [
+"WO19"
+],
+"placements": [],
+"depth": 206,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ja"
+]
+},
+"moves": [
+"BK19"
+],
+"placements": [],
+"depth": 207,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ab"
+]
+},
+"moves": [
+"WA18"
+],
+"placements": [],
+"depth": 208,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"la"
+]
+},
+"moves": [
+"BM19"
+],
+"placements": [],
+"depth": 209,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nb"
+]
+},
+"moves": [
+"WO18"
+],
+"placements": [],
+"depth": 210,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ba"
+]
+},
+"moves": [
+"BB19"
+],
+"placements": [],
+"depth": 211,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fh"
+]
+},
+"moves": [
+"WF12"
+],
+"placements": [],
+"depth": 212,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fi"
+]
+},
+"moves": [
+"BF11"
+],
+"placements": [],
+"depth": 213,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ei"
+]
+},
+"moves": [
+"WE11"
+],
+"placements": [],
+"depth": 214,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fj"
+]
+},
+"moves": [
+"BF10"
+],
+"placements": [],
+"depth": 215,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ej"
+]
+},
+"moves": [
+"WE10"
+],
+"placements": [],
+"depth": 216,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"jl"
+]
+},
+"moves": [
+"BK8"
+],
+"placements": [],
+"depth": 217,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"il"
+]
+},
+"moves": [
+"WJ8"
+],
+"placements": [],
+"depth": 218,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"im"
+]
+},
+"moves": [
+"BJ7"
+],
+"placements": [],
+"depth": 219,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"mf"
+]
+},
+"moves": [
+"WN14"
+],
+"placements": [],
+"depth": 220,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nf"
+]
+},
+"moves": [
+"BO14"
+],
+"placements": [],
+"depth": 221,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sj"
+]
+},
+"moves": [
+"WT10"
+],
+"placements": [],
+"depth": 222,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"si"
+]
+},
+"moves": [
+"BT11"
+],
+"placements": [],
+"depth": 223,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"sk"
+]
+},
+"moves": [
+"WT9"
+],
+"placements": [],
+"depth": 224,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ri"
+]
+},
+"moves": [
+"BS11"
+],
+"placements": [],
+"depth": 225,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"nl"
+]
+},
+"moves": [
+"WO8"
+],
+"placements": [],
+"depth": 226,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"nm"
+]
+},
+"moves": [
+"BO7"
+],
+"placements": [],
+"depth": 227,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"kh"
+]
+},
+"moves": [
+"WL12"
+],
+"placements": [],
+"depth": 228,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"pm"
+]
+},
+"moves": [
+"BQ7"
+],
+"placements": [],
+"depth": 229,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"so"
+]
+},
+"moves": [
+"WT5"
+],
+"placements": [],
+"depth": 230,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gh"
+]
+},
+"moves": [
+"BG12"
+],
+"placements": [],
+"depth": 231,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gg"
+]
+},
+"moves": [
+"WG13"
+],
+"placements": [],
+"depth": 232,
+"next_player": "B"
+}
+],
+"sgf": "(;PW[wildsim1]WR[2D]PB[kim]BR[2D]RE[W+T]KM[6.5]DT[2020-06-14];B[pd];W[dp];B[qp];W[nc];B[dd];W[cf];B[fc];W[bd];B[cc];W[pb];B[oc];W[ob];B[nd];W[mc];B[md];W[lc];B[nq];W[qj];B[qh];W[qm];B[cn];W[cl];B[cq];W[dq];B[cp];W[do];B[co];W[em];B[jp];W[iq];B[ip];W[jq];B[kq];W[kr];B[lq];W[lr];B[hq];W[hr];B[gr];W[ir];B[gp];W[fq];B[gq];W[mq];B[mp];W[mr];B[op];W[nr];B[or];W[no];B[np];W[cr];B[br];W[dr];B[hm];W[bs];B[bm];W[bl];B[ar];W[cm];B[an];W[gn];B[om];W[ro];B[hn];W[rp];B[qq];W[pi];B[pl];W[ql];B[gm];W[go];B[ho];W[fp];B[el];W[fm];B[fl];W[dl];B[dn];W[en];B[dm];W[fo];B[ph];W[ci];B[oi];W[pk];B[ok];W[oj];B[rk];W[nk];B[ol];W[ni];B[qk];W[pj];B[rj];W[rq];B[qn];W[rn];B[qo];W[rl];B[oh];W[nh];B[ng];W[nj];B[qi];W[lh];B[mg];W[kk];B[mh];W[li];B[mi];W[lj];B[ml];W[mk];B[ll];W[qc];B[qd];W[rc];B[rd];W[ik];B[lk];W[mj];B[kj];W[jj];B[ki];W[jh];B[kl];W[jk];B[dk];W[ck];B[dj];W[cj];B[ii];W[ji];B[ic];W[bc];B[bb];W[cd];B[dc];W[de];B[ee];W[ef];B[fe];W[ff];B[ge];W[gf];B[he];W[gl];B[hl];W[gk];B[hk];W[hj];B[gj];W[fk];B[ij];W[ih];B[hi];W[ek];B[hh];W[kf];B[kc];W[ld];B[lg];W[kg];B[le];W[kd];B[ke];W[je];B[jd];W[lf];B[me];W[if];B[ie];W[jf];B[hf];W[ig];B[kb];W[pc];B[od];W[lb];B[rr];W[sl];B[sq];W[sp];B[sn];W[sr];B[rs];W[sm];B[sc];W[sb];B[sd];W[ka];B[jb];W[ra];B[ns];W[ms];B[os];W[fr];B[hs];W[is];B[gs];W[fs];B[hp];W[js];B[ma];W[na];B[ja];W[ab];B[la];W[nb];B[ba];W[fh];B[fi];W[ei];B[fj];W[ej];B[jl];W[il];B[im];W[mf];B[nf];W[sj];B[si];W[sk];B[ri];W[nl];B[nm];W[kh];B[pm];W[so];B[gh];W[gg])"
+},
+"xmgt97.sgf": {
+"num_nodes": 60,
+"nodes": [
+{
+"props": {
+"FF": [
+"1"
+],
+"GM": [
+"1"
+],
+"VW": [
+""
+],
+"SZ": [
+"9"
+],
+"PB": [
+"hi"
+],
+"PW": [
+"ka"
+],
+"KM": [
+"-1.5"
+],
+"B": [
+"ff"
+]
+},
+"moves": [
+"BF4"
+],
+"placements": [],
+"depth": 0,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gd"
+]
+},
+"moves": [
+"WG6"
+],
+"placements": [],
+"depth": 1,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fd"
+]
+},
+"moves": [
+"BF6"
+],
+"placements": [],
+"depth": 2,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fe"
+]
+},
+"moves": [
+"WF5"
+],
+"placements": [],
+"depth": 3,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ge"
+]
+},
+"moves": [
+"BG5"
+],
+"placements": [],
+"depth": 4,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ee"
+]
+},
+"moves": [
+"WE5"
+],
+"placements": [],
+"depth": 5,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gc"
+]
+},
+"moves": [
+"BG7"
+],
+"placements": [],
+"depth": 6,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hd"
+]
+},
+"moves": [
+"WH6"
+],
+"placements": [],
+"depth": 7,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"hc"
+]
+},
+"moves": [
+"BH7"
+],
+"placements": [],
+"depth": 8,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"he"
+]
+},
+"moves": [
+"WH5"
+],
+"placements": [],
+"depth": 9,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gf"
+]
+},
+"moves": [
+"BG4"
+],
+"placements": [],
+"depth": 10,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hf"
+]
+},
+"moves": [
+"WH4"
+],
+"placements": [],
+"depth": 11,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ed"
+]
+},
+"moves": [
+"BE6"
+],
+"placements": [],
+"depth": 12,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ef"
+]
+},
+"moves": [
+"WE4"
+],
+"placements": [],
+"depth": 13,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eg"
+]
+},
+"moves": [
+"BE3"
+],
+"placements": [],
+"depth": 14,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dg"
+]
+},
+"moves": [
+"WD3"
+],
+"placements": [],
+"depth": 15,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fg"
+]
+},
+"moves": [
+"BF3"
+],
+"placements": [],
+"depth": 16,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gh"
+]
+},
+"moves": [
+"WG2"
+],
+"placements": [],
+"depth": 17,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cg"
+]
+},
+"moves": [
+"BC3"
+],
+"placements": [],
+"depth": 18,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dh"
+]
+},
+"moves": [
+"WD2"
+],
+"placements": [],
+"depth": 19,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"df"
+]
+},
+"moves": [
+"BD4"
+],
+"placements": [],
+"depth": 20,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"de"
+]
+},
+"moves": [
+"WD5"
+],
+"placements": [],
+"depth": 21,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cf"
+]
+},
+"moves": [
+"BC4"
+],
+"placements": [],
+"depth": 22,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"dd"
+]
+},
+"moves": [
+"WD6"
+],
+"placements": [],
+"depth": 23,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"dc"
+]
+},
+"moves": [
+"BD7"
+],
+"placements": [],
+"depth": 24,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ec"
+]
+},
+"moves": [
+"WE7"
+],
+"placements": [],
+"depth": 25,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"fc"
+]
+},
+"moves": [
+"BF7"
+],
+"placements": [],
+"depth": 26,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"cc"
+]
+},
+"moves": [
+"WC7"
+],
+"placements": [],
+"depth": 27,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eb"
+]
+},
+"moves": [
+"BE8"
+],
+"placements": [],
+"depth": 28,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"be"
+]
+},
+"moves": [
+"WB5"
+],
+"placements": [],
+"depth": 29,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bf"
+]
+},
+"moves": [
+"BB4"
+],
+"placements": [],
+"depth": 30,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ce"
+]
+},
+"moves": [
+"WC5"
+],
+"placements": [],
+"depth": 31,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"bd"
+]
+},
+"moves": [
+"BB6"
+],
+"placements": [],
+"depth": 32,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ae"
+]
+},
+"moves": [
+"WA5"
+],
+"placements": [],
+"depth": 33,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"af"
+]
+},
+"moves": [
+"BA4"
+],
+"placements": [],
+"depth": 34,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"db"
+]
+},
+"moves": [
+"WD8"
+],
+"placements": [],
+"depth": 35,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ec"
+]
+},
+"moves": [
+"BE7"
+],
+"placements": [],
+"depth": 36,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bc"
+]
+},
+"moves": [
+"WB7"
+],
+"placements": [],
+"depth": 37,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"eh"
+]
+},
+"moves": [
+"BE2"
+],
+"placements": [],
+"depth": 38,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"gg"
+]
+},
+"moves": [
+"WG3"
+],
+"placements": [],
+"depth": 39,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ch"
+]
+},
+"moves": [
+"BC2"
+],
+"placements": [],
+"depth": 40,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fh"
+]
+},
+"moves": [
+"WF2"
+],
+"placements": [],
+"depth": 41,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"di"
+]
+},
+"moves": [
+"BD1"
+],
+"placements": [],
+"depth": 42,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ic"
+]
+},
+"moves": [
+"WJ7"
+],
+"placements": [],
+"depth": 43,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"cb"
+]
+},
+"moves": [
+"BC8"
+],
+"placements": [],
+"depth": 44,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"bb"
+]
+},
+"moves": [
+"WB8"
+],
+"placements": [],
+"depth": 45,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"da"
+]
+},
+"moves": [
+"BD9"
+],
+"placements": [],
+"depth": 46,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hb"
+]
+},
+"moves": [
+"WH8"
+],
+"placements": [],
+"depth": 47,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"gb"
+]
+},
+"moves": [
+"BG8"
+],
+"placements": [],
+"depth": 48,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ba"
+]
+},
+"moves": [
+"WB9"
+],
+"placements": [],
+"depth": 49,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ca"
+]
+},
+"moves": [
+"BC9"
+],
+"placements": [],
+"depth": 50,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"fi"
+]
+},
+"moves": [
+"WF1"
+],
+"placements": [],
+"depth": 51,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"id"
+]
+},
+"moves": [
+"BJ6"
+],
+"placements": [],
+"depth": 52,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ib"
+]
+},
+"moves": [
+"WJ8"
+],
+"placements": [],
+"depth": 53,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ha"
+]
+},
+"moves": [
+"BH9"
+],
+"placements": [],
+"depth": 54,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"ie"
+]
+},
+"moves": [
+"WJ5"
+],
+"placements": [],
+"depth": 55,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ga"
+]
+},
+"moves": [
+"BG9"
+],
+"placements": [],
+"depth": 56,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"hg"
+]
+},
+"moves": [
+"WH3"
+],
+"placements": [],
+"depth": 57,
+"next_player": "B"
+},
+{
+"props": {
+"B": [
+"ia"
+]
+},
+"moves": [
+"BJ9"
+],
+"placements": [],
+"depth": 58,
+"next_player": "W"
+},
+{
+"props": {
+"W": [
+"id"
+]
+},
+"moves": [
+"WJ6"
+],
+"placements": [],
+"depth": 59,
+"next_player": "B"
+}
+],
+"sgf": "(;FF[1]GM[1]VW[]SZ[9]PB[hi]PW[ka]KM[-1.5]B[ff];W[gd];B[fd];W[fe];B[ge];W[ee];B[gc];W[hd];B[hc];W[he];B[gf];W[hf];B[ed];W[ef];B[eg];W[dg];B[fg];W[gh];B[cg];W[dh];B[df];W[de];B[cf];W[dd];B[dc];W[ec];B[fc];W[cc];B[eb];W[be];B[bf];W[ce];B[bd];W[ae];B[af];W[db];B[ec];W[bc];B[eh];W[gg];B[ch];W[fh];B[di];W[ic];B[cb];W[bb];B[da];W[hb];B[gb];W[ba];B[ca];W[fi];B[id];W[ib];B[ha];W[ie];B[ga];W[hg];B[ia];C[Black: 13 + 4 = 17\n\nWhite: 13 + 2 + -1.5 = 13.5\n\nBlack wins by 3.5]W[id])"
+}
+}

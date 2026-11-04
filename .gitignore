@@ -159,3 +159,10 @@ dmypy.json
 
 # macOS
 .DS_Store
+
+# Tauri / frontend
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/gen/
+*.tsbuildinfo

@@ -1,0 +1,9 @@
+{
+  "bundle": {
+    "resources": {
+      "../katrain/models/b10c384h6nbttflrs.bin.gz": "models/b10c384h6nbttflrs.bin.gz",
+      "../katrain/KataGo/analysis_config.cfg": "KataGo/analysis_config.cfg",
+      "../katrain/KataGo/katago": "KataGo/katago"
+    }
+  }
+}
