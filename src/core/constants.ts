@@ -53,20 +53,28 @@ export const AI_SETTLE_STONES = "ai:settle";
 export const AI_HUMAN = "ai:human";
 export const AI_PRO = "ai:pro";
 
-/** Strategies available in this port, in the order KaTrain recommends them. */
+/** All strategies, in the order KaTrain recommends them (AI_STRATEGIES_RECOMMENDED_ORDER). */
 export const AI_STRATEGIES_AVAILABLE = [
   AI_DEFAULT,
+  AI_HUMAN,
+  AI_PRO,
   AI_RANK,
   AI_HANDICAP,
+  AI_SIMPLE_OWNERSHIP,
   AI_SCORELOSS,
   AI_POLICY,
   AI_WEIGHTED,
+  AI_JIGO,
+  AI_ANTIMIRROR,
   AI_PICK,
   AI_LOCAL,
   AI_TENUKI,
   AI_TERRITORY,
   AI_INFLUENCE,
 ] as const;
+
+/** Strategies that need KataGo's human-like model (engine.humanlike_model). */
+export const AI_STRATEGIES_HUMAN_MODEL: string[] = [AI_HUMAN, AI_PRO];
 
 export const AI_STRENGTH: Record<string, number> = {
   [AI_DEFAULT]: 9,

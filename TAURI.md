@@ -55,7 +55,12 @@ End-to-end tests drive the real bundled KataGo from the TypeScript core:
 
 ```sh
 KATAGO_E2E=1 npx vitest run tests-ts/engine.e2e.test.ts
+# include the human-like AIs:
+KATAGO_E2E=1 KATAGO_HUMAN_MODEL=/path/to/b18c384nbt-humanv0.bin.gz npx vitest run tests-ts/engine.e2e.test.ts
 ```
+
+Downloaded models are stored in the app data folder (`models/`); on macOS that is
+`~/Library/Application Support/io.github.yongjer.katrain/models`.
 
 ## Status
 
@@ -68,13 +73,16 @@ Ported in this first phase:
 - Analysis: per-move analysis, deeper analysis, equalize, sweep, alternatives, continuous (pondering),
   full game re-analysis, reset
 - Score / win rate graph, move statistics, move info, details and notes
-- Play against KataGo and the Calibrated Rank, Handicap, Score Loss, Policy, Policy Weighted, Blinded Policy,
-  Local, Tenuki, Territorial and Influential AIs, with rank estimates and AI settings
+- Play against all of KaTrain's AIs: KataGo, Human-like, Historical Pro, Calibrated Rank, KataHandicap, Simple Style,
+  Score Loss, Policy, Policy Weighted, KataJigo, KataAntiMirror, Blinded Policy, Local, Tenuki, Territorial and
+  Influential, with rank estimates and AI settings
+- Teaching games (auto-undo of mistakes) and the move tree (navigate, delete, make main branch, collapse, prune)
+- Model management: pick the engine and human-like models found on disk (bundled, downloaded, or in Python KaTrain's
+  ~/.katrain), and "Download Models" (human-like model, latest/strongest distributed models) with progress
 - New game (size incl. non-square, handicap, komi, rules), general/engine/teaching settings, all 11 languages
 - Keyboard shortcuts as in KaTrain (arrows/z/x, up/down branches, home/end, b, n, p, enter, space, q w e r t,
   a s d f h, m, tab, ctrl+n/l/s/d, F7, F8) and mouse wheel navigation
 
-Not yet ported (next phase): teaching mode auto-undo, timers, the move tree widget, insert mode, self-play / setup
-position, tsumego frame, the performance report, the Simple/Settle/Jigo/AntiMirror/Human-like/Historical Pro AIs,
-the remote (WebSocket) engine, KataGo model/binary downloads, contribute mode, and clipboard copy/paste.
+Not yet ported: timers, insert mode, self-play / setup position, tsumego frame, the performance report,
+the remote (WebSocket) engine, KataGo binary downloads, contribute mode, and clipboard copy/paste.
 Until then the Python app remains in `katrain/` and still runs as before.

@@ -49,6 +49,8 @@ export interface KataGoResponse {
   rootInfo: RootInfo;
   ownership?: number[];
   policy?: number[];
+  /** present when a human-like model is loaded and humanSLProfile is set */
+  humanPolicy?: number[];
   noResults?: boolean;
   error?: string;
   warning?: string;

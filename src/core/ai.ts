@@ -1,8 +1,7 @@
 // Ported from katrain/core/ai.py: AI move generation strategies.
-// Strategies not yet ported (simple ownership, settle stones, jigo, antimirror, human-like, pro)
-// fall back to the default strategy.
 
 import {
+  AI_ANTIMIRROR,
   AI_DEFAULT,
   AI_HANDICAP,
   AI_INFLUENCE,
@@ -25,12 +24,13 @@ import {
   AI_WEIGHTED,
   AI_WEIGHTED_ELO,
   AI_HUMAN,
+  AI_SIMPLE_OWNERSHIP,
   CALIBRATED_RANK_ELO,
   PRIORITY_EXTRA_AI_QUERY,
   type EloGrid,
 } from "./constants";
 import type { Game } from "./game";
-import type { GameNode, KataGoResponse } from "./gameNode";
+import { GameNode, type CandidateMove, type KataGoResponse } from "./gameNode";
 import { Move } from "./move";
 import { nLargest, varToGrid, weightedSelectionWithoutReplacement } from "./utils";
 
@@ -440,6 +440,183 @@ class LocalTenukiStrategy extends PickBasedStrategy {
   }
 }
 
+
+class AntimirrorStrategy extends AIStrategy {
+  async generateMove(): Promise<[Move, string]> {
+    const analysis = await this.requestAnalysis({ antiMirror: true });
+    if (!analysis) return new DefaultStrategy(this.game, this.settings).generateMove();
+    await this.waitForAnalysis();
+    const cands = analysis.moveInfos;
+    const top = Move.fromGtp(cands[0].move, this.cn.nextPlayer);
+    return [
+      top,
+      `AntiMirror strategy found ${cands.length} moves returned from the engine and chose ${top.gtp()} as top move. antiMirror based score ${this.cn.formatScore(analysis.rootInfo.scoreLead)} and win rate ${this.cn.formatWinrate(analysis.rootInfo.winrate)}`,
+    ];
+  }
+}
+
+class JigoStrategy extends AIStrategy {
+  async generateMove(): Promise<[Move, string]> {
+    await this.waitForAnalysis();
+    const cands = this.cn.candidateMoves;
+    if (!cands.length) return [Move.pass(this.cn.nextPlayer), "No candidate moves found, passing"];
+    const top = Move.fromGtp(cands[0].move, this.cn.nextPlayer);
+    const sign = GameNode.playerSign(this.cn.nextPlayer);
+    const target = this.s("target_score", 0.5);
+    const dist = (d: CandidateMove) => Math.abs(sign * d.scoreLead - target);
+    const jigo = cands.reduce((best, d) => (dist(d) < dist(best) ? d : best));
+    const aimove = Move.fromGtp(jigo.move, this.cn.nextPlayer);
+    return [
+      aimove,
+      `Jigo strategy found ${cands.length} candidate moves (best ${top.gtp()}) and chose ${aimove.gtp()} as closest to 0.5 point win`,
+    ];
+  }
+}
+
+interface SettledMove {
+  move: Move;
+  own: number;
+  opp: number;
+  attach: boolean;
+  tenuki: boolean;
+  d: CandidateMove;
+}
+
+class SimpleOwnershipStrategy extends AIStrategy {
+  protected settledness(d: CandidateMove, playerSign: number): number {
+    return (d.ownership ?? []).reduce((acc, o) => (playerSign * o > 0 ? acc + Math.abs(o) : acc), 0);
+  }
+
+  protected isAttachment(move: Move): boolean {
+    if (!move.coords) return false;
+    const stones = new Set(this.game.stones.map((s) => `${s.coords![0]},${s.coords![1]},${s.player}`));
+    const [x, y] = move.coords;
+    let attachOpponent = 0;
+    for (const [dx, dy] of [
+      [-1, 0],
+      [1, 0],
+      [0, -1],
+      [0, 1],
+    ]) {
+      if (stones.has(`${x + dx},${y + dy},${this.cn.player}`)) attachOpponent++;
+    }
+    // same (slightly asymmetric) neighbourhood as the Python version, so the AI keeps its calibrated style
+    let nearbyOwn = 0;
+    for (const dx of [-2, 0, 1, 2]) {
+      for (const dy of [-3, 0, 1, 2]) {
+        if (Math.abs(dx) + Math.abs(dy) <= 2 && stones.has(`${x + dx},${y + dy},${this.cn.nextPlayer}`)) nearbyOwn++;
+      }
+    }
+    return attachOpponent >= 1 && nearbyOwn === 0;
+  }
+
+  protected isTenuki(move: Move): boolean {
+    if (!move.coords) return false;
+    return ![this.cn, this.cn.parent].some((node) => {
+      const m = node?.move;
+      if (!node || !m || !m.coords) return true;
+      return Math.max(Math.abs(m.coords[0] - move.coords![0]), Math.abs(m.coords[1] - move.coords![1])) < 5;
+    });
+  }
+
+  protected movesWithSettledness(): SettledMove[] {
+    const sign = GameNode.playerSign(this.cn.nextPlayer);
+    const scored: [SettledMove, number][] = [];
+    for (const d of this.cn.candidateMoves) {
+      if (d.pointsLost >= this.s("max_points_lost") || !d.ownership) continue;
+      if (!(d.order <= 1 || d.visits >= this.s("min_visits", 1))) continue;
+      const move = Move.fromGtp(d.move, this.cn.nextPlayer);
+      if (move.isPass && d.pointsLost > 0.75) continue;
+      const own = this.settledness(d, sign);
+      const opp = this.settledness(d, -sign);
+      const attach = this.isAttachment(move);
+      const tenuki = this.isTenuki(move);
+      const score =
+        d.pointsLost +
+        this.s("attach_penalty") * Number(attach) +
+        this.s("tenuki_penalty") * Number(tenuki) -
+        this.s("settled_weight") * (own + this.s("opponent_fac") * opp);
+      scored.push([{ move, own, opp, attach, tenuki, d }, score]);
+    }
+    return scored.sort((a, b) => a[1] - b[1]).map(([m]) => m);
+  }
+
+  async generateMove(): Promise<[Move, string]> {
+    await this.waitForAnalysis();
+    const cands = this.cn.candidateMoves;
+    if (!cands.length) return [Move.pass(this.cn.nextPlayer), "No candidate moves found, passing"];
+    const top = Move.fromGtp(cands[0].move, this.cn.nextPlayer);
+    if (top.isPass) return [top, "Top move is pass, so passing regardless of strategy."];
+    const moves = this.movesWithSettledness();
+    if (!moves.length) throw new Error("No moves found - are you using an older KataGo with no per-move ownership info?");
+    const desc = moves
+      .slice(0, 5)
+      .map(
+        (m) =>
+          `${m.move.gtp()} (${m.d.pointsLost.toFixed(1)} pt lost, ${m.d.visits} visits, ${m.own.toFixed(1)} settledness, ${m.opp.toFixed(1)} opponent settledness${m.attach ? ", attachment" : ""}${m.tenuki ? ", tenuki" : ""})`,
+      )
+      .join(", ");
+    return [moves[0].move, `${AI_SIMPLE_OWNERSHIP} strategy. Top 5 Candidates ${desc} `];
+  }
+}
+
+/** Human-like (by rank, modern or pre-AlphaZero style) and historical pro (by year), via KataGo's human SL model. */
+class HumanStyleStrategy extends AIStrategy {
+  async generateMove(): Promise<[Move, string]> {
+    let profile: string;
+    if (this.settings.human_kyu_rank !== undefined) {
+      const kyu = Math.round(this.s("human_kyu_rank"));
+      const style = this.settings.modern_style ? "rank" : "preaz";
+      profile = `${style}_${kyu <= 0 ? `${1 - kyu}d` : `${kyu}k`}`;
+    } else {
+      profile = `proyear_${Math.round(this.s("pro_year", 1914))}`;
+    }
+    const engine = this.game.engine!;
+    let analysis: KataGoResponse | null = null;
+    let error = false;
+    engine.requestAnalysis(this.cn, {
+      callback: (a, partial) => {
+        if (!partial) analysis = a;
+      },
+      errorCallback: () => {
+        error = true;
+      },
+      priority: PRIORITY_EXTRA_AI_QUERY,
+      includePolicy: true,
+      extraSettings: { humanSLProfile: profile, ignorePreRootHistory: false },
+    });
+    while (!error && !analysis) {
+      this.raiseIfDiscarded();
+      await sleep(20);
+    }
+    const result = analysis as KataGoResponse | null;
+    if (error || !result) {
+      const ranking = this.cn.policyRanking;
+      if (ranking) return [ranking[0][1], "Falling back to policy move due to error in human analysis."];
+      return [Move.pass(this.cn.nextPlayer), "No valid moves found."];
+    }
+    const human = result.humanPolicy;
+    if (!human) throw new Error("humanPolicy not found in analysis\u2014have you downloaded and configured your human model yet?");
+    const [sx, sy] = this.game.boardSize;
+    const moves: [Move, number][] = [];
+    for (let x = 0; x < sx; x++) {
+      for (let y = 0; y < sy; y++) {
+        const p = human[(sy - y - 1) * sx + x];
+        if (p > 0) moves.push([new Move([x, y], this.cn.nextPlayer), p]);
+      }
+    }
+    if (human.length > sx * sy && human[human.length - 1] > 0) moves.push([Move.pass(this.cn.nextPlayer), human[human.length - 1]]);
+    const ranked = [...moves].sort((a, b) => b[1] - a[1]);
+    const topStr = ranked
+      .slice(0, 5)
+      .map(([m, p], i) => `#${i + 1}: ${m.gtp()} - ${(100 * p).toFixed(1)}%`)
+      .join("\n");
+    const [move, prob] = weightedSelectionWithoutReplacement(moves, (m) => m[1], 1)[0];
+    const rank = ranked.findIndex(([m]) => m.gtp() === move.gtp()) + 1;
+    return [move, `\n${topStr}\n\nPlayed move ${move.gtp()} (${(100 * prob).toFixed(1)}%) as the #${rank} top move.`];
+  }
+}
+
 function pyRound(x: number): number {
   // Python's round() is round-half-to-even
   const f = Math.floor(x);
@@ -453,6 +630,15 @@ function makeStrategy(game: Game, mode: string, settings: AiSettings): AIStrateg
   switch (mode) {
     case AI_HANDICAP:
       return new HandicapStrategy(game, settings);
+    case AI_ANTIMIRROR:
+      return new AntimirrorStrategy(game, settings);
+    case AI_JIGO:
+      return new JigoStrategy(game, settings);
+    case AI_SIMPLE_OWNERSHIP:
+      return new SimpleOwnershipStrategy(game, settings);
+    case AI_HUMAN:
+    case AI_PRO:
+      return new HumanStyleStrategy(game, settings);
     case AI_SCORELOSS:
       return new ScoreLossStrategy(game, settings);
     case AI_POLICY:

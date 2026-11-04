@@ -934,3 +934,40 @@ button.primary:disabled {
   left: 0;
   z-index: 40;
 }
+
+/* ------------------------------------------------------------ models */
+.model-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.download-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.download {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 1.2fr auto;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.download progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.download.error {
+  color: #ff7a7a;
+}
+
+.warning {
+  color: var(--accent);
+  font-size: 12px;
+  margin: 0;
+}

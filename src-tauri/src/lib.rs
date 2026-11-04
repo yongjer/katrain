@@ -1,5 +1,6 @@
 mod engine;
 mod files;
+mod models;
 mod paths;
 
 use tauri::RunEvent;
@@ -9,6 +10,7 @@ pub fn run() {
     let app = tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .manage(engine::EngineState::default())
+        .manage(models::Downloads::default())
         .invoke_handler(tauri::generate_handler![
             engine::engine_start,
             engine::engine_send,
@@ -17,6 +19,9 @@ pub fn run() {
             files::write_text_file,
             files::load_config,
             files::save_config,
+            models::list_models,
+            models::resolve_model_endpoint,
+            models::download_model,
         ])
         .build(tauri::generate_context!())
         .expect("error while building KaTrain");

@@ -8,8 +8,30 @@ export interface OpenedFile {
   contents: string;
 }
 
+export interface ModelFile {
+  path: string;
+  name: string;
+  size: number;
+}
+
+export interface DownloadProgress {
+  name: string;
+  received: number;
+  total: number | null;
+  done: boolean;
+  error: string | null;
+  path: string | null;
+}
+
 export interface Platform {
   isDesktop: boolean;
+  /** Model files on disk (bundled, downloaded, ~/.katrain, and next to `extraPaths`). */
+  listModels(extraPaths: string[]): Promise<ModelFile[]>;
+  /** Resolve a katagotraining.org endpoint to a model URL. */
+  resolveModelEndpoint(url: string): Promise<string>;
+  /** Download a model; resolves to the saved path. */
+  downloadModel(name: string, url: string): Promise<string>;
+  onDownloadProgress(cb: (p: DownloadProgress) => void): Promise<() => void>;
   makeTransport(): EngineTransport;
   openGameFile(): Promise<OpenedFile | null>;
   /** Save to `path`, or ask where to save when path is null. Returns the path written, or null if cancelled. */
@@ -78,6 +100,22 @@ const GAME_FILTERS = [{ name: "Go game records", extensions: ["sgf", "gib", "ngf
 
 const tauriPlatform: Platform = {
   isDesktop: true,
+  async listModels(extraPaths) {
+    const { invoke } = await import("@tauri-apps/api/core");
+    return invoke<ModelFile[]>("list_models", { extraPaths });
+  },
+  async resolveModelEndpoint(url) {
+    const { invoke } = await import("@tauri-apps/api/core");
+    return invoke<string>("resolve_model_endpoint", { url });
+  },
+  async downloadModel(name, url) {
+    const { invoke } = await import("@tauri-apps/api/core");
+    return invoke<string>("download_model", { name, url });
+  },
+  async onDownloadProgress(cb) {
+    const { listen } = await import("@tauri-apps/api/event");
+    return listen<DownloadProgress>("model-download", (e) => cb(e.payload));
+  },
   makeTransport: () => new TauriTransport(),
   async openGameFile() {
     const { open } = await import("@tauri-apps/plugin-dialog");
@@ -162,6 +200,18 @@ class HttpBridgeTransport implements EngineTransport {
 
 const browserPlatform: Platform = {
   isDesktop: false,
+  async listModels() {
+    return [];
+  },
+  async resolveModelEndpoint() {
+    throw new Error("Model downloads need the desktop app");
+  },
+  async downloadModel() {
+    throw new Error("Model downloads need the desktop app");
+  },
+  async onDownloadProgress() {
+    return () => {};
+  },
   makeTransport: () => new HttpBridgeTransport(new URLSearchParams(window.location.search).get("bridge")),
   openGameFile() {
     return new Promise((resolve) => {

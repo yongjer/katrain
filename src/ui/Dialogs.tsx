@@ -2,12 +2,13 @@
 
 import { useState, type ReactNode } from "react";
 import { aiRankEstimation, rankLabel } from "../core/ai";
-import { AI_STRATEGIES_AVAILABLE, TOP_MOVE_OPTIONS } from "../core/constants";
+import { AI_STRATEGIES_AVAILABLE, AI_STRATEGIES_HUMAN_MODEL, TOP_MOVE_OPTIONS } from "../core/constants";
 import { t } from "../core/i18n";
 import type { AppConfig } from "../state/config";
 import { platform } from "../state/platform";
 import { newGame, openDialog, updateConfig, useStore } from "../state/store";
 import { LANGUAGES } from "./i18nLoader";
+import { ModelPicker } from "./ModelPicker";
 import { EVAL_COLORS } from "./theme";
 
 function Modal({ title, children, onClose }: { title: string; children: ReactNode; onClose: () => void }) {
@@ -129,12 +130,22 @@ export function SettingsDialog() {
       <Field label={t("engine:katago")} hint={t("engine:katago:hint")}>
         <input value={e.katago} onChange={(ev) => edit((c) => void (c.engine.katago = ev.target.value))} spellCheck={false} />
       </Field>
-      <Field label={t("engine:model")}>
-        <input value={e.model} onChange={(ev) => edit((c) => void (c.engine.model = ev.target.value))} spellCheck={false} />
-      </Field>
-      <Field label={t("engine:humanlike_model")}>
-        <input value={e.humanlike_model} onChange={(ev) => edit((c) => void (c.engine.humanlike_model = ev.target.value))} spellCheck={false} />
-      </Field>
+      <ModelPicker
+        model={e.model}
+        humanlikeModel={e.humanlike_model}
+        onModel={(v) => edit((c) => void (c.engine.model = v))}
+        onHumanlikeModel={(v) => edit((c) => void (c.engine.humanlike_model = v))}
+      />
+      {!platform.isDesktop && (
+        <>
+          <Field label={t("engine:model")}>
+            <input value={e.model} onChange={(ev) => edit((c) => void (c.engine.model = ev.target.value))} spellCheck={false} />
+          </Field>
+          <Field label={t("engine:humanlike_model")}>
+            <input value={e.humanlike_model} onChange={(ev) => edit((c) => void (c.engine.humanlike_model = ev.target.value))} spellCheck={false} />
+          </Field>
+        </>
+      )}
       <Field label={t("engine:config")}>
         <input value={e.config} onChange={(ev) => edit((c) => void (c.engine.config = ev.target.value))} spellCheck={false} />
       </Field>
@@ -269,6 +280,11 @@ export function AiSettingsDialog() {
         </select>
       </Field>
       <p className="ai-help">{t(`aihelp:${strategy.replace(/^ai:/, "")}`).replace(/\[\/?[a-z]+[^\]]*\]/g, "")}</p>
+      {AI_STRATEGIES_HUMAN_MODEL.includes(strategy) && !config.engine.humanlike_model && (
+        <p className="warning">
+          {t("engine:humanlike_model")}: — {t("menu:settings")} → {t("download models button")}
+        </p>
+      )}
       {Object.keys(settings).length === 0 && <p className="muted">—</p>}
       {Object.entries(settings).map(([key, value]) => (
         <Field key={key} label={key.replace(/_/g, " ")}>

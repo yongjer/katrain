@@ -10,7 +10,7 @@ import { join } from "node:path";
 import { createInterface } from "node:readline";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { generateAiMove } from "../src/core/ai";
-import { AI_STRATEGIES_AVAILABLE } from "../src/core/constants";
+import { AI_STRATEGIES_AVAILABLE, AI_STRATEGIES_HUMAN_MODEL } from "../src/core/constants";
 import { KataGoEngine, type EngineSettings, type EngineTransport } from "../src/core/engine";
 import { Game } from "../src/core/game";
 import { Move } from "../src/core/move";
@@ -33,7 +33,8 @@ class NodeTransport implements EngineTransport {
     mkdirSync(dataDir, { recursive: true });
     const exe = process.env.KATAGO_EXE || join(repo, "katrain/KataGo/katago");
     const overrides = [`homeDataDir=${dataDir}`, "numAnalysisThreads=2", "numSearchThreads=2", "nnMaxBatchSize=8"].join(",");
-    this.proc = spawn(exe, ["analysis", "-model", join(repo, s.model), "-config", join(repo, s.config), "-override-config", overrides]);
+    const human = process.env.KATAGO_HUMAN_MODEL ? ["-human-model", process.env.KATAGO_HUMAN_MODEL] : [];
+    this.proc = spawn(exe, ["analysis", "-model", join(repo, s.model), ...human, "-config", join(repo, s.config), "-override-config", overrides]);
     createInterface({ input: this.proc.stdout }).on("line", (l) => this.handlers.onStdout(l));
     createInterface({ input: this.proc.stderr }).on("line", (l) => {
       this.stderr.push(l);
@@ -100,7 +101,9 @@ describe.skipIf(!enabled)("KataGo end-to-end", () => {
   }, 120_000);
 
   for (const strategy of AI_STRATEGIES_AVAILABLE) {
-    it(`plays a legal move with ${strategy}`, async () => {
+    // the human-like AIs need KataGo started with -human-model (KATAGO_HUMAN_MODEL)
+    const needsHuman = AI_STRATEGIES_HUMAN_MODEL.includes(strategy) && !process.env.KATAGO_HUMAN_MODEL;
+    it.skipIf(needsHuman)(`plays a legal move with ${strategy}`, async () => {
       const cn = game.currentNode;
       const ai = (defaultConfig.ai as Record<string, Record<string, number | boolean>>)[strategy] ?? {};
       const played = await generateAiMove(game, strategy, ai);
