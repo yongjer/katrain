@@ -43,7 +43,7 @@ You can also run that command in a terminal to see KataGo's output directly.
 ## <a name="Mac"></a><img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Apple_Logo.svg" alt="macOs" height="35"/> For macOS users
 
 The Apple Silicon app bundles a KataGo built with the Metal backend, which uses the GPU and Neural Engine and
-requires macOS 13 or later. The Intel app bundles an OpenCL build.
+requires macOS 14 or later. The Intel app bundles an OpenCL build, which runs on macOS 11 or later.
 If the bundled engine does not work on your machine, `brew install katago` and set the engine path to that binary
 (e.g. `/opt/homebrew/bin/katago`).
 
