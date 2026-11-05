@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { GameNode } from "../core/gameNode";
 import { t } from "../core/i18n";
 import { editTree, goTo, useStore, type TreeEdit } from "../state/store";
+import { IS_MAC, MOD_KEY } from "./theme";
 
 const SIZE = 22; // node diameter in px
 const GAP = 5;
@@ -146,7 +147,7 @@ export function MoveTree() {
         <div className="tree-menu dropdown" style={{ left: menu.x, top: menu.y }} onMouseDown={(e) => e.stopPropagation()}>
           <button className="menu-item" onClick={() => act("delete")}>
             <span>{t("Delete Node")}</span>
-            <kbd>Ctrl+Del</kbd>
+            <kbd>{MOD_KEY}{IS_MAC ? "⌫" : "Del"}</kbd>
           </button>
           <button className="menu-item" onClick={() => act("main")}>
             <span>{t("Make Main Branch")}</span>
