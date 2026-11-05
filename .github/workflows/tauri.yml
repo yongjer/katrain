@@ -2,7 +2,7 @@ name: Tauri app
 
 on:
   push:
-    branches: [tauri-v2]
+    branches: [main]
   pull_request:
     paths:
       - "src/**"
@@ -173,10 +173,10 @@ jobs:
             src-tauri/target/release/bundle/**/*.AppImage
           if-no-files-found: ignore
 
-  # Every push to tauri-v2 refreshes one public prerelease, "tauri-nightly", with the latest installers.
+  # Every push to main refreshes one public prerelease, "tauri-nightly", with the latest installers.
   nightly:
     needs: build
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/tauri-v2'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -197,11 +197,11 @@ jobs:
           set -euo pipefail
           git tag -f tauri-nightly "$GITHUB_SHA"
           git push -f origin tauri-nightly
-          notes="Automatic build of the Tauri port from the tauri-v2 branch, commit ${GITHUB_SHA}. Not a release: for testing only. macOS builds are unsigned."
+          notes="Automatic build from the main branch, commit ${GITHUB_SHA}. Not a release: for testing only. macOS builds are unsigned."
           if gh release view tauri-nightly >/dev/null 2>&1; then
-            gh release edit tauri-nightly --prerelease --title "KaTrain 2 nightly (tauri-v2)" --notes "$notes"
+            gh release edit tauri-nightly --prerelease --title "KaTrain 2 nightly" --notes "$notes"
           else
-            gh release create tauri-nightly --prerelease --title "KaTrain 2 nightly (tauri-v2)" --notes "$notes" --verify-tag
+            gh release create tauri-nightly --prerelease --title "KaTrain 2 nightly" --notes "$notes" --verify-tag
           fi
           mapfile -t files < <(find bundles -type f \( -name '*.dmg' -o -name '*.msi' -o -name '*.exe' -o -name '*.deb' -o -name '*.AppImage' \))
           printf '%s\n' "${files[@]}"

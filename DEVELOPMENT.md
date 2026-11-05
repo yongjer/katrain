@@ -106,7 +106,7 @@ language to `LANGUAGES` in `src/ui/i18nLoader.ts`.
 
 ## Test builds
 
-Every push to `tauri-v2` builds Windows, macOS (Apple Silicon and Intel) and Linux installers in CI and refreshes the
+Every push to `main` builds Windows, macOS (Apple Silicon and Intel) and Linux installers in CI and refreshes the
 [`tauri-nightly` prerelease](https://github.com/yongjer/katrain/releases/tag/tauri-nightly) with them.
 These are unsigned test builds.
 
