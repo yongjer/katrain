@@ -122,6 +122,10 @@ jobs:
             "$katago" version
           done
           test -z "$(find deb/usr/lib squashfs-root/usr/lib -type f -name katago)"
+          # An absolute path, or the menu entry opens another katrain that comes first on PATH (the Python version).
+          grep -Fx 'Exec=/usr/bin/katrain' deb/usr/share/applications/KaTrain.desktop
+          # for information: what the AppImage's own entry ends up with
+          cat squashfs-root/*.desktop
           # the GStreamer plugins WebKit needs to play the sounds (WAV files)
           for plugin in coreelements playback typefindfunctions wavparse audioconvert audioresample autodetect alsa pulseaudio; do
             test -n "$(find squashfs-root -name "libgst$plugin.so")" || { echo "AppImage lacks GStreamer plugin $plugin"; exit 1; }

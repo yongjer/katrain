@@ -13,12 +13,14 @@
       },
       "deb": {
         "depends": ["libfuse2t64 | libfuse2"],
+        "desktopTemplate": "katrain.desktop",
         "files": {
           "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
       },
       "rpm": {
         "depends": ["fuse-libs"],
+        "desktopTemplate": "katrain.desktop",
         "files": {
           "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
