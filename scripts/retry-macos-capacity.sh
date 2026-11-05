@@ -13,10 +13,12 @@ retries="${2:-3}"
 current_attempt() { gh api "repos/$GH_REPO/actions/runs/$run" --jq .run_attempt; }
 
 lacked_a_runner() {
-  local job
+  local job messages
   for job in $(gh api --paginate "repos/$GH_REPO/actions/runs/$run/attempts/$1/jobs" \
     --jq '.jobs[] | select(.conclusion == "cancelled" and (.name | startswith("build (macos"))) | .id'); do
-    if gh api "repos/$GH_REPO/check-runs/$job/annotations" --jq '.[].message' | grep -q 'not acquired by Runner'; then
+    # Not piped into grep: grep -q stops reading, which fails the pipeline under pipefail.
+    messages="$(gh api "repos/$GH_REPO/check-runs/$job/annotations" --jq '.[].message')"
+    if grep -q 'not acquired by Runner' <<<"$messages"; then
       return 0
     fi
   done
