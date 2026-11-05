@@ -29,7 +29,8 @@ src/assets/      sounds
 src-tauri/       Rust backend: runs KataGo (local process, custom command, or a WebSocket to a remote engine)
                  and streams its output as events; reads/writes files with encoding detection; stores the
                  config; downloads models
-resources/       bundled KataGo binaries (Windows, Linux), the default model and the KataGo config
+resources/       bundled KataGo binaries (Windows, Linux; macOS is built by scripts/build-katago-macos.sh),
+                 the default model and the KataGo config
 tests-ts/        unit tests (vitest), golden data generated from the Python implementation, test games
 ```
 
@@ -55,8 +56,10 @@ npm run typecheck
 cargo test --manifest-path src-tauri/Cargo.toml
 ```
 
-KataGo is bundled for Windows and Linux (`resources/KataGo`). On macOS it is looked up on `PATH` and in Homebrew's
-folders (`brew install katago`), or set its path under *General & Engine Settings*.
+KataGo is bundled for Windows and Linux (`resources/KataGo`). For macOS, `scripts/build-katago-macos.sh` builds it
+from source (Metal on Apple Silicon, OpenCL on Intel) with its Homebrew libraries copied next to it, as CI does;
+run it once before `npm run tauri build` or `npm run tauri dev` on a Mac. Without a bundled KataGo the app falls
+back to one on `PATH` or in Homebrew's folders (`brew install katago`).
 
 UI work in a browser (no Tauri), with a real engine:
 
@@ -85,7 +88,7 @@ language to `LANGUAGES` in `src/ui/i18nLoader.ts`.
 
 ## Test builds
 
-Every push to `tauri-v2` builds Windows, macOS (Apple Silicon) and Linux installers in CI and refreshes the
+Every push to `tauri-v2` builds Windows, macOS (Apple Silicon and Intel) and Linux installers in CI and refreshes the
 [`tauri-nightly` prerelease](https://github.com/yongjer/katrain/releases/tag/tauri-nightly) with them.
 These are unsigned test builds.
 

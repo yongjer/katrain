@@ -24,22 +24,21 @@ KaTrain's saved analysis. See [DEVELOPMENT.md](DEVELOPMENT.md) for how it is bui
 
 ## <a name="install"></a> Installation
 
-Test builds for Windows, macOS (Apple Silicon) and Linux are on the
+Test builds for Windows, macOS (Apple Silicon and Intel) and Linux are on the
 [`tauri-nightly` release](https://github.com/yongjer/katrain/releases/tag/tauri-nightly):
 
-* **macOS**: open the `.dmg` and drag KaTrain to Applications. The build is not signed, so the first time,
-  open it from Finder with right click → Open (or allow it under System Settings → Privacy & Security).
-  KataGo is not bundled on macOS: install it with `brew install katago`, or set the path to your own KataGo
-  under *General & Engine Settings* (F8).
+* **macOS**: open the `_aarch64.dmg` (Apple Silicon) or `_x64.dmg` (Intel) and drag KaTrain to Applications.
+  The build is not signed, so the first time, open it from Finder with right click → Open
+  (or allow it under System Settings → Privacy & Security).
 * **Windows**: run the `.msi` or `-setup.exe` installer. SmartScreen may warn about an unknown publisher; choose
   *More info* → *Run anyway*.
 * **Linux**: install the `.deb`, or make the `.AppImage` executable and run it.
 
 ## <a name="kata"></a> Configuring KataGo
 
-KaTrain comes with KataGo for Windows and Linux (OpenCL) and the `b10c384h6nbt` transformer model, which is stronger
-per visit than the strongest 18 block models while being about as fast. On macOS, Homebrew's KataGo uses the Metal
-backend, which is the fastest option there.
+KaTrain comes with KataGo and the `b10c384h6nbt` transformer model, which is stronger per visit than the strongest
+18 block models while being about as fast. KataGo uses the Metal backend on Apple Silicon Macs (macOS 13 or later),
+and OpenCL on Windows, Linux and Intel Macs.
 
 Open *General & Engine Settings* (F8) to configure the engine. The selected tab decides which engine is used:
 

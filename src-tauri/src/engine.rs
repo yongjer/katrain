@@ -95,7 +95,8 @@ pub fn resolve_backend(launch: &EngineLaunch) -> &'static str {
     }
 }
 
-/// Default KataGo executable for this platform: bundled on Windows/Linux, PATH (e.g. Homebrew) on macOS.
+/// Default KataGo executable for this platform: the bundled one (on macOS built by scripts/build-katago-macos.sh),
+/// or on macOS without it, one on PATH or in Homebrew's folders.
 fn default_katago(app: &AppHandle) -> Result<PathBuf, String> {
     if cfg!(target_os = "windows") {
         return Ok(paths::resolve_resource(app, "katrain/KataGo/katago.exe"));

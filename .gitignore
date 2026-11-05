@@ -20,3 +20,7 @@ resources/models/*.bin.gz
 .idea
 .vs
 .DS_Store
+
+# built by scripts/build-katago-macos.sh
+resources/KataGo/katago-osx
+resources/KataGo/katago-libs/

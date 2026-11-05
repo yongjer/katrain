@@ -42,9 +42,10 @@ You can also run that command in a terminal to see KataGo's output directly.
 
 ## <a name="Mac"></a><img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Apple_Logo.svg" alt="macOs" height="35"/> For macOS users
 
-KataGo is not bundled on macOS. Install it with `brew install katago` (KaTrain finds it in Homebrew's folders),
-or set the engine path to your own KataGo binary. Homebrew's KataGo uses the Metal backend, which is the fastest
-option on macOS.
+The Apple Silicon app bundles a KataGo built with the Metal backend, which uses the GPU and Neural Engine and
+requires macOS 13 or later. The Intel app bundles an OpenCL build.
+If the bundled engine does not work on your machine, `brew install katago` and set the engine path to that binary
+(e.g. `/opt/homebrew/bin/katago`).
 
 ##  <a name="Windows"></a><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows" height="35"/> For Windows users
 
