@@ -43,11 +43,9 @@ async function playWebAudio(src: string, volume: number) {
   const source = ctx.createBufferSource();
   source.buffer = decoded;
   source.connect(gain);
-  source.onended = () => {
-    playing.delete(src);
-    // do not keep the audio device open between sounds
-    if (playing.size === 0) void ctx.suspend();
-  };
+  // The context is never suspended between sounds: in the older WebKitGTK inside the AppImage, sounds then come later
+  // and later, until they seem to have stopped.
+  source.onended = () => playing.delete(src);
   playing.set(src, source);
   source.start();
 }
