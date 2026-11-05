@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -834,7 +834,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "KataGo optimized for playing higher handicap games.The 'pda' setting "
 "corresponds to 'playoutDoublingAdvantage' in KataGo, from black's "
-"perspective. When 'automatic' is set, KaTrain will find a suitable value "
+"perspective. When 'automatic' is set, Katraineo will find a suitable value "
 "automatically."
 
 msgid "ai:simple"
@@ -1089,7 +1089,7 @@ msgstr "Distributed Self-play Training"
 msgid "gui-locked"
 msgstr ""
 "Action {action} not allowed in distributed self-play training mode. Restart "
-"KaTrain to exit this mode."
+"Katraineo to exit this mode."
 
 #. Progress message
 msgid "setup game status message"

@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: Spanish\n"
@@ -611,7 +611,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "KataGo optimizado para jugar con ventaja al oponente. El parámetro 'pda' "
 "corresponde a 'playoutDoublingAdvantage' en KataGo, desde la perspectiva de "
-"negro.Cuando 'automatic' está establecido, KaTrain encontrará un valor "
+"negro.Cuando 'automatic' está establecido, Katraineo encontrará un valor "
 "adecuado automáticamente."
 
 msgid "estimated strength"
@@ -818,7 +818,7 @@ msgstr "White player's name"
 #. TODO - in self-play mode
 msgid "gui-locked"
 msgstr ""
-"Action {action} not allowed in distributed training mode. Restart KaTrain to"
+"Action {action} not allowed in distributed training mode. Restart Katraineo to"
 " exit this mode."
 
 #. TODO - menu item

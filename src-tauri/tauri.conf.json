@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "KaTrain",
+  "productName": "Katraineo",
   "version": "2.0.0",
-  "identifier": "io.github.yongjer.katrain",
+  "identifier": "io.github.yongjer.katraineo",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "KaTrain",
+        "title": "Katraineo",
         "width": 1400,
         "height": 900,
         "minWidth": 960,

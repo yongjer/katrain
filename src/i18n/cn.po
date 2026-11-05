@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: Simplified Chinese\n"
@@ -580,7 +580,7 @@ msgstr "Kata让子棋"
 msgid "aihelp:handicap"
 msgstr ""
 "KataGo 让子棋优化版. pda 设置 对应KataGo里黑棋视角的 playoutDoublingAdvantage. 当设置了 自动, "
-"KaTrain 会自动找到合适的值"
+"Katraineo 会自动找到合适的值"
 
 msgid "estimated strength"
 msgstr "预计棋力"
@@ -760,7 +760,7 @@ msgstr "古代中国规则"
 
 #. in self-play mode
 msgid "gui-locked"
-msgstr "在分布式自我对弈训练模式中，不允许{action}操作。重新启动KaTrain以退出此模式。"
+msgstr "在分布式自我对弈训练模式中，不允许{action}操作。重新启动Katraineo以退出此模式。"
 
 msgid "contribute:username"
 msgstr "账号"

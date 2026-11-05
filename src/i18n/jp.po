@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: Japanese\n"
@@ -503,7 +503,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "置き石が多い場合向けに最適化されたKataGo. "
 "'pda'設定は黒側から見たKataGoの'playoutDoublingAdvantage'に対応します. 'automatic'を設定しておけば, "
-"適切な値をKaTrainが自動的にみつけます."
+"適切な値をKatraineoが自動的にみつけます."
 
 msgid "ai:jigo"
 msgstr "Kata持碁"
@@ -803,7 +803,7 @@ msgstr "白番"
 
 #. in self-play mode
 msgid "gui-locked"
-msgstr "自己対局モードではこの動作 {action} はできません。分散訓練モードを抜けるにはKaTrainを再起動してください。"
+msgstr "自己対局モードではこの動作 {action} はできません。分散訓練モードを抜けるにはKatraineoを再起動してください。"
 
 #. menu item
 msgid "menu:distributed"

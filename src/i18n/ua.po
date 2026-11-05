@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: Ukrainian\n"
@@ -789,7 +789,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "KataGo оптимізований для гри з вищою форою. Налаштування 'pda' відповідає "
 "параметру 'playoutDoublingAdvantage' у KataGo з точки зору чорних. Якщо "
-"встановлено 'automatic', KaTrain автоматично підбере відповідне значення."
+"встановлено 'automatic', Katraineo автоматично підбере відповідне значення."
 
 msgid "ai:simple"
 msgstr "Простий стиль"
@@ -1032,7 +1032,7 @@ msgstr "Розподілене тренування"
 msgid "gui-locked"
 msgstr ""
 "Дія {action} недоступна в режимі розподіленого тренування з самостійною "
-"грою. Перезапустіть KaTrain для виходу з цього режиму."
+"грою. Перезапустіть Katraineo для виходу з цього режиму."
 
 #. Progress message
 msgid "setup game status message"

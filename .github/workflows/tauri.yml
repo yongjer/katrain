@@ -97,7 +97,7 @@ jobs:
       - name: Check the bundled KataGo starts from inside the app
         if: startsWith(matrix.platform, 'macos')
         run: |
-          app=src-tauri/target/release/bundle/macos/KaTrain.app
+          app=src-tauri/target/release/bundle/macos/Katraineo.app
           otool -L "$app/Contents/Resources/KataGo/katago-osx"
           "$app/Contents/Resources/KataGo/katago-osx" version
           codesign --verify --verbose "$app"
@@ -116,18 +116,18 @@ jobs:
           dpkg-deb -x "$bundle"/deb/*.deb deb
           dpkg-deb -f "$bundle"/deb/*.deb Depends
           "$bundle"/appimage/*.AppImage --appimage-extract > /dev/null
-          for katago in deb/usr/share/KaTrain/KataGo/katago squashfs-root/usr/share/KaTrain/KataGo/katago; do
+          for katago in deb/usr/share/Katraineo/KataGo/katago squashfs-root/usr/share/Katraineo/KataGo/katago; do
             test -x "$katago"
             cmp "$katago" "$GITHUB_WORKSPACE/resources/KataGo/katago"
             "$katago" version
           done
           test -z "$(find deb/usr/lib squashfs-root/usr/lib -type f -name katago)"
-          # Not "katrain": that may be the Python version on PATH. Not an absolute path either: the AppImage shares this
+          # Not an absolute path: the AppImage shares this
           # entry, and would then start the installed program instead of its own.
-          grep -Fx 'Exec=katrain2' deb/usr/share/applications/KaTrain.desktop
-          grep -Fx 'Exec=katrain2' squashfs-root/*.desktop
-          test -x deb/usr/bin/katrain2
-          test -x squashfs-root/usr/bin/katrain2
+          grep -Fx 'Exec=katraineo' deb/usr/share/applications/Katraineo.desktop
+          grep -Fx 'Exec=katraineo' squashfs-root/*.desktop
+          test -x deb/usr/bin/katraineo
+          test -x squashfs-root/usr/bin/katraineo
           # the GStreamer plugins WebKit needs to play the sounds (WAV files)
           for plugin in coreelements playback typefindfunctions wavparse audioconvert audioresample autodetect alsa pulseaudio; do
             test -n "$(find squashfs-root -name "libgst$plugin.so")" || { echo "AppImage lacks GStreamer plugin $plugin"; exit 1; }
@@ -140,7 +140,7 @@ jobs:
         timeout-minutes: 5
         run: |
           $bundle = "$PWD\src-tauri\target\release\bundle"
-          $work = Join-Path $env:RUNNER_TEMP katrain-check
+          $work = Join-Path $env:RUNNER_TEMP katraineo-check
           $msi = (Get-ChildItem "$bundle\msi\*.msi").FullName
           $setup = (Get-ChildItem "$bundle\nsis\*-setup.exe").FullName
           $p = Start-Process msiexec -ArgumentList '/a', "`"$msi`"", '/qn', "TARGETDIR=`"$work\msi`"" -Wait -PassThru
@@ -164,7 +164,7 @@ jobs:
           }
       - uses: actions/upload-artifact@v5
         with:
-          name: katrain-tauri-${{ matrix.platform }}
+          name: katraineo-tauri-${{ matrix.platform }}
           path: |
             src-tauri/target/release/bundle/**/*.msi
             src-tauri/target/release/bundle/**/*.exe
@@ -187,7 +187,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/download-artifact@v5
         with:
-          pattern: katrain-tauri-*
+          pattern: katraineo-tauri-*
           path: bundles
           merge-multiple: true
       - name: Update the tauri-nightly prerelease
@@ -199,9 +199,9 @@ jobs:
           git push -f origin tauri-nightly
           notes="Automatic build from the main branch, commit ${GITHUB_SHA}. Not a release: for testing only. macOS builds are unsigned."
           if gh release view tauri-nightly >/dev/null 2>&1; then
-            gh release edit tauri-nightly --prerelease --title "KaTrain 2 nightly" --notes "$notes"
+            gh release edit tauri-nightly --prerelease --title "Katraineo nightly" --notes "$notes"
           else
-            gh release create tauri-nightly --prerelease --title "KaTrain 2 nightly" --notes "$notes" --verify-tag
+            gh release create tauri-nightly --prerelease --title "Katraineo nightly" --notes "$notes" --verify-tag
           fi
           mapfile -t files < <(find bundles -type f \( -name '*.dmg' -o -name '*.msi' -o -name '*.exe' -o -name '*.deb' -o -name '*.AppImage' \))
           printf '%s\n' "${files[@]}"

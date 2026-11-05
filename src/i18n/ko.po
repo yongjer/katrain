@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: Korean\n"
@@ -589,7 +589,7 @@ msgstr "접바둑 KataGo"
 msgid "aihelp:handicap"
 msgstr ""
 "치석이 많은 접바둑에 더 적합한 KataGo입니다. 'pda' 설정은 흑 시점에서 KataGo의 "
-"'playoutDoublingAdvantage'에 해당합니다. 'automatic'으로 설정하면, KaTrain이 알맞는 값을 자동으로 "
+"'playoutDoublingAdvantage'에 해당합니다. 'automatic'으로 설정하면, Katraineo이 알맞는 값을 자동으로 "
 "설정할 것입니다."
 
 msgid "estimated strength"
@@ -772,7 +772,7 @@ msgid "white player name hint"
 msgstr "백 대국자"
 
 msgid "gui-locked"
-msgstr "{action} 행동은 분산 자가대국 학습 모드에서 허용되지 않습니다. 이 모드를 벗어나려면 KaTrain을 재시작하십시오."
+msgstr "{action} 행동은 분산 자가대국 학습 모드에서 허용되지 않습니다. 이 모드를 벗어나려면 Katraineo을 재시작하십시오."
 
 msgid "menu:distributed"
 msgstr "분산 자가대국 학습"

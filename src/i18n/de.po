@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: German\n"
@@ -614,7 +614,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "Optimiertes KataGo für höhere Vorgabe-Spiele. Die Einstellung 'pda' "
 "entspricht 'playoutDoublingAdvantage' in KataGo, aus Sicht von Schwarz. Wenn"
-" 'automatic' eingestellt ist, wird KaTrain automatisch einen geeigneten Wert"
+" 'automatic' eingestellt ist, wird Katraineo automatisch einen geeigneten Wert"
 " finden."
 
 msgid "estimated strength"
@@ -824,7 +824,7 @@ msgstr "Name von Weiß"
 msgid "gui-locked"
 msgstr ""
 "Aktion {action} ist im verteilten Selbstspiel-Trainingsmodus nicht erlaubt. "
-"Starte KaTrain neu, um diesen Modus zu verlassen."
+"Starte Katraineo neu, um diesen Modus zu verlassen."
 
 #. menu item
 msgid "menu:distributed"

@@ -1,5 +1,5 @@
 [package]
-name = "katrain"
+name = "katraineo"
 version = "2.0.0-alpha.1"
 description = "Go/Baduk/Weiqi playing and teaching app with KataGo"
 authors = ["Sander Land", "KaTrain contributors"]
@@ -9,7 +9,7 @@ rust-version = "1.77.2"
 
 [lib]
 # The _lib suffix avoids a name clash with the binary on Windows.
-name = "katrain_lib"
+name = "katraineo_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

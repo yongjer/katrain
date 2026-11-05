@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: ru\n"
@@ -620,7 +620,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "KataGo оптимизированный под игры с большой форой. Настройка 'pda' "
 "соответствует 'playoutDoublingAdvantage' в KataGo, с точки зрения чёрных. "
-"При установке 'automatic', KaTrain выберет значение автоматически."
+"При установке 'automatic', Katraineo выберет значение автоматически."
 
 msgid "estimated strength"
 msgstr "Оценка силы"
@@ -788,7 +788,7 @@ msgstr "Имя игрока белыми"
 msgid "gui-locked"
 msgstr ""
 "Действие {action} запрещено в режиме распределённой тренировки. "
-"Перезапустите KaTrain для выхода из этого режима."
+"Перезапустите Katraineo для выхода из этого режима."
 
 msgid "menu:distributed"
 msgstr "Распределённая тренировка"

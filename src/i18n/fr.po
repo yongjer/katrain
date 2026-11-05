@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: French\n"
@@ -824,7 +824,7 @@ msgstr "Blanc"
 msgid "gui-locked"
 msgstr ""
 "L'action {action} est interdite lors de l'entraînement distribué de KataGo. "
-"Vous pouvez quitter ce mode en redémarrant KaTrain."
+"Vous pouvez quitter ce mode en redémarrant Katraineo."
 
 msgid "menu:distributed"
 msgstr "Entraîner KataGo"

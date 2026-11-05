@@ -1,8 +1,8 @@
 // Ported from katrain/core/constants.py
 
-export const PROGRAM_NAME = "KaTrain";
+export const PROGRAM_NAME = "Katraineo";
 export const VERSION = "2.0.0-alpha.1";
-export const HOMEPAGE = "https://github.com/sanderland/katrain";
+export const HOMEPAGE = "https://github.com/yongjer/katraineo";
 export const ANALYSIS_FORMAT_VERSION = "1.0";
 
 export const ADDITIONAL_MOVE_ORDER = 999;

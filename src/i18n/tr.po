@@ -1,4 +1,4 @@
-# KaTrain localization file
+# Katraineo localization file
 msgid ""
 msgstr ""
 "Language: Turkish\n"
@@ -772,7 +772,7 @@ msgid "aihelp:handicap"
 msgstr ""
 "KataGo üst seviye handikap oyunları oynamak için optimize edilmiştir. 'pda' "
 "ayarı KataGo’da 'playoutDoublingAdvantage' ayarına karşılık gelir. "
-"'automatic' işaretlendiğinde, KaTrain uygun bir değeri otomatik olarak "
+"'automatic' işaretlendiğinde, Katraineo uygun bir değeri otomatik olarak "
 "bulacaktır."
 
 msgid "ai:simple"
@@ -1013,7 +1013,7 @@ msgstr "Dağıtılmış Öz Oyun Eğitimi"
 msgid "gui-locked"
 msgstr ""
 "Dağıtılmış kendi kendine oyun eğitimi modunda {action} eylemine izin "
-"verilmez. Bu moddan çıkmak için KaTrain'i yeniden başlatın."
+"verilmez. Bu moddan çıkmak için Katraineo'i yeniden başlatın."
 
 #. Progress message
 msgid "setup game status message"

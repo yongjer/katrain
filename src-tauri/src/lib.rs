@@ -27,7 +27,7 @@ pub fn run() {
             models::download_model,
         ])
         .build(tauri::generate_context!())
-        .expect("error while building KaTrain");
+        .expect("error while building Katraineo");
 
     app.run(|handle, event| {
         if let RunEvent::Exit = event {
