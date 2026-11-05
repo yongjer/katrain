@@ -1,0 +1,26 @@
+name: Retry macOS builds without a runner
+
+# The first attempt's completion starts this. It stays running through its retries, so later attempts need no new run.
+on:
+  workflow_run:
+    workflows: [Tauri app]
+    types: [completed]
+
+permissions:
+  actions: write # re-run the failed jobs
+  checks: read # read why a job was cancelled
+  contents: read
+
+jobs:
+  retry:
+    if: github.event.workflow_run.conclusion != 'success' && github.event.workflow_run.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      # On workflow_run this is the default branch, so it runs no code from a pull request.
+      - uses: actions/checkout@v5
+      - run: scripts/retry-macos-capacity.sh "$RUN_ID"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
