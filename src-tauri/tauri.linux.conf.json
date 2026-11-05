@@ -7,19 +7,19 @@
     "linux": {
       "appimage": {
         "files": {
-          "usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
+          "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
       },
       "deb": {
         "depends": ["libfuse2t64 | libfuse2"],
         "files": {
-          "usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
+          "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
       },
       "rpm": {
         "depends": ["fuse-libs"],
         "files": {
-          "usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
+          "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
       }
     }
