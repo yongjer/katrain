@@ -10,7 +10,7 @@
 - 前端：**React + TypeScript + Vite**，狀態管理用 zustand。
 - 行為要和原 Python 版一致：同樣的設定格式、翻譯（gettext .po）、SGF 讀寫（包括 KaTrain 的 `KT` 分析快取）。
 
-使用者以繁體中文溝通，回覆請用繁體中文。使用者要求功能**直接在他的 Mac 上用 computer use 實際驗證**。
+使用者以繁體中文溝通，回覆請用繁體中文。使用者要求功能**實際驗證**。使用者有 M1 Mac 和 Ubuntu 桌機，**沒有 Windows 電腦**。
 
 ## 2. 目前做到哪
 
@@ -26,7 +26,7 @@
 | 追加 | macOS 內建 KataGo（Apple Silicon 用 Metal、Intel 用 OpenCL）、Intel 版建置 | 完成；Apple Silicon 版在 Mac 實測過 |
 | 追加 | Linux 實機測試與修正（AppImage 引擎、第一手當機、音效） | 完成；實測範圍和沒測到的項目見第 3 節「Linux 實機測試」 |
 
-- 分支：`tauri-v2`（工作目錄乾淨，全部已推上 GitHub）。Linux 修正已合併進來；測試分支 `fix/linux-appimage` 還留在 GitHub 上，內容相同但 commit 作者是舊的，要刪除請先問使用者。
+- 分支：`tauri-v2`（工作目錄乾淨，全部已推上 GitHub）。Linux 修正已合併進來；測試分支 `fix/linux-appimage`（內容相同但 commit 作者是舊的）和 `ci/windows-katago-check` 還留在 GitHub 上，要刪除請先問使用者。
 - PR：https://github.com/yongjer/katrain/pull/1 （open，base 是 `main`，標題「Port KaTrain to Tauri v2 + React + TypeScript」）。PR 說明還沒補上 Linux 這批修正。**還沒合併**，合併要由使用者決定。
 - 測試版頁面的 tag `tauri-nightly` 由 CI 更新，實際指向哪個 commit 請用第 7 節的指令查。
 
@@ -59,6 +59,12 @@ https://github.com/yongjer/katrain/releases/tag/tauri-nightly （prerelease，�
 
 - **只在 GitHub 的 `macos-15-intel` runner 上驗證過**：CI 步驟「Check the bundled KataGo starts from inside the app」實際執行 app 內的 `katago-osx version`（輸出 KataGo v1.18.2、OpenCL backend），`otool -L` 只剩系統函式庫，`codesign --verify` 通過。
 - **沒有在真的 Intel Mac 上跑過分析**（使用者只有 M1）。runner 沒有可用 GPU，所以 OpenCL 實際推論也沒測過。
+
+### Windows 驗證狀況
+
+- **只在 GitHub 的 `windows-latest` runner 上驗證過**：CI 步驟「Check the bundled KataGo starts from inside the installers」解開 MSI、實際安裝 NSIS 版，逐一確認打包的檔案都在，再從兩邊執行 `katago.exe version`（輸出 KataGo v1.18.1、OpenCL backend）。
+- **app 本身從未在 Windows 上開過**：介面、分析、音效都沒測。runner 沒有可用 GPU，所以 OpenCL 實際推論也沒測過。
+- 使用者沒有 Windows 電腦。除非有人能提供機器，否則這些都無法實測；虛擬機多半沒有 GPU，也測不到 OpenCL。
 
 ### Linux 實機測試
 
@@ -96,7 +102,7 @@ https://github.com/yongjer/katrain/releases/tag/tauri-nightly （prerelease，�
 **已知但沒修**
 
 - AppImage 的無障礙（AT-SPI）樹是空的，deb 正常，所以自動化工具讀不到 AppImage 的介面。
-- Linux 內建 KataGo 是 v1.18.1，macOS 是 v1.18.2。
+- Linux 和 Windows 內建的 KataGo 是 v1.18.1，macOS 是 v1.18.2。
 
 **在 Linux 上自動化測試的限制**
 
@@ -131,10 +137,10 @@ https://github.com/yongjer/katrain/releases/tag/tauri-nightly （prerelease，�
 
 ## 4. 還沒做／還沒驗證
 
-建議順序（使用者已看過這份清單，第 4 項已完成）：
+建議順序：
 
-1. **Windows 實機測試（建議下一步）**：Windows 版從未在實機跑過。內建 KataGo + 一堆 DLL + OpenCL，最可能出問題（路徑、防毒、缺 VC++ 執行環境、SmartScreen）。需要使用者提供一台 Windows 電腦並連到對話。
-2. **Linux 剩餘測試**：主要流程已實測（第 3 節），還沒測的見該節「沒測到」，其中最值得先做的是真正用 `dpkg` 安裝和沒有 FUSE 的系統。
+1. **Linux 剩餘測試（建議下一步）**：主要流程已實測（第 3 節），還沒測的見該節「沒測到」，其中最值得先做的是真正用 `dpkg` 安裝和沒有 FUSE 的系統。手動操作的部分要請使用者協助。
+2. **Windows 實機測試**：**使用者沒有 Windows 電腦，目前做不到**，所以不要當成下一步建議。Windows 版只驗證到 KataGo 能從安裝檔啟動（第 3 節）；實機最可能出問題的是路徑、防毒、SmartScreen 和 OpenCL。有人能提供機器再做。
 3. **合併 PR #1 到 `main`**：需使用者同意。合併後要把 workflow 的 push 分支、nightly 條件從 `tauri-v2` 改成 `main`（或另外設計），並更新 README/DEVELOPMENT.md 裡提到 `tauri-v2` 的地方。
 4. **正式發佈流程**：版本號統一（目前 `package.json` 和 `Cargo.toml` 是 `2.0.0-alpha.1`，`tauri.conf.json` 是 `2.0.0`，因為 MSI 不接受 prerelease 版本號）、推 tag 自動建正式版、Tauri updater 自動更新、macOS 簽章公證（需 Apple 開發者帳號）、Windows 簽章。
 5. **Intel Mac 實機驗證**：需要有 Intel Mac 的人。
@@ -203,7 +209,5 @@ Golden data 原本是用 Python 程式產生的。Python 程式碼已從分支�
 4. 查 CI 與測試版狀態：
    - `gh run list --branch tauri-v2 --limit 5`
    - `gh api repos/yongjer/katrain/releases/tags/tauri-nightly --jq '.assets[].name'`
-5. 用繁體中文問使用者要接著做哪一項，預設建議 **Windows 實機測試**：
-   - 請使用者在 Windows 電腦上安裝 Claude 桌面 app 並把這個對話連到那台電腦。
-   - 安裝 `KaTrain_2.0.0_x64-setup.exe` 或 `.msi`，依 Mac 的流程驗證：引擎啟動（KataGo 紀錄）、分析、AI 對弈、指導棋、計時器、模型下載、表現報告、遠端引擎設定。
+5. 用繁體中文問使用者要接著做哪一項，預設建議 **Linux 剩餘測試**（第 4 節第 1 項）。
 6. 任何要合併 PR、改 `main`、發正式版、刪檔的動作，都先問使用者。

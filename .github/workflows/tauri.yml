@@ -142,6 +142,8 @@ jobs:
           $p = Start-Process $setup -ArgumentList '/S', "/D=$work\nsis" -Wait -PassThru
           if ($p.ExitCode -ne 0) { throw "the NSIS installer failed: $($p.ExitCode)" }
           $resources = (Get-Content src-tauri\tauri.windows.conf.json -Raw | ConvertFrom-Json).bundle.resources.PSObject.Properties.Value
+          if (-not $resources) { throw "no resources listed in tauri.windows.conf.json" }
+          Write-Host "Checking $(@($resources).Count) bundled files"
           $expected = (Get-FileHash resources\KataGo\katago.exe).Hash
           foreach ($root in "$work\msi", "$work\nsis") {
             $katago = (Get-ChildItem $root -Recurse -Filter katago.exe | Select-Object -First 1).FullName
