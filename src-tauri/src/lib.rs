@@ -1,3 +1,4 @@
+mod appimage;
 mod engine;
 mod files;
 mod models;

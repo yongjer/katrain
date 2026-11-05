@@ -32,7 +32,8 @@ Test builds for Windows, macOS (Apple Silicon and Intel) and Linux are on the
   (or allow it under System Settings → Privacy & Security).
 * **Windows**: run the `.msi` or `-setup.exe` installer. SmartScreen may warn about an unknown publisher; choose
   *More info* → *Run anyway*.
-* **Linux**: install the `.deb`, or make the `.AppImage` executable and run it.
+* **Linux**: install the `.deb`, or make the `.AppImage` executable and run it (this needs FUSE: on Ubuntu or Debian,
+  `sudo apt install libfuse2t64`, or `libfuse2` on older versions).
 
 ## <a name="kata"></a> Configuring KataGo
 

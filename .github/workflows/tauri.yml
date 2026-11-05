@@ -99,6 +99,27 @@ jobs:
           otool -L "$app/Contents/Resources/KataGo/katago-osx"
           "$app/Contents/Resources/KataGo/katago-osx" version
           codesign --verify --verbose "$app"
+      # KataGo for Linux is itself an AppImage. Check that packaging left it intact (linuxdeploy corrupts it if it is
+      # below usr/lib) and that it starts.
+      - name: Check the bundled KataGo starts from inside the packages
+        if: startsWith(matrix.platform, 'ubuntu')
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: 1 # the runner may not have FUSE
+        run: |
+          set -euo pipefail
+          sudo apt-get install -y ocl-icd-libopencl1
+          bundle="$PWD/src-tauri/target/release/bundle"
+          work="$(mktemp -d)"
+          cd "$work"
+          dpkg-deb -x "$bundle"/deb/*.deb deb
+          dpkg-deb -f "$bundle"/deb/*.deb Depends
+          "$bundle"/appimage/*.AppImage --appimage-extract > /dev/null
+          for katago in deb/usr/share/KaTrain/KataGo/katago squashfs-root/usr/share/KaTrain/KataGo/katago; do
+            test -x "$katago"
+            cmp "$katago" "$GITHUB_WORKSPACE/resources/KataGo/katago"
+            "$katago" version
+          done
+          test -z "$(find deb/usr/lib squashfs-root/usr/lib -type f -name katago)"
       - uses: actions/upload-artifact@v5
         with:
           name: katrain-tauri-${{ matrix.platform }}

@@ -337,9 +337,11 @@ export function Board() {
           const c = toBoard(e);
           if (selecting && e.button === 0 && c) setBox([c[0], c[0], c[1], c[1]]);
           // middle click on a hint or next move: add its variation to the move tree
-          if (e.button === 1 && hoverTarget) {
+          // (use the event's position: `hover` can still hold the previous point if the mouse has just moved)
+          const target = e.button === 1 && c && hintTargets.find((h) => h.coords[0] === c[0] && h.coords[1] === c[1]);
+          if (target) {
             e.preventDefault();
-            addPvToTree(hoverTarget.pv);
+            addPvToTree(target.pv);
           }
         }}
         onMouseMove={(e) => {

@@ -2,8 +2,26 @@
   "bundle": {
     "resources": {
       "../resources/models/b10c384h6nbttflrs.bin.gz": "models/b10c384h6nbttflrs.bin.gz",
-      "../resources/KataGo/analysis_config.cfg": "KataGo/analysis_config.cfg",
-      "../resources/KataGo/katago": "KataGo/katago"
+      "../resources/KataGo/analysis_config.cfg": "KataGo/analysis_config.cfg"
+    },
+    "linux": {
+      "appimage": {
+        "files": {
+          "usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
+        }
+      },
+      "deb": {
+        "depends": ["libfuse2t64 | libfuse2"],
+        "files": {
+          "usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
+        }
+      },
+      "rpm": {
+        "depends": ["fuse-libs"],
+        "files": {
+          "usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
+        }
+      }
     }
   }
 }

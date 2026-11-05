@@ -61,6 +61,12 @@ from source (Metal on Apple Silicon, OpenCL on Intel) with its Homebrew librarie
 run it once before `npm run tauri build` or `npm run tauri dev` on a Mac. Without a bundled KataGo the app falls
 back to one on `PATH` or in Homebrew's folders (`brew install katago`).
 
+On Linux the bundled `resources/KataGo/katago` is KataGo's own AppImage, so it needs FUSE (`libfuse2`). The packages
+install it in `usr/share/KaTrain` rather than with the other resources in `usr/lib/KaTrain`, because linuxdeploy (used
+to build KaTrain's AppImage) rewrites every ELF file below `usr/lib`, which corrupts it: it then crashes on start.
+Programs started from inside KaTrain's AppImage must also not inherit the environment it sets up for itself
+(`src-tauri/src/appimage.rs`).
+
 UI work in a browser (no Tauri), with a real engine:
 
 ```sh

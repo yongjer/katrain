@@ -17,7 +17,7 @@ use tauri::{AppHandle, Emitter, Manager, State};
 use tokio::sync::mpsc;
 use tokio_tungstenite::tungstenite::Message;
 
-use crate::paths;
+use crate::{appimage, paths};
 
 #[derive(Default)]
 pub struct EngineState {
@@ -102,7 +102,14 @@ fn default_katago(app: &AppHandle) -> Result<PathBuf, String> {
         return Ok(paths::resolve_resource(app, "katrain/KataGo/katago.exe"));
     }
     if cfg!(target_os = "linux") {
-        return Ok(paths::resolve_resource(app, "katrain/KataGo/katago"));
+        // Installed in share/ rather than with the resources (tauri.linux.conf.json): the AppImage bundler rewrites
+        // every ELF file below usr/lib, and KataGo for Linux is itself an AppImage, which that corrupts.
+        let packaged = std::env::current_exe()
+            .ok()
+            .and_then(|exe| Some(exe.parent()?.parent()?.join("share/KaTrain/KataGo/katago")))
+            .filter(|p| p.is_file());
+        // `tauri dev` has no such folder and uses the one in the repository.
+        return Ok(packaged.unwrap_or_else(|| paths::resolve_resource(app, "katrain/KataGo/katago")));
     }
     let bundled = paths::resolve_resource(app, "katrain/KataGo/katago-osx");
     if bundled.is_file() {
@@ -128,6 +135,7 @@ fn build_command(app: &AppHandle, launch: &EngineLaunch) -> Result<(Command, Vec
             c.args(["-c", &cmdline]);
             c
         };
+        appimage::restore_host_env(&mut cmd);
         cmd.current_dir(&data_dir);
         return Ok((cmd, vec![cmdline]));
     }
@@ -171,6 +179,7 @@ fn build_command(app: &AppHandle, launch: &EngineLaunch) -> Result<(Command, Vec
     ]);
     let mut cmd = Command::new(&exe);
     cmd.args(&args);
+    appimage::restore_host_env(&mut cmd);
     // KataGo looks for DLLs and certificates next to itself.
     if let Some(dir) = exe.parent() {
         cmd.current_dir(dir);
