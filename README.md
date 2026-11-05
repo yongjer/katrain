@@ -38,7 +38,7 @@ Test builds for Windows, macOS (Apple Silicon and Intel) and Linux are on the
 ## <a name="kata"></a> Configuring KataGo
 
 KaTrain comes with KataGo and the `b10c384h6nbt` transformer model, which is stronger per visit than the strongest
-18 block models while being about as fast. KataGo uses the Metal backend on Apple Silicon Macs (macOS 14 or later),
+18 block models while being about as fast. KataGo uses the Metal backend on Apple Silicon Macs (macOS 15 or later),
 and OpenCL on Windows, Linux and Intel Macs (macOS 11 or later).
 
 Open *General & Engine Settings* (F8) to configure the engine. The selected tab decides which engine is used:

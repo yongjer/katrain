@@ -17,7 +17,7 @@ on:
     inputs:
       macos_runner:
         description: "Runner label for the Apple Silicon build. The Homebrew libraries bundled with KataGo come from it, so a newer macOS can raise the app's minimum macOS."
-        default: macos-14
+        default: macos-15
 
 jobs:
   test:
@@ -51,7 +51,7 @@ jobs:
         include:
           - platform: windows-latest
           - platform: ubuntu-22.04
-          - platform: ${{ inputs.macos_runner || 'macos-14' }} # Apple Silicon: KataGo with Metal
+          - platform: ${{ inputs.macos_runner || 'macos-15' }} # Apple Silicon: KataGo with Metal
           - platform: macos-15-intel # Intel: KataGo with OpenCL
     runs-on: ${{ matrix.platform }}
     steps:
