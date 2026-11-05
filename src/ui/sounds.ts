@@ -12,42 +12,48 @@ const cache = new Map<string, HTMLAudioElement>();
 
 // On Linux, WebKitGTK's <audio> fails with a format error on the app's own URLs. Web Audio can play them.
 let mediaElementsFail = false;
-let context: AudioContext | null = null;
 const buffers = new Map<string, Promise<AudioBuffer>>();
-const playing = new Map<string, AudioBufferSourceNode>();
+const playing = new Map<string, AudioContext>();
 
 function stopWebAudio(src: string) {
-  const source = playing.get(src);
-  if (source) {
-    source.onended = null;
-    source.stop();
+  const ctx = playing.get(src);
+  if (ctx) {
     playing.delete(src);
+    void ctx.close();
   }
 }
 
+// Each sound gets its own context. A context that stays open is not reliable in WebKitGTK: through PulseAudio to a
+// Bluetooth device only its first sound is heard, and suspending it between sounds in the AppImage's older WebKitGTK
+// makes them come later and later.
 async function playWebAudio(src: string, volume: number) {
-  const ctx = (context ??= new AudioContext());
-  let buffer = buffers.get(src);
-  if (!buffer) {
-    buffer = fetch(src)
-      .then((response) => response.arrayBuffer())
-      .then((bytes) => ctx.decodeAudioData(bytes));
-    buffers.set(src, buffer);
+  const ctx = new AudioContext();
+  try {
+    let buffer = buffers.get(src);
+    if (!buffer) {
+      buffer = fetch(src)
+        .then((response) => response.arrayBuffer())
+        .then((bytes) => ctx.decodeAudioData(bytes));
+      buffers.set(src, buffer);
+    }
+    const decoded = await buffer;
+    await ctx.resume();
+    stopWebAudio(src);
+    const gain = ctx.createGain();
+    gain.gain.value = volume;
+    gain.connect(ctx.destination);
+    const source = ctx.createBufferSource();
+    source.buffer = decoded;
+    source.connect(gain);
+    source.onended = () => {
+      if (playing.get(src) === ctx) stopWebAudio(src);
+    };
+    playing.set(src, ctx);
+    source.start();
+  } catch (e) {
+    void ctx.close();
+    throw e;
   }
-  const decoded = await buffer;
-  await ctx.resume();
-  stopWebAudio(src);
-  const gain = ctx.createGain();
-  gain.gain.value = volume;
-  gain.connect(ctx.destination);
-  const source = ctx.createBufferSource();
-  source.buffer = decoded;
-  source.connect(gain);
-  // The context is never suspended between sounds: in the older WebKitGTK inside the AppImage, sounds then come later
-  // and later, until they seem to have stopped.
-  source.onended = () => playing.delete(src);
-  playing.set(src, source);
-  source.start();
 }
 
 function play(src: string, volume = 1) {
