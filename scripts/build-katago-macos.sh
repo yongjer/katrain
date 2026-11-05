@@ -20,8 +20,16 @@ if [ "$backend" = METAL ]; then
 fi
 
 git clone --depth 1 --branch "$ref" https://github.com/lightvector/KataGo.git "$work/KataGo"
+# quick_exit only exists in macOS 15+; _Exit does the same here (KataGo registers no at_quick_exit handlers)
+sed -i '' 's/quick_exit(EXIT_FAILURE)/_Exit(EXIT_FAILURE)/' "$work/KataGo/cpp/core/global.cpp"
+
 # Without BUILD_DISTRIBUTED and libzip: KaTrain only uses the analysis engine.
-cmake -S "$work/KataGo/cpp" -B "$work/build" -G Ninja -DCMAKE_BUILD_TYPE=Release -DUSE_BACKEND="$backend"
+flags=(-G Ninja -DCMAKE_BUILD_TYPE=Release -DUSE_BACKEND="$backend")
+if [ "$backend" = OPENCL ]; then
+  # OpenCL and zlib come with macOS: keep Homebrew's libraries (built for the newest macOS) out entirely
+  flags+=(-DCMAKE_IGNORE_PREFIX_PATH="/usr/local;/opt/homebrew" -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0)
+fi
+cmake -S "$work/KataGo/cpp" -B "$work/build" "${flags[@]}"
 cmake --build "$work/build" -j"$(sysctl -n hw.ncpu)"
 
 mkdir -p "$out"
@@ -41,3 +49,7 @@ if otool -L "$out/katago-osx" "$out"/katago-libs/*.dylib 2>/dev/null | grep -E '
   exit 1
 fi
 "$out/katago-osx" version
+# the oldest macOS it runs on is the newest minimum of it and its libraries
+for f in "$out/katago-osx" "$out"/katago-libs/*.dylib; do
+  [ -f "$f" ] && echo "$(basename "$f"): macOS $(vtool -show-build "$f" 2>/dev/null | awk '/minos/ {print $2}')"
+done | sort -t' ' -k3 -V | tail -1 || true

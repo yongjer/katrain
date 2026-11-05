@@ -86,7 +86,7 @@ jobs:
           path: |
             resources/KataGo/katago-osx
             resources/KataGo/katago-libs
-          key: katago-macos-${{ runner.arch }}-${{ steps.katago-ref.outputs.sha }}-v1
+          key: katago-macos-${{ runner.arch }}-${{ steps.katago-ref.outputs.sha }}-${{ hashFiles('scripts/build-katago-macos.sh') }}
       - name: Build KataGo for macOS
         if: startsWith(matrix.platform, 'macos') && steps.katago-cache.outputs.cache-hit != 'true'
         run: scripts/build-katago-macos.sh
