@@ -4,30 +4,27 @@ If you are a new contributor wanting to make a larger contribution,
  please first discuss the change you wish to make via
  an issue or [Discord](https://discord.gg/AjTPFpN) before making a pull request.
 
-## Python contributions
+## Code contributions
 
-Python code is formatted and linted using [ruff](https://docs.astral.sh/ruff/), with the settings in `pyproject.toml` (line length 120).
-Run `uvx pre-commit install` once to have `ruff format` and `ruff check` run automatically when you commit,
- or run `uv run ruff format` and `uv run ruff check --fix` by hand.
+See [DEVELOPMENT.md](DEVELOPMENT.md) for how the app is organized, built and tested.
+Run `npm run typecheck` and `npm test` before sending a pull request.
 
 ## Translations
 
 ### Contributing to an existing translation
 
-* Go [here](https://github.com/sanderland/katrain/blob/master/katrain/i18n/locales/) and locate the `.po` file for your language. 
-  * Alternatively, find the same file in the branch for the next version. 
+* Locate the `.po` file for your language in [`src/i18n`](src/i18n).
 * Correct the relevant `msgstr` entries.
 
 ### Adding a translation
 
 Adding a translation requires making a new `.po` file with entries for that language.
 
-* Copy the [English .po file](https://github.com/sanderland/katrain/blob/master/katrain/i18n/locales/en/LC_MESSAGES/katrain.po)
+* Copy the English file, [`src/i18n/en.po`](src/i18n/en.po).
 * Change all the `msgstr` entries to your target language.
     * Note that anything between `{}` should be left as-is.
     * The information at the top of the file should also not be translated.
-
-You can send me the resulting `.po` file, and I will integrate it into the program.
+* Add the language to `LANGUAGES` in `src/ui/i18nLoader.ts`.
 
 # Contributors 
 

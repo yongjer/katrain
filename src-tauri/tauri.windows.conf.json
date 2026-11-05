@@ -1,0 +1,24 @@
+{
+  "bundle": {
+    "resources": {
+      "../resources/models/b10c384h6nbttflrs.bin.gz": "models/b10c384h6nbttflrs.bin.gz",
+      "../resources/KataGo/analysis_config.cfg": "KataGo/analysis_config.cfg",
+      "../resources/KataGo/OpenCL.dll": "KataGo/OpenCL.dll",
+      "../resources/KataGo/bz2.dll": "KataGo/bz2.dll",
+      "../resources/KataGo/cacert.pem": "KataGo/cacert.pem",
+      "../resources/KataGo/katago.exe": "KataGo/katago.exe",
+      "../resources/KataGo/libcrypto-3-x64.dll": "KataGo/libcrypto-3-x64.dll",
+      "../resources/KataGo/libssl-3-x64.dll": "KataGo/libssl-3-x64.dll",
+      "../resources/KataGo/msvcp140.dll": "KataGo/msvcp140.dll",
+      "../resources/KataGo/msvcp140_1.dll": "KataGo/msvcp140_1.dll",
+      "../resources/KataGo/msvcp140_2.dll": "KataGo/msvcp140_2.dll",
+      "../resources/KataGo/msvcp140_atomic_wait.dll": "KataGo/msvcp140_atomic_wait.dll",
+      "../resources/KataGo/msvcp140_codecvt_ids.dll": "KataGo/msvcp140_codecvt_ids.dll",
+      "../resources/KataGo/vcruntime140.dll": "KataGo/vcruntime140.dll",
+      "../resources/KataGo/vcruntime140_1.dll": "KataGo/vcruntime140_1.dll",
+      "../resources/KataGo/vcruntime140_threads.dll": "KataGo/vcruntime140_threads.dll",
+      "../resources/KataGo/z.dll": "KataGo/z.dll",
+      "../resources/KataGo/zip.dll": "KataGo/zip.dll"
+    }
+  }
+}

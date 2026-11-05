@@ -1,0 +1,13 @@
+{
+  "bundle": {
+    "resources": {
+      "../resources/models/b10c384h6nbttflrs.bin.gz": "models/b10c384h6nbttflrs.bin.gz",
+      "../resources/KataGo/analysis_config.cfg": "KataGo/analysis_config.cfg",
+      "../resources/KataGo/katago-osx": "KataGo/katago-osx",
+      "../resources/KataGo/katago-libs/*": "KataGo/katago-libs/"
+    },
+    "macOS": {
+      "signingIdentity": "-"
+    }
+  }
+}

@@ -1,0 +1,208 @@
+name: Tauri app
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "src/**"
+      - "src-tauri/**"
+      - "tests-ts/**"
+      - "resources/**"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/tauri.yml"
+  workflow_dispatch:
+    inputs:
+      macos_runner:
+        description: "Runner label for the Apple Silicon build. The Homebrew libraries bundled with KataGo come from it, so a newer macOS can raise the app's minimum macOS."
+        default: macos-15
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - name: Install Tauri system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libxdo-dev libssl-dev
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - run: npm run build
+      - run: cargo test --manifest-path src-tauri/Cargo.toml
+      - run: cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+
+  build:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows-latest
+          - platform: ubuntu-22.04
+          - platform: ${{ inputs.macos_runner || 'macos-15' }} # Apple Silicon: KataGo with Metal
+          - platform: macos-15-intel # Intel: KataGo with OpenCL
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - name: Install Tauri system dependencies
+        if: startsWith(matrix.platform, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libxdo-dev libssl-dev
+          # copied into the AppImage (bundleMediaFramework): without them, playing a sound crashes the web view
+          sudo apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio
+      # The macOS app bundles a KataGo built from source (with its libraries), cached per KataGo commit.
+      # KataGo needs a recent SDK (e.g. quick_exit), so use the newest Xcode on the runner.
+      - uses: maxim-lobanov/setup-xcode@v1
+        if: startsWith(matrix.platform, 'macos')
+        with:
+          xcode-version: latest-stable
+      - name: KataGo version for macOS
+        if: startsWith(matrix.platform, 'macos')
+        id: katago-ref
+        run: echo "sha=$(git ls-remote https://github.com/lightvector/KataGo.git refs/heads/stable | cut -f1)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        if: startsWith(matrix.platform, 'macos')
+        id: katago-cache
+        with:
+          path: |
+            resources/KataGo/katago-osx
+            resources/KataGo/katago-libs
+          key: katago-${{ matrix.platform }}-${{ steps.katago-ref.outputs.sha }}-${{ hashFiles('scripts/build-katago-macos.sh') }}
+      - name: Build KataGo for macOS
+        if: startsWith(matrix.platform, 'macos') && steps.katago-cache.outputs.cache-hit != 'true'
+        run: scripts/build-katago-macos.sh
+      - run: npm ci
+      - run: npx tauri build
+      - name: Check the bundled KataGo starts from inside the app
+        if: startsWith(matrix.platform, 'macos')
+        run: |
+          app=src-tauri/target/release/bundle/macos/KaTrain.app
+          otool -L "$app/Contents/Resources/KataGo/katago-osx"
+          "$app/Contents/Resources/KataGo/katago-osx" version
+          codesign --verify --verbose "$app"
+      # KataGo for Linux is itself an AppImage. Check that packaging left it intact (linuxdeploy corrupts it if it is
+      # below usr/lib) and that it starts.
+      - name: Check the bundled KataGo starts from inside the packages
+        if: startsWith(matrix.platform, 'ubuntu')
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: 1 # the runner may not have FUSE
+        run: |
+          set -euo pipefail
+          sudo apt-get install -y ocl-icd-libopencl1
+          bundle="$PWD/src-tauri/target/release/bundle"
+          work="$(mktemp -d)"
+          cd "$work"
+          dpkg-deb -x "$bundle"/deb/*.deb deb
+          dpkg-deb -f "$bundle"/deb/*.deb Depends
+          "$bundle"/appimage/*.AppImage --appimage-extract > /dev/null
+          for katago in deb/usr/share/KaTrain/KataGo/katago squashfs-root/usr/share/KaTrain/KataGo/katago; do
+            test -x "$katago"
+            cmp "$katago" "$GITHUB_WORKSPACE/resources/KataGo/katago"
+            "$katago" version
+          done
+          test -z "$(find deb/usr/lib squashfs-root/usr/lib -type f -name katago)"
+          # Not "katrain": that may be the Python version on PATH. Not an absolute path either: the AppImage shares this
+          # entry, and would then start the installed program instead of its own.
+          grep -Fx 'Exec=katrain2' deb/usr/share/applications/KaTrain.desktop
+          grep -Fx 'Exec=katrain2' squashfs-root/*.desktop
+          test -x deb/usr/bin/katrain2
+          test -x squashfs-root/usr/bin/katrain2
+          # the GStreamer plugins WebKit needs to play the sounds (WAV files)
+          for plugin in coreelements playback typefindfunctions wavparse audioconvert audioresample autodetect alsa pulseaudio; do
+            test -n "$(find squashfs-root -name "libgst$plugin.so")" || { echo "AppImage lacks GStreamer plugin $plugin"; exit 1; }
+          done
+      # Unpacks the MSI and installs the NSIS package. Every file is checked by name because the runner has its own
+      # copies of some of the DLLs, so KataGo would start without them here. There is no GPU: analysis is not covered.
+      - name: Check the bundled KataGo starts from inside the installers
+        if: startsWith(matrix.platform, 'windows')
+        shell: pwsh
+        timeout-minutes: 5
+        run: |
+          $bundle = "$PWD\src-tauri\target\release\bundle"
+          $work = Join-Path $env:RUNNER_TEMP katrain-check
+          $msi = (Get-ChildItem "$bundle\msi\*.msi").FullName
+          $setup = (Get-ChildItem "$bundle\nsis\*-setup.exe").FullName
+          $p = Start-Process msiexec -ArgumentList '/a', "`"$msi`"", '/qn', "TARGETDIR=`"$work\msi`"" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "msiexec failed: $($p.ExitCode)" }
+          $p = Start-Process $setup -ArgumentList '/S', "/D=$work\nsis" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "the NSIS installer failed: $($p.ExitCode)" }
+          $resources = (Get-Content src-tauri\tauri.windows.conf.json -Raw | ConvertFrom-Json).bundle.resources.PSObject.Properties.Value
+          if (-not $resources) { throw "no resources listed in tauri.windows.conf.json" }
+          Write-Host "Checking $(@($resources).Count) bundled files"
+          $expected = (Get-FileHash resources\KataGo\katago.exe).Hash
+          foreach ($root in "$work\msi", "$work\nsis") {
+            $katago = (Get-ChildItem $root -Recurse -Filter katago.exe | Select-Object -First 1).FullName
+            if (-not $katago) { throw "no katago.exe in $root" }
+            $app = Split-Path (Split-Path $katago)
+            foreach ($resource in $resources) {
+              if (-not (Test-Path (Join-Path $app $resource))) { throw "$app lacks $resource" }
+            }
+            if ((Get-FileHash $katago).Hash -ne $expected) { throw "$katago differs from the one in the repository" }
+            & $katago version
+            if ($LASTEXITCODE -ne 0) { throw "$katago failed: $LASTEXITCODE" }
+          }
+      - uses: actions/upload-artifact@v5
+        with:
+          name: katrain-tauri-${{ matrix.platform }}
+          path: |
+            src-tauri/target/release/bundle/**/*.msi
+            src-tauri/target/release/bundle/**/*.exe
+            src-tauri/target/release/bundle/**/*.dmg
+            src-tauri/target/release/bundle/**/*.deb
+            src-tauri/target/release/bundle/**/*.AppImage
+          if-no-files-found: ignore
+
+  # Every push to main refreshes one public prerelease, "tauri-nightly", with the latest installers.
+  nightly:
+    needs: build
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: tauri-nightly
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: katrain-tauri-*
+          path: bundles
+          merge-multiple: true
+      - name: Update the tauri-nightly prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git tag -f tauri-nightly "$GITHUB_SHA"
+          git push -f origin tauri-nightly
+          notes="Automatic build from the main branch, commit ${GITHUB_SHA}. Not a release: for testing only. macOS builds are unsigned."
+          if gh release view tauri-nightly >/dev/null 2>&1; then
+            gh release edit tauri-nightly --prerelease --title "KaTrain 2 nightly" --notes "$notes"
+          else
+            gh release create tauri-nightly --prerelease --title "KaTrain 2 nightly" --notes "$notes" --verify-tag
+          fi
+          mapfile -t files < <(find bundles -type f \( -name '*.dmg' -o -name '*.msi' -o -name '*.exe' -o -name '*.deb' -o -name '*.AppImage' \))
+          printf '%s\n' "${files[@]}"
+          gh release upload tauri-nightly "${files[@]}" --clobber
