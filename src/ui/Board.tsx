@@ -334,6 +334,8 @@ export function Board() {
         preserveAspectRatio="xMidYMid meet"
         className={`board ${selecting ? "selecting" : ""}`}
         onMouseDown={(e) => {
+          // WebKit may send no click after the drag that selects a region: then this one is a new click to keep
+          justSelected.current = false;
           const c = toBoard(e);
           if (selecting && e.button === 0 && c) setBox([c[0], c[0], c[1], c[1]]);
           // middle click on a hint or next move: add its variation to the move tree
