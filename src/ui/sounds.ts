@@ -10,7 +10,53 @@ import countdown from "../assets/sounds/countdownbeep.wav";
 const STONES = [stone1, stone2, stone3, stone4, stone5];
 const cache = new Map<string, HTMLAudioElement>();
 
+// On Linux, WebKitGTK's <audio> fails with a format error on the app's own URLs. Web Audio can play them.
+let mediaElementsFail = false;
+let context: AudioContext | null = null;
+const buffers = new Map<string, Promise<AudioBuffer>>();
+const playing = new Map<string, AudioBufferSourceNode>();
+
+function stopWebAudio(src: string) {
+  const source = playing.get(src);
+  if (source) {
+    source.onended = null;
+    source.stop();
+    playing.delete(src);
+  }
+}
+
+async function playWebAudio(src: string, volume: number) {
+  const ctx = (context ??= new AudioContext());
+  let buffer = buffers.get(src);
+  if (!buffer) {
+    buffer = fetch(src)
+      .then((response) => response.arrayBuffer())
+      .then((bytes) => ctx.decodeAudioData(bytes));
+    buffers.set(src, buffer);
+  }
+  const decoded = await buffer;
+  await ctx.resume();
+  stopWebAudio(src);
+  const gain = ctx.createGain();
+  gain.gain.value = volume;
+  gain.connect(ctx.destination);
+  const source = ctx.createBufferSource();
+  source.buffer = decoded;
+  source.connect(gain);
+  source.onended = () => {
+    playing.delete(src);
+    // do not keep the audio device open between sounds
+    if (playing.size === 0) void ctx.suspend();
+  };
+  playing.set(src, source);
+  source.start();
+}
+
 function play(src: string, volume = 1) {
+  if (mediaElementsFail) {
+    playWebAudio(src, volume).catch(() => {});
+    return;
+  }
   try {
     let audio = cache.get(src);
     if (!audio) {
@@ -19,7 +65,12 @@ function play(src: string, volume = 1) {
     }
     audio.volume = volume;
     audio.currentTime = 0;
-    void audio.play().catch(() => {});
+    void audio.play().catch((e: unknown) => {
+      if (e instanceof DOMException && e.name === "NotSupportedError") {
+        mediaElementsFail = true;
+        playWebAudio(src, volume).catch(() => {});
+      }
+    });
   } catch {
     /* audio unavailable */
   }
@@ -34,5 +85,6 @@ export const sounds = {
   stopCountdown: () => {
     const a = cache.get(countdown);
     if (a) a.pause();
+    stopWebAudio(countdown);
   },
 };
