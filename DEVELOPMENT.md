@@ -71,6 +71,10 @@ The AppImage bundles the GStreamer plugins of the build machine (`bundleMediaFra
 `gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio`. Without them, the web
 view crashes the first time the app plays a sound.
 
+The Linux program is called `katrain2`, because the desktop entry finds it on `PATH` and `katrain` may be the Python
+version. Do not fix this with an absolute path in a desktop template: the AppImage uses the same entry, and would then
+start the installed program instead of its own.
+
 WebKitGTK's `<audio>` cannot load the app's own URLs, so `src/ui/sounds.ts` falls back to Web Audio there, with a new
 `AudioContext` for each sound. To test it, count the sounds at the output with `parec` on the sink's `.monitor` while
 two AIs play, and include a Bluetooth output: with one shared context, it only plays the first sound.

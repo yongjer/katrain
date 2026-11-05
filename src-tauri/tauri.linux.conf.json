@@ -1,4 +1,5 @@
 {
+  "mainBinaryName": "katrain2",
   "bundle": {
     "resources": {
       "../resources/models/b10c384h6nbttflrs.bin.gz": "models/b10c384h6nbttflrs.bin.gz",
@@ -13,14 +14,12 @@
       },
       "deb": {
         "depends": ["libfuse2t64 | libfuse2"],
-        "desktopTemplate": "katrain.desktop",
         "files": {
           "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
       },
       "rpm": {
         "depends": ["fuse-libs"],
-        "desktopTemplate": "katrain.desktop",
         "files": {
           "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
