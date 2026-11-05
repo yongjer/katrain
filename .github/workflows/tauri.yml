@@ -126,6 +126,34 @@ jobs:
           for plugin in coreelements playback typefindfunctions wavparse audioconvert audioresample autodetect alsa pulseaudio; do
             test -n "$(find squashfs-root -name "libgst$plugin.so")" || { echo "AppImage lacks GStreamer plugin $plugin"; exit 1; }
           done
+      # Unpacks the MSI and installs the NSIS package. Every file is checked by name because the runner has its own
+      # copies of some of the DLLs, so KataGo would start without them here. There is no GPU: analysis is not covered.
+      - name: Check the bundled KataGo starts from inside the installers
+        if: startsWith(matrix.platform, 'windows')
+        shell: pwsh
+        timeout-minutes: 5
+        run: |
+          $bundle = "$PWD\src-tauri\target\release\bundle"
+          $work = Join-Path $env:RUNNER_TEMP katrain-check
+          $msi = (Get-ChildItem "$bundle\msi\*.msi").FullName
+          $setup = (Get-ChildItem "$bundle\nsis\*-setup.exe").FullName
+          $p = Start-Process msiexec -ArgumentList '/a', "`"$msi`"", '/qn', "TARGETDIR=`"$work\msi`"" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "msiexec failed: $($p.ExitCode)" }
+          $p = Start-Process $setup -ArgumentList '/S', "/D=$work\nsis" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "the NSIS installer failed: $($p.ExitCode)" }
+          $resources = (Get-Content src-tauri\tauri.windows.conf.json -Raw | ConvertFrom-Json).bundle.resources.PSObject.Properties.Value
+          $expected = (Get-FileHash resources\KataGo\katago.exe).Hash
+          foreach ($root in "$work\msi", "$work\nsis") {
+            $katago = (Get-ChildItem $root -Recurse -Filter katago.exe | Select-Object -First 1).FullName
+            if (-not $katago) { throw "no katago.exe in $root" }
+            $app = Split-Path (Split-Path $katago)
+            foreach ($resource in $resources) {
+              if (-not (Test-Path (Join-Path $app $resource))) { throw "$app lacks $resource" }
+            }
+            if ((Get-FileHash $katago).Hash -ne $expected) { throw "$katago differs from the one in the repository" }
+            & $katago version
+            if ($LASTEXITCODE -ne 0) { throw "$katago failed: $LASTEXITCODE" }
+          }
       - uses: actions/upload-artifact@v5
         with:
           name: katrain-tauri-${{ matrix.platform }}
