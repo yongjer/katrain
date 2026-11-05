@@ -205,7 +205,7 @@ export function App() {
       void stopDrop.then((stop) => stop());
     };
   }, []);
-  if (!ready) return <div className="loading">KaTrain</div>;
+  if (!ready) return <div className="loading">Katraineo</div>;
   return (
     <div className="app" key={lang}>
       <TopBar />

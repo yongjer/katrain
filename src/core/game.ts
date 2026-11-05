@@ -89,7 +89,7 @@ export class Game {
     this.sgfFilename = opts.sgfFilename ?? null;
     if (opts.moveTree) {
       this.root = opts.moveTree;
-      this.externalGame = !this.root.getProperty("AP", "").includes(PROGRAM_NAME);
+      this.externalGame = !/katrain/i.test(this.root.getProperty("AP", "")); // also games saved by the original KaTrain
       const handicap = Math.trunc(this.root.handicap);
       let numStartingMovesBlack = 0;
       let node = this.root;

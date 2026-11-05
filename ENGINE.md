@@ -19,7 +19,7 @@ If you find your problem is not in here, you can ask on the [Computer Go Communi
 ###  <a name="CPU"></a> GPU vs CPU
 
 The bundled executables assume you have a compatible graphics card (GPU).
-If you don't, KataGo will fail to start in ways that are difficult for KaTrain to pick up.
+If you don't, KataGo will fail to start in ways that are difficult for Katraineo to pick up.
 
 You can resolve this by downloading a CPU based KataGo version (named 'Eigen' after the library it uses) from
 [KataGo's release page](https://github.com/lightvector/KataGo/releases), and setting the KataGo path to it under
@@ -31,7 +31,7 @@ visits to a lower number to compensate for this.
 ###  <a name="Models"></a> KataGo model versions
 
 KataGo models have changed over time, and loading a newer model with an older executable can lead to errors.
-The transformer models, including the `b10c384h6nbt` model included with KaTrain, require KataGo v1.17.0 or later.
+The transformer models, including the `b10c384h6nbt` model included with Katraineo, require KataGo v1.17.0 or later.
 If you have selected an older KataGo binary of your own, either upgrade it or select an older model, such as one of
  the distributed training models available under 'Download Models'.
 

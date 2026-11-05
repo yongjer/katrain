@@ -23,7 +23,7 @@ git clone --depth 1 --branch "$ref" https://github.com/lightvector/KataGo.git "$
 # quick_exit only exists in macOS 15+; _Exit does the same here (KataGo registers no at_quick_exit handlers)
 sed -i '' 's/quick_exit(EXIT_FAILURE)/_Exit(EXIT_FAILURE)/' "$work/KataGo/cpp/core/global.cpp"
 
-# Without BUILD_DISTRIBUTED and libzip: KaTrain only uses the analysis engine.
+# Without BUILD_DISTRIBUTED and libzip: Katraineo only uses the analysis engine.
 flags=(-G Ninja -DCMAKE_BUILD_TYPE=Release -DUSE_BACKEND="$backend")
 if [ "$backend" = OPENCL ]; then
   # OpenCL and zlib come with macOS: keep Homebrew's libraries (built for the newest macOS) out entirely

@@ -1,13 +1,13 @@
-# KaTrain
+# Katraineo
 
-KaTrain is a tool for analyzing games and playing go with AI feedback from KataGo:
+Katraineo is a tool for analyzing games and playing go with AI feedback from KataGo:
 
 * Review your games to find the moves that were most costly in terms of points lost.
 * Play against AI and get immediate feedback on mistakes with option to retry.
 * Play against a wide range of weakened versions of AI with various styles.
 * Automatically generate focused SGF reviews which show your biggest mistakes.
 
-This fork is a desktop app built with [Tauri v2](https://v2.tauri.app/), React and TypeScript, ported from the
+Katraineo is a desktop app built with [Tauri v2](https://v2.tauri.app/), React and TypeScript, ported from the
 original Python + Kivy [KaTrain by Sander Land](https://github.com/sanderland/katrain). It plays, analyzes and saves
 games the same way, uses the same settings and translations, and reads and writes the same SGF files, including
 KaTrain's saved analysis. See [DEVELOPMENT.md](DEVELOPMENT.md) for how it is built.
@@ -25,9 +25,9 @@ KaTrain's saved analysis. See [DEVELOPMENT.md](DEVELOPMENT.md) for how it is bui
 ## <a name="install"></a> Installation
 
 Test builds for Windows, macOS (Apple Silicon and Intel) and Linux are on the
-[`tauri-nightly` release](https://github.com/yongjer/katrain/releases/tag/tauri-nightly):
+[`tauri-nightly` release](https://github.com/yongjer/katraineo/releases/tag/tauri-nightly):
 
-* **macOS**: open the `_aarch64.dmg` (Apple Silicon) or `_x64.dmg` (Intel) and drag KaTrain to Applications.
+* **macOS**: open the `_aarch64.dmg` (Apple Silicon) or `_x64.dmg` (Intel) and drag Katraineo to Applications.
   The build is not signed, so the first time, open it from Finder with right click → Open
   (or allow it under System Settings → Privacy & Security).
 * **Windows**: run the `.msi` or `-setup.exe` installer. SmartScreen may warn about an unknown publisher; choose
@@ -37,7 +37,7 @@ Test builds for Windows, macOS (Apple Silicon and Intel) and Linux are on the
 
 ## <a name="kata"></a> Configuring KataGo
 
-KaTrain comes with KataGo and the `b10c384h6nbt` transformer model, which is stronger per visit than the strongest
+Katraineo comes with KataGo and the `b10c384h6nbt` transformer model, which is stronger per visit than the strongest
 18 block models while being about as fast. KataGo uses the Metal backend on Apple Silicon Macs (macOS 15 or later),
 and OpenCL on Windows, Linux and Intel Macs (macOS 11 or later).
 
@@ -48,17 +48,17 @@ Open *General & Engine Settings* (F8) to configure the engine. The selected tab 
   For other hardware, KataGo has versions on [its release page](https://github.com/lightvector/KataGo/releases):
   CUDA and TensorRT for NVIDIA GPUs, ROCm for AMD GPUs, ONNX for Intel GPUs/NPUs or DirectML,
   and Eigen for computers without a usable GPU. Download one and set the KataGo path to it.
-* **Remote engine**: a `ws://` or `wss://` URL of a KataGo analysis engine served over a WebSocket. KaTrain reconnects
+* **Remote engine**: a `ws://` or `wss://` URL of a KataGo analysis engine served over a WebSocket. Katraineo reconnects
   automatically if the connection drops, and resumes the analysis that was in progress.
 * **Custom command**: the full command that starts the analysis engine, e.g. to run it over ssh.
 
-Keep in mind that KaTrain uses the *analysis engine* of KataGo, and not the GTP engine.
+Keep in mind that Katraineo uses the *analysis engine* of KataGo, and not the GTP engine.
 [ENGINE.md](ENGINE.md) helps when KataGo does not start.
 
 ## <a name="ai"></a> Play against AI
 
 * Select the players at the top of the side panel, or under 'New Game'.
-* In a teaching game, KaTrain will analyze your moves and automatically undo those that are sufficiently bad.
+* In a teaching game, Katraineo will analyze your moves and automatically undo those that are sufficiently bad.
 * When playing against AI, note that the "Undo" button will undo both the AI's last move and yours.
 * In play mode the side panel shows the game clock; set main time and byo-yomi under *Timer Settings* (F5).
 

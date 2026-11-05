@@ -87,7 +87,7 @@ pub async fn fetch_text(url: String) -> Result<String, String> {
         return Err("only http(s) links can be imported".into());
     }
     let client = reqwest::Client::builder()
-        .user_agent(concat!("KaTrain/", env!("CARGO_PKG_VERSION")))
+        .user_agent(concat!("Katraineo/", env!("CARGO_PKG_VERSION")))
         .build()
         .map_err(|e| e.to_string())?;
     let res = client.get(&url).send().await.map_err(|e| e.to_string())?;

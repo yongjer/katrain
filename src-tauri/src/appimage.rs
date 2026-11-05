@@ -1,5 +1,5 @@
 //! Inside an AppImage, the AppImage's launcher points LD_LIBRARY_PATH, PATH, PYTHONHOME and others at the libraries
-//! and tools it bundles. Those are for KaTrain itself. Programs it starts must not inherit them: with the bundled
+//! and tools it bundles. Those are for Katraineo itself. Programs it starts must not inherit them: with the bundled
 //! libsystemd on LD_LIBRARY_PATH, even the host's `readlink` and `env` fail to start, and with them KataGo's launcher.
 
 use std::process::Command;
@@ -40,16 +40,16 @@ mod tests {
 
     fn changes(vars: &[(&str, &str)]) -> Vec<(String, Option<String>)> {
         let owned = vars.iter().map(|(k, v)| (k.to_string(), v.to_string()));
-        host_env_changes("/tmp/.mount_KaTrain", owned)
+        host_env_changes("/tmp/.mount_Katraineo", owned)
     }
 
     #[test]
     fn removes_variables_that_only_point_into_the_appimage() {
         let result = changes(&[
-            ("LD_LIBRARY_PATH", "/tmp/.mount_KaTrain/usr/lib/:/tmp/.mount_KaTrain/lib/"),
-            ("PYTHONPATH", "/tmp/.mount_KaTrain/usr/share/pyshared/:"),
-            ("GTK_DATA_PREFIX", "/tmp/.mount_KaTrain"),
-            ("APPDIR", "/tmp/.mount_KaTrain"),
+            ("LD_LIBRARY_PATH", "/tmp/.mount_Katraineo/usr/lib/:/tmp/.mount_Katraineo/lib/"),
+            ("PYTHONPATH", "/tmp/.mount_Katraineo/usr/share/pyshared/:"),
+            ("GTK_DATA_PREFIX", "/tmp/.mount_Katraineo"),
+            ("APPDIR", "/tmp/.mount_Katraineo"),
         ]);
         assert_eq!(result.len(), 4);
         assert!(result.iter().all(|(_, value)| value.is_none()));
@@ -57,7 +57,7 @@ mod tests {
 
     #[test]
     fn keeps_the_entries_of_a_list_that_are_outside_the_appimage() {
-        let result = changes(&[("PATH", "/tmp/.mount_KaTrain/usr/bin/:/usr/local/bin:/tmp/.mount_KaTrain/bin/:/usr/bin")]);
+        let result = changes(&[("PATH", "/tmp/.mount_Katraineo/usr/bin/:/usr/local/bin:/tmp/.mount_Katraineo/bin/:/usr/bin")]);
         assert_eq!(result, vec![("PATH".to_string(), Some("/usr/local/bin:/usr/bin".to_string()))]);
     }
 
@@ -67,8 +67,8 @@ mod tests {
             ("HOME", "/home/user"),
             ("PATH", "/usr/bin:/bin"),
             ("GTK_THEME", "Adwaita:dark"),
-            ("APPIMAGE", "/home/user/KaTrain.AppImage"),
-            ("OTHER", "/tmp/.mount_KaTrain2/usr/lib"),
+            ("APPIMAGE", "/home/user/Katraineo.AppImage"),
+            ("OTHER", "/tmp/.mount_Katraineo2/usr/lib"),
         ]);
         assert!(result.is_empty());
     }

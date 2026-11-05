@@ -106,7 +106,7 @@ fn default_katago(app: &AppHandle) -> Result<PathBuf, String> {
         // every ELF file below usr/lib, and KataGo for Linux is itself an AppImage, which that corrupts.
         let packaged = std::env::current_exe()
             .ok()
-            .and_then(|exe| Some(exe.parent()?.parent()?.join("share/KaTrain/KataGo/katago")))
+            .and_then(|exe| Some(exe.parent()?.parent()?.join("share/Katraineo/KataGo/katago")))
             .filter(|p| p.is_file());
         // `tauri dev` has no such folder and uses the one in the repository.
         return Ok(packaged.unwrap_or_else(|| paths::resolve_resource(app, "katrain/KataGo/katago")));
