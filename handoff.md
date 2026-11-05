@@ -2,6 +2,8 @@
 
 更新於 2026-11-05。給下一個工作階段接手用。
 
+**現況：Ubuntu 上的工作已結束，接下來換到使用者的 Mac 測試。請先看第 4 節第 1 項，步驟都寫在那裡。**
+
 ## 1. 目標
 
 把使用者自己 fork 的 KaTrain（https://github.com/yongjer/katrain）從 Python + Kivy 改寫成 **Tauri v2** 桌面 app。使用者一開始選定的做法：
@@ -28,7 +30,8 @@
 
 - 分支：`tauri-v2`（工作目錄乾淨，全部已推上 GitHub）。Linux 修正已合併進來，測試分支都已刪除。
 - PR：https://github.com/yongjer/katrain/pull/1 （open，base 是 `main`，標題「Port KaTrain to Tauri v2 + React + TypeScript」）。PR 說明還沒補上 Linux 這批修正。**還沒合併**，合併要由使用者決定。
-- 測試版頁面的 tag `tauri-nightly` 由 CI 更新，實際指向哪個 commit 請用第 7 節的指令查。
+- 測試版頁面的 tag `tauri-nightly` 指向 `d6680db`。之後的交接文件 commit 只改 `handoff.md`，那次 CI 已取消，所以安裝檔仍是 `d6680db` 建的，程式內容相同。
+- 使用者的 Mac 上還是舊的測試版，要先換成這一版才能測。
 
 ## 3. 已完成的結論
 
@@ -101,7 +104,7 @@ G 之後框外還會有幾個低訪問數的建議點，這不是 bug：`game.ts
 - 每聲新 context（現在的做法）：AppImage 和 deb 在藍牙、虛擬環繞、內建輸出都不再中斷。藍牙 24 秒分別 38、36 聲。只有 deb 走虛擬環繞比較少（14 秒 11 聲），原因沒查。
 - **根本原因不明**：不知道為什麼同一個 context 走 pulsesink 只響第一聲，現在的做法是繞開它。
 - **延遲**：使用者在藍牙耳機上感覺每手約慢 0.3 秒。PipeWire 回報藍牙輸出約 180 毫秒（不含耳機解碼）。從音訊串流建立到輸出端出現聲音，中位數 66 毫秒。使用者接受這個延遲。
-- `scratchpad` 裡用 Python + WebKit2 寫的靜音探測程式不能當重現方式：它的 `resume()` 不管走哪個輸出都卡住，真正的 app 不會。請直接測真正的 app。
+- 自己用 Python + WebKit2 寫靜音探測程式不能當重現方式：它的 `resume()` 不管走哪個輸出都卡住，真正的 app 不會。請直接測真正的 app。
 
 **沒測到**
 
@@ -120,8 +123,14 @@ G 之後框外還會有幾個低訪問數的建議點，這不是 bug：`game.ts
 - 判斷 AppImage 是否真的跑自己的程式，要看 `/proc/<pid>/exe` 是否在 `/tmp/.mount_*` 底下，系統上裝著 deb 時尤其要查。
 - 不需要點擊的測試，可以用 AI 自動對弈的設定（兩邊都設成 `player:ai`）。
 - 測音效要錄 `.monitor` 算聲數。用 `PULSE_SINK` 導到沒在用的輸出就不會吵到使用者，**但藍牙路徑一定要另外測**。
-- 本機沒有 `libwebkit2gtk-4.1-dev`，不能 `cargo check`，改 Rust 要靠 CI。Node 不在 PATH 上：`export PATH="$HOME/.openclaw/tools/node-v24.22.1/bin:$PATH"`。
-- 使用者全域 `~/.gitconfig` 的身分是 Gemini，不要改它。commit 請用 `git -c user.name=yongjer -c user.email=54315206+yongjer@users.noreply.github.com`。
+- Ubuntu 機器上沒有 `libwebkit2gtk-4.1-dev`，不能 `cargo check`，改 Rust 要靠 CI。Node 不在 PATH 上：`export PATH="$HOME/.openclaw/tools/node-v24.22.1/bin:$PATH"`。
+- Ubuntu 機器全域 `~/.gitconfig` 的身分是 Gemini，不要改它。commit 請用 `git -c user.name=yongjer -c user.email=54315206+yongjer@users.noreply.github.com`。使用者同意過 commit 作者用這個身分；在其他機器 commit 前也先看 `git config user.name`。
+
+**Ubuntu 機器上留下的東西**（repo 在 `~/code/katrain`）
+
+- `ka-train` 套件還裝著（移除：`sudo apt remove ka-train`），設定檔和約 95 MB 的 app 資料（含擬人模型）在 `~/.config` 和 `~/.local/share` 的 `io.github.yongjer.katrain`。
+- 舊的 Python 版 KaTrain（`uv tool`）沒有動，所以終端機打 `katrain` 開到的是它，新版要打 `katrain2`。
+- 測試安裝檔和測試分支都刪了。要重新測 Linux，就從測試版頁面下載。
 
 ### CI 注意事項（手動執行 macos-14）
 
@@ -151,14 +160,22 @@ G 之後框外還會有幾個低訪問數的建議點，這不是 bug：`game.ts
 
 建議順序：
 
-1. **Linux 剩餘測試**：主要流程已實測（第 3 節），還沒測的見該節「沒測到」，其中最值得先做的是沒有 FUSE 的系統和 `wss://`。
-2. **Windows 實機測試**：**使用者沒有 Windows 電腦，目前做不到**，所以不要當成下一步建議。Windows 版只驗證到 KataGo 能從安裝檔啟動（第 3 節）；實機最可能出問題的是路徑、防毒、SmartScreen 和 OpenCL。有人能提供機器再做。
-3. **合併 PR #1 到 `main`**：需使用者同意。合併後要把 workflow 的 push 分支、nightly 條件從 `tauri-v2` 改成 `main`（或另外設計），並更新 README/DEVELOPMENT.md 裡提到 `tauri-v2` 的地方。
-4. **正式發佈流程**：版本號統一（目前 `package.json` 和 `Cargo.toml` 是 `2.0.0-alpha.1`，`tauri.conf.json` 是 `2.0.0`，因為 MSI 不接受 prerelease 版本號）、推 tag 自動建正式版、Tauri updater 自動更新、macOS 簽章公證（需 Apple 開發者帳號）、Windows 簽章。
-5. **Intel Mac 實機驗證**：需要有 Intel Mac 的人。
-6. **還沒移植的功能**：在設定裡下載 KataGo 執行檔、參與分散式訓練（contribute mode）、主題與自訂快捷鍵、極簡 UI 模式（`~`/F12）。另外 PV 上捲動滑鼠逐手瀏覽、點棋子看該手詳細資料、雙擊跳轉也沒做。
-7. **小問題**：選單中「Copy SGF」「Paste SGF / link」「KataGo log」三項沒有翻譯（原版沒有這些選單項目的字串）。
-8. 中鍵加入變化、拖放棋譜檔沒在 Mac app 裡測，框選後點擊的修正也沒在 Mac 上測（Linux 都測過）。
+1. **Mac 實機測試（使用者已決定下一步做這個）**：這批 Linux 修正改到了共用的前端，而且有些項目從沒在 Mac app 裡測過。第 6 節有安裝方式和工具限制。依序：
+   1. **安裝**：把 `KaTrain_2.0.0_aarch64.dmg` 換成測試版頁面上最新的版本，開啟後確認引擎有啟動、分析有結果。
+   2. **框選後第一次點擊**：按 G，在棋盤上拖出一個方框，放開後立刻點框外一個**空點**，應該一次就下出棋子。沒下出來但再點一次就可以，就是修正無效（`src/ui/Board.tsx` 的 `justSelected`）。Linux 的問題是 WebKit 拖曳後沒送 `click`，Mac 的 WKWebView 不一定一樣；反過來也要注意：如果 Mac 拖曳後**有**送 `click`，放開滑鼠時不應該多下一手。
+   3. **中鍵加入變化**：按 E 打開 Top Moves，把游標移到建議點上立刻按中鍵。棋譜樹（Analysis 分頁看得到）應該多一條變化，盤面不跳走，按右方向鍵確認第一手就是那個點。**MacBook Air 的觸控板沒有實體中鍵**：先看工具能不能送中鍵，不行就請使用者接滑鼠；都沒有就回報沒測到，不要跳過不說。
+   4. **拖放棋譜**：從 Finder 把 SGF 拖進視窗，狀態列應該出現檔名，棋譜樹載入棋局。Mac 上沒有 repo 的話，可以從 https://github.com/yongjer/katrain/blob/tauri-v2/tests-ts/data/ogs.sgf 下載。（Ubuntu 上的 `test1.sgf` 已刪除。）
+   5. **音效迴歸**：`src/ui/sounds.ts` 改過。Mac 走 `<audio>`，應該和以前一樣；請使用者親耳確認落子聲每手都有，中間停幾十秒再下也有。自動化工具聽不到聲音，所以這項一定要問使用者。
+   6. **順手確認**：G 框選後的下一手，詳細分析應該在框內（框外幾個低訪問數的點是正常的，見第 3 節）；F2 全盤分析還能跑。
+   - 測到問題就先修，推到測試分支並用手動 CI 打包驗證，**確認後再問使用者要不要合併進 `tauri-v2`**；合併會覆蓋 `tauri-nightly`。
+2. **合併 PR #1 到 `main`**：Mac 測完後再問使用者。需使用者同意。合併前先補上 PR 說明裡缺的 Linux 修正。合併後要把 workflow 的 push 分支、nightly 條件從 `tauri-v2` 改成 `main`（或另外設計），並更新 README/DEVELOPMENT.md 裡提到 `tauri-v2` 的地方。
+3. **Linux 剩餘測試**：主要流程已實測（第 3 節），還沒測的見該節「沒測到」，其中最值得先做的是沒有 FUSE 的系統和 `wss://`。
+4. **Windows 實機測試**：**使用者沒有 Windows 電腦，目前做不到**，所以不要當成下一步建議。Windows 版只驗證到 KataGo 能從安裝檔啟動（第 3 節）；實機最可能出問題的是路徑、防毒、SmartScreen 和 OpenCL。有人能提供機器再做。
+5. **正式發佈流程**：版本號統一（目前 `package.json` 和 `Cargo.toml` 是 `2.0.0-alpha.1`，`tauri.conf.json` 是 `2.0.0`，因為 MSI 不接受 prerelease 版本號）、推 tag 自動建正式版、Tauri updater 自動更新、macOS 簽章公證（需 Apple 開發者帳號）、Windows 簽章。
+6. **Intel Mac 實機驗證**：需要有 Intel Mac 的人。
+7. **還沒移植的功能**：在設定裡下載 KataGo 執行檔、參與分散式訓練（contribute mode）、主題與自訂快捷鍵、極簡 UI 模式（`~`/F12）。另外 PV 上捲動滑鼠逐手瀏覽、點棋子看該手詳細資料、雙擊跳轉也沒做。
+8. **小問題**：選單中「Copy SGF」「Paste SGF / link」「KataGo log」三項沒有翻譯（原版沒有這些選單項目的字串）。
+9. **音效的根本原因**：同一個 AudioContext 走 pulsesink 為什麼只響第一聲，目前只是繞開（第 3 節）。
 
 ## 5. 重要檔案與連結
 
@@ -183,7 +200,9 @@ Repo 內：
 | `src/i18n/*.po` | 11 種語言的翻譯 |
 | `src-tauri/src/engine.rs` | KataGo 程序／WebSocket 連線 |
 | `src-tauri/src/paths.rs` | `katrain/...` 設定路徑對應到內建資源（開發時對應 repo 的 `resources/`） |
-| `src-tauri/tauri*.conf.json` | 各平台打包設定（macOS 版含 katago-osx 與 katago-libs） |
+| `src-tauri/src/appimage.rs` | 從 AppImage 啟動外部程式前還原環境變數 |
+| `src-tauri/tauri*.conf.json` | 各平台打包設定（macOS 版含 katago-osx 與 katago-libs；Linux 版的執行檔叫 `katrain2`） |
+| `src/ui/sounds.ts` | 音效：先用 `<audio>`，WebKitGTK 載入失敗就改用 Web Audio |
 | `resources/` | Windows/Linux 的 KataGo、預設模型、KataGo 設定檔 |
 | `scripts/build-katago-macos.sh` | 編 macOS 版 KataGo（本機在 Mac 上 build app 前也要先跑一次） |
 | `scripts/engine-bridge.mjs` | 在一般瀏覽器開發 UI 時跑 KataGo 的本機橋接 |
@@ -193,6 +212,8 @@ Repo 內：
 Golden data 原本是用 Python 程式產生的。Python 程式碼已從分支移除，若要重產，可從移除前的 commit 取回：`git show 4361e15^:katrain/...`。
 
 ## 6. 使用者的 Mac（computer use 注意事項）
+
+以下是之前在 Mac 上測試時的紀錄。工具名稱是當時雲端環境的，現在的環境不一定相同，請以實際可用的工具為準。
 
 - 裝置：Apple Silicon（M1）MacBook Air，macOS；已連接資料夾只有 `/Users/yongjer/Downloads`。
 - 安裝測試版的流程：
@@ -215,11 +236,11 @@ Golden data 原本是用 Python 程式產生的。Python 程式碼已從分支�
 
 ## 7. 接手者一開始該做什麼
 
-1. 取得程式碼：`git clone https://github.com/yongjer/katrain && cd katrain && git checkout tauri-v2`（必要時用 add_repo 取得 push 權限），確認 `git log -1` 是 `821b764` 或更新。
+1. 取得程式碼：`git clone https://github.com/yongjer/katrain && cd katrain && git checkout tauri-v2`（必要時用 add_repo 取得 push 權限），確認 `git log` 裡有 `d6680db`。
 2. `npm ci && npm run typecheck && npm test`，確認 109 個測試通過；需要時 `cargo test --manifest-path src-tauri/Cargo.toml`。
 3. 讀 `DEVELOPMENT.md`（架構與指令）和本文件第 4 節。
 4. 查 CI 與測試版狀態：
    - `gh run list --branch tauri-v2 --limit 5`
    - `gh api repos/yongjer/katrain/releases/tags/tauri-nightly --jq '.assets[].name'`
-5. 用繁體中文問使用者要接著做哪一項（第 4 節）。
+5. 使用者已決定接著做 **Mac 實機測試**（第 4 節第 1 項），用繁體中文確認一下就開始。測完回報時，請分清楚「實際操作過」「自動驗證」「沒測到」。
 6. 任何要合併 PR、改 `main`、發正式版、刪檔的動作，都先問使用者。
