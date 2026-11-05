@@ -67,6 +67,10 @@ to build KaTrain's AppImage) rewrites every ELF file below `usr/lib`, which corr
 Programs started from inside KaTrain's AppImage must also not inherit the environment it sets up for itself
 (`src-tauri/src/appimage.rs`).
 
+The AppImage bundles the GStreamer plugins of the build machine (`bundleMediaFramework`), so building it needs
+`gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio`. Without them, the web
+view crashes the first time the app plays a sound.
+
 UI work in a browser (no Tauri), with a real engine:
 
 ```sh

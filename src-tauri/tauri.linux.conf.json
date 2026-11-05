@@ -6,6 +6,7 @@
     },
     "linux": {
       "appimage": {
+        "bundleMediaFramework": true,
         "files": {
           "/usr/share/KaTrain/KataGo/katago": "../resources/KataGo/katago"
         }
