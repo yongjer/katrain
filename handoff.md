@@ -24,10 +24,11 @@
 | 4 | 表現報告（F3）、遠端引擎、移除 Python | 完成，Mac 實測過 |
 | 追加 | G 框選分析區域、K 座標、F2 全盤分析、Ctrl+←/→、中鍵加入變化、拖放檔案 | 完成；G、K、F2 在 Mac 實測過，中鍵與拖放只在瀏覽器（Playwright）測過 |
 | 追加 | macOS 內建 KataGo（Apple Silicon 用 Metal、Intel 用 OpenCL）、Intel 版建置 | 完成；Apple Silicon 版在 Mac 實測過 |
+| 追加 | Linux 實機測試與修正（AppImage 引擎、第一手當機、音效） | 完成；實測範圍和沒測到的項目見第 3 節「Linux 實機測試」 |
 
-- 分支：`tauri-v2`，最新 commit `821b764`（工作目錄乾淨，全部已推上 GitHub）。
-- PR：https://github.com/yongjer/katrain/pull/1 （open，base 是 `main`，標題「Port KaTrain to Tauri v2 + React + TypeScript」，說明已更新到第 4 階段）。**還沒合併**，合併要由使用者決定。
-- 測試版頁面的 tag `tauri-nightly` 指向 `6611968`（之後的 `821b764` 只改文件，那次 CI 被我取消，所以安裝檔仍是 `6611968` 建的，內容相同）。
+- 分支：`tauri-v2`（工作目錄乾淨，全部已推上 GitHub）。Linux 修正已合併進來；測試分支 `fix/linux-appimage` 還留在 GitHub 上，內容相同但 commit 作者是舊的，要刪除請先問使用者。
+- PR：https://github.com/yongjer/katrain/pull/1 （open，base 是 `main`，標題「Port KaTrain to Tauri v2 + React + TypeScript」）。PR 說明還沒補上 Linux 這批修正。**還沒合併**，合併要由使用者決定。
+- 測試版頁面的 tag `tauri-nightly` 由 CI 更新，實際指向哪個 commit 請用第 7 節的指令查。
 
 ## 3. 已完成的結論
 
@@ -59,6 +60,51 @@ https://github.com/yongjer/katrain/releases/tag/tauri-nightly （prerelease，�
 - **只在 GitHub 的 `macos-15-intel` runner 上驗證過**：CI 步驟「Check the bundled KataGo starts from inside the app」實際執行 app 內的 `katago-osx version`（輸出 KataGo v1.18.2、OpenCL backend），`otool -L` 只剩系統函式庫，`codesign --verify` 通過。
 - **沒有在真的 Intel Mac 上跑過分析**（使用者只有 M1）。runner 沒有可用 GPU，所以 OpenCL 實際推論也沒測過。
 
+### Linux 實機測試
+
+測試機：Ubuntu 26.04、RTX 4060 Ti、系統 WebKitGTK 2.52.6、PipeWire，音訊輸出是藍牙耳機（LDAC）。
+
+**實測正常**
+
+- deb（XWayland）：OpenCL 引擎、分析、AI 對弈、指導棋、計時器、快捷鍵、F3 報告、模型下載、SGF 存讀、剪貼簿、繁中介面、`ws://` 遠端與重連、正常結束。
+- AppImage：引擎、分析、落子與 AI 回應、音效（使用者手動下棋時聽得到，同時錄到 51 聲，停約 97 秒後也照常響）。
+- 原生 Wayland：使用者確認正常。
+
+**這輪修掉的問題**
+
+| 問題 | 原因 | 修法 |
+|---|---|---|
+| AppImage 引擎死掉 | 內建的 Linux KataGo 本身是 AppImage，linuxdeploy 改寫 `usr/lib` 下所有 ELF 時把它弄壞 | 改裝到 `usr/share/KaTrain/KataGo`（`tauri.linux.conf.json`） |
+| AppImage 引擎 status 127 | 外層 AppImage 的 `LD_LIBRARY_PATH` 弄壞系統工具 | 啟動引擎前還原環境（`src-tauri/src/appimage.rs`） |
+| AppImage 第一手當機 | 沒打包 GStreamer 外掛，缺 `autoaudiosink` 讓 WebKitWebProcess 當掉 | `bundleMediaFramework`，CI 也檢查外掛 |
+| 所有 Linux 版沒有音效 | WebKitGTK 的 `<audio>` 在 app 自己的網址上回報 `FormatError`，錯誤又被吞掉 | 改用 Web Audio（`src/ui/sounds.ts`） |
+| Web Audio 只響第一聲 | 見下方 | 每個聲音開新的 AudioContext，播完就關 |
+
+**音效的實測數據**（AI 自動對弈，用 `parec` 錄輸出裝置的 `.monitor` 算聲數）
+
+- 同一個 AudioContext、不 suspend，走 pulsesink：藍牙只有第一聲（AppImage 和 deb 都一樣），虛擬環繞輸出 0 聲，內建數位輸出正常。deb 用 `GST_PLUGIN_FEATURE_RANK=pipewiresink:MAX` 換成 pipewiresink 後，藍牙正常（12 秒 19 聲）。`PULSE_LATENCY_MSEC` 沒有效果。
+- 同一個 AudioContext、每聲 suspend：AppImage 走內建輸出時間隔越拉越長（110 秒只有 10 聲），deb 走內建輸出正常（68 秒 123 聲）。
+- 每聲新 context（現在的做法）：AppImage 和 deb 在藍牙、虛擬環繞、內建輸出都不再中斷。藍牙 24 秒分別 38、36 聲。只有 deb 走虛擬環繞比較少（14 秒 11 聲），原因沒查。
+- **根本原因不明**：不知道為什麼同一個 context 走 pulsesink 只響第一聲，現在的做法是繞開它。
+- **延遲**：使用者在藍牙耳機上感覺每手約慢 0.3 秒。PipeWire 回報藍牙輸出約 180 毫秒（不含耳機解碼）。從音訊串流建立到輸出端出現聲音，中位數 66 毫秒。使用者接受這個延遲。
+- `scratchpad` 裡用 Python + WebKit2 寫的靜音探測程式不能當重現方式：它的 `resume()` 不管走哪個輸出都卡住，真正的 app 不會。請直接測真正的 app。
+
+**沒測到**
+
+拖放棋譜、擬人 AI、G、F2、`wss://`、沒有 FUSE 的系統、真正用 `dpkg` 安裝（只解開 deb 來跑）、rpm、修正後的中鍵加入變化。
+
+**已知但沒修**
+
+- AppImage 的無障礙（AT-SPI）樹是空的，deb 正常，所以自動化工具讀不到 AppImage 的介面。
+- Linux 內建 KataGo 是 v1.18.1，macOS 是 v1.18.2。
+
+**在 Linux 上自動化測試的限制**
+
+- Xwayland 需要入口網站的遠端互動授權；測試時滑鼠移動送得到，按鍵送不到。手動操作交給使用者，或用 AI 自動對弈的設定（兩邊都設成 `player:ai`）。
+- 測音效要錄 `.monitor` 算聲數。用 `PULSE_SINK` 導到沒在用的輸出就不會吵到使用者，**但藍牙路徑一定要另外測**。
+- 本機沒有 `libwebkit2gtk-4.1-dev`，不能 `cargo check`，改 Rust 要靠 CI。Node 不在 PATH 上：`export PATH="$HOME/.openclaw/tools/node-v24.22.1/bin:$PATH"`。
+- 使用者全域 `~/.gitconfig` 的身分是 Gemini，不要改它。commit 請用 `git -c user.name=yongjer -c user.email=54315206+yongjer@users.noreply.github.com`。
+
 ### CI 注意事項（手動執行 macos-14）
 
 - 工作流程：`.github/workflows/tauri.yml`。push 到 `tauri-v2` 會跑 test → build（windows-latest、ubuntu-22.04、macOS Apple Silicon、macos-15-intel）→ nightly（更新 `tauri-nightly`；需要所有 build 都成功）。
@@ -88,13 +134,13 @@ https://github.com/yongjer/katrain/releases/tag/tauri-nightly （prerelease，�
 建議順序（使用者已看過這份清單，第 4 項已完成）：
 
 1. **Windows 實機測試（建議下一步）**：Windows 版從未在實機跑過。內建 KataGo + 一堆 DLL + OpenCL，最可能出問題（路徑、防毒、缺 VC++ 執行環境、SmartScreen）。需要使用者提供一台 Windows 電腦並連到對話。
-2. **Linux 實機測試**：只在早期用 Xvfb 跑過 Linux 版；deb/AppImage 沒有在真的桌面環境裝過。
+2. **Linux 剩餘測試**：主要流程已實測（第 3 節），還沒測的見該節「沒測到」，其中最值得先做的是真正用 `dpkg` 安裝和沒有 FUSE 的系統。
 3. **合併 PR #1 到 `main`**：需使用者同意。合併後要把 workflow 的 push 分支、nightly 條件從 `tauri-v2` 改成 `main`（或另外設計），並更新 README/DEVELOPMENT.md 裡提到 `tauri-v2` 的地方。
 4. **正式發佈流程**：版本號統一（目前 `package.json` 和 `Cargo.toml` 是 `2.0.0-alpha.1`，`tauri.conf.json` 是 `2.0.0`，因為 MSI 不接受 prerelease 版本號）、推 tag 自動建正式版、Tauri updater 自動更新、macOS 簽章公證（需 Apple 開發者帳號）、Windows 簽章。
 5. **Intel Mac 實機驗證**：需要有 Intel Mac 的人。
 6. **還沒移植的功能**：在設定裡下載 KataGo 執行檔、參與分散式訓練（contribute mode）、主題與自訂快捷鍵、極簡 UI 模式（`~`/F12）。另外 PV 上捲動滑鼠逐手瀏覽、點棋子看該手詳細資料、雙擊跳轉也沒做。
 7. **小問題**：選單中「Copy SGF」「Paste SGF / link」「KataGo log」三項沒有翻譯（原版沒有這些選單項目的字串）。
-8. 中鍵加入變化、拖放棋譜檔只在瀏覽器測過，沒在 Mac app 裡測。
+8. 中鍵加入變化、拖放棋譜檔只在瀏覽器測過，沒在 Mac app 裡測。Linux 的 deb 測過中鍵，但之後的修正（用事件位置找目標，`src/ui/Board.tsx`）還沒實測；拖放在 Linux 也沒測。
 
 ## 5. 重要檔案與連結
 
