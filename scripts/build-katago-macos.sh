@@ -4,7 +4,7 @@
 #
 #   scripts/build-katago-macos.sh [output dir]     (default: resources/KataGo)
 #
-# Needs Xcode (Swift 5.9+ for the Metal backend) and Homebrew. KATAGO_REF picks the KataGo branch or tag.
+# Needs Xcode 16+ (a macOS 15 SDK; Swift 5.9+ for the Metal backend) and Homebrew. KATAGO_REF picks the KataGo branch or tag.
 set -euo pipefail
 
 out="$(cd "$(dirname "$0")/.." && pwd)/${1:-resources/KataGo}"
