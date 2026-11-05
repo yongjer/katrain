@@ -16,8 +16,8 @@ on:
   workflow_dispatch:
     inputs:
       macos_runner:
-        description: "macOS runner label (when the default Apple Silicon pool is short of capacity, e.g. macos-14)"
-        default: macos-latest
+        description: "Runner label for the Apple Silicon build. The Homebrew libraries bundled with KataGo come from it, so a newer macOS can raise the app's minimum macOS."
+        default: macos-14
 
 jobs:
   test:
@@ -51,7 +51,7 @@ jobs:
         include:
           - platform: windows-latest
           - platform: ubuntu-22.04
-          - platform: ${{ inputs.macos_runner || 'macos-latest' }} # Apple Silicon: KataGo with Metal
+          - platform: ${{ inputs.macos_runner || 'macos-14' }} # Apple Silicon: KataGo with Metal
           - platform: macos-15-intel # Intel: KataGo with OpenCL
     runs-on: ${{ matrix.platform }}
     steps:
@@ -88,7 +88,7 @@ jobs:
           path: |
             resources/KataGo/katago-osx
             resources/KataGo/katago-libs
-          key: katago-macos-${{ runner.arch }}-${{ steps.katago-ref.outputs.sha }}-${{ hashFiles('scripts/build-katago-macos.sh') }}
+          key: katago-${{ matrix.platform }}-${{ steps.katago-ref.outputs.sha }}-${{ hashFiles('scripts/build-katago-macos.sh') }}
       - name: Build KataGo for macOS
         if: startsWith(matrix.platform, 'macos') && steps.katago-cache.outputs.cache-hit != 'true'
         run: scripts/build-katago-macos.sh

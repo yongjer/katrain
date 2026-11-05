@@ -39,6 +39,11 @@ mkdir -p "$out/katago-libs"
 printf 'Libraries used by katago-osx (KataGo %s, %s backend), copied from Homebrew by scripts/build-katago-macos.sh.\n' \
   "$ref" "$backend" > "$out/katago-libs/README.txt"
 dylibbundler -of -b -x "$out/katago-osx" -d "$out/katago-libs" -p @executable_path/katago-libs/
+# the binary can end up with this rpath several times, and dyld refuses duplicates when it is built for macOS 26+
+rpath=@executable_path/katago-libs/
+while [ "$(otool -l "$out/katago-osx" | grep -c "path $rpath ")" -gt 1 ]; do
+  install_name_tool -delete_rpath "$rpath" "$out/katago-osx"
+done
 # rewriting the load paths invalidates the signatures; Apple Silicon needs (ad-hoc) signed code
 find "$out/katago-libs" -name '*.dylib' -exec codesign --force --sign - {} \;
 codesign --force --sign - "$out/katago-osx"
