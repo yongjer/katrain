@@ -14,6 +14,7 @@ import {
   init,
   loadGame,
   openDialog,
+  requestCloseDialog,
   playAt,
   redo,
   resetAnalysis,
@@ -51,7 +52,7 @@ function onKeyDown(e: KeyboardEvent) {
   if (target.closest("input, textarea, select, [contenteditable]")) return;
   const s = useStore.getState();
   if (s.dialog) {
-    if (e.key === "Escape") openDialog(null);
+    if (e.key === "Escape") requestCloseDialog();
     return;
   }
   const ctrl = e.ctrlKey || e.metaKey;

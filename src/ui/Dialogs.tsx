@@ -1,6 +1,6 @@
 // Modal dialogs: new game, general & engine settings, AI settings, engine log.
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type InputHTMLAttributes, type ReactNode } from "react";
 import { aiRankEstimation, rankLabel } from "../core/ai";
 import { AI_STRATEGIES_AVAILABLE, AI_STRATEGIES_HUMAN_MODEL, PLAYER_AI, TOP_MOVE_OPTIONS, type Player } from "../core/constants";
 import { t } from "../core/i18n";
@@ -8,12 +8,24 @@ import { ENGINE_BACKENDS, resolveEngineBackend } from "../core/engine";
 import { gameReport, REPORT_FILTERS } from "../core/report";
 import type { AppConfig } from "../state/config";
 import { platform } from "../state/platform";
-import { analyzeExtra, newGame, openDialog, setupPosition, tsumegoFrame, updateConfig, updateTimerSettings, useStore } from "../state/store";
+import {
+  analyzeExtra,
+  newGame,
+  openDialog,
+  requestCloseDialog,
+  setDialogCloseGuard,
+  setupPosition,
+  tsumegoFrame,
+  updateConfig,
+  updateTimerSettings,
+  useStore,
+} from "../state/store";
 import { LANGUAGES } from "./i18nLoader";
 import { ModelPicker } from "./ModelPicker";
 import { EVAL_COLORS } from "./theme";
 
-function Modal({ title, children, onClose }: { title: string; children: ReactNode; onClose: () => void }) {
+/** `footer` stays in view below the scrolling body. */
+function Modal({ title, children, onClose, footer }: { title: string; children: ReactNode; onClose: () => void; footer?: ReactNode }) {
   return (
     <div className="modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className="modal" role="dialog" aria-label={title}>
@@ -24,6 +36,7 @@ function Modal({ title, children, onClose }: { title: string; children: ReactNod
           </button>
         </div>
         <div className="modal-body">{children}</div>
+        {footer && <div className="modal-footer">{footer}</div>}
       </div>
     </div>
   );
@@ -36,6 +49,35 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
       <span className="field-input">{children}</span>
       {hint && <span className="field-hint">{hint}</span>}
     </label>
+  );
+}
+
+/**
+ * A number field that may be empty or half typed while editing. It reports only text that parses as a number, and
+ * shows the value it settled on once it loses the focus; a plain controlled number input would jump to a default as
+ * soon as it is cleared, so clearing it and typing a new number did not work.
+ */
+function NumberInput({
+  value,
+  onValue,
+  ...props
+}: { value: number; onValue: (v: number) => void } & Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type">) {
+  const [text, setText] = useState<string | null>(null);
+  return (
+    <input
+      {...props}
+      type="number"
+      value={text ?? String(value)}
+      onChange={(ev) => {
+        setText(ev.target.value);
+        const v = parseFloat(ev.target.value);
+        if (!Number.isNaN(v)) onValue(v);
+      }}
+      onBlur={(ev) => {
+        setText(null);
+        props.onBlur?.(ev);
+      }}
+    />
   );
 }
 
@@ -130,12 +172,49 @@ export function SettingsDialog() {
       f(c);
       return c;
     });
-  const num = (v: string, fallback: number) => (Number.isNaN(parseFloat(v)) ? fallback : parseFloat(v));
   const e = draft.engine;
   const backend = resolveEngineBackend(e);
   const tr = draft.trainer;
+  // Closing with unsaved changes asks first, instead of silently dropping them.
+  const saved = (c: AppConfig) => JSON.stringify([c.general, c.engine, c.trainer]);
+  const dirty = saved(draft) !== saved(config);
+  const [confirming, setConfirming] = useState(false);
+  useEffect(() => {
+    setDialogCloseGuard(() => {
+      if (dirty) setConfirming(true);
+      return dirty;
+    });
+    return () => setDialogCloseGuard(null);
+  }, [dirty]);
+  const apply = () => {
+    close();
+    // applying also retries an engine that has stopped, even with unchanged settings
+    updateConfig(
+      (c) => {
+        c.general = draft.general;
+        c.engine = draft.engine;
+        c.trainer = draft.trainer;
+      },
+      { restartDeadEngine: true },
+    );
+  };
+  const footer = (
+    <div className="modal-actions">
+      {confirming && (
+        <>
+          <span className="unsaved">{t("settings:unsaved")}</span>
+          <button className="text-button" onClick={close}>
+            {t("settings:discard")}
+          </button>
+        </>
+      )}
+      <button className="primary" onClick={apply}>
+        {t("update settings")}
+      </button>
+    </div>
+  );
   return (
-    <Modal title={t("general settings title")} onClose={close}>
+    <Modal title={t("general settings title")} onClose={requestCloseDialog} footer={footer}>
       <h3>{t("general settings")}</h3>
       <Field label={t("menu:lang")}>
         <select value={draft.general.lang} onChange={(ev) => edit((c) => void (c.general.lang = ev.target.value))}>
@@ -206,16 +285,16 @@ export function SettingsDialog() {
         </Field>
       )}
       <Field label={t("engine:max_visits")}>
-        <input type="number" min={1} value={e.max_visits} onChange={(ev) => edit((c) => void (c.engine.max_visits = Math.max(1, Math.round(num(ev.target.value, 500)))))} />
+        <NumberInput min={1} value={e.max_visits} onValue={(v) => edit((c) => void (c.engine.max_visits = Math.max(1, Math.round(v))))} />
       </Field>
       <Field label={t("engine:fast_visits")}>
-        <input type="number" min={1} value={e.fast_visits} onChange={(ev) => edit((c) => void (c.engine.fast_visits = Math.max(1, Math.round(num(ev.target.value, 25)))))} />
+        <NumberInput min={1} value={e.fast_visits} onValue={(v) => edit((c) => void (c.engine.fast_visits = Math.max(1, Math.round(v))))} />
       </Field>
       <Field label={t("engine:max_time")} hint={t("engine:time:hint")}>
-        <input type="number" min={0.1} step={0.5} value={e.max_time} onChange={(ev) => edit((c) => void (c.engine.max_time = num(ev.target.value, 8)))} />
+        <NumberInput min={0.1} step={0.5} value={e.max_time} onValue={(v) => edit((c) => void (c.engine.max_time = v))} />
       </Field>
       <Field label={t("engine:wide_root_noise")} hint={t("engine:wide_root_noise:hint")}>
-        <input type="number" min={0} step={0.01} value={e.wide_root_noise} onChange={(ev) => edit((c) => void (c.engine.wide_root_noise = num(ev.target.value, 0.04)))} />
+        <NumberInput min={0} step={0.01} value={e.wide_root_noise} onValue={(v) => edit((c) => void (c.engine.wide_root_noise = v))} />
       </Field>
 
       <h3>{t("teacher settings")}</h3>
@@ -239,7 +318,7 @@ export function SettingsDialog() {
         ))}
       </div>
       <Field label={t("show last n dots")}>
-        <input type="number" min={0} value={tr.eval_on_show_last} onChange={(ev) => edit((c) => void (c.trainer.eval_on_show_last = Math.max(0, Math.round(num(ev.target.value, 3)))))} />
+        <NumberInput min={0} value={tr.eval_on_show_last} onValue={(v) => edit((c) => void (c.trainer.eval_on_show_last = Math.max(0, Math.round(v))))} />
       </Field>
       <Field label={t("show ai dots")}>
         <input type="checkbox" checked={tr.eval_show_ai} onChange={(ev) => edit((c) => void (c.trainer.eval_show_ai = ev.target.checked))} />
@@ -261,7 +340,7 @@ export function SettingsDialog() {
         </span>
       </Field>
       <Field label={t("show stats if")}>
-        <input type="number" min={0} value={tr.low_visits} onChange={(ev) => edit((c) => void (c.trainer.low_visits = Math.max(0, Math.round(num(ev.target.value, 25)))))} />
+        <NumberInput min={0} value={tr.low_visits} onValue={(v) => edit((c) => void (c.trainer.low_visits = Math.max(0, Math.round(v))))} />
       </Field>
       <Field label={t("show two digits for point loss near zero")}>
         <input type="checkbox" checked={tr.extra_precision} onChange={(ev) => edit((c) => void (c.trainer.extra_precision = ev.target.checked))} />
@@ -270,21 +349,6 @@ export function SettingsDialog() {
         <input type="checkbox" checked={tr.save_analysis} onChange={(ev) => edit((c) => void (c.trainer.save_analysis = ev.target.checked))} />
       </Field>
       <p className="muted">{platform.isDesktop ? t("config file path") + " config.json" : "Settings are stored in this browser."}</p>
-      <div className="modal-actions">
-        <button
-          className="primary"
-          onClick={() => {
-            close();
-            updateConfig((c) => {
-              c.general = draft.general;
-              c.engine = draft.engine;
-              c.trainer = draft.trainer;
-            });
-          }}
-        >
-          {t("update settings")}
-        </button>
-      </div>
     </Modal>
   );
 }
@@ -293,22 +357,15 @@ function ThresholdRow({ i, thr, draft, edit }: { i: number; thr: number; draft: 
   const colors = EVAL_COLORS[draft.trainer.theme] ?? EVAL_COLORS["theme:normal"];
   return (
     <>
-      <input
-        type="number"
-        step={0.5}
-        min={0}
-        value={thr}
-        onChange={(ev) => edit((c) => void (c.trainer.eval_thresholds[i] = Math.max(0, parseFloat(ev.target.value) || 0)))}
-      />
+      <NumberInput step={0.5} min={0} value={thr} onValue={(v) => edit((c) => void (c.trainer.eval_thresholds[i] = Math.max(0, v)))} />
       <span className="swatch" style={{ background: colors[i] }} />
       <input type="checkbox" checked={draft.trainer.show_dots[i]} onChange={(ev) => edit((c) => void (c.trainer.show_dots[i] = ev.target.checked))} />
       <input type="checkbox" checked={draft.trainer.save_feedback[i]} onChange={(ev) => edit((c) => void (c.trainer.save_feedback[i] = ev.target.checked))} />
-      <input
-        type="number"
+      <NumberInput
         step={0.1}
         min={0}
         value={draft.trainer.num_undo_prompts[i] ?? 0}
-        onChange={(ev) => edit((c) => void (c.trainer.num_undo_prompts[i] = Math.max(0, parseFloat(ev.target.value) || 0)))}
+        onValue={(v) => edit((c) => void (c.trainer.num_undo_prompts[i] = Math.max(0, v)))}
       />
     </>
   );
@@ -344,12 +401,7 @@ export function AiSettingsDialog() {
           {typeof value === "boolean" ? (
             <input type="checkbox" checked={value} onChange={(e) => setDraft((d) => ({ ...d, [strategy]: { ...d[strategy], [key]: e.target.checked } }))} />
           ) : (
-            <input
-              type="number"
-              step="any"
-              value={value}
-              onChange={(e) => setDraft((d) => ({ ...d, [strategy]: { ...d[strategy], [key]: parseFloat(e.target.value) || 0 } }))}
-            />
+            <NumberInput step="any" value={value as number} onValue={(v) => setDraft((d) => ({ ...d, [strategy]: { ...d[strategy], [key]: v } }))} />
           )}
         </Field>
       ))}
@@ -390,21 +442,20 @@ export function TimerDialog() {
   const timer = useStore((s) => s.config.timer);
   const [draft, setDraft] = useState(() => ({ ...timer }));
   const close = () => openDialog(null);
-  const num = (key: keyof typeof draft, v: string, min: number) =>
-    setDraft((d) => ({ ...d, [key]: Math.max(min, Number.isNaN(parseFloat(v)) ? min : parseFloat(v)) }));
+  const num = (key: keyof typeof draft, v: number, min: number) => setDraft((d) => ({ ...d, [key]: Math.max(min, v) }));
   return (
     <Modal title={t("timer settings")} onClose={close}>
       <Field label={t("main time")}>
-        <input type="number" min={0} value={draft.main_time} onChange={(e) => num("main_time", e.target.value, 0)} />
+        <NumberInput min={0} value={draft.main_time} onValue={(v) => num("main_time", v, 0)} />
       </Field>
       <Field label={t("byoyomi length")}>
-        <input type="number" min={1} value={draft.byo_length} onChange={(e) => num("byo_length", e.target.value, 1)} />
+        <NumberInput min={1} value={draft.byo_length} onValue={(v) => num("byo_length", v, 1)} />
       </Field>
       <Field label={t("byoyomi periods")}>
-        <input type="number" min={1} value={draft.byo_periods} onChange={(e) => num("byo_periods", e.target.value, 1)} />
+        <NumberInput min={1} value={draft.byo_periods} onValue={(v) => num("byo_periods", v, 1)} />
       </Field>
       <Field label={t("minimal time use")}>
-        <input type="number" min={0} value={draft.minimal_use} onChange={(e) => num("minimal_use", e.target.value, 0)} />
+        <NumberInput min={0} value={draft.minimal_use} onValue={(v) => num("minimal_use", v, 0)} />
       </Field>
       <Field label={t("count down sound")}>
         <input type="checkbox" checked={draft.sound} onChange={(e) => setDraft((d) => ({ ...d, sound: e.target.checked }))} />
