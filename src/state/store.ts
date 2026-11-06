@@ -225,8 +225,16 @@ export async function init() {
   newGame(undefined, { fromConfig: true });
 }
 
+// A loaded game is reviewed by humans, but only until the next new game: the player types to return to.
+let playerTypesBeforeLoad: Record<Player, string> | null = null;
+
 function persistConfig() {
-  void platform.saveConfig(JSON.stringify(get().config, null, 2)).catch((e) => log(`Saving config failed: ${e}`, "error"));
+  const config = structuredClone(get().config);
+  if (playerTypesBeforeLoad) {
+    config.ui.players.B.type = playerTypesBeforeLoad.B;
+    config.ui.players.W.type = playerTypesBeforeLoad.W;
+  }
+  void platform.saveConfig(JSON.stringify(config, null, 2)).catch((e) => log(`Saving config failed: ${e}`, "error"));
 }
 
 export function updateConfig(mutator: (c: AppConfig) => void) {
@@ -259,6 +267,14 @@ function startGame(game: Game, mode: UiMode) {
 }
 
 export function newGame(settings?: NewGameSettings, opts: { fromConfig?: boolean } = {}) {
+  if (playerTypesBeforeLoad) {
+    const types = playerTypesBeforeLoad;
+    playerTypesBeforeLoad = null;
+    updateConfig((c) => {
+      c.ui.players.B.type = types.B;
+      c.ui.players.W.type = types.W;
+    });
+  }
   const cfg = get().config;
   const s: NewGameSettings = settings ?? {
     size: String(cfg.game.size),
@@ -286,6 +302,7 @@ export function loadGameFromString(contents: string, filename: string, path: str
     const game = new Game(host, engine, { moveTree: tree, sgfFilename: path, analyzeFast: cfg.general.load_fast_analysis });
     if (!cfg.general.load_sgf_rewind) game.redo(9999);
     // loaded games are reviewed by humans
+    playerTypesBeforeLoad ??= { B: cfg.ui.players.B.type, W: cfg.ui.players.W.type };
     updateConfig((c) => {
       c.ui.players.B.type = PLAYER_HUMAN;
       c.ui.players.W.type = PLAYER_HUMAN;
@@ -427,7 +444,10 @@ export function aiMoveNow() {
 export function analyzeExtra(mode: ExtraAnalysisMode, kwargs: Parameters<Game["analyzeExtra"]>[1] = {}) {
   const game = get().game;
   if (!game) return;
-  if (mode === "stop") set({ pondering: false });
+  if (mode === "stop") {
+    set({ pondering: false });
+    if (get().status?.level === "analysis") setStatus("");
+  }
   game.analyzeExtra(mode, kwargs);
   refresh();
 }
@@ -492,6 +512,7 @@ export function toggleControl(key: keyof AnalysisToggles) {
 }
 
 export function setPlayer(p: Player, change: { type?: PlayerType; strategy?: string; subtype?: string }) {
+  if (change.type && playerTypesBeforeLoad) playerTypesBeforeLoad[p] = change.type;
   updateConfig((c) => {
     if (change.type) c.ui.players[p].type = change.type;
     if (change.strategy) c.ui.players[p].strategy = change.strategy;

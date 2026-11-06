@@ -26,7 +26,7 @@ import {
   undo,
   useStore,
 } from "../state/store";
-import { THEME } from "./theme";
+import { MOD_KEY, THEME } from "./theme";
 
 const TOGGLES: [keyof AnalysisToggles, string, string][] = [
   ["show_children", "analysis:nextmoves", "Q"],
@@ -53,17 +53,17 @@ export function TopBar() {
         </button>
         {menuOpen && (
           <Dropdown onClose={() => setMenuOpen(false)}>
-            <MenuItem label={t("menu:newgame")} shortcut="Ctrl+N" onClick={() => openDialog("newgame")} />
-            <MenuItem label={t("menu:load")} shortcut="Ctrl+L" onClick={() => void loadGame()} />
-            <MenuItem label={t("menu:save")} shortcut="Ctrl+S" onClick={() => void saveGame(false)} />
-            <MenuItem label={t("menu:save-as")} shortcut="Ctrl+D" onClick={() => void saveGame(true)} />
+            <MenuItem label={t("menu:newgame")} shortcut={`${MOD_KEY}N`} onClick={() => openDialog("newgame")} />
+            <MenuItem label={t("menu:load")} shortcut={`${MOD_KEY}L`} onClick={() => void loadGame()} />
+            <MenuItem label={t("menu:save")} shortcut={`${MOD_KEY}S`} onClick={() => void saveGame(false)} />
+            <MenuItem label={t("menu:save-as")} shortcut={`${MOD_KEY}D`} onClick={() => void saveGame(true)} />
             <hr />
             <MenuItem label={t("menu:settings")} shortcut="F8" onClick={() => openDialog("settings")} />
             <MenuItem label={t("menu:aisettings")} shortcut="F7" onClick={() => openDialog("ai")} />
             <MenuItem label={t("menu:clocksettings")} shortcut="F5" onClick={() => openDialog("timer")} />
             <hr />
-            <MenuItem label="Copy SGF" shortcut="Ctrl+C" onClick={() => void copySgf()} />
-            <MenuItem label="Paste SGF / link" shortcut="Ctrl+V" onClick={() => void pasteSgf()} />
+            <MenuItem label="Copy SGF" shortcut={`${MOD_KEY}C`} onClick={() => void copySgf()} />
+            <MenuItem label="Paste SGF / link" shortcut={`${MOD_KEY}V`} onClick={() => void pasteSgf()} />
             <MenuItem label="KataGo log" onClick={() => openDialog("log")} />
           </Dropdown>
         )}

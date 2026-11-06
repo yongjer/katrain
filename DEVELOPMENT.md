@@ -103,11 +103,21 @@ Translations are the gettext files in `src/i18n`. To improve one, edit the `msgs
 To add a language, copy `en.po`, translate the `msgstr` entries (leave anything between `{}` as it is), and add the
 language to `LANGUAGES` in `src/ui/i18nLoader.ts`.
 
+## Disk writes reported by macOS
+
+macOS can file a "disk writes" report for `katago-osx` in `/Library/Logs/DiagnosticReports`, for over 2 GB of "file backed
+memory dirtied". That comes from Apple's MPSGraph compiling the model for Metal into temporary `payload-*.bin` files, and
+it is not what reaches the disk: measured with `proc_pid_rusage`, a few GB of logical writes came with 0-32 MB of real ones.
+The files do not stay behind.
+
 ## Test builds
 
 Every push to `main` builds Windows, macOS (Apple Silicon and Intel) and Linux installers in CI and refreshes the
 [`tauri-nightly` prerelease](https://github.com/yongjer/katraineo/releases/tag/tauri-nightly) with them.
 These are unsigned test builds.
+
+GitHub's macOS runners are often short of capacity, and it cancels a job that no runner picks up. When that happens to a
+macOS build, `.github/workflows/retry-macos.yml` re-runs the failed jobs, up to three times. Other failures are left alone.
 
 ## Not ported from the Python version
 

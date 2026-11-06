@@ -2,6 +2,10 @@
 
 import { evaluationClass } from "../core/utils";
 
+export const IS_MAC = navigator.platform.startsWith("Mac");
+/** How the menus show the shortcut modifier. The key handler takes Ctrl or Cmd everywhere. */
+export const MOD_KEY = IS_MAC ? "⌘" : "Ctrl+";
+
 export const EVAL_COLORS: Record<string, string[]> = {
   "theme:normal": ["#72216b", "#cc0000", "#e6661a", "#f2f200", "#abe62e", "#1e9600"],
   "theme:red-green-colourblind": ["#ff00ff", "#ff0000", "#ff8000", "#ffff00", "#00ffff", "#0000ff"],

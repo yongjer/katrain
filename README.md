@@ -167,6 +167,8 @@ In addition to the shortcuts above and those shown in the menus:
 | <kbd>Ctrl</kbd> + <kbd>v</kbd>        | Load an SGF, or a link to one, from the clipboard |
 | <kbd>Ctrl</kbd> + <kbd>c</kbd>        | Copy the game as SGF to the clipboard |
 
+On macOS, <kbd>Cmd</kbd> works wherever this table says <kbd>Ctrl</kbd>.
+
 ## <a name="faq"></a> FAQ
 
 * The program is running too slowly. How can I speed it up?
