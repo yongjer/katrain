@@ -674,6 +674,21 @@ msgstr "Connecting to remote KataGo at {url} failed: {error}"
 msgid "Remote KataGo engine disconnected"
 msgstr "Remote KataGo engine disconnected: {error}"
 
+msgid "Reconnecting to remote KataGo"
+msgstr "Reconnecting to remote KataGo (attempt {attempt}/{total})..."
+
+msgid "Reconnected to remote KataGo"
+msgstr "Reconnected to remote KataGo."
+
+msgid "engine:restart:hint"
+msgstr "Click to restart KataGo."
+
+msgid "settings:unsaved"
+msgstr "You have unsaved changes."
+
+msgid "settings:discard"
+msgstr "Discard changes"
+
 msgid "engine:max_visits"
 msgstr "Maximum number of visits in analysis"
 

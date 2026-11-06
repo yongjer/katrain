@@ -1025,6 +1025,21 @@ msgstr "連線至遠端 KataGo {url} 失敗：{error}"
 msgid "Remote KataGo engine disconnected"
 msgstr "遠端 KataGo 引擎已中斷連線：{error}"
 
+msgid "Reconnecting to remote KataGo"
+msgstr "正在重新連線至遠端 KataGo（第 {attempt}/{total} 次）..."
+
+msgid "Reconnected to remote KataGo"
+msgstr "已重新連線至遠端 KataGo。"
+
+msgid "engine:restart:hint"
+msgstr "按一下以重新啟動 KataGo。"
+
+msgid "settings:unsaved"
+msgstr "有尚未儲存的變更。"
+
+msgid "settings:discard"
+msgstr "捨棄變更"
+
 #. Shown instead of "engine died popup opening message" for remote
 #. engines.
 msgid "remote engine disconnected popup opening message"

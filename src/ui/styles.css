@@ -809,6 +809,22 @@ kbd {
   margin-top: 6px;
 }
 
+.modal-footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--box-light);
+}
+
+.modal-footer .modal-actions {
+  margin-top: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-actions .unsaved {
+  margin-right: auto;
+  color: var(--orange);
+}
+
 button.primary {
   background: var(--accent);
   color: #1b2430;

@@ -19,6 +19,7 @@ import {
   redo,
   resetAnalysis,
   resign,
+  restartEngine,
   saveGame,
   setMode,
   toggleControl,
@@ -144,9 +145,13 @@ export function ControlsBar() {
   const remaining = engine?.queriesRemaining() ?? 0;
   let engineColor: string = THEME.engine.ready;
   let engineTitle = "KataGo ready";
-  if (!engine || engine.state === "dead" || engine.state === "stopped") {
+  const engineStopped = !engine || engine.state === "dead" || engine.state === "stopped";
+  if (engineStopped) {
     engineColor = THEME.engine.dead;
-    engineTitle = engine?.lastError ?? "KataGo not running";
+    engineTitle = `${engine?.lastError ?? "KataGo not running"}\n${t("engine:restart:hint")}`;
+  } else if (engine.isReconnecting) {
+    engineColor = THEME.engine.busy;
+    engineTitle = engine.connectionMessage ?? "";
   } else if (pondering) {
     engineColor = THEME.engine.pondering;
     engineTitle = "Continuous analysis";
@@ -180,7 +185,13 @@ export function ControlsBar() {
       <div className={`status ${status?.level ?? ""}`} title={status?.message}>
         {status?.message.replace(/\n/g, " ")}
       </div>
-      <button className="engine-dot" style={{ background: engineColor }} title={engineTitle} aria-label={engineTitle} onClick={togglePondering} />
+      <button
+        className="engine-dot"
+        style={{ background: engineColor }}
+        title={engineTitle}
+        aria-label={engineTitle}
+        onClick={() => (engineStopped && engine ? void restartEngine() : togglePondering())}
+      />
     </footer>
   );
 }
