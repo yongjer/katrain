@@ -197,11 +197,14 @@ jobs:
           set -euo pipefail
           git tag -f tauri-nightly "$GITHUB_SHA"
           git push -f origin tauri-nightly
+          # GitHub keeps the date the release was first published, so the title says which build this is:
+          # the commit's date (UTC) and short hash.
+          title="Katraineo nightly $(TZ=UTC git log -1 --date=format-local:%Y-%m-%d --format=%cd "$GITHUB_SHA") (${GITHUB_SHA::7})"
           notes="Automatic build from the main branch, commit ${GITHUB_SHA}. Not a release: for testing only. macOS builds are unsigned."
           if gh release view tauri-nightly >/dev/null 2>&1; then
-            gh release edit tauri-nightly --prerelease --title "Katraineo nightly" --notes "$notes"
+            gh release edit tauri-nightly --prerelease --title "$title" --notes "$notes"
           else
-            gh release create tauri-nightly --prerelease --title "Katraineo nightly" --notes "$notes" --verify-tag
+            gh release create tauri-nightly --prerelease --title "$title" --notes "$notes" --verify-tag
           fi
           mapfile -t files < <(find bundles -type f \( -name '*.dmg' -o -name '*.msi' -o -name '*.exe' -o -name '*.deb' -o -name '*.AppImage' \))
           printf '%s\n' "${files[@]}"
