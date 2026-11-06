@@ -114,6 +114,12 @@ export function setStatus(message: string, level: StatusLevel = "info") {
   set({ status: message ? { message, level } : null });
 }
 
+/** Clear the status bar, but keep what the engine connection has to say (why it stopped, reconnect progress). */
+export function clearStatus() {
+  const message = engine?.connectionMessage;
+  setStatus(message ?? "", engine?.state === "dead" ? "error" : "info");
+}
+
 // ---------------------------------------------------------------- engine
 let engine: KataGoEngine | null = null;
 export function getEngine(): KataGoEngine | null {
@@ -135,7 +141,7 @@ async function startEngine() {
     engine = new KataGoEngine(platform.makeTransport(cfg.engine), cfg.engine, (m, l) => log(m, l));
     engine.onStatus = (m) => setStatus(m, "info");
     engine.subscribe(() => {
-      if (engine?.state === "dead") setStatus(engine.lastError ?? "KataGo stopped", "error");
+      if (engine?.state === "dead") setStatus(engine.connectionMessage!, "error");
       refresh();
     });
     transportKind = kind;
@@ -237,7 +243,20 @@ function persistConfig() {
   void platform.saveConfig(JSON.stringify(config, null, 2)).catch((e) => log(`Saving config failed: ${e}`, "error"));
 }
 
-export function updateConfig(mutator: (c: AppConfig) => void) {
+/** Restart KataGo with the current settings, then analyze what the old engine left unanalyzed. */
+export async function restartEngine() {
+  setStatus(t("restarting engine"), "info");
+  await startEngine();
+  const game = get().game;
+  if (game) for (const n of game.root.nodesInTree) if (!n.analysisComplete) game.analyze(n, { priority: PRIORITY_GAME_ANALYSIS });
+  refresh();
+}
+
+/**
+ * Change the settings; the engine restarts when its settings change, or with `restartDeadEngine` (applying the
+ * settings dialog) also when it has stopped, so that applying the same settings again retries a failed engine.
+ */
+export function updateConfig(mutator: (c: AppConfig) => void, opts: { restartDeadEngine?: boolean } = {}) {
   const config = structuredClone(get().config);
   const before = JSON.stringify(config.engine);
   const lang = config.general.lang;
@@ -245,15 +264,7 @@ export function updateConfig(mutator: (c: AppConfig) => void) {
   set({ config });
   persistConfig();
   if (config.general.lang !== lang) void setLanguage(config.general.lang).then(() => set({ lang: config.general.lang }));
-  if (JSON.stringify(config.engine) !== before) {
-    setStatus(t("restarting engine"), "info");
-    void startEngine().then(() => {
-      const game = get().game;
-      if (!game) return;
-      for (const n of game.root.nodesInTree) if (!n.analysisComplete) game.analyze(n, { priority: PRIORITY_GAME_ANALYSIS });
-      refresh();
-    });
-  }
+  if (JSON.stringify(config.engine) !== before || (opts.restartDeadEngine && engine && !engine.isAlive)) void restartEngine();
   refresh();
 }
 
@@ -261,8 +272,8 @@ function startGame(game: Game, mode: UiMode) {
   const old = get().game;
   if (old) old.active = false;
   resetTimer();
-  const engineError = engine && engine.state === "dead" ? engine.lastError : null;
-  set({ game, mode, pondering: false, status: engineError ? { message: engineError, level: "error" } : null });
+  set({ game, mode, pondering: false });
+  clearStatus();
   refresh();
 }
 
@@ -380,7 +391,7 @@ export function playAt(coords: Coords | null) {
     const after = game.prisonerCount.B + game.prisonerCount.W;
     if (after > before) sounds.capture();
     else if (coords) sounds.stone();
-    setStatus("");
+    clearStatus();
   } catch (e) {
     if (e instanceof IllegalMoveException) setStatus(`Illegal Move: ${e.message}`, "error");
     else throw e;
@@ -446,7 +457,7 @@ export function analyzeExtra(mode: ExtraAnalysisMode, kwargs: Parameters<Game["a
   if (!game) return;
   if (mode === "stop") {
     set({ pondering: false });
-    if (get().status?.level === "analysis") setStatus("");
+    if (get().status?.level === "analysis") clearStatus();
   }
   game.analyzeExtra(mode, kwargs);
   refresh();
@@ -479,7 +490,7 @@ export function finishRegionSelect(region: [number, number, number, number] | nu
   const game = get().game;
   set({ selectingRegion: false });
   if (game && region) game.setRegionOfInterest(region);
-  setStatus("", "info");
+  clearStatus();
   refresh();
 }
 
@@ -537,6 +548,18 @@ export function editTree(edit: TreeEdit, node?: GameNode) {
 export function setNote(note: string) {
   const game = get().game;
   if (game) game.currentNode.note = note;
+}
+
+/** A dialog can stop closing (Escape, the close button, a click outside) to ask about unsaved changes first. */
+let dialogCloseGuard: (() => boolean) | null = null;
+export function setDialogCloseGuard(guard: (() => boolean) | null) {
+  dialogCloseGuard = guard;
+}
+
+/** Close the open dialog unless its close guard keeps it open. */
+export function requestCloseDialog() {
+  if (dialogCloseGuard?.()) return;
+  openDialog(null);
 }
 
 export function openDialog(dialog: DialogKind) {

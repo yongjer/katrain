@@ -5,7 +5,7 @@
 
 import { PONDERING_REPORT_DT, type Player } from "./constants";
 import type { GameNode, KataGoResponse } from "./gameNode";
-import { tf } from "./i18n";
+import { t, tf } from "./i18n";
 import { Move } from "./move";
 
 export interface EngineSettings {
@@ -124,6 +124,8 @@ export class KataGoEngine {
   static RECONNECT_ATTEMPTS = 6;
   static RECONNECT_BACKOFF_MS = 1000;
   static RECONNECT_MAX_BACKOFF_MS = 10_000;
+  /** A connection that drops sooner than this without answering anything does not count as reconnected. */
+  static RECONNECT_STABLE_MS = 10_000;
 
   settings: EngineSettings;
   state: EngineState = "stopped";
@@ -136,6 +138,10 @@ export class KataGoEngine {
   /** Query payloads by id, to resume outstanding work after reconnecting to a remote engine. */
   private sentPayloads = new Map<string, string>();
   private reconnecting = false;
+  /** Reconnect attempts since the connection last proved itself (answered something, or stayed up for a while). */
+  private reconnectAttempts = 0;
+  private connectedAt = 0;
+  private reconnectMessage = "";
   private disconnectReason = "";
   private startCount = 0;
   private ponderQuery: Query | null = null;
@@ -176,6 +182,18 @@ export class KataGoEngine {
     this.notify();
   }
 
+  /** Connecting to the remote engine again; queries wait meanwhile. */
+  get isReconnecting(): boolean {
+    return this.reconnecting;
+  }
+
+  /** What the status bar should keep showing about the engine: why it stopped, or the reconnect progress. */
+  get connectionMessage(): string | null {
+    if (this.state === "dead") return this.lastError ?? "KataGo stopped";
+    if (this.reconnecting) return this.reconnectMessage;
+    return null;
+  }
+
   get isRemote(): boolean {
     return resolveEngineBackend(this.settings) === "remote";
   }
@@ -183,6 +201,7 @@ export class KataGoEngine {
   async start() {
     this.lastError = null;
     this.reconnecting = false;
+    this.reconnectAttempts = 0;
     const run = ++this.startCount;
     this.setState("starting");
     const url = (this.settings.remote_url ?? "").trim();
@@ -191,6 +210,7 @@ export class KataGoEngine {
     if (this.isRemote) this.log(`Connecting to remote KataGo at ${url}`, "debug");
     try {
       const result = await this.transport.start(this.settings);
+      this.connectedAt = performance.now();
       if (run === this.startCount && this.state === "starting" && result?.ready) this.setState("ready");
     } catch (e) {
       if (run !== this.startCount) return;
@@ -260,7 +280,8 @@ export class KataGoEngine {
   terminateQuery(queryId: string, ignoreFurtherResults = true) {
     this.log(`Terminating query ${queryId}`, "debug");
     this.sendQuery({ action: "terminate", terminateId: queryId }, null, null);
-    if (ignoreFurtherResults) this.forget(queryId);
+    // While reconnecting the terminate cannot be sent, so the query must not be re-sent either.
+    if (ignoreFurtherResults || this.reconnecting) this.forget(queryId);
   }
 
   private forget(queryId: string) {
@@ -390,6 +411,7 @@ export class KataGoEngine {
   private handleExit(code: number | null) {
     if (this.state === "stopped" || this.reconnecting) return;
     if (this.isRemote && this.state === "ready") {
+      if (performance.now() - this.connectedAt >= KataGoEngine.RECONNECT_STABLE_MS) this.reconnectAttempts = 0;
       void this.reconnect(this.disconnectReason || "connection lost");
       return;
     }
@@ -402,16 +424,22 @@ export class KataGoEngine {
     this.setState("dead");
   }
 
-  /** Reconnect to a remote engine with linear backoff, then resume the outstanding queries. */
+  /**
+   * Reconnect to a remote engine with linear backoff, then resume the outstanding queries. The attempts add up over
+   * connections that drop again right away, so a server that accepts and then closes is not retried forever.
+   */
   private async reconnect(reason: string) {
     this.reconnecting = true;
     const run = this.startCount;
     const n = KataGoEngine.RECONNECT_ATTEMPTS;
     let error = reason;
-    for (let attempt = 1; attempt <= n; attempt++) {
+    while (this.reconnectAttempts < n) {
+      const attempt = ++this.reconnectAttempts;
       const delay = Math.min(KataGoEngine.RECONNECT_BACKOFF_MS * attempt, KataGoEngine.RECONNECT_MAX_BACKOFF_MS);
       this.log(`Remote KataGo disconnected (${error}); reconnect attempt ${attempt}/${n} in ${Math.round(delay / 1000)}s`, "info");
-      this.onStatus(`Reconnecting to remote KataGo (attempt ${attempt}/${n})...`);
+      this.reconnectMessage = tf("Reconnecting to remote KataGo", { attempt, total: n });
+      this.onStatus(this.reconnectMessage);
+      this.notify();
       await new Promise((r) => setTimeout(r, delay));
       if (run !== this.startCount || !this.reconnecting) return; // stopped or restarted meanwhile
       try {
@@ -422,9 +450,10 @@ export class KataGoEngine {
       }
       if (run !== this.startCount) return;
       this.reconnecting = false;
+      this.connectedAt = performance.now();
       this.disconnectReason = "";
       this.log("Reconnected to remote KataGo", "info");
-      this.onStatus("Reconnected to remote KataGo.");
+      this.onStatus(t("Reconnected to remote KataGo"));
       const outstanding = [...this.queries.keys()].flatMap((id) => this.sentPayloads.get(id) ?? []);
       if (outstanding.length) this.log(`Re-sending ${outstanding.length} outstanding queries after reconnect`, "info");
       for (const payload of outstanding) {
@@ -460,6 +489,7 @@ export class KataGoEngine {
       return;
     }
     if (this.state === "starting") this.state = "ready";
+    this.reconnectAttempts = 0; // the connection works
     if (!("id" in analysis)) {
       this.log(`Error without ID ${line} received from KataGo`, "error");
       return;

@@ -200,4 +200,65 @@ describe("remote engine", () => {
     expect(e.state).toBe("dead");
     expect(t.starts).toBe(1);
   });
+
+  it("says it is reconnecting until the connection is back", async () => {
+    const t = new FakeRemote();
+    const e = new KataGoEngine(t, settings());
+    await e.start();
+    expect(e.connectionMessage).toBeNull();
+    t.failNext = 1;
+    t.drop();
+    expect(e.isReconnecting).toBe(true);
+    expect(e.connectionMessage).toContain("Reconnecting");
+    await until(() => t.connected);
+    expect(e.isReconnecting).toBe(false);
+    expect(e.connectionMessage).toBeNull();
+  });
+
+  it("does not resume pondering that was stopped while reconnecting", async () => {
+    const t = new FakeRemote();
+    const e = new KataGoEngine(t, settings());
+    await e.start();
+    e.requestAnalysis(new GameNode(null, { SZ: 9 }), { callback: () => {}, ponder: true, timeLimit: false });
+    await until(() => t.sent.length === 1);
+    t.failNext = 1;
+    t.drop();
+    e.stopPondering();
+    await until(() => t.connected);
+    await new Promise((r) => setTimeout(r, 20));
+    expect(ids(t.sent)).toHaveLength(1); // the 10M-visit ponder query is not sent again
+    expect(e.isIdle()).toBe(true);
+  });
+
+  it("gives up on a server that accepts and then closes right away", async () => {
+    const t = new FakeRemote();
+    const e = new KataGoEngine(t, settings());
+    await e.start();
+    const start = t.start.bind(t);
+    t.start = async () => {
+      const result = await start();
+      setTimeout(() => t.drop("closed by remote"), 1);
+      return result;
+    };
+    t.drop();
+    await until(() => e.state === "dead");
+    expect(t.starts).toBe(1 + KataGoEngine.RECONNECT_ATTEMPTS);
+    expect(e.lastError).toContain("closed by remote");
+  });
+
+  it("starts counting again once a reconnected engine has answered", async () => {
+    const t = new FakeRemote();
+    const e = new KataGoEngine(t, settings());
+    await e.start();
+    const node = new GameNode(null, { SZ: 9 });
+    for (let i = 0; i < 2 * KataGoEngine.RECONNECT_ATTEMPTS; i++) {
+      t.failNext = 1;
+      t.drop();
+      await until(() => t.connected);
+      e.requestAnalysis(node, { callback: () => {} });
+      await until(() => ids(t.sent).length === i + 1);
+      t.answer(ids(t.sent).at(-1)!);
+    }
+    expect(e.state).toBe("ready");
+  });
 });
